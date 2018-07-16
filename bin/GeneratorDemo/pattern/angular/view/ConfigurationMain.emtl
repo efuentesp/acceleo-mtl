@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="ConfigurationMain" nsURI="GeneratorDemo::pattern::angular::view::ConfigurationMain" startHeaderPosition="29" endHeaderPosition="181">
+    <input>
+      <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+    </input>
+    <ownedModuleElement xsi:type="mtl:Template" name="generateElementMainConfiguration" visibility="Public" main="true">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;module.exports = function (config) {&#xA;  config.set({&#xA;    basePath: '',&#xA;    frameworks: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="'jasmine', '@angular/cli'"/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    plugins: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      require('karma-jasmine'),&#xA;      require('karma-chrome-launcher'),&#xA;      require('karma-jasmine-html-reporter'),&#xA;      require('karma-coverage-istanbul-reporter'),&#xA;      require('@angular/cli/plugins/karma')&#xA;    ],&#xA;    client:{&#xA;      clearContext: false // leave Jasmine Spec Runner output visible in browser&#xA;    },&#xA;    coverageIstanbulReporter: {&#xA;      reports: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" 'html', 'lcovonly' "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;      fixWebpackSourcePaths: true&#xA;    },&#xA;    angularCli: {&#xA;      environment: 'dev'&#xA;    },&#xA;    reporters: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="'progress', 'kjhtml'"/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    port: 9876,&#xA;    colors: true,&#xA;    logLevel: config.LOG_INFO,&#xA;    autoWatch: true,&#xA;    browsers: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="'Chrome'"/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    singleRun: false&#xA;  });&#xA;};&#xA;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="karma.conf.js">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;{&#xA;  &quot;name&quot;: &quot;angular-multi-step-wizard&quot;,&#xA;  &quot;version&quot;: &quot;1.0.0&quot;,&#xA;  &quot;license&quot;: &quot;MIT&quot;,&#xA;  &quot;scripts&quot;: {&#xA;    &quot;ng&quot;: &quot;ng&quot;,&#xA;    &quot;start&quot;: &quot;ng serve --port 3100 --host 0.0.0.0 --disableHostCheck true --open&quot;,&#xA;    &quot;build&quot;: &quot;ng build&quot;,&#xA;    &quot;test&quot;: &quot;ng test&quot;,&#xA;    &quot;lint&quot;: &quot;ng lint&quot;,&#xA;    &quot;e2e&quot;: &quot;ng e2e&quot;&#xA;  },&#xA;  &quot;private&quot;: true,&#xA;  &quot;dependencies&quot;: {&#xA;    &quot;@angular/animations&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@angular/common&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@angular/compiler&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@angular/core&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@angular/forms&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@angular/http&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@angular/platform-browser&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@angular/platform-browser-dynamic&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@angular/router&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@ng-bootstrap/ng-bootstrap&quot;: &quot;^1.0.0&quot;,&#xA;    &quot;angular-bootstrap-md&quot;: &quot;^5.1.2&quot;,&#xA;    &quot;core-js&quot;: &quot;^2.4.1&quot;,&#xA;    &quot;ng2-pagination&quot;: &quot;^2.0.2&quot;,&#xA;    &quot;ng2-sweetalert2&quot;: &quot;0.0.8&quot;,&#xA;    &quot;ngx-bootstrap&quot;: &quot;^2.0.2&quot;,&#xA;    &quot;ngx-pagination&quot;: &quot;^3.0.3&quot;,&#xA;    &quot;rxjs&quot;: &quot;^5.5.6&quot;,&#xA;    &quot;sweetalert2&quot;: &quot;^7.8.5&quot;,&#xA;    &quot;zone.js&quot;: &quot;^0.8.14&quot;&#xA;  },&#xA;  &quot;devDependencies&quot;: {&#xA;    &quot;@angular/cli&quot;: &quot;1.3.2&quot;,&#xA;    &quot;@angular/compiler-cli&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@angular/language-service&quot;: &quot;^4.2.4&quot;,&#xA;    &quot;@types/jasmine&quot;: &quot;~2.5.53&quot;,&#xA;    &quot;@types/jasminewd2&quot;: &quot;~2.0.2&quot;,&#xA;    &quot;@types/node&quot;: &quot;~6.0.60&quot;,&#xA;    &quot;codelyzer&quot;: &quot;~3.1.1&quot;,&#xA;    &quot;jasmine-core&quot;: &quot;~2.6.2&quot;,&#xA;    &quot;jasmine-spec-reporter&quot;: &quot;~4.1.0&quot;,&#xA;    &quot;karma&quot;: &quot;~1.7.0&quot;,&#xA;    &quot;karma-chrome-launcher&quot;: &quot;~2.1.1&quot;,&#xA;    &quot;karma-cli&quot;: &quot;~1.0.1&quot;,&#xA;    &quot;karma-coverage-istanbul-reporter&quot;: &quot;^1.2.1&quot;,&#xA;    &quot;karma-jasmine&quot;: &quot;~1.1.0&quot;,&#xA;    &quot;karma-jasmine-html-reporter&quot;: &quot;^0.2.2&quot;,&#xA;    &quot;protractor&quot;: &quot;~5.1.2&quot;,&#xA;    &quot;ts-node&quot;: &quot;~3.2.0&quot;,&#xA;    &quot;tslint&quot;: &quot;~5.3.2&quot;,&#xA;    &quot;typescript&quot;: &quot;~2.3.3&quot;&#xA;  }&#xA;}&#xA;&#xA;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="package.json">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;const { SpecReporter } = require('jasmine-spec-reporter');&#xA;&#xA;exports.config = {&#xA;  allScriptsTimeout: 11000,&#xA;  specs: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;    './e2e/**/*.e2e-spec.ts'&#xA;  "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;  capabilities: {&#xA;    'browserName': 'chrome'&#xA;  },&#xA;  directConnect: true,&#xA;  baseUrl: 'http://localhost:4200/',&#xA;  framework: 'jasmine',&#xA;  jasmineNodeOpts: {&#xA;    showColors: true,&#xA;    defaultTimeoutInterval: 30000,&#xA;    print: function() {}&#xA;  },&#xA;  onPrepare() {&#xA;    require('ts-node').register({&#xA;      project: 'e2e/tsconfig.e2e.json'&#xA;    });&#xA;    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));&#xA;  }&#xA;};&#xA;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="protractor.conf.js">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;{&#xA;  &quot;compileOnSave&quot;: false,&#xA;  &quot;compilerOptions&quot;: {&#xA;    &quot;outDir&quot;: &quot;./dist/out-tsc&quot;,&#xA;    &quot;sourceMap&quot;: true,&#xA;    &quot;declaration&quot;: false,&#xA;    &quot;moduleResolution&quot;: &quot;node&quot;,&#xA;    &quot;emitDecoratorMetadata&quot;: true,&#xA;    &quot;experimentalDecorators&quot;: true,&#xA;    &quot;target&quot;: &quot;es5&quot;,&#xA;    &quot;typeRoots&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      &quot;node_modules/@types&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;lib&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      &quot;es2017&quot;,&#xA;      &quot;dom&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;  }&#xA;}&#xA;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="tsconfig.json">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;{&#xA;  &quot;rulesDirectory&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;    &quot;node_modules/codelyzer&quot;&#xA;  "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;  &quot;rules&quot;: {&#xA;    &quot;arrow-return-shorthand&quot;: true,&#xA;    &quot;callable-types&quot;: true,&#xA;    &quot;class-name&quot;: true,&#xA;    &quot;comment-format&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;check-space&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;curly&quot;: true,&#xA;    &quot;eofline&quot;: true,&#xA;    &quot;forin&quot;: true,&#xA;    &quot;import-blacklist&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;rxjs&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;import-spacing&quot;: true,&#xA;    &quot;indent&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;spaces&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;interface-over-type-literal&quot;: true,&#xA;    &quot;label-position&quot;: true,&#xA;    &quot;max-line-length&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      140&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;member-access&quot;: false,&#xA;    &quot;member-ordering&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      {&#xA;        &quot;order&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;          &quot;static-field&quot;,&#xA;          &quot;instance-field&quot;,&#xA;          &quot;static-method&quot;,&#xA;          &quot;instance-method&quot;&#xA;        "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      }&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;no-arg&quot;: true,&#xA;    &quot;no-bitwise&quot;: true,&#xA;    &quot;no-console&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;debug&quot;,&#xA;      &quot;info&quot;,&#xA;      &quot;time&quot;,&#xA;      &quot;timeEnd&quot;,&#xA;      &quot;trace&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;no-construct&quot;: true,&#xA;    &quot;no-debugger&quot;: true,&#xA;    &quot;no-duplicate-super&quot;: true,&#xA;    &quot;no-empty&quot;: false,&#xA;    &quot;no-empty-interface&quot;: true,&#xA;    &quot;no-eval&quot;: true,&#xA;    &quot;no-inferrable-types&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;ignore-params&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;no-misused-new&quot;: true,&#xA;    &quot;no-non-null-assertion&quot;: true,&#xA;    &quot;no-shadowed-variable&quot;: true,&#xA;    &quot;no-string-literal&quot;: false,&#xA;    &quot;no-string-throw&quot;: true,&#xA;    &quot;no-switch-case-fall-through&quot;: true,&#xA;    &quot;no-trailing-whitespace&quot;: true,&#xA;    &quot;no-unnecessary-initializer&quot;: true,&#xA;    &quot;no-unused-expression&quot;: true,&#xA;    &quot;no-use-before-declare&quot;: true,&#xA;    &quot;no-var-keyword&quot;: true,&#xA;    &quot;object-literal-sort-keys&quot;: false,&#xA;    &quot;one-line&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;check-open-brace&quot;,&#xA;      &quot;check-catch&quot;,&#xA;      &quot;check-else&quot;,&#xA;      &quot;check-whitespace&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;prefer-const&quot;: true,&#xA;    &quot;quotemark&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;single&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;radix&quot;: true,&#xA;    &quot;semicolon&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;always&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;triple-equals&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;allow-null-check&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;typedef-whitespace&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      {&#xA;        &quot;call-signature&quot;: &quot;nospace&quot;,&#xA;        &quot;index-signature&quot;: &quot;nospace&quot;,&#xA;        &quot;parameter&quot;: &quot;nospace&quot;,&#xA;        &quot;property-declaration&quot;: &quot;nospace&quot;,&#xA;        &quot;variable-declaration&quot;: &quot;nospace&quot;&#xA;      }&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;typeof-compare&quot;: true,&#xA;    &quot;unified-signatures&quot;: true,&#xA;    &quot;variable-name&quot;: false,&#xA;    &quot;whitespace&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;check-branch&quot;,&#xA;      &quot;check-decl&quot;,&#xA;      &quot;check-operator&quot;,&#xA;      &quot;check-separator&quot;,&#xA;      &quot;check-type&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;directive-selector&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;attribute&quot;,&#xA;      &quot;app&quot;,&#xA;      &quot;camelCase&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;component-selector&quot;: "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;      true,&#xA;      &quot;element&quot;,&#xA;      &quot;app&quot;,&#xA;      &quot;kebab-case&quot;&#xA;    "/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=",&#xA;    &quot;use-input-property-decorator&quot;: true,&#xA;    &quot;use-output-property-decorator&quot;: true,&#xA;    &quot;use-host-property-decorator&quot;: true,&#xA;    &quot;no-input-rename&quot;: true,&#xA;    &quot;no-output-rename&quot;: true,&#xA;    &quot;use-life-cycle-interface&quot;: true,&#xA;    &quot;use-pipe-transform-interface&quot;: true,&#xA;    &quot;component-class-suffix&quot;: true,&#xA;    &quot;directive-class-suffix&quot;: true,&#xA;    &quot;no-access-missing-member&quot;: true,&#xA;    &quot;templates-use-public&quot;: true,&#xA;    &quot;invoke-injectable&quot;: true&#xA;  }&#xA;}&#xA;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="tslint.json">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <parameter name="aModel">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ecore_EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generateElementMainConfiguration">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generateElementMainConfiguration"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="uml_Model_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/generateElementMainConfiguration">
+      <details key="start" value="99"/>
+      <details key="end" value="7220"/>
+      <details key="line" value="5"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generateElementMainConfiguration/%">
+      <details key="start" value="184"/>
+      <details key="end" value="185"/>
+      <details key="line" value="7"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generateElementMainConfiguration/%.1">
+      <details key="start" value="185"/>
+      <details key="end" value="1093"/>
+      <details key="line" value="8"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateElementMainConfiguration/%.1/%">
+      <details key="start" value="227"/>
+      <details key="end" value="314"/>
+      <details key="line" value="9"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateElementMainConfiguration/%.1/%.1">
+      <details key="start" value="316"/>
+      <details key="end" value="319"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generateElementMainConfiguration/%.1/%.2">
+      <details key="start" value="322"/>
+      <details key="end" value="347"/>
+      <details key="line" value="13"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generateElementMainConfiguration/%.1/%.3">
+      <details key="start" value="349"/>
+      <details key="end" value="352"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generateElementMainConfiguration/%.1/%.4">
+      <details key="start" value="355"/>
+      <details key="end" value="370"/>
+      <details key="line" value="13"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generateElementMainConfiguration/%.1/%.5">
+      <details key="start" value="372"/>
+      <details key="end" value="375"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generateElementMainConfiguration/%.1/%.6">
+      <details key="start" value="378"/>
+      <details key="end" value="747"/>
+      <details key="line" value="15"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generateElementMainConfiguration/%.1/%.7">
+      <details key="start" value="749"/>
+      <details key="end" value="752"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/generateElementMainConfiguration/%.1/%.8">
+      <details key="start" value="755"/>
+      <details key="end" value="775"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/generateElementMainConfiguration/%.1/%.9">
+      <details key="start" value="777"/>
+      <details key="end" value="780"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generateElementMainConfiguration/%.1/%.10">
+      <details key="start" value="783"/>
+      <details key="end" value="891"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/generateElementMainConfiguration/%.1/%.11">
+      <details key="start" value="893"/>
+      <details key="end" value="896"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/generateElementMainConfiguration/%.1/%.12">
+      <details key="start" value="899"/>
+      <details key="end" value="919"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generateElementMainConfiguration/%.1/%.13">
+      <details key="start" value="921"/>
+      <details key="end" value="924"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generateElementMainConfiguration/%.1/%.14">
+      <details key="start" value="927"/>
+      <details key="end" value="1029"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/generateElementMainConfiguration/%.1/%.15">
+      <details key="start" value="1031"/>
+      <details key="end" value="1034"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/generateElementMainConfiguration/%.1/%.16">
+      <details key="start" value="1037"/>
+      <details key="end" value="1045"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/generateElementMainConfiguration/%.1/%.17">
+      <details key="start" value="1047"/>
+      <details key="end" value="1050"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/generateElementMainConfiguration/%.1/%.18">
+      <details key="start" value="1053"/>
+      <details key="end" value="1086"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/generateElementMainConfiguration/%.1/%.19">
+      <details key="start" value="192"/>
+      <details key="end" value="207"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/generateElementMainConfiguration/%.1/%.20">
+      <details key="start" value="216"/>
+      <details key="end" value="223"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generateElementMainConfiguration/%.2">
+      <details key="start" value="1094"/>
+      <details key="end" value="1095"/>
+      <details key="line" value="42"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generateElementMainConfiguration/%.3">
+      <details key="start" value="1095"/>
+      <details key="end" value="2772"/>
+      <details key="line" value="43"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/generateElementMainConfiguration/%.3/%">
+      <details key="start" value="1136"/>
+      <details key="end" value="2765"/>
+      <details key="line" value="44"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/generateElementMainConfiguration/%.3/%.1">
+      <details key="start" value="1102"/>
+      <details key="end" value="1116"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/generateElementMainConfiguration/%.3/%.2">
+      <details key="start" value="1125"/>
+      <details key="end" value="1132"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/generateElementMainConfiguration/%.4">
+      <details key="start" value="2773"/>
+      <details key="end" value="2774"/>
+      <details key="line" value="104"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/generateElementMainConfiguration/%.5">
+      <details key="start" value="2774"/>
+      <details key="end" value="3434"/>
+      <details key="line" value="105"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/generateElementMainConfiguration/%.5/%">
+      <details key="start" value="2821"/>
+      <details key="end" value="2938"/>
+      <details key="line" value="106"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/generateElementMainConfiguration/%.5/%.1">
+      <details key="start" value="2940"/>
+      <details key="end" value="2943"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/generateElementMainConfiguration/%.5/%.2">
+      <details key="start" value="2946"/>
+      <details key="end" value="2978"/>
+      <details key="line" value="112"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/generateElementMainConfiguration/%.5/%.3">
+      <details key="start" value="2980"/>
+      <details key="end" value="2983"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/generateElementMainConfiguration/%.5/%.4">
+      <details key="start" value="2986"/>
+      <details key="end" value="3427"/>
+      <details key="line" value="113"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/generateElementMainConfiguration/%.5/%.5">
+      <details key="start" value="2781"/>
+      <details key="end" value="2801"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/generateElementMainConfiguration/%.5/%.6">
+      <details key="start" value="2810"/>
+      <details key="end" value="2817"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/generateElementMainConfiguration/%.6">
+      <details key="start" value="3435"/>
+      <details key="end" value="3436"/>
+      <details key="line" value="134"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/generateElementMainConfiguration/%.7">
+      <details key="start" value="3436"/>
+      <details key="end" value="3878"/>
+      <details key="line" value="135"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/generateElementMainConfiguration/%.7/%">
+      <details key="start" value="3478"/>
+      <details key="end" value="3752"/>
+      <details key="line" value="136"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/generateElementMainConfiguration/%.7/%.1">
+      <details key="start" value="3754"/>
+      <details key="end" value="3757"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/generateElementMainConfiguration/%.7/%.2">
+      <details key="start" value="3760"/>
+      <details key="end" value="3793"/>
+      <details key="line" value="148"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/generateElementMainConfiguration/%.7/%.3">
+      <details key="start" value="3795"/>
+      <details key="end" value="3798"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/generateElementMainConfiguration/%.7/%.4">
+      <details key="start" value="3801"/>
+      <details key="end" value="3814"/>
+      <details key="line" value="149"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/generateElementMainConfiguration/%.7/%.5">
+      <details key="start" value="3816"/>
+      <details key="end" value="3819"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/generateElementMainConfiguration/%.7/%.6">
+      <details key="start" value="3822"/>
+      <details key="end" value="3855"/>
+      <details key="line" value="151"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/generateElementMainConfiguration/%.7/%.7">
+      <details key="start" value="3857"/>
+      <details key="end" value="3860"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/generateElementMainConfiguration/%.7/%.8">
+      <details key="start" value="3863"/>
+      <details key="end" value="3871"/>
+      <details key="line" value="154"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/generateElementMainConfiguration/%.7/%.9">
+      <details key="start" value="3443"/>
+      <details key="end" value="3458"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/generateElementMainConfiguration/%.7/%.10">
+      <details key="start" value="3467"/>
+      <details key="end" value="3474"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/generateElementMainConfiguration/%.8">
+      <details key="start" value="3879"/>
+      <details key="end" value="3880"/>
+      <details key="line" value="158"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/generateElementMainConfiguration/%.9">
+      <details key="start" value="3880"/>
+      <details key="end" value="7207"/>
+      <details key="line" value="159"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/generateElementMainConfiguration/%.9/%">
+      <details key="start" value="3920"/>
+      <details key="end" value="3943"/>
+      <details key="line" value="160"/>
+    </eAnnotations>
+    <eAnnotations source="positions.54" references="/0/generateElementMainConfiguration/%.9/%.1">
+      <details key="start" value="3945"/>
+      <details key="end" value="3948"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.55" references="/0/generateElementMainConfiguration/%.9/%.2">
+      <details key="start" value="3951"/>
+      <details key="end" value="3983"/>
+      <details key="line" value="163"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/generateElementMainConfiguration/%.9/%.3">
+      <details key="start" value="3985"/>
+      <details key="end" value="3988"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/generateElementMainConfiguration/%.9/%.4">
+      <details key="start" value="3991"/>
+      <details key="end" value="4116"/>
+      <details key="line" value="164"/>
+    </eAnnotations>
+    <eAnnotations source="positions.58" references="/0/generateElementMainConfiguration/%.9/%.5">
+      <details key="start" value="4118"/>
+      <details key="end" value="4121"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.59" references="/0/generateElementMainConfiguration/%.9/%.6">
+      <details key="start" value="4124"/>
+      <details key="end" value="4161"/>
+      <details key="line" value="170"/>
+    </eAnnotations>
+    <eAnnotations source="positions.60" references="/0/generateElementMainConfiguration/%.9/%.7">
+      <details key="start" value="4163"/>
+      <details key="end" value="4166"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.61" references="/0/generateElementMainConfiguration/%.9/%.8">
+      <details key="start" value="4169"/>
+      <details key="end" value="4254"/>
+      <details key="line" value="172"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/generateElementMainConfiguration/%.9/%.9">
+      <details key="start" value="4256"/>
+      <details key="end" value="4259"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/generateElementMainConfiguration/%.9/%.10">
+      <details key="start" value="4262"/>
+      <details key="end" value="4292"/>
+      <details key="line" value="177"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/generateElementMainConfiguration/%.9/%.11">
+      <details key="start" value="4294"/>
+      <details key="end" value="4297"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/generateElementMainConfiguration/%.9/%.12">
+      <details key="start" value="4300"/>
+      <details key="end" value="4344"/>
+      <details key="line" value="179"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/generateElementMainConfiguration/%.9/%.13">
+      <details key="start" value="4346"/>
+      <details key="end" value="4349"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/generateElementMainConfiguration/%.9/%.14">
+      <details key="start" value="4352"/>
+      <details key="end" value="4384"/>
+      <details key="line" value="182"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/generateElementMainConfiguration/%.9/%.15">
+      <details key="start" value="4386"/>
+      <details key="end" value="4389"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/generateElementMainConfiguration/%.9/%.16">
+      <details key="start" value="4392"/>
+      <details key="end" value="4486"/>
+      <details key="line" value="184"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/generateElementMainConfiguration/%.9/%.17">
+      <details key="start" value="4488"/>
+      <details key="end" value="4491"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/generateElementMainConfiguration/%.9/%.18">
+      <details key="start" value="4494"/>
+      <details key="end" value="4521"/>
+      <details key="line" value="188"/>
+    </eAnnotations>
+    <eAnnotations source="positions.72" references="/0/generateElementMainConfiguration/%.9/%.19">
+      <details key="start" value="4523"/>
+      <details key="end" value="4526"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.73" references="/0/generateElementMainConfiguration/%.9/%.20">
+      <details key="start" value="4529"/>
+      <details key="end" value="4582"/>
+      <details key="line" value="190"/>
+    </eAnnotations>
+    <eAnnotations source="positions.74" references="/0/generateElementMainConfiguration/%.9/%.21">
+      <details key="start" value="4584"/>
+      <details key="end" value="4587"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.75" references="/0/generateElementMainConfiguration/%.9/%.22">
+      <details key="start" value="4590"/>
+      <details key="end" value="4628"/>
+      <details key="line" value="193"/>
+    </eAnnotations>
+    <eAnnotations source="positions.76" references="/0/generateElementMainConfiguration/%.9/%.23">
+      <details key="start" value="4630"/>
+      <details key="end" value="4633"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.77" references="/0/generateElementMainConfiguration/%.9/%.24">
+      <details key="start" value="4636"/>
+      <details key="end" value="4754"/>
+      <details key="line" value="196"/>
+    </eAnnotations>
+    <eAnnotations source="positions.78" references="/0/generateElementMainConfiguration/%.9/%.25">
+      <details key="start" value="4756"/>
+      <details key="end" value="4759"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.79" references="/0/generateElementMainConfiguration/%.9/%.26">
+      <details key="start" value="4762"/>
+      <details key="end" value="4775"/>
+      <details key="line" value="201"/>
+    </eAnnotations>
+    <eAnnotations source="positions.80" references="/0/generateElementMainConfiguration/%.9/%.27">
+      <details key="start" value="4777"/>
+      <details key="end" value="4780"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.81" references="/0/generateElementMainConfiguration/%.9/%.28">
+      <details key="start" value="4783"/>
+      <details key="end" value="4847"/>
+      <details key="line" value="202"/>
+    </eAnnotations>
+    <eAnnotations source="positions.82" references="/0/generateElementMainConfiguration/%.9/%.29">
+      <details key="start" value="4849"/>
+      <details key="end" value="4852"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.83" references="/0/generateElementMainConfiguration/%.9/%.30">
+      <details key="start" value="4855"/>
+      <details key="end" value="4946"/>
+      <details key="line" value="206"/>
+    </eAnnotations>
+    <eAnnotations source="positions.84" references="/0/generateElementMainConfiguration/%.9/%.31">
+      <details key="start" value="4948"/>
+      <details key="end" value="4951"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.85" references="/0/generateElementMainConfiguration/%.9/%.32">
+      <details key="start" value="4954"/>
+      <details key="end" value="5142"/>
+      <details key="line" value="212"/>
+    </eAnnotations>
+    <eAnnotations source="positions.86" references="/0/generateElementMainConfiguration/%.9/%.33">
+      <details key="start" value="5144"/>
+      <details key="end" value="5147"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.87" references="/0/generateElementMainConfiguration/%.9/%.34">
+      <details key="start" value="5150"/>
+      <details key="end" value="5189"/>
+      <details key="line" value="220"/>
+    </eAnnotations>
+    <eAnnotations source="positions.88" references="/0/generateElementMainConfiguration/%.9/%.35">
+      <details key="start" value="5191"/>
+      <details key="end" value="5194"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.89" references="/0/generateElementMainConfiguration/%.9/%.36">
+      <details key="start" value="5197"/>
+      <details key="end" value="5626"/>
+      <details key="line" value="222"/>
+    </eAnnotations>
+    <eAnnotations source="positions.90" references="/0/generateElementMainConfiguration/%.9/%.37">
+      <details key="start" value="5628"/>
+      <details key="end" value="5631"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.91" references="/0/generateElementMainConfiguration/%.9/%.38">
+      <details key="start" value="5634"/>
+      <details key="end" value="5743"/>
+      <details key="line" value="236"/>
+    </eAnnotations>
+    <eAnnotations source="positions.92" references="/0/generateElementMainConfiguration/%.9/%.39">
+      <details key="start" value="5745"/>
+      <details key="end" value="5748"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.93" references="/0/generateElementMainConfiguration/%.9/%.40">
+      <details key="start" value="5751"/>
+      <details key="end" value="5796"/>
+      <details key="line" value="241"/>
+    </eAnnotations>
+    <eAnnotations source="positions.94" references="/0/generateElementMainConfiguration/%.9/%.41">
+      <details key="start" value="5798"/>
+      <details key="end" value="5801"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.95" references="/0/generateElementMainConfiguration/%.9/%.42">
+      <details key="start" value="5804"/>
+      <details key="end" value="5836"/>
+      <details key="line" value="244"/>
+    </eAnnotations>
+    <eAnnotations source="positions.96" references="/0/generateElementMainConfiguration/%.9/%.43">
+      <details key="start" value="5838"/>
+      <details key="end" value="5841"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.97" references="/0/generateElementMainConfiguration/%.9/%.44">
+      <details key="start" value="5844"/>
+      <details key="end" value="5882"/>
+      <details key="line" value="246"/>
+    </eAnnotations>
+    <eAnnotations source="positions.98" references="/0/generateElementMainConfiguration/%.9/%.45">
+      <details key="start" value="5884"/>
+      <details key="end" value="5887"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.99" references="/0/generateElementMainConfiguration/%.9/%.46">
+      <details key="start" value="5890"/>
+      <details key="end" value="5922"/>
+      <details key="line" value="249"/>
+    </eAnnotations>
+    <eAnnotations source="positions.100" references="/0/generateElementMainConfiguration/%.9/%.47">
+      <details key="start" value="5924"/>
+      <details key="end" value="5927"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.101" references="/0/generateElementMainConfiguration/%.9/%.48">
+      <details key="start" value="5930"/>
+      <details key="end" value="5953"/>
+      <details key="line" value="251"/>
+    </eAnnotations>
+    <eAnnotations source="positions.102" references="/0/generateElementMainConfiguration/%.9/%.49">
+      <details key="start" value="5955"/>
+      <details key="end" value="5958"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.103" references="/0/generateElementMainConfiguration/%.9/%.50">
+      <details key="start" value="5961"/>
+      <details key="end" value="6003"/>
+      <details key="line" value="253"/>
+    </eAnnotations>
+    <eAnnotations source="positions.104" references="/0/generateElementMainConfiguration/%.9/%.51">
+      <details key="start" value="6005"/>
+      <details key="end" value="6008"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.105" references="/0/generateElementMainConfiguration/%.9/%.52">
+      <details key="start" value="6011"/>
+      <details key="end" value="6039"/>
+      <details key="line" value="255"/>
+    </eAnnotations>
+    <eAnnotations source="positions.106" references="/0/generateElementMainConfiguration/%.9/%.53">
+      <details key="start" value="6041"/>
+      <details key="end" value="6044"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.107" references="/0/generateElementMainConfiguration/%.9/%.54">
+      <details key="start" value="6047"/>
+      <details key="end" value="6272"/>
+      <details key="line" value="257"/>
+    </eAnnotations>
+    <eAnnotations source="positions.108" references="/0/generateElementMainConfiguration/%.9/%.55">
+      <details key="start" value="6274"/>
+      <details key="end" value="6277"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.109" references="/0/generateElementMainConfiguration/%.9/%.56">
+      <details key="start" value="6280"/>
+      <details key="end" value="6388"/>
+      <details key="line" value="265"/>
+    </eAnnotations>
+    <eAnnotations source="positions.110" references="/0/generateElementMainConfiguration/%.9/%.57">
+      <details key="start" value="6390"/>
+      <details key="end" value="6393"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.111" references="/0/generateElementMainConfiguration/%.9/%.58">
+      <details key="start" value="6396"/>
+      <details key="end" value="6523"/>
+      <details key="line" value="270"/>
+    </eAnnotations>
+    <eAnnotations source="positions.112" references="/0/generateElementMainConfiguration/%.9/%.59">
+      <details key="start" value="6525"/>
+      <details key="end" value="6528"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.113" references="/0/generateElementMainConfiguration/%.9/%.60">
+      <details key="start" value="6531"/>
+      <details key="end" value="6559"/>
+      <details key="line" value="276"/>
+    </eAnnotations>
+    <eAnnotations source="positions.114" references="/0/generateElementMainConfiguration/%.9/%.61">
+      <details key="start" value="6561"/>
+      <details key="end" value="6564"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.115" references="/0/generateElementMainConfiguration/%.9/%.62">
+      <details key="start" value="6567"/>
+      <details key="end" value="6634"/>
+      <details key="line" value="278"/>
+    </eAnnotations>
+    <eAnnotations source="positions.116" references="/0/generateElementMainConfiguration/%.9/%.63">
+      <details key="start" value="6636"/>
+      <details key="end" value="6639"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.117" references="/0/generateElementMainConfiguration/%.9/%.64">
+      <details key="start" value="6642"/>
+      <details key="end" value="6670"/>
+      <details key="line" value="282"/>
+    </eAnnotations>
+    <eAnnotations source="positions.118" references="/0/generateElementMainConfiguration/%.9/%.65">
+      <details key="start" value="6672"/>
+      <details key="end" value="6675"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.119" references="/0/generateElementMainConfiguration/%.9/%.66">
+      <details key="start" value="6678"/>
+      <details key="end" value="6744"/>
+      <details key="line" value="284"/>
+    </eAnnotations>
+    <eAnnotations source="positions.120" references="/0/generateElementMainConfiguration/%.9/%.67">
+      <details key="start" value="6746"/>
+      <details key="end" value="6749"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.121" references="/0/generateElementMainConfiguration/%.9/%.68">
+      <details key="start" value="6752"/>
+      <details key="end" value="7200"/>
+      <details key="line" value="288"/>
+    </eAnnotations>
+    <eAnnotations source="positions.122" references="/0/generateElementMainConfiguration/%.9/%.69">
+      <details key="start" value="3887"/>
+      <details key="end" value="3900"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.123" references="/0/generateElementMainConfiguration/%.9/%.70">
+      <details key="start" value="3909"/>
+      <details key="end" value="3916"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.124" references="/0/generateElementMainConfiguration/%.10">
+      <details key="start" value="7208"/>
+      <details key="end" value="7209"/>
+      <details key="line" value="305"/>
+    </eAnnotations>
+    <eAnnotations source="positions.125" references="/0/generateElementMainConfiguration/aModel">
+      <details key="start" value="149"/>
+      <details key="end" value="163"/>
+      <details key="line" value="5"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>
