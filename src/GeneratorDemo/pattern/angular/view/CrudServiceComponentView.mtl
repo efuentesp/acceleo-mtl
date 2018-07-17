@@ -1,0 +1,163 @@
+[comment encoding = UTF-8 /]
+[module CrudServiceComponentView('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementCrudServiceComponentView(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 	[for (aClass : Class | p.packagedElement->filter(Class))]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
+               or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumRadio')
+			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumCheck')
+			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect')) ]
+
+[file ('src/app/'.concat(aClass.name.toLowerFirst()).concat('/').concat(aClass.name.toLowerFirst()).concat('.component.service.ts'), false, 'UTF-8')]
+import { Injectable }                              from '@angular/core';
+import { environment }                             from "../../environments/environment";
+import { Http, Response }                          from "@angular/http";
+import { Headers, RequestOptions }                 from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+
+import { [name.toUpperFirst()/] }                           from '../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+
+@Injectable()
+export class [name.toUpperFirst()/]Service {
+
+    private is[name.toUpperFirst()/]FormValid: boolean = false;
+    private env: any = environment;
+    private [name.toLowerFirst()/] = new [name.toUpperFirst()/]();
+
+    constructor(private http: Http) {
+    }
+
+    getAll[name.toUpperFirst()/](){
+      return this.http.get(this.env.api + "/[name.toLower()/]").map(res => res.json()).catch([name.toUpperFirst()/]Service.handleError);
+    }
+
+    reset[name.toUpperFirst()/](): [name.toUpperFirst()/] {
+        this.clear();
+        return this.[name.toLower()/];
+    }
+
+    get[name.toUpperFirst()/](): [name.toUpperFirst()/] {
+        var [name.toLower()/]: [name.toUpperFirst()/] = {
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
+		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+			[if not anAttribute.name.equalsIgnoreCase('id')]
+					[anAttribute.name.toLower()/]: this.[aClass.name.toLower()/].[anAttribute.name.toLower()/], 
+			[/if]    
+		[/if]
+	[/for]
+[/for]
+					
+[for (attribute)]
+	[comment Enum/]
+	[if not (type.name = ('HText') or type.name.startsWith('modal'))]
+					[type.name.toLowerFirst()/]Id: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id,
+	[/if]
+	[comment Foering Key/]
+	[if (type.name.startsWith('modal'))]
+					[name.toLowerFirst()/]Id: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id,
+	[/if]
+[/for]
+					[name.toLowerFirst()/]Id: this.[name.toLowerFirst()/].[name.toLowerFirst()/]Id	
+
+        };
+        return [name.toLowerFirst()/];
+    }
+
+    set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
+       
+	this.is[name.toUpperFirst()/]FormValid = true;
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
+		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+			[if not anAttribute.name.equalsIgnoreCase('id')]
+			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = [aClass.name.toLower()/].[anAttribute.name.toLower()/];    
+			[/if]
+		[/if]
+	[/for]
+[/for]
+[for (attribute)]
+	[comment Enum/]
+	[if not (type.name = ('HText') or type.name.startsWith('modal'))]
+			this.[aClass.name.toLower()/].[type.name.toLowerFirst()/]Id = [aClass.name.toLower()/].[type.name.toLowerFirst()/]Id;
+	[/if]
+	[comment Foering Key/]
+	[if (type.name.startsWith('modal'))]
+			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id = [aClass.name.toLower()/].[name.toLowerFirst()/]Id;
+	[/if]
+[/for]
+			this.[name.toLower()/].[name.toLowerFirst()/]Id        = [name.toLower()/].[name.toLowerFirst()/]Id;
+        	this.validate[name.toUpperFirst()/]();
+    }
+
+    isFormValid() {
+        return this.is[name.toUpperFirst()/]FormValid;
+    }
+
+    validate[name.toUpperFirst()/]() {
+
+    }
+
+    clear() {
+
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
+		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = '';    
+			[/if]
+		[/if]
+	[/for]
+[/for]
+[for (attribute)]
+	[if not (type.name = ('HText') or type.name.startsWith('modal'))]
+			this.[aClass.name.toLower()/].[type.name.toLowerFirst()/]Id = null;
+	[/if]
+	[if (type.name.startsWith('modal'))]
+			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id = null;
+	[/if]
+[/for]
+			this.[name.toLower()/].[aClass.name.toLowerFirst()/]Id = null;
+    }
+
+    save[name.toUpperFirst()/]([name.toLower()/]){
+
+		if (![name.toLower()/].[name.toLower()/]Id){
+            return this.http.post(this.env.api + "/[name.toLower()/]", [name.toLower()/]).map(res => res);
+        }else{
+            return this.http.put(this.env.api + "/[name.toLower()/]/"+[name.toLower()/].[name.toLower()/]Id, [name.toLower()/]).map(res => res);
+        }
+     
+    }
+
+	private static handleError(error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+        if (error.status === 404) {
+            errMsg = 'Resource was not found';
+        } else {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = 'Error';
+        }
+    } else {
+        errMsg = error.message ? error.message : error.toString();
+    }
+
+    return Observable.throw(errMsg);
+    }
+}
+[/file]
+
+			[/if]
+		[/for]
+	[/if]
+[/for]
+
+[/template]

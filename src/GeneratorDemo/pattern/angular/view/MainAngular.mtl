@@ -1,0 +1,58 @@
+[comment encoding = UTF-8 /]
+[module MainAngular('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import GeneratorDemo::pattern::angular::view::HomeView/]            [comment Genera index.html /]     
+[import GeneratorDemo::pattern::angular::view::ConfigView/]			[comment Genera archivos base de configuración /]
+[import GeneratorDemo::pattern::angular::view::FilesView/]			[comment Genera archivos base para vista de angular /]
+
+[import GeneratorDemo::pattern::angular::view::RoutingModuleView/]	[comment Agregar los componentes para routing module /]
+[import GeneratorDemo::pattern::angular::view::ModuleView/]          [comment Agregar los componentes para module /]
+[import GeneratorDemo::pattern::angular::view::PanelSideView/]       [comment Agregar los componentes para module /]
+
+[import GeneratorDemo::pattern::angular::view::CrudView/]			[comment Genera crud, contiene los archivos service y component /]
+[import GeneratorDemo::pattern::angular::view::PipeView/]
+[import GeneratorDemo::pattern::angular::view::HtmlView/]			[comment Genera crud, contiene los archivos de html /]
+[import GeneratorDemo::pattern::angular::view::HtmlMngView/]
+
+
+[comment import GeneratorDemo::pattern::wizard::view::StepsView/]
+
+
+[comment import GeneratorDemo::pattern::wizard::view::EntityView/]
+[comment import GeneratorDemo::pattern::wizard::view::NavigationView/]
+[comment import GeneratorDemo::pattern::wizard::view::ConfigurationMain/]
+[comment import GeneratorDemo::pattern::wizard::view::ConfigurationFile/]
+[comment import GeneratorDemo::pattern::wizard::view::EnviromentView/]
+[comment import GeneratorDemo::pattern::wizard::view::WorkFlowView/]
+[comment import GeneratorDemo::pattern::wizard::view::PruebaGeneral/]
+
+
+[template public mainClass(aModel : Model)]
+
+	[comment @main /]	
+
+	[aModel.generateElementHomeView()/]                    
+	[aModel.generateElementConfig()/]    
+	[aModel.generateElementFiles()/]       
+                 
+	[aModel.generateRoutingModuleView()/]     
+	[aModel.generateElementModelView()/]  
+	[aModel.generateElementPanelSideView()/] 
+
+	[aModel.generateElementCrudView()/] 
+	[aModel.generateElementHtmlView()/] 
+	[aModel.generateElementHtmlMngView()/] 
+
+	[aModel.generateElementPipeView()/] 
+
+	[comment aModel.generateElementSteps()/]                     
+	[comment aModel.generateElementEntity()/]               
+	[comment aModel.generateElementNavigation()/]                   
+	[comment aModel.generateElementMainConfiguration()/]
+	[comment aModel.generateElementConfigurationFiles()/]
+	[comment aModel.generateElementEnviroment()/]
+	[comment aModel.generateElementWorkFlow()/]
+	[comment aModel.generateElementPruebaGeneral()/]
+
+[/template]
+

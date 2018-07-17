@@ -1,0 +1,99 @@
+[comment encoding = UTF-8 /]
+[module FilesView('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementFiles(aModel : Model)]
+[comment @main /]
+
+[file (('src/app').concat('/app.component.css'), false, 'UTF-8')]
+/* Empty */
+[/file]
+
+[file (('src/app').concat('/app.component.spec.ts'), false, 'UTF-8')]
+import { TestBed, async } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ '[' /]
+        AppComponent
+      [ ']' /],
+    }).compileComponents();
+  }));
+
+  it('should create the app', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
+
+  it(`should have as title 'app'`, async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('app');
+  }));
+
+  it('should render title in a h1 tag', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+  }));
+});
+
+[/file]
+
+[file (('src/app').concat('/app.component.ts'), false, 'UTF-8')]
+import { Component, OnInit, Input }   from '@angular/core';
+
+@Component ({
+    selector: 'app-root'
+    ,templateUrl: './app.component.html'
+})
+
+export class AppComponent
+{
+    title = 'Angular';
+}
+
+[/file]
+
+
+[file (('src/app/base').concat('/base.component.html'), false, 'UTF-8')]
+<section>
+  <div class="content-wrapper">
+     <div class="content-heading">
+        <div class="pull-right">
+           <div class="btn-group">
+           </div>
+        </div>
+
+        Inicio
+        <small data-localize="dashboard.WELCOME"></small>
+     </div>
+
+  </div>
+</section>
+[/file]
+
+[file (('src/app/base').concat('/base.component.ts'), false, 'UTF-8')]
+import { Component, OnInit }   from '@angular/core';
+import { Router }              from '@angular/router';
+
+@Component ({
+    selector: 'app-view',
+    templateUrl: './base.component.html'
+})
+
+export class BaseComponent implements OnInit {
+
+    constructor(private router: Router) {}
+    ngOnInit() {}
+
+}
+
+[/file]
+
+
+
+[/template]
