@@ -1,0 +1,119 @@
+[comment enconding = UTF-8 /]
+[module Bean('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementBean(aModel : Model)]
+[comment @main /]
+
+[comment ******* Crud Bean *********/]
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.security')]	
+		[for (aClass : Class | p.packagedElement->filter(Class))]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud'))]
+[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/catalogo/').concat('/bean/').concat(aClass.name.toUpperFirst()).concat('Bean.java'), false), 'UTF-8') ]
+package [aClass._package.name/].catalogo.bean;
+
+import java.util.Date;
+
+public class [name.toUpperFirst()/]Bean {
+
+	private Integer [name.toLowerFirst()/]Id;
+
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]	
+		[if (anElement.name.equalsIgnoreCase('typeJava'))]
+			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+	private [anElement.default/] [anAttribute.name.toLowerFirst()/];
+			[/if]
+		[/if]	
+	[/for]
+[/for]
+
+
+[for (attribute)]
+	[comment Enum/]
+	[if not (type.name = ('HText') 
+		or type.name.startsWith('modal') 
+		or type.name = ('HDate') 
+		or type.name = ('HNumber') 
+		or type.name = ('HLong') 
+		or type.name = ('HBoolean')
+		or type.name = ('HTextOrdered') 
+		or type.name = ('HTextNotNullOrdered')
+		or type.name = ('HTextNotNull')
+		or type.name = ('HNumberNotNull')
+		or type.name = ('HLongNotNull')
+		or type.name = ('HBooleanNotNull')
+		or type.name = ('HDateNotNull')
+)]
+	private [type.name.toUpperFirst()/] [type.name.toLowerFirst()/]Id;
+	private enum [type.name.toUpperFirst()/] { [for (anElement: Property | type.allOwnedElements()->filter(Property) ) separator (',')][name.toLower()/][/for]}
+	[/if]
+	[comment Foering Key/]
+	[if (type.name.startsWith('modal'))]
+	private Integer [name.toLowerFirst()/]Id;
+	[/if]
+[/for]
+
+
+	public Integer get[name.toUpperFirst()/]Id() {
+		return [name.toLowerFirst()/]Id;
+	}
+
+	public void set[name.toUpperFirst()/]Id(Integer [name.toLowerFirst()/]Id) {
+		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
+	}
+
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property) )]
+		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+			[if not(anAttribute.name.equalsIgnoreCase('id'))]
+	public [anElement.default/] get[anAttribute.name.toUpperFirst()/] () {
+	    return [anAttribute.name.toLowerFirst()/];  		
+    }
+	public void set[anAttribute.name.toUpperFirst()/]([anElement.default/] [anAttribute.name.toLowerFirst()/]) {
+		this.[anAttribute.name.toLowerFirst()/] = [anAttribute.name.toLowerFirst()/];
+	}
+			[/if]
+		[/if]
+	[/for]
+[/for]
+
+[for (attribute)]
+	[comment Enum/]
+	[if not (type.name = ('HText') or type.name.startsWith('modal')  or type.name = ('HDate') 
+		or type.name = ('HNumber') or type.name = ('HLong') or type.name = ('HBoolean')
+		or type.name = ('HTextOrdered') 
+		or type.name = ('HTextNotNullOrdered')
+		or type.name = ('HTextNotNull')
+		or type.name = ('HNumberNotNull')
+		or type.name = ('HLongNotNull')
+		or type.name = ('HBooleanNotNull')
+		or type.name = ('HDateNotNull')
+)]
+	public [name.toUpperFirst()/] get[name.toUpperFirst()/]Id () {
+	    return [name.toLowerFirst()/]Id;  		
+    }
+	public void set[name.toUpperFirst()/]Id ([name.toUpperFirst()/] [name.toLowerFirst()/]Id) {
+		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
+	}
+	[/if]
+	[comment Foering Key/]
+	[if (type.name.startsWith('modal'))]
+	public Integer get[name.toUpperFirst()/]Id () {
+	    return [name.toLowerFirst()/]Id;  		
+    }
+	public void set[name.toUpperFirst()/]Id (Integer [name.toLowerFirst()/]Id) {
+		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
+	}
+	[/if]
+[/for]
+
+
+}
+[/file]
+
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+[/template]

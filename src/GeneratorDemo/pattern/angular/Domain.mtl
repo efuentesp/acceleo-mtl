@@ -30,9 +30,6 @@ import com.sun.istack.internal.NotNull;
 @Table(name = "[name.toLower()/]")
 public class [name.toUpperFirst()/] implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -48,19 +45,11 @@ public class [name.toUpperFirst()/] implements Serializable {
 	@NotNull	
 	@OrderBy("name ASC")
 [/if]
-[if (anAttribute.type.name = ('HTextNotNull'))] 
-	@NotNull	
-[/if]
-[if (anAttribute.type.name = ('HBooleanNotNull'))] 
-	@NotNull	
-[/if]
-[if (anAttribute.type.name = ('HNumberNotNull'))] 
-	@NotNull	
-[/if]
-[if (anAttribute.type.name = ('HLongNotNull'))] 
-	@NotNull	
-[/if]
-[if (anAttribute.type.name = ('HDateNotNull'))] 
+[if (anAttribute.type.name = ('HTextNotNull') 
+	  or anAttribute.type.name = ('HBooleanNotNull')
+	  or anAttribute.type.name = ('HNumberNotNull')
+	  or anAttribute.type.name = ('HLongNotNull')
+	  or anAttribute.type.name = ('HDateNotNull'))] 
 	@NotNull	
 [/if]
 [for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]

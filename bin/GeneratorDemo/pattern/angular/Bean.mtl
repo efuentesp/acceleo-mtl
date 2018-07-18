@@ -10,12 +10,22 @@
 		[for (aClass : Class | p.packagedElement->filter(Class))]
 			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud'))]
 [file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/catalogo/').concat('/bean/').concat(aClass.name.toUpperFirst()).concat('Bean.java'), false), 'UTF-8') ]
+/**
+ * Autor: PSG.
+ * Proyecto:
+ * Version: 0.1 
+ * Clase para encapsular informacion de un [name.toUpperFirst()/].
+ */
 package [aClass._package.name/].catalogo.bean;
 
 import java.util.Date;
 
 public class [name.toUpperFirst()/]Bean {
-
+/**
+ * Clase [name.toUpperFirst()/]Bean.
+ * @author PSG.
+ *
+ */
 	private Integer [name.toLowerFirst()/]Id;
 
 [for (anAttribute: Property | getAllAttributes())]
@@ -31,8 +41,12 @@ public class [name.toUpperFirst()/]Bean {
 
 [for (attribute)]
 	[comment Enum/]
-	[if not (type.name = ('HText') or type.name.startsWith('modal') or type.name = ('HDate') 
-		or type.name = ('HNumber') or type.name = ('HLong') or type.name = ('HBoolean')
+	[if not (type.name = ('HText') 
+		or type.name.startsWith('modal') 
+		or type.name = ('HDate') 
+		or type.name = ('HNumber') 
+		or type.name = ('HLong') 
+		or type.name = ('HBoolean')
 		or type.name = ('HTextOrdered') 
 		or type.name = ('HTextNotNullOrdered')
 		or type.name = ('HTextNotNull')

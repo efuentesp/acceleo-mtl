@@ -1,0 +1,110 @@
+[module ScriptDDL('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementScript(aModel : Model)]
+
+[comment @main /]
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.security')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+					    [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
+						   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect') )]
+[file ('main/java/'.concat('com/softtek/acceleo/demo/security/sql/').concat(aClass.name.toUpperFirst()).concat('DDL.sql'), false), 'UTF-8')]
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: demoacceleo
+-- ------------------------------------------------------
+-- Server version	5.7.22-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `afiliado`
+--
+DROP TABLE IF EXISTS `[name.toLower()/]`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `[name.toLower()/]` ( 
+[for (attribute)]
+	[comment Enum/]
+	[if not (type.name = ('HText') 
+		or type.name.startsWith('modal') 
+		or type.name = ('HDate') 
+		or type.name = ('HNumber') 
+		or type.name = ('HLong') 
+		or type.name = ('HBoolean')
+		or type.name = ('HTextOrdered') 
+		or type.name = ('HTextNotNullOrdered')
+		or type.name = ('HTextNotNull')
+		or type.name = ('HNumberNotNull')
+		or type.name = ('HLongNotNull')
+		or type.name = ('HBooleanNotNull')
+		or type.name = ('HDateNotNull'))]
+`[type.name.toLowerFirst()/]Id` varchar(100) DEFAULT NULL,
+	[/if]
+	[comment Foering Key/]
+	[if (type.name.startsWith('modal'))]
+`[name.toLowerFirst()/]Id` int(11) DEFAULT NULL,
+	[/if]
+[/for]
+[for (attribute)]
+	[if (type.name = ('HText') or type.name = ('HTextOrdered'))]
+	[if not (name.equalsIgnoreCase('id'))]
+`[name.toLowerFirst()/]` VARCHAR(100),
+	[/if]
+	[/if]
+	[if (type.name = ('HTextNotNull') or type.name = ('HTextNotNullOrdered'))]
+		[if not (name.equalsIgnoreCase('id'))]
+`[name.toLowerFirst()/]` VARCHAR(100) NOT NULL,
+	[/if]
+	[/if]
+	[if (type.name = ('HNumber') or type.name = ('HLong'))]
+	[if not (name.equalsIgnoreCase('id'))]
+`[name.toLowerFirst()/]` INT(11),
+	[/if]
+	[/if]
+	[if (type.name = ('HNumberNotNull') or type.name = ('HLongNotNull'))]
+	[if not (name.equalsIgnoreCase('id'))]
+`[name.toLowerFirst()/]` INT(11) NOT NULL,
+	[/if]
+	[/if]
+	[if (type.name = ('HBoolean'))]
+	[if not (name.equalsIgnoreCase('id'))]
+`[name.toLowerFirst()/]` TINYINT(1),
+	[/if]
+	[/if]
+	[if (type.name = ('HBooleanNotNull'))]
+	[if not (name.equalsIgnoreCase('id'))]
+`[name.toLowerFirst()/]` TINYINT(1) NOT NULL,
+	[/if]
+	[/if]
+	[if (type.name = ('HDate'))]
+	[if not (name.equalsIgnoreCase('id'))]
+`[name.toLowerFirst()/]` TIMESTAMP,
+	[/if]
+	[/if]
+	[if (type.name = ('HDateNotNull'))]
+	[if not (name.equalsIgnoreCase('id'))]
+`[name.toLowerFirst()/]` TIMESTAMP NOT NULL,
+	[/if]
+	[/if]
+[/for]
+`[name.toLower()/]Id` INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`[name.toLower()/]Id`)
+)ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+[/file]
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+
+[/template]

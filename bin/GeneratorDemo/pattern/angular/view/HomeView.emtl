@@ -10,7 +10,7 @@
     <ownedModuleElement xsi:type="mtl:Template" name="generateElementHomeView" visibility="Public" main="true">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <body xsi:type="mtl:FileBlock" openMode="OverWrite">
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&lt;!doctype html>&#xA;&lt;html lang=&quot;en&quot;>&#xA;&#xA;&lt;head>&#xA;    &lt;meta charset=&quot;utf-8&quot;>&#xA;    &lt;title>PSG Angular&lt;/title>&#xA;    &#xA;    &lt;base href=&quot;/&quot;>&#xA;    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;>&#xA;    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;favicon.ico&quot;>&#xA;&#xA;&#x9;&lt;!-- styles -->&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/vendor/fontawesome/css/font-awesome.min.css&quot;>&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/vendor/simple-line-icons/css/simple-line-icons.css&quot;>&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/vendor/animate.css/animate.min.css&quot;>&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/vendor/whirl/dist/whirl.css&quot;>&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/vendor/weather-icons/css/weather-icons.min.css&quot;>&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/bootstrap.css&quot; id=&quot;bscss&quot;>&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/app.css&quot; id=&quot;maincss&quot;>&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/theme-f.css&quot; id=&quot;maincss&quot;>&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/riliwan-rabo.css&quot;>&#xA;    &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/style.css&quot;>&#xA;&#xA;    &lt;script src=&quot;assets/vendor/modernizr/modernizr.custom.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/matchMedia/matchMedia.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/jquery/dist/jquery.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/bootstrap/dist/js/bootstrap.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/jQuery-Storage-API/jquery.storageapi.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/jquery.easing/js/jquery.easing.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/animo.js/animo.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/slimScroll/jquery.slimscroll.min.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/screenfull/dist/screenfull.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/js/demo/demo-rtl.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/sparkline/index.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/jquery.easy-pie-chart/dist/jquery.easypiechart.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/vendor/moment/min/moment-with-locales.min.js&quot;>&lt;/script>&#xA;    &lt;script src=&quot;assets/js/app.js&quot;>&lt;/script>&#xA;&#xA;&lt;/head>&#xA;  &lt;body>&#xA;    &lt;app-root>&lt;/app-root>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;&#xA;"/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;!DOCTYPE html>&#xA;&lt;html lang=&quot;en&quot;>&#xA;  &lt;head>&#xA;    &lt;!-- Set the base href -->&#xA;    &lt;base href=&quot;/&quot;>&#xA;    &lt;title>PSG&lt;/title>&#xA;    &lt;meta charset=&quot;UTF-8&quot;>&#xA;    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;>&#xA;    &lt;link rel=&quot;icon&quot; href=&quot;assets/img/logo_icon.ico&quot; type=&quot;image/ico&quot; />&#xA;  &lt;/head>&#xA;&#xA;  &lt;body style=&quot;background: #F7F7F7&quot;>&#xA;      &#xA;    &lt;app-root>&lt;/app-root>&#xA;  &lt;/body>&#xA;&#xA;&lt;/html>&#xA;"/>
         <fileUrl xsi:type="ocl.ecore:OperationCallExp">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <source xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="src">
@@ -117,7 +117,7 @@
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/generateElementHomeView">
       <details key="start" value="127"/>
-      <details key="end" value="2341"/>
+      <details key="end" value="669"/>
       <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/generateElementHomeView/%">
@@ -127,12 +127,12 @@
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/generateElementHomeView/%.1">
       <details key="start" value="204"/>
-      <details key="end" value="2327"/>
+      <details key="end" value="655"/>
       <details key="line" value="8"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/generateElementHomeView/%.1/%">
       <details key="start" value="259"/>
-      <details key="end" value="2320"/>
+      <details key="end" value="648"/>
       <details key="line" value="9"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/generateElementHomeView/%.1/%.1">
@@ -156,9 +156,9 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/generateElementHomeView/%.2">
-      <details key="start" value="2328"/>
-      <details key="end" value="2329"/>
-      <details key="line" value="55"/>
+      <details key="start" value="656"/>
+      <details key="end" value="657"/>
+      <details key="line" value="27"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/generateElementHomeView/aModel">
       <details key="start" value="168"/>

@@ -1,0 +1,640 @@
+[comment encoding = UTF-8 /]
+[module Controller('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateElementController(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.security')]	
+
+[file ('main/java/'.concat(p.name.replaceAll('\\.','/')).concat('/controller/').concat('AdminPermisoController.java'), false), 'UTF-8') ]
+package com.softtek.acceleo.demo.security.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.softtek.acceleo.demo.domain.AdminPermiso;
+import com.softtek.acceleo.demo.domain.ConfigPermisos;
+import com.softtek.acceleo.demo.service.AdminPermisoService;
+
+
+
+@RestController
+public class AdminPermisoController {
+
+	@Autowired
+	private AdminPermisoService adminPermisoService;
+	
+	AdminPermiso adminPermiso = new AdminPermiso();
+	
+	/**
+	 * Obtiene informacion de los afilliados.
+	 * @param requestParams.
+	 * @param request.
+	 * @param response.
+	 * @return List<AdminPermiso>.
+	 */
+	@RequestMapping(value = "/adminPermiso", method = RequestMethod.GET, produces = "application/json")
+	@PreAuthorize("hasRole('MANAGESEARCH')")
+	public @ResponseBody  List<ConfigPermisos> getAdminPermisos(@RequestParam Map<String,String> requestParams, HttpServletRequest request, HttpServletResponse response) {
+
+
+		List<ConfigPermisos> listAdminPermiso = null;
+
+		
+       	listAdminPermiso = adminPermisoService.listAdminPermiso();
+
+
+		response.setHeader("Access-Control-Expose-Headers", "x-total-count");
+
+		System.out.println("Respuesta: "+ listAdminPermiso.size());
+		
+		return listAdminPermiso;
+	}
+	
+	@RequestMapping(value = "/adminPermiso", method = RequestMethod.PUT, produces = "application/json")
+	@PreAuthorize("hasRole('MANAGEUPDATE')")  
+    public void updateAuthorityPrivilege(@RequestBody ConfigPermisos configPermisos) {
+		
+		// UpdateData
+		adminPermisoService.updateAuthorityPrivilege(configPermisos);
+		
+		System.out.println("Dato Actualizado");
+	}	
+}
+[/file]
+
+[file ('main/java/'.concat(p.name.replaceAll('\\.','/')).concat('/controller/').concat('AuthenticationRestController.java'), false), 'UTF-8') ]
+package com.softtek.acceleo.demo.security.controller;
+
+import java.util.Objects;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import com.softtek.acceleo.demo.security.JwtAuthenticationRequest;
+import com.softtek.acceleo.demo.security.JwtTokenUtil;
+import com.softtek.acceleo.demo.security.JwtUser;
+import com.softtek.acceleo.demo.security.exception.AuthenticationException;
+import com.softtek.acceleo.demo.security.service.JwtAuthenticationResponse;
+
+@RestController
+@PropertySource("application.properties")
+public class AuthenticationRestController {
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Value("${jwt.header}")
+    private String tokenHeader;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    @Qualifier("jwtUserDetailsService")
+    private UserDetailsService userDetailsService;
+
+    //@RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
+    //@RequestMapping(value = "/SADFB/auth", method = RequestMethod.POST)
+    @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)    
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
+
+    	logger.info("Enter createAuthenticationToken");
+
+        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+
+    	logger.info("Out authenticate");
+
+        // Reload password post-security so we can generate the token
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        final String token = jwtTokenUtil.generateToken(userDetails);
+
+        // Return the token
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+    }
+
+    @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
+    public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
+        String authToken = request.getHeader(tokenHeader);
+        final String token = authToken.substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+
+        if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
+            String refreshedToken = jwtTokenUtil.refreshToken(token);
+            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @ExceptionHandler({AuthenticationException.class})
+    public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+    }
+
+    /**
+     * Authenticates the user. If something is wrong, an {@link AuthenticationException} will be thrown
+     */
+    private void authenticate(String username, String password) {
+        Objects.requireNonNull(username);
+        Objects.requireNonNull(password);
+
+        logger.info("Username: "+username);
+        logger.info("Password: "+password);
+
+        try {
+        	logger.info("Before authenticationManager");
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        	logger.info("After authenticationManager");
+
+        } catch (DisabledException e) {
+            throw new AuthenticationException("User is disabled!", e);
+        } catch (BadCredentialsException e) {
+            throw new AuthenticationException("Bad credentials!", e);
+        }
+    }
+}
+[/file]
+
+[file ('main/java/'.concat(p.name.replaceAll('\\.','/')).concat('/controller/').concat('AuthorityController.java'), false), 'UTF-8') ]
+package com.softtek.acceleo.demo.security.controller;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.softtek.acceleo.demo.domain.Authority;
+import com.softtek.acceleo.demo.domain.AuthorityPrivilege;
+import com.softtek.acceleo.demo.domain.UserAuthority;
+import com.softtek.acceleo.demo.security.repository.AuthorityPrivilegeRepository;
+import com.softtek.acceleo.demo.security.repository.UserAuthorityRepository;
+import com.softtek.acceleo.demo.service.AuthorityService;
+import com.softtek.acceleo.demo.service.UserService;
+
+@RestController
+public class AuthorityController {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Autowired
+	private AuthorityService authorityService;
+	
+	@Autowired
+	private AuthorityPrivilegeRepository authorityPrivilegeRepository;
+	
+	@Autowired
+	private UserAuthorityRepository userAuthorityRepository;
+	
+	Authority authority = new Authority();
+	
+	@PreAuthorize("hasRole('AUTHORITYSEARCH')")
+	@RequestMapping(value = "/authority", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody  List<Authority> getAuthoritys(@RequestParam Map<String,String> requestParams, HttpServletRequest request, HttpServletResponse response) {
+
+       	String query=requestParams.get("q");
+		int _page= requestParams.get("_page")==null?0:new Integer(requestParams.get("_page")).intValue();
+		long rows = 0;
+
+		List<Authority> listAuthority = null;
+
+		if (query==null && _page == 0 ) {
+       		//listAuthority = authorityService.listAuthorityss(authority);
+			listAuthority = authorityService.listAuthoritys();
+			rows = authorityService.getTotalRows();
+		} else if (query!= null){
+				listAuthority = authorityService.listAuthorityssQuery(authority, query, _page, 10);
+				rows = authorityService.getTotalRowsSearch(query);
+			
+		} else if (_page != 0){
+			listAuthority = authorityService.listAuthoritysPagination(authority, _page, 10);
+			rows = authorityService.getTotalRows();
+		} 	
+
+		response.setHeader("Access-Control-Expose-Headers", "x-total-count");
+		response.setHeader("x-total-count", String.valueOf(rows).toString());	
+
+		return listAuthority;
+	}
+	
+	@PreAuthorize("hasRole('AUTHORITYSEARCH')")
+	@RequestMapping(value = "/authority/catalog", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody  List<Authority> getAuthoritysCatalog(@RequestParam Map<String,String> requestParams, HttpServletRequest request, HttpServletResponse response) {
+
+       	
+		List<Authority> listAuthority = null;
+
+       	listAuthority = authorityService.listAuthorityss(authority);	
+
+		return listAuthority;
+	}
+	
+	
+	
+	@RequestMapping(value = "/authority/{id}", method = RequestMethod.GET, produces = "application/json")
+	    public @ResponseBody  Authority getAuthority(@PathVariable("id") Long id) {
+	        
+	        authority.setIdAuthority(id);
+	        
+	        Authority authority = null;
+	        authority = authorityService.getAuthority(id);
+			return authority;
+	 }
+
+
+
+	 @RequestMapping(value = "/authority", method = RequestMethod.POST)
+	 @PreAuthorize("hasRole('AUTHORITYSEARCH')")
+	    public ResponseEntity<Void> createAuthority(@RequestBody Authority authority,    UriComponentsBuilder ucBuilder) {
+	   
+		 	authority.setCreationDate(new Date());
+	        authorityService.addAuthority(authority);
+	 
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setLocation(ucBuilder.path("/authority/{id}").buildAndExpand(authority.getIdAuthority()).toUri());
+	        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+	 }
+		
+	 @RequestMapping(value = "/authority/{id}", method = RequestMethod.PUT)
+	 @PreAuthorize("hasRole('AUTHORITYUPDATE')")
+	    public ResponseEntity<Authority> actualizarAuthority(@PathVariable("id") Long id, @RequestBody Authority authority) {
+	        
+	        
+	        Authority authorityFound = authorityService.getAuthority(id);
+	         
+	        if (authorityFound==null) {
+	            System.out.println("User with id " + id + " not found");
+	            return new ResponseEntity<Authority>(HttpStatus.NOT_FOUND);
+	        }
+
+	        
+        	authorityFound.setIdAuthority(authority.getIdAuthority());
+        	authorityFound.setName(authority.getName());
+        	authorityFound.setEnabled(authority.getEnabled());
+        	authorityFound.setCreationDate(new Date());
+        	authorityFound.setModifiedDate(new Date());
+	        
+	        authorityService.editAuthority(authorityFound);	        
+	        return new ResponseEntity<Authority>(authorityFound, HttpStatus.OK);
+	  } 	
+	
+		
+		@RequestMapping(value = "/authority/{id}", method = RequestMethod.DELETE)
+		@PreAuthorize("hasRole('AUTHORITYDELETE')")
+	    public ResponseEntity<Authority> deleteAuthority(@PathVariable("id") Long id) {
+			 
+	         Authority authority = authorityService.getAuthority(id);
+	         if (authority == null) {
+	             return new ResponseEntity<Authority>(HttpStatus.NOT_FOUND);
+	         }else {
+		         try {
+		        	 /**Antes de borrar un authority, se debe validar que no este asociado a usuarios. **/
+		        	 List<UserAuthority> lstUserAuthority = userAuthorityRepository.findUserAuthorityByIdAuthority(authority);
+		        	 
+		        	 if( lstUserAuthority == null || lstUserAuthority.isEmpty() ) {
+			        	 authorityPrivilegeRepository.deleteAuthorities(authority);
+			        	 
+			        	 authorityService.deleteAuthority(authority);
+		            	 return new ResponseEntity<Authority>(HttpStatus.OK);		        		 
+		        	 }else {
+						logger.error("Error: El Authority no se puede eliminar debido a que esta asociado con usuarios.");
+						throw new Exception("El Authority no se puede eliminar debido a que esta asociado con usuarios");
+		        	 }
+				} catch (Exception e) {
+					logger.error("Error: ", e);
+					return new ResponseEntity<Authority>(HttpStatus.PRECONDITION_FAILED);
+				}
+	         }			
+		}
+}
+[/file]
+
+[file ('main/java/'.concat(p.name.replaceAll('\\.','/')).concat('/controller/').concat('MethodProtectedRestController.java'), false), 'UTF-8') ]
+package com.softtek.acceleo.demo.security.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("protected")
+public class MethodProtectedRestController {
+
+    /**
+     * This is an example of some different kinds of granular restriction for endpoints. You can use the built-in SPEL expressions
+     * in @PreAuthorize such as 'hasRole()' to determine if a user has access. Remember that the hasRole expression assumes a
+     * 'ROLE_' prefix on all role names. So 'ADMIN' here is actually stored as 'ROLE_ADMIN' in database!
+     **/
+    @RequestMapping(method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getProtectedGreeting() {
+        return ResponseEntity.ok("Greetings from admin protected method!");
+    }
+
+}
+[/file]
+
+[file ('main/java/'.concat(p.name.replaceAll('\\.','/')).concat('/controller/').concat('UserController.java'), false), 'UTF-8') ]
+package com.softtek.acceleo.demo.security.controller;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.HibernateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.softtek.acceleo.demo.domain.Authority;
+import com.softtek.acceleo.demo.domain.User;
+import com.softtek.acceleo.demo.service.UserService;
+
+
+
+@RestController
+public class UserController {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	
+		@Autowired
+		private UserService userService;
+		
+		@Autowired
+	    public PasswordEncoder passwordEncoder;
+		@PreAuthorize("hasRole('MANAGESEARCH')")
+	   @RequestMapping(value = "/usersList", method = RequestMethod.GET, produces = "application/json")
+	    public @ResponseBody  List<User> getUsers(HttpServletRequest request, HttpServletResponse response) {
+
+			List<User> listUser = null;
+	       	listUser = userService.listUserss();
+	       	
+//	       	Set<User> hs = new HashSet<User>();
+//	       	hs.addAll(listUser);
+//	       	listUser.clear();
+//	       	listUser.addAll(hs);
+	       	
+	       	for (User u:listUser){	
+	       		// Hay que decodificar el password
+	       	}
+	       	
+	       	
+			System.out.print("Conttroller - Cantidad" + listUser.size());
+			System.out.print("Fin Conttroller - userList ");
+			return listUser;
+		}
+	    
+	    
+	    /**
+	    * Crea un nuevo usuario.
+	    * @param afiliado.
+	    * @param ucBuilder.
+	    * @return ResponseEntity.
+	    */
+
+	    
+	    @RequestMapping(value = "/users/{username}/{privileges}", method = RequestMethod.POST)
+	    @PreAuthorize("hasRole('MANAGESEARCH')")
+	        public ResponseEntity<Void> createAfiliado(@RequestBody User user, @PathVariable("username") String userName,  @PathVariable("privileges") String privileges, UriComponentsBuilder ucBuilder) {
+	    	HttpStatus httpStatus = null;
+	    	
+	            user.setCreationDate(new Date()); 
+	            user.setPassword(passwordEncoder.encode(user.getPassword()));
+	            user.setUserName(userName);
+	            user.setLastPasswordResetDate(new Date());
+	            
+	            List<Authority> auths = new ArrayList<>();
+	            Authority auth = new Authority();
+	            auth.setIdAuthority(new Long(privileges));
+	            auths.add(auth);
+	            
+	            user.setAuthorities(auths);
+	                
+	            
+	            try {
+	            	userService.addUser(user);
+	            	
+	            	httpStatus = HttpStatus.CREATED;
+	            }catch(HibernateException e) {
+	            	logger.error("---->>> Error: ", e);
+	            	httpStatus = HttpStatus.NOT_ACCEPTABLE;
+	            }catch(Exception e) {
+	            	logger.error("---->>> Error: ", e);
+	            	httpStatus = HttpStatus.NOT_ACCEPTABLE;
+	            }	            
+	     
+	            HttpHeaders headers = new HttpHeaders();
+	            headers.setLocation(ucBuilder.path("/users/{id}").buildAndExpand(user.getIdUser()).toUri());
+	            return new ResponseEntity<Void>(headers, httpStatus);
+	    }
+	    
+		
+		@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
+		@PreAuthorize("hasRole('USERDELETE')")
+	    public ResponseEntity<User> deleteUser(@PathVariable("id") int id) {
+			 
+	         User user = userService.getUser(new Long(id));
+	         if (user == null) {
+	             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+	         }
+	  
+	         try {
+	        	 userService.deleteUser(user);
+            	 return new ResponseEntity<User>(HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<User>(HttpStatus.PRECONDITION_FAILED);
+			}
+			
+		}
+		
+		 @RequestMapping(value = "/users/{id}/{username}/{privileges}/{flag}", method = RequestMethod.PUT)
+		 @PreAuthorize("hasRole('MANAGESEARCH')")
+		    public ResponseEntity<User> actualizarUser( @RequestBody User user, @PathVariable("id") int id, @PathVariable("username") String username,  
+		    		@PathVariable("privileges") String privileges, @PathVariable("flag") Boolean flag) {
+		        
+		        User userFound = userService.getUser(new Long(id));
+		         
+		        if (userFound==null) {
+		            System.out.println("User with id " + id + " not found");
+		            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		        }
+
+		        if (flag){
+		        	String pass = passwordEncoder.encode(user.getPassword());
+		        	user.setPassword(pass);
+		        }
+		       
+		        try {
+			        List<Authority> auths = new ArrayList<>();
+	                Authority auth = new Authority();
+	                auth.setIdAuthority(new Long(privileges));
+	                auths.add(auth);
+			        
+			        userFound.setAuthorities(auths);
+			        userFound.setCreationDate(new Date());
+			        userFound.setEmail(user.getEmail());
+			        userFound.setEnabled(user.getEnabled());
+			        userFound.setFirstname(user.getFirstname());
+			        userFound.setLastname(user.getLastname());
+			        userFound.setLastPasswordResetDate(new Date());
+			        userFound.setModifiedDate(new Date());
+			        userFound.setUserName(username);
+			        userFound.setIdUser(new Long(user.getIdUser()));
+			        userFound.setPassword(user.getPassword());
+			        
+			        userService.editUser(userFound);
+			        
+			        return new ResponseEntity<User>(userFound, HttpStatus.OK);
+		        }catch(Exception e) {
+		        	return new ResponseEntity<User>(userFound, HttpStatus.NOT_ACCEPTABLE);
+		        }
+		  } 	
+}
+[/file]
+
+[file ('main/java/'.concat(p.name.replaceAll('\\.','/')).concat('/controller/').concat('UserRestController.java'), false), 'UTF-8') ]
+package com.softtek.acceleo.demo.security.controller;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.softtek.acceleo.demo.domain.Afiliado;
+import com.softtek.acceleo.demo.domain.Authority;
+import com.softtek.acceleo.demo.domain.User;
+import com.softtek.acceleo.demo.security.JwtTokenUtil;
+import com.softtek.acceleo.demo.security.JwtUser;
+import com.softtek.acceleo.demo.service.UserService;
+
+@RestController
+public class UserRestController {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+    @Value("${jwt.header}")
+    private String tokenHeader;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+    
+	@Autowired
+	private UserService userService;
+	
+	User user = new User();
+	
+	@Autowired
+    public PasswordEncoder passwordEncoder;
+
+    @Autowired
+    @Qualifier("jwtUserDetailsService")
+    private UserDetailsService userDetailsService;
+
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
+    	logger.info("User REST :"+tokenHeader);
+        String token = request.getHeader(tokenHeader).substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+        return user;
+    }
+}
+[/file]
+
+[/if]
+[/for]
+[/template]

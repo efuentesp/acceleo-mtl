@@ -15,18 +15,6 @@
 [import GeneratorDemo::pattern::angular::view::HtmlMngView/]
 
 
-[comment import GeneratorDemo::pattern::wizard::view::StepsView/]
-
-
-[comment import GeneratorDemo::pattern::wizard::view::EntityView/]
-[comment import GeneratorDemo::pattern::wizard::view::NavigationView/]
-[comment import GeneratorDemo::pattern::wizard::view::ConfigurationMain/]
-[comment import GeneratorDemo::pattern::wizard::view::ConfigurationFile/]
-[comment import GeneratorDemo::pattern::wizard::view::EnviromentView/]
-[comment import GeneratorDemo::pattern::wizard::view::WorkFlowView/]
-[comment import GeneratorDemo::pattern::wizard::view::PruebaGeneral/]
-
-
 [template public mainClass(aModel : Model)]
 
 	[comment @main /]	
@@ -45,14 +33,6 @@
 
 	[aModel.generateElementPipeView()/] 
 
-	[comment aModel.generateElementSteps()/]                     
-	[comment aModel.generateElementEntity()/]               
-	[comment aModel.generateElementNavigation()/]                   
-	[comment aModel.generateElementMainConfiguration()/]
-	[comment aModel.generateElementConfigurationFiles()/]
-	[comment aModel.generateElementEnviroment()/]
-	[comment aModel.generateElementWorkFlow()/]
-	[comment aModel.generateElementPruebaGeneral()/]
 
 [/template]
 

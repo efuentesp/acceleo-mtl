@@ -1,0 +1,518 @@
+[comment encoding = UTF-8 /]
+[module Domain('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementDomain(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.security')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+		    [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
+			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect') )]
+[file ('main/java/'.concat(('com.softtek.acceleo.demo').replaceAll('\\.','/')).concat('/domain/').concat(aClass.name.toUpperFirst()).concat('.java'), false), 'UTF-8')]
+
+package com.softtek.acceleo.demo.domain;
+
+import java.io.Serializable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Date;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.WhereJoinTable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+
+@Entity
+@Table(name = "[name.toLower()/]")
+public class [name.toUpperFirst()/] implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "[name.toLower()/]Id")
+	private Integer  [name.toLowerFirst()/]Id;
+
+[for (anAttribute: Property | getAllAttributes())]
+[if (anAttribute.type.name = ('HTextOrdered'))] 
+	@OrderBy("name ASC")	
+[/if]
+[if (anAttribute.type.name = ('HTextNotNullOrdered'))] 
+	@NotNull	
+	@OrderBy("name ASC")
+[/if]
+[if (anAttribute.type.name = ('HTextNotNull') 
+	  or anAttribute.type.name = ('HBooleanNotNull')
+	  or anAttribute.type.name = ('HNumberNotNull')
+	  or anAttribute.type.name = ('HLongNotNull')
+	  or anAttribute.type.name = ('HDateNotNull'))] 
+	@NotNull	
+[/if]
+[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
+[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+    [if not (anAttribute.name.equalsIgnoreCase('id'))]
+	@Column(name = "[anAttribute.name.toLower()/]") 
+	private [anElement.default/] [anAttribute.name.toLowerFirst()/];
+	[/if]
+[/if][/for][/for]
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	@Column(name = "[name.toLower()/]Id") 
+	private Integer [name.toLowerFirst()/]Id;
+	[/if]
+[/for]
+
+[for (attribute)]
+	[comment Enum/]
+	[if not (type.name = ('HText') or type.name.startsWith('modal') 
+		or type.name = ('HDate') or type.name = ('HNumber') 
+		or type.name = ('HLong') or type.name = ('HBoolean')
+		or type.name = ('HTextOrdered') 
+		or type.name = ('HTextNotNullOrdered')
+		or type.name = ('HTextNotNull')
+		or type.name = ('HNumberNotNull')
+		or type.name = ('HLongNotNull')
+		or type.name = ('HBooleanNotNull')
+		or type.name = ('HDateNotNull')
+)]
+	@Column(name = "[type.name.toLower()/]Id", nullable = false)
+	@Enumerated(EnumType.STRING)
+	[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/domain/').concat(type.name.toUpperFirst()).concat('.java'), false), 'UTF-8')]
+	package [aClass._package.name/].domain;
+	public enum [type.name.toUpperFirst()/] {
+	[for (anElement: Property | type.allOwnedElements()->filter(Property) ) separator (',')][name.toLower()/][/for]
+	}
+	[/file]
+	private [type.name.toUpperFirst()/] [type.name.toLowerFirst()/]Id;
+	[/if]
+[/for]
+
+	public Integer get[name.toUpperFirst()/]Id() {
+		return [name.toLowerFirst()/]Id;
+	}
+
+	public void set[name.toUpperFirst()/]Id(Integer [name.toLowerFirst()/]Id) {
+		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
+	}
+
+[for (anAttribute: Property | getAllAttributes())][for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
+[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+	[if not (anAttribute.name.equalsIgnoreCase('id'))]
+	public [anElement.default/] get[anAttribute.name.toUpperFirst()/] () {
+	    return [anAttribute.name.toLowerFirst()/];  		
+    }
+
+	public void set[anAttribute.name.toUpperFirst()/]([anElement.default/] [anAttribute.name.toLowerFirst()/]) {
+		this.[anAttribute.name.toLowerFirst()/] = [anAttribute.name.toLowerFirst()/];
+	}
+	[/if]
+[/if][/for][/for]
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	public Integer get[name.toUpperFirst()/]Id () {
+	    return [name.toLowerFirst()/]Id;  		
+    }
+
+	public void set[name.toUpperFirst()/]Id (Integer [name.toLowerFirst()/]Id) {
+		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
+	}
+	[/if]
+[/for]
+
+[for (attribute)]
+	[comment Enum/]
+	[if not (type.name = ('HText') or type.name.startsWith('modal') 
+		or type.name = ('HDate') or type.name = ('HNumber') 
+		or type.name = ('HLong') or type.name = ('HBoolean')
+		or type.name = ('HTextOrdered') 
+		or type.name = ('HTextNotNullOrdered')
+		or type.name = ('HTextNotNull')
+		or type.name = ('HNumberNotNull')
+		or type.name = ('HLongNotNull')
+		or type.name = ('HBooleanNotNull')
+		or type.name = ('HDateNotNull')
+)]
+	public [type.name.toUpperFirst()/] get[type.name.toUpperFirst()/]Id() {
+		return [type.name.toLowerFirst()/]Id;
+	}
+
+	public void set[type.name.toUpperFirst()/]Id([type.name.toUpperFirst()/] [type.name.toLowerFirst()/]Id) {
+		this.[type.name.toLowerFirst()/]Id = [type.name.toLowerFirst()/]Id;
+	}
+	[/if]
+[/for]
+
+[if (name = 'authority')]
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "authority_privilege", joinColumns = { 
+			@JoinColumn(name = "ID_AUTHORITY", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "ID_PRIVILEGE", nullable = false, updatable = false) })
+	@WhereJoinTable(clause = "ENABLED = '1'") 
+	@JsonIgnore 
+	private List<Privilege> privilege;
+    
+    
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "user_authority", joinColumns = { 
+			@JoinColumn(name = "ID_AUTHORITY", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "ID_USER", nullable = false, updatable = false) })
+	@JsonIgnore 
+	private List<User> user;
+
+    public List<Privilege> getPrivilege() {
+		return privilege;
+	}
+
+	public void setPrivilege(List<Privilege> privilege) {
+		this.privilege = privilege;
+	}
+
+ 	public List<User> getUser() {
+        return user;
+    }
+
+    public void setUser(List<User> user) {
+        this.user = user;
+    }
+
+[/if]
+
+[if (name = 'privilege')]
+
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_GRUPO")
+    private Grupo grupo;
+    
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "privilege")
+    private List<Authority> authority;
+
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+
+    public List<Authority> getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(List<Authority> authority) {
+		this.authority = authority;
+	}
+
+[/if]
+
+[if (name = 'user')]
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USER_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")},
+            inverseJoinColumns = {@JoinColumn(name = "ID_AUTHORITY", referencedColumnName = "ID_AUTHORITY")})
+	//@WhereJoinTable(clause = "ENABLED = '1'")     
+    private List<Authority> authorities;
+
+    public List<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
+[/if]
+
+[if (name = 'authorityPrivilege')]
+
+//	@Column(name = "ID_PRIVILEGE")
+//  @NotNull
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_PRIVILEGE")    
+    private Privilege idPrivilege;
+    
+//  @Column(name = "ID_AUTHORITY")
+//  @NotNull
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_AUTHORITY")    
+    private Authority idAuthority;
+
+   public Privilege getIdPrivilege() {
+		return idPrivilege;
+	}
+
+	public void setIdPrivilege(Privilege idPrivilege) {
+		this.idPrivilege = idPrivilege;
+	}
+    
+	public Authority getIdAuthority() {
+		return idAuthority;
+	}
+
+	public void setIdAuthority(Authority idAuthority) {
+		this.idAuthority = idAuthority;
+	}
+
+
+[/if]
+
+[if (name = 'userAuthority')]
+
+@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_USER")
+	private User idUser;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_AUTHORITY")
+    //@Where(clause = "ENABLED = '1'")
+	private Authority idAuthority;
+
+	public User getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
+	}
+	public Authority getIdAuthority() {
+		return idAuthority;
+	}
+	public void setIdAuthority(Authority idAuthority) {
+		this.idAuthority = idAuthority;
+	}
+
+[/if]
+
+	
+	
+
+
+}	
+		
+[/file]
+
+			[/if]
+		[/for]
+
+[file ('main/java/'.concat(('com.softtek.acceleo.demo').replaceAll('\\.','/')).concat('/domain/').concat('ConfigAuthority.java'), false), 'UTF-8') ]
+package com.softtek.acceleo.demo.domain;
+
+/**
+ * Clase para almacenar la configuracion de los authority.
+ * @author javier.perezb
+ *
+ */
+public class ConfigAuthority {
+	private Long idAuthority;
+	private String nameAuthority;
+	private Long idPrivilege;
+	private Boolean enabled;
+	
+	public Long getIdAuthority() {
+		return idAuthority;
+	}
+	public void setIdAuthority(Long idAuthority) {
+		this.idAuthority = idAuthority;
+	}
+	public String getNameAuthority() {
+		return nameAuthority;
+	}
+	public void setNameAuthority(String nameAuthority) {
+		this.nameAuthority = nameAuthority;
+	}	
+	public Long getIdPrivilege() {
+		return idPrivilege;
+	}
+	public void setIdPrivilege(Long idPrivilege) {
+		this.idPrivilege = idPrivilege;
+	}
+	public Boolean getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	
+}
+[/file]
+
+[file ('main/java/'.concat(('com.softtek.acceleo.demo').replaceAll('\\.','/')).concat('/domain/').concat('ConfigPermisos.java'), false), 'UTF-8') ]
+package com.softtek.acceleo.demo.domain;
+
+import java.util.List;
+
+public class ConfigPermisos {
+	private Long idGrupo;
+	private String nombreGrupo;
+	private Long idPrivilege;
+	private String nombrePrivilege;
+	private List<ConfigAuthority> lstConfigAuthority;
+	private Long activeUser;
+		
+	public Long getIdGrupo() {
+		return idGrupo;
+	}
+	public void setIdGrupo(Long idGrupo) {
+		this.idGrupo = idGrupo;
+	}
+	public String getNombreGrupo() {
+		return nombreGrupo;
+	}
+	public void setNombreGrupo(String nombreGrupo) {
+		this.nombreGrupo = nombreGrupo;
+	}
+	public Long getIdPrivilege() {
+		return idPrivilege;
+	}
+	public void setIdPrivilege(Long idPrivilege) {
+		this.idPrivilege = idPrivilege;
+	}
+	public String getNombrePrivilege() {
+		return nombrePrivilege;
+	}
+	public void setNombrePrivilege(String nombrePrivilege) {
+		this.nombrePrivilege = nombrePrivilege;
+	}
+	public List<ConfigAuthority> getLstConfigAuthority() {
+		return lstConfigAuthority;
+	}
+	public void setLstConfigAuthority(List<ConfigAuthority> lstConfigAuthority) {
+		this.lstConfigAuthority = lstConfigAuthority;
+	}
+	public Long getActiveUser() {
+		return activeUser;
+	}
+	public void setActiveUser(Long activeUser) {
+		this.activeUser = activeUser;
+	}
+
+}
+[/file]
+
+[file ('main/java/'.concat(('com.softtek.acceleo.demo').replaceAll('\\.','/')).concat('/domain/').concat('AdminPermiso.java'), false), 'UTF-8') ]
+package com.softtek.acceleo.demo.domain;
+
+public class AdminPermiso {
+	private Long idGrupo;
+	private String nombreGrupo;
+	private Long idPrivilege;
+	private String nombrePrivilege;
+	private Boolean admin;
+	private Boolean user;
+	private Boolean anonymous;
+	private Long idAuthorityAdmin;
+	private Long idPrivilegeAdmin;
+	private Long idAuthorityUser;
+	private Long idPrivilegeUser;
+	private Long idAuthorityAnonymous;
+	private Long idPrivilegeAnonymous;
+	private Integer activeUser;
+	
+
+	public Integer getActiveUser() {
+		return activeUser;
+	}
+	public void setActiveUser(Integer activeUser) {
+		this.activeUser = activeUser;
+	}
+	public Long getIdGrupo() {
+		return idGrupo;
+	}
+	public void setIdGrupo(Long idGrupo) {
+		this.idGrupo = idGrupo;
+	}
+	public String getNombreGrupo() {
+		return nombreGrupo;
+	}
+	public void setNombreGrupo(String nombreGrupo) {
+		this.nombreGrupo = nombreGrupo;
+	}
+	public Long getIdPrivilege() {
+		return idPrivilege;
+	}
+	public void setIdPrivilege(Long idPrivilege) {
+		this.idPrivilege = idPrivilege;
+	}
+	public String getNombrePrivilege() {
+		return nombrePrivilege;
+	}
+	public void setNombrePrivilege(String nombrePrivilege) {
+		this.nombrePrivilege = nombrePrivilege;
+	}
+	public Boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
+	}
+	public Boolean isUser() {
+		return user;
+	}
+	public void setUser(Boolean user) {
+		this.user = user;
+	}
+	public Boolean isAnonymous() {
+		return anonymous;
+	}
+	public void setAnonymous(Boolean anonymous) {
+		this.anonymous = anonymous;
+	}
+	public Long getIdAuthorityAdmin() {
+		return idAuthorityAdmin;
+	}
+	public void setIdAuthorityAdmin(Long idAuthorityAdmin) {
+		this.idAuthorityAdmin = idAuthorityAdmin;
+	}
+	public Long getIdPrivilegeAdmin() {
+		return idPrivilegeAdmin;
+	}
+	public void setIdPrivilegeAdmin(Long idPrivilegeAdmin) {
+		this.idPrivilegeAdmin = idPrivilegeAdmin;
+	}
+	public Long getIdAuthorityUser() {
+		return idAuthorityUser;
+	}
+	public void setIdAuthorityUser(Long idAuthorityUser) {
+		this.idAuthorityUser = idAuthorityUser;
+	}
+	public Long getIdPrivilegeUser() {
+		return idPrivilegeUser;
+	}
+	public void setIdPrivilegeUser(Long idPrivilegeUser) {
+		this.idPrivilegeUser = idPrivilegeUser;
+	}
+	public Long getIdAuthorityAnonymous() {
+		return idAuthorityAnonymous;
+	}
+	public void setIdAuthorityAnonymous(Long idAuthorityAnonymous) {
+		this.idAuthorityAnonymous = idAuthorityAnonymous;
+	}
+	public Long getIdPrivilegeAnonymous() {
+		return idPrivilegeAnonymous;
+	}
+	public void setIdPrivilegeAnonymous(Long idPrivilegeAnonymous) {
+		this.idPrivilegeAnonymous = idPrivilegeAnonymous;
+	}
+	
+	
+}
+[/file]
+
+	[/if]	
+[/for]
+
+
+
+
+[/template]

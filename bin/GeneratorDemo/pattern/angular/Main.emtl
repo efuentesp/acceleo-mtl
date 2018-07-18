@@ -7,26 +7,29 @@
     <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Bean.emtl#/0"/>
     <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Domain.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="140" endPosition="191" value=" import GeneratorDemo::pattern::angular::Controller"/>
+      <body startPosition="191" endPosition="241" value=" import GeneratorDemo::pattern::angular::ScriptDDL"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="252" endPosition="303" value=" import GeneratorDemo::pattern::angular::Repository"/>
+      <body startPosition="252" endPosition="302" value=" import GeneratorDemo::pattern::angular::Exception"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="314" endPosition="369" value=" import GeneratorDemo::pattern::angular::RepositoryImpl"/>
+      <body startPosition="313" endPosition="364" value=" import GeneratorDemo::pattern::angular::Controller"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="380" endPosition="428" value=" import GeneratorDemo::pattern::angular::Service"/>
+      <body startPosition="375" endPosition="426" value=" import GeneratorDemo::pattern::angular::Repository"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="439" endPosition="491" value=" import GeneratorDemo::pattern::angular::ServiceImpl"/>
+      <body startPosition="437" endPosition="492" value=" import GeneratorDemo::pattern::angular::RepositoryImpl"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="502" endPosition="552" value=" import GeneratorDemo::pattern::angular::ScriptDDL"/>
+      <body startPosition="503" endPosition="551" value=" import GeneratorDemo::pattern::angular::Service"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Comment">
+      <body startPosition="562" endPosition="614" value=" import GeneratorDemo::pattern::angular::ServiceImpl"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="mainClass" visibility="Public" main="true">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Bean.emtl#/0/generateElementBean"/>
@@ -43,7 +46,7 @@
         </argument>
       </body>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;&#xA;"/>
       <parameter name="aModel">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
       </parameter>
@@ -153,89 +156,94 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/%">
-      <details key="start" value="132"/>
-      <details key="end" value="193"/>
+      <details key="start" value="183"/>
+      <details key="end" value="243"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/%.1">
       <details key="start" value="244"/>
-      <details key="end" value="305"/>
+      <details key="end" value="304"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/%.2">
-      <details key="start" value="306"/>
-      <details key="end" value="371"/>
+      <details key="start" value="305"/>
+      <details key="end" value="366"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/%.3">
-      <details key="start" value="372"/>
-      <details key="end" value="430"/>
+      <details key="start" value="367"/>
+      <details key="end" value="428"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/%.4">
-      <details key="start" value="431"/>
-      <details key="end" value="493"/>
+      <details key="start" value="429"/>
+      <details key="end" value="494"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/%.5">
-      <details key="start" value="494"/>
-      <details key="end" value="554"/>
+      <details key="start" value="495"/>
+      <details key="end" value="553"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.6" references="/0/mainClass">
-      <details key="start" value="557"/>
-      <details key="end" value="1010"/>
-      <details key="line" value="13"/>
-    </eAnnotations>
-    <eAnnotations source="positions.7" references="/0/mainClass/%">
-      <details key="start" value="601"/>
-      <details key="end" value="602"/>
-      <details key="line" value="14"/>
-    </eAnnotations>
-    <eAnnotations source="positions.8" references="/0/mainClass/%.1">
-      <details key="start" value="693"/>
-      <details key="end" value="694"/>
-      <details key="line" value="18"/>
-    </eAnnotations>
-    <eAnnotations source="positions.9" references="/0/mainClass/%.2">
-      <details key="start" value="695"/>
-      <details key="end" value="723"/>
+    <eAnnotations source="positions.6" references="/0/%.6">
+      <details key="start" value="554"/>
+      <details key="end" value="616"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.10" references="/0/mainClass/%.2/aModel">
-      <details key="start" value="695"/>
-      <details key="end" value="701"/>
-      <details key="line" value="0"/>
+    <eAnnotations source="positions.7" references="/0/mainClass">
+      <details key="start" value="619"/>
+      <details key="end" value="1123"/>
+      <details key="line" value="15"/>
     </eAnnotations>
-    <eAnnotations source="positions.11" references="/0/mainClass/%.3">
-      <details key="start" value="725"/>
-      <details key="end" value="727"/>
+    <eAnnotations source="positions.8" references="/0/mainClass/%">
+      <details key="start" value="663"/>
+      <details key="end" value="664"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/mainClass/%.1">
+      <details key="start" value="709"/>
+      <details key="end" value="712"/>
       <details key="line" value="19"/>
     </eAnnotations>
-    <eAnnotations source="positions.12" references="/0/mainClass/%.4">
-      <details key="start" value="728"/>
-      <details key="end" value="758"/>
+    <eAnnotations source="positions.10" references="/0/mainClass/%.2">
+      <details key="start" value="713"/>
+      <details key="end" value="741"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.13" references="/0/mainClass/%.4/aModel">
-      <details key="start" value="728"/>
-      <details key="end" value="734"/>
+    <eAnnotations source="positions.11" references="/0/mainClass/%.2/aModel">
+      <details key="start" value="713"/>
+      <details key="end" value="719"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.14" references="/0/mainClass/%.5">
-      <details key="start" value="760"/>
-      <details key="end" value="761"/>
-      <details key="line" value="20"/>
+    <eAnnotations source="positions.12" references="/0/mainClass/%.3">
+      <details key="start" value="743"/>
+      <details key="end" value="745"/>
+      <details key="line" value="21"/>
     </eAnnotations>
-    <eAnnotations source="positions.15" references="/0/mainClass/%.6">
-      <details key="start" value="998"/>
-      <details key="end" value="999"/>
-      <details key="line" value="25"/>
+    <eAnnotations source="positions.13" references="/0/mainClass/%.4">
+      <details key="start" value="746"/>
+      <details key="end" value="776"/>
+      <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.16" references="/0/mainClass/aModel">
-      <details key="start" value="584"/>
-      <details key="end" value="598"/>
-      <details key="line" value="13"/>
+    <eAnnotations source="positions.14" references="/0/mainClass/%.4/aModel">
+      <details key="start" value="746"/>
+      <details key="end" value="752"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/mainClass/%.5">
+      <details key="start" value="778"/>
+      <details key="end" value="779"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/mainClass/%.6">
+      <details key="start" value="1108"/>
+      <details key="end" value="1111"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/mainClass/aModel">
+      <details key="start" value="646"/>
+      <details key="end" value="660"/>
+      <details key="line" value="15"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

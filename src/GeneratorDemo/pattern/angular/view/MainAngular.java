@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * Entry point of the 'MainWizard' generation module.
+ * Entry point of the 'MainAngular' generation module.
  *
  * @generated
  */
