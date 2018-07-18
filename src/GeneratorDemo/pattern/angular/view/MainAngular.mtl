@@ -1,36 +1,21 @@
 [comment encoding = UTF-8 /]
 [module MainAngular('http://www.eclipse.org/uml2/5.0.0/UML')]
 
-[import GeneratorDemo::pattern::angular::view::HomeView/]            [comment Genera index.html /]     
-[import GeneratorDemo::pattern::angular::view::ConfigView/]			[comment Genera archivos base de configuración /]
-[import GeneratorDemo::pattern::angular::view::FilesView/]			[comment Genera archivos base para vista de angular /]
-
 [import GeneratorDemo::pattern::angular::view::RoutingModuleView/]	[comment Agregar los componentes para routing module /]
-[import GeneratorDemo::pattern::angular::view::ModuleView/]          [comment Agregar los componentes para module /]
-[import GeneratorDemo::pattern::angular::view::PanelSideView/]       [comment Agregar los componentes para module /]
-
+[import GeneratorDemo::pattern::angular::view::RoutingModuleHtml/]	[comment Agregar los componentes para routing module /]
 [import GeneratorDemo::pattern::angular::view::CrudView/]			[comment Genera crud, contiene los archivos service y component /]
 [import GeneratorDemo::pattern::angular::view::PipeView/]
 [import GeneratorDemo::pattern::angular::view::HtmlView/]			[comment Genera crud, contiene los archivos de html /]
-[import GeneratorDemo::pattern::angular::view::HtmlMngView/]
 
 
 [template public mainClass(aModel : Model)]
 
 	[comment @main /]	
 
-	[aModel.generateElementHomeView()/]                    
-	[aModel.generateElementConfig()/]    
-	[aModel.generateElementFiles()/]       
-                 
-	[aModel.generateRoutingModuleView()/]     
-	[aModel.generateElementModelView()/]  
-	[aModel.generateElementPanelSideView()/] 
-
+	[aModel.generateRoutingModuleView()/]   
+	[aModel.generateElementRoutingModuleHtml()/]
 	[aModel.generateElementCrudView()/] 
 	[aModel.generateElementHtmlView()/] 
-	[aModel.generateElementHtmlMngView()/] 
-
 	[aModel.generateElementPipeView()/] 
 
 

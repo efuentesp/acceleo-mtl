@@ -9,7 +9,7 @@
 	 	[for (aClass : Class | p.packagedElement->filter(Class))]
 			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Wizard')) ]
-[file (('src/app/pipe/').concat(aClass.name.toLower()).concat('.filter.pipe.ts'), false, 'UTF-8')]
+[file (('app/admin/pipe/').concat(aClass.name.toLower()).concat('.filter.pipe.ts'), false, 'UTF-8')]
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -34,7 +34,7 @@ export class Search[name.toUpperFirst()/]Pipe implements PipeTransform {
 	((item.[aClass.name.toLowerCase()/]Id+"").indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1) 
 	[/if]
 	[if (type.name = ('HText') and not(name.equalsIgnoreCase('id')))]
-	(item.[anAttribute.name.toLowerCase()/].indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1) 
+	((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
 	[/if]
 	[/for]
         ): items;

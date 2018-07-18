@@ -4,21 +4,21 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
     </input>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Bean.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Domain.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ScriptDDL.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Controller.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Repository.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/RepositoryImpl.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Service.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ServiceImpl.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/AuthorityName.emtl#/0"/>
+    <imports href="Bean.emtl#/0"/>
+    <imports href="Domain.emtl#/0"/>
+    <imports href="ScriptDDL.emtl#/0"/>
+    <imports href="Controller.emtl#/0"/>
+    <imports href="Repository.emtl#/0"/>
+    <imports href="RepositoryImpl.emtl#/0"/>
+    <imports href="Service.emtl#/0"/>
+    <imports href="ServiceImpl.emtl#/0"/>
+    <imports href="AuthorityName.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="mainClass" visibility="Public" main="true">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Bean.emtl#/0/generateElementBean"/>
+        <definition href="Bean.emtl#/0/generateElementBean"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -26,7 +26,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Domain.emtl#/0/generateElementDomain"/>
+        <definition href="Domain.emtl#/0/generateElementDomain"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -34,7 +34,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ScriptDDL.emtl#/0/generateElementScriptDDL"/>
+        <definition href="ScriptDDL.emtl#/0/generateElementScriptDDL"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -42,7 +42,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Controller.emtl#/0/generateElementController"/>
+        <definition href="Controller.emtl#/0/generateElementController"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -50,7 +50,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Repository.emtl#/0/generateElementRepository"/>
+        <definition href="Repository.emtl#/0/generateElementRepository"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -58,7 +58,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/RepositoryImpl.emtl#/0/generateElementRepositoryImpl"/>
+        <definition href="RepositoryImpl.emtl#/0/generateElementRepositoryImpl"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -66,7 +66,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Service.emtl#/0/generateElementService"/>
+        <definition href="Service.emtl#/0/generateElementService"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -74,7 +74,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ServiceImpl.emtl#/0/generateElementServiceImpl"/>
+        <definition href="ServiceImpl.emtl#/0/generateElementServiceImpl"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -82,7 +82,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/AuthorityName.emtl#/0/generateElementAuthorityName"/>
+        <definition href="AuthorityName.emtl#/0/generateElementAuthorityName"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -128,7 +128,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Bean.emtl#/0/generateElementBean"/>
+          <references href="Bean.emtl#/0/generateElementBean"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -140,7 +140,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Domain.emtl#/0/generateElementDomain"/>
+          <references href="Domain.emtl#/0/generateElementDomain"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -152,7 +152,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ScriptDDL.emtl#/0/generateElementScriptDDL"/>
+          <references href="ScriptDDL.emtl#/0/generateElementScriptDDL"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -164,7 +164,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Controller.emtl#/0/generateElementController"/>
+          <references href="Controller.emtl#/0/generateElementController"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -176,7 +176,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Repository.emtl#/0/generateElementRepository"/>
+          <references href="Repository.emtl#/0/generateElementRepository"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -188,7 +188,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/RepositoryImpl.emtl#/0/generateElementRepositoryImpl"/>
+          <references href="RepositoryImpl.emtl#/0/generateElementRepositoryImpl"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -200,7 +200,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Service.emtl#/0/generateElementService"/>
+          <references href="Service.emtl#/0/generateElementService"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -212,7 +212,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ServiceImpl.emtl#/0/generateElementServiceImpl"/>
+          <references href="ServiceImpl.emtl#/0/generateElementServiceImpl"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -224,7 +224,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/AuthorityName.emtl#/0/generateElementAuthorityName"/>
+          <references href="AuthorityName.emtl#/0/generateElementAuthorityName"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
