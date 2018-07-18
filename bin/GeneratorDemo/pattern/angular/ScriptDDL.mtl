@@ -8,7 +8,7 @@
 	 				[for (aClass : Class | p.packagedElement->filter(Class))]
 					    [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
 						   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect') )]
-[file ('main/resources/DDLscript'.concat(aClass.name.toUpperFirst()).concat('.sql'), false), 'UTF-8') ]
+[file ('main/java/'.concat('com/softtek/acceleo/demo/sql/demoacceleo_').concat(aClass.name.toLower()).concat('.sql'), false), 'UTF-8') ]
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: demoacceleo
@@ -100,6 +100,16 @@ CREATE TABLE `[name.toLower()/]` (
 `[name.toLower()/]Id` INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`[name.toLower()/]Id`)
 )ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
+/* Table Insert */
+INSERT INTO `grupo` (NAME) VALUES ('[name.toUpper()/]');
+COMMIT;
+INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.toUpper()/]SEARCH',(SELECT ID_GRUPO FROM `grupo` WHERE NAME = '[name.toUpper()/]'),1,now());
+INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.toUpper()/]UPDATE',(SELECT ID_GRUPO FROM `grupo` WHERE NAME = '[name.toUpper()/]'),1,now());
+INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.toUpper()/]DELETE',(SELECT ID_GRUPO FROM `grupo` WHERE NAME = '[name.toUpper()/]'),1,now());
+INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.toUpper()/]CREATE',(SELECT ID_GRUPO FROM `grupo` WHERE NAME = '[name.toUpper()/]'),1,now());
+COMMIT;
 
 [/file]
 			[/if]

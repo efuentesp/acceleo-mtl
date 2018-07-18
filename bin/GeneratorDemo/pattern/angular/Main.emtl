@@ -6,27 +6,13 @@
     </input>
     <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Bean.emtl#/0"/>
     <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Domain.emtl#/0"/>
-    <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="191" endPosition="241" value=" import GeneratorDemo::pattern::angular::ScriptDDL"/>
-    </ownedModuleElement>
-    <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="252" endPosition="302" value=" import GeneratorDemo::pattern::angular::Exception"/>
-    </ownedModuleElement>
-    <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="313" endPosition="364" value=" import GeneratorDemo::pattern::angular::Controller"/>
-    </ownedModuleElement>
-    <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="375" endPosition="426" value=" import GeneratorDemo::pattern::angular::Repository"/>
-    </ownedModuleElement>
-    <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="437" endPosition="492" value=" import GeneratorDemo::pattern::angular::RepositoryImpl"/>
-    </ownedModuleElement>
-    <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="503" endPosition="551" value=" import GeneratorDemo::pattern::angular::Service"/>
-    </ownedModuleElement>
-    <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="562" endPosition="614" value=" import GeneratorDemo::pattern::angular::ServiceImpl"/>
-    </ownedModuleElement>
+    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ScriptDDL.emtl#/0"/>
+    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Controller.emtl#/0"/>
+    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Repository.emtl#/0"/>
+    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/RepositoryImpl.emtl#/0"/>
+    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Service.emtl#/0"/>
+    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ServiceImpl.emtl#/0"/>
+    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/AuthorityName.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="mainClass" visibility="Public" main="true">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#xA;&#x9;"/>
@@ -45,8 +31,63 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ScriptDDL.emtl#/0/generateElementScriptDDL"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Controller.emtl#/0/generateElementController"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Repository.emtl#/0/generateElementRepository"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/RepositoryImpl.emtl#/0/generateElementRepositoryImpl"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Service.emtl#/0/generateElementService"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ServiceImpl.emtl#/0/generateElementServiceImpl"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/AuthorityName.emtl#/0/generateElementAuthorityName"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/mainClass/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;&#xA;&#xA;&#xA;&#xA;"/>
       <parameter name="aModel">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
       </parameter>
@@ -106,6 +147,90 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </eParameters>
       </eOperations>
+      <eOperations name="generateElementScriptDDL">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ScriptDDL.emtl#/0/generateElementScriptDDL"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementController">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Controller.emtl#/0/generateElementController"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementRepository">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Repository.emtl#/0/generateElementRepository"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementRepositoryImpl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/RepositoryImpl.emtl#/0/generateElementRepositoryImpl"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementService">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/Service.emtl#/0/generateElementService"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementServiceImpl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/ServiceImpl.emtl#/0/generateElementServiceImpl"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementAuthorityName">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/AuthorityName.emtl#/0/generateElementAuthorityName"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -152,98 +277,184 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
-    <eAnnotations source="positions.0" references="/0/%">
-      <details key="start" value="183"/>
-      <details key="end" value="243"/>
-      <details key="line" value="0"/>
+    <eAnnotations source="positions.0" references="/0/mainClass">
+      <details key="start" value="566"/>
+      <details key="end" value="1020"/>
+      <details key="line" value="14"/>
     </eAnnotations>
-    <eAnnotations source="positions.1" references="/0/%.1">
-      <details key="start" value="244"/>
-      <details key="end" value="304"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.2" references="/0/%.2">
-      <details key="start" value="305"/>
-      <details key="end" value="366"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.3" references="/0/%.3">
-      <details key="start" value="367"/>
-      <details key="end" value="428"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.4" references="/0/%.4">
-      <details key="start" value="429"/>
-      <details key="end" value="494"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.5" references="/0/%.5">
-      <details key="start" value="495"/>
-      <details key="end" value="553"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.6" references="/0/%.6">
-      <details key="start" value="554"/>
-      <details key="end" value="616"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.7" references="/0/mainClass">
-      <details key="start" value="619"/>
-      <details key="end" value="1123"/>
+    <eAnnotations source="positions.1" references="/0/mainClass/%">
+      <details key="start" value="610"/>
+      <details key="end" value="611"/>
       <details key="line" value="15"/>
     </eAnnotations>
-    <eAnnotations source="positions.8" references="/0/mainClass/%">
-      <details key="start" value="663"/>
-      <details key="end" value="664"/>
-      <details key="line" value="16"/>
+    <eAnnotations source="positions.2" references="/0/mainClass/%.1">
+      <details key="start" value="656"/>
+      <details key="end" value="659"/>
+      <details key="line" value="18"/>
     </eAnnotations>
-    <eAnnotations source="positions.9" references="/0/mainClass/%.1">
-      <details key="start" value="709"/>
-      <details key="end" value="712"/>
-      <details key="line" value="19"/>
-    </eAnnotations>
-    <eAnnotations source="positions.10" references="/0/mainClass/%.2">
-      <details key="start" value="713"/>
-      <details key="end" value="741"/>
+    <eAnnotations source="positions.3" references="/0/mainClass/%.2">
+      <details key="start" value="660"/>
+      <details key="end" value="688"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.11" references="/0/mainClass/%.2/aModel">
-      <details key="start" value="713"/>
-      <details key="end" value="719"/>
+    <eAnnotations source="positions.4" references="/0/mainClass/%.2/aModel">
+      <details key="start" value="660"/>
+      <details key="end" value="666"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.12" references="/0/mainClass/%.3">
-      <details key="start" value="743"/>
-      <details key="end" value="745"/>
+    <eAnnotations source="positions.5" references="/0/mainClass/%.3">
+      <details key="start" value="690"/>
+      <details key="end" value="692"/>
+      <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/mainClass/%.4">
+      <details key="start" value="693"/>
+      <details key="end" value="723"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/mainClass/%.4/aModel">
+      <details key="start" value="693"/>
+      <details key="end" value="699"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/mainClass/%.5">
+      <details key="start" value="725"/>
+      <details key="end" value="727"/>
       <details key="line" value="21"/>
     </eAnnotations>
-    <eAnnotations source="positions.13" references="/0/mainClass/%.4">
-      <details key="start" value="746"/>
-      <details key="end" value="776"/>
+    <eAnnotations source="positions.9" references="/0/mainClass/%.6">
+      <details key="start" value="728"/>
+      <details key="end" value="761"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.14" references="/0/mainClass/%.4/aModel">
-      <details key="start" value="746"/>
-      <details key="end" value="752"/>
+    <eAnnotations source="positions.10" references="/0/mainClass/%.6/aModel">
+      <details key="start" value="728"/>
+      <details key="end" value="734"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.15" references="/0/mainClass/%.5">
-      <details key="start" value="778"/>
-      <details key="end" value="779"/>
+    <eAnnotations source="positions.11" references="/0/mainClass/%.7">
+      <details key="start" value="763"/>
+      <details key="end" value="765"/>
       <details key="line" value="22"/>
     </eAnnotations>
-    <eAnnotations source="positions.16" references="/0/mainClass/%.6">
-      <details key="start" value="1108"/>
-      <details key="end" value="1111"/>
-      <details key="line" value="29"/>
+    <eAnnotations source="positions.12" references="/0/mainClass/%.8">
+      <details key="start" value="766"/>
+      <details key="end" value="800"/>
+      <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.17" references="/0/mainClass/aModel">
-      <details key="start" value="646"/>
-      <details key="end" value="660"/>
-      <details key="line" value="15"/>
+    <eAnnotations source="positions.13" references="/0/mainClass/%.8/aModel">
+      <details key="start" value="766"/>
+      <details key="end" value="772"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/mainClass/%.9">
+      <details key="start" value="802"/>
+      <details key="end" value="804"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/mainClass/%.10">
+      <details key="start" value="805"/>
+      <details key="end" value="839"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/mainClass/%.10/aModel">
+      <details key="start" value="805"/>
+      <details key="end" value="811"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/mainClass/%.11">
+      <details key="start" value="841"/>
+      <details key="end" value="843"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/mainClass/%.12">
+      <details key="start" value="844"/>
+      <details key="end" value="882"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/mainClass/%.12/aModel">
+      <details key="start" value="844"/>
+      <details key="end" value="850"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/mainClass/%.13">
+      <details key="start" value="884"/>
+      <details key="end" value="886"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/mainClass/%.14">
+      <details key="start" value="887"/>
+      <details key="end" value="918"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/mainClass/%.14/aModel">
+      <details key="start" value="887"/>
+      <details key="end" value="893"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/mainClass/%.15">
+      <details key="start" value="920"/>
+      <details key="end" value="922"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/mainClass/%.16">
+      <details key="start" value="923"/>
+      <details key="end" value="958"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/mainClass/%.16/aModel">
+      <details key="start" value="923"/>
+      <details key="end" value="929"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/mainClass/%.17">
+      <details key="start" value="960"/>
+      <details key="end" value="962"/>
+      <details key="line" value="27"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/mainClass/%.18">
+      <details key="start" value="963"/>
+      <details key="end" value="1000"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/mainClass/%.18/aModel">
+      <details key="start" value="963"/>
+      <details key="end" value="969"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/mainClass/%.19">
+      <details key="start" value="1002"/>
+      <details key="end" value="1008"/>
+      <details key="line" value="28"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/mainClass/aModel">
+      <details key="start" value="593"/>
+      <details key="end" value="607"/>
+      <details key="line" value="14"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

@@ -3,13 +3,19 @@
 [template public generateElementController(aModel : Model)]
 [comment @main /]
 
-[comment ******* Crud Controller *********/]
+[comment ******* Controller *********/]
 [for (p : Package | aModel.packagedElement->filter(Package))]
 	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
 		[for (aClass : Class | p.packagedElement->filter(Class))]
 		    [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect') )]
 				[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/catalogo/').concat('/controller/').concat(aClass.name.toUpperFirst()).concat('Controller.java'), false), 'UTF-8') ]
+/**
+ * Autor: PSG.
+ * Proyecto:
+ * Version: 0.1 
+ * Clase para invocar servicios de los [name.toUpperFirst()/]s. 
+ */
 package [_package.name/].catalogo.controller;
 
 import java.util.ArrayList;
@@ -34,12 +40,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.security.access.prepost.PreAuthorize;
+
+import org.springframework.web.bind.annotation.RestController;
+import com.softtek.acceleo.demo.exception.GenericException;
 
 import [_package.name/].catalogo.bean.[name.toUpperFirst()/]Bean;
 import [_package.name/].domain.[name.toUpperFirst()/];
 import [_package.name/].service.[name.toUpperFirst()/]Service;
 
-@Controller
+/**
+ * Clase [name.toUpperFirst()/]Controller.
+ * @author PSG.
+ *
+ */
+@RestController
 public class [name.toUpperFirst()/]Controller {
 
 	@Autowired
@@ -47,7 +62,15 @@ public class [name.toUpperFirst()/]Controller {
 	
 	[name.toUpperFirst()/] [name.toLower()/] = new [name.toUpperFirst()/]();
 
+	/************************************** SEARCH
+	 * Obtiene informacion de los [name.toLower()/]s.
+	 * @param requestParams.
+	 * @param request.
+	 * @param response.
+	 * @return List<[name.toUpperFirst()/]>.
+	 */
 	@RequestMapping(value = "/[name.toLower()/]", method = RequestMethod.GET, produces = "application/json")
+	@PreAuthorize("hasRole('[name.toUpper()/]SEARCH')")
 	public @ResponseBody  List<[name.toUpperFirst()/]> get[name.toUpperFirst()/]s(@RequestParam Map<String,String> requestParams, HttpServletRequest request, HttpServletResponse response) {
 
        	String query=requestParams.get("q");
@@ -72,20 +95,29 @@ public class [name.toUpperFirst()/]Controller {
 
 		return list[name.toUpperFirst()/];
 	}
-	
-	@RequestMapping(value = "/[name.toLower()/]/{id}", method = RequestMethod.GET, produces = "application/json")
-	    public @ResponseBody  [name.toUpperFirst()/] get[name.toUpperFirst()/](@PathVariable("id") int id) {
-	        
-	        [name.toLower()/].set[name.toUpperFirst()/]Id(id);
-	        
+
+	/************************************* SEARCH
+	 * Obtiene informacion de un [name.toLower()/].
+	 * @param id.
+	 * @return [name.toUpperFirst()/].
+	 */
+	@RequestMapping(value = "/id[name.toLower()/]/{id}", method = RequestMethod.GET, produces = "application/json")
+	@PreAuthorize("hasRole('[name.toUpper()/]SEARCH')")
+	    public @ResponseBody  [name.toUpperFirst()/] get[name.toUpperFirst()/](@PathVariable("id") int id) {	        
 	        [name.toUpperFirst()/] [name.toLower()/] = null;
+	        
 	        [name.toLower()/] = [name.toLower()/]Service.get[name.toUpperFirst()/](id);
 			return [name.toLower()/];
 	 }
 
-
-
+	/*************************** CREATE
+	 * Crea un nuevo [name.toLower()/].
+	 * @param [name.toLower()/].
+	 * @param ucBuilder.
+	 * @return ResponseEntity.
+	 */
 	 @RequestMapping(value = "/[name.toLower()/]", method = RequestMethod.POST)
+	 @PreAuthorize("hasRole('[name.toUpper()/]CREATE')")
 	    public ResponseEntity<Void> create[name.toUpperFirst()/](@RequestBody [name.toUpperFirst()/] [name.toLower()/],    UriComponentsBuilder ucBuilder) {
 	   
 	        [name.toLower()/]Service.add[name.toUpperFirst()/]([name.toLower()/]);
@@ -95,7 +127,14 @@ public class [name.toUpperFirst()/]Controller {
 	        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	 }
 		
+	 /****************************************** UPDATE
+	  * Actualiza la informacion de un [name.toLower()/].
+	  * @param id.
+	  * @param [name.toLower()/].
+	  * @return ResponseEntity.
+	  */
 	 @RequestMapping(value = "/[name.toLower()/]/{id}", method = RequestMethod.PUT)
+ 	 @PreAuthorize("hasRole('[name.toUpper()/]UPDATE')") 
 	    public ResponseEntity<[name.toUpperFirst()/]> actualizar[name.toUpperFirst()/](
 				@PathVariable("id") int id, 
 				@RequestBody [name.toUpperFirst()/] [name.toLower()/]) {
@@ -132,26 +171,37 @@ public class [name.toUpperFirst()/]Controller {
 	        return new ResponseEntity<[name.toUpperFirst()/]>([name.toLower()/]Found, HttpStatus.OK);
 	  } 	
 	
-		
+		/********************************** DELETE
+		 * Elimina un [name.toLower()/].
+		 * @param id.
+		 * @return ResponseEntity<[name.toUpperFirst()/]>.
+		 */
 		@RequestMapping(value = "/[name.toLower()/]/{id}", method = RequestMethod.DELETE)
+		@PreAuthorize("hasRole('[name.toUpper()/]DELETE')")  
 	    public ResponseEntity<[name.toUpperFirst()/]> delete[name.toUpperFirst()/](@PathVariable("id") int id) {
-			 long rows = 0;	
+			  
+			//try{
 	    	 
 	         [name.toUpperFirst()/] [name.toLower()/] = [name.toLower()/]Service.get[name.toUpperFirst()/](id);
 	         if ([name.toLower()/] == null) {
 	             return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.NOT_FOUND);
 	         }
 	  
-             if (rows==0){
+           
 	             [name.toLower()/]Service.delete[name.toUpperFirst()/]([name.toLower()/]);
             	 return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.OK);
-             } else {
-            	 return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.PRECONDITION_FAILED);
-             }
+           	//} catch(GenericException e) {
+            //	 return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.PRECONDITION_FAILED);
+            //}
 		}
 
-
+	/**
+	 * Salva informacion de un [name.toLower()/].
+	 * @param afiliadoBean.
+	 * @return String.
+	 */
 	@RequestMapping(value = "/save[name.toUpperFirst()/]", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('[name.toUpper()/]')")  
 	public @ResponseBody String save[name.toUpperFirst()/](
 			@ModelAttribute("command") [name.toUpperFirst()/]Bean [name.toLower()/]Bean) {
 
@@ -161,7 +211,13 @@ public class [name.toUpperFirst()/]Controller {
 		return "SUCCESS";
 	}
 	
+	/**
+	 * Edita informacion de un [name.toLower()/].
+	 * @param [name.toLower()/]Bean.
+	 * @return String.
+	 */
 	@RequestMapping(value = "/edit[name.toUpperFirst()/]", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('[name.toUpper()/]')")  
 	public @ResponseBody String edit[name.toUpperFirst()/](
 			@ModelAttribute("command") [name.toUpperFirst()/]Bean [name.toLower()/]Bean) {
 
@@ -171,7 +227,14 @@ public class [name.toUpperFirst()/]Controller {
 		return "SUCCESS";
 	}
 
+	/**
+	 * Agrega un [name.toUpper()/].
+	 * @param [name.toUpper()/]Bean.
+	 * @param result.
+	 * @return ModelAndView.
+	 */
 	@RequestMapping(value = "/search[name.toUpperFirst()/]", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('[name.toUpper()/]')")  
 	public ModelAndView add[name.toUpperFirst()/](
 			@ModelAttribute("command") [name.toUpperFirst()/]Bean [name.toLower()/]Bean,
 			BindingResult result) {
@@ -185,7 +248,14 @@ public class [name.toUpperFirst()/]Controller {
 		return new ModelAndView("search[name.toUpperFirst()/]", model);
 	}
 
+	/**
+	 * Elimina un [name.toLower()/].
+	 * @param [name.toLower()/]Bean.
+	 * @param result.
+	 * @return ModelAndView.
+	 */
 	@RequestMapping(value = "/delete[name.toUpperFirst()/]", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('[name.toUpper()/]')")  
 	public ModelAndView delete[name.toUpperFirst()/](
 			@ModelAttribute("command") [name.toUpperFirst()/]Bean [name.toLower()/]Bean,
 			BindingResult result) {
@@ -198,7 +268,12 @@ public class [name.toUpperFirst()/]Controller {
 		return new ModelAndView("search[name.toUpperFirst()/]", model);
 	}
 
+	/**
+	 * 
+	 * @return ModelAndView.
+	 */
 	@RequestMapping(value = "/entry[name.toUpperFirst()/]", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('[name.toUpper()/]')")  
 	public ModelAndView entry[name.toUpperFirst()/]() {
 		return new ModelAndView("redirect:/search[name.toUpperFirst()/]");
 	}
@@ -229,6 +304,11 @@ public class [name.toUpperFirst()/]Controller {
 		return [name.toLower()/];
 	}
 
+	/**
+	 * Convierte un objeto de tipo [name.toUpperFirst()/]Bean a un objeto de tipo [name.toUpperFirst()/].
+	 * @param [name.toLower()/]Bean.
+	 * @return [name.toUpperFirst()/].
+	 */
 	private List<[name.toUpperFirst()/]Bean> prepareListofBean(List<[name.toUpperFirst()/]> [name.toLower()/]s) {
 		List<[name.toUpperFirst()/]Bean> beans = null;
 		if ([name.toLower()/]s != null && ![name.toLower()/]s.isEmpty()) {

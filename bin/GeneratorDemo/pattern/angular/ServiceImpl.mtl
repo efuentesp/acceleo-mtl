@@ -15,7 +15,12 @@
 [if (aClass.getOperations() -> asSequence() -> size()) > 0]
 	[comment aClass.generateElementServiceAdapterImpl('sda')/]
 [/if]
-
+/**
+ * Autor: PSG.
+ * Proyecto:
+ * Version: 0.1 
+ * Clase para generar servicios de los [name.toLower()/]s. 
+ */
 package [aClass._package.name.toLower()/].service.impl;
 
 import java.util.List;
@@ -28,7 +33,11 @@ import org.springframework.transaction.annotation.Transactional;
 import [aClass._package.name.toLower()/].repository.[name.toUpperFirst()/]Repository;
 import [aClass._package.name.toLower()/].domain.[name.toUpperFirst()/];
 import [aClass._package.name.toLower()/].service.[name.toUpperFirst()/]Service;
-
+/**
+ * Clase [name.toUpperFirst()/]ServiceImpl.
+ * @author PSG.
+ *
+ */
 @Service("[name.toLower()/]Service")
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class [name.toUpperFirst()/]ServiceImpl implements [name.toUpperFirst()/]Service {
@@ -36,29 +45,43 @@ public class [name.toUpperFirst()/]ServiceImpl implements [name.toUpperFirst()/]
 	@Autowired
 	private [name.toUpperFirst()/]Repository [name.toLower()/]Repository;
 
+	/**
+	 * Agrega un [name.toLower()/].
+	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void add[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]) {
 		
 		[name.toLower()/]Repository.add[name.toUpperFirst()/]([name.toLower()/]);
 	}
 
+	/**
+	 * Edita un [name.toLower()/].
+	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void edit[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]) {
 		
 		[name.toLower()/]Repository.edit[name.toUpperFirst()/]([name.toLower()/]);
 	}
 	
-	
+	/**
+	 * Consulta informacion de [name.toLower()/]s.
+	 */
 	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]s([name.toUpperFirst()/] [name.toLower()/]) {
 
 		return [name.toLower()/]Repository.list[name.toUpperFirst()/]s([name.toLower()/]);
 	}
 
+	/**
+	 * Obtiene informacion de un [name.toLower()/].
+	 */
 	public [name.toUpperFirst()/] get[name.toUpperFirst()/](int empid) {
 
 		return [name.toLower()/]Repository.get[name.toUpperFirst()/](empid);
 	}
 
+	/**
+	 * Elimina un [name.toLower()/].
+	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void delete[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]) {
 		System.out.println("Entrando al delete[name.toUpperFirst()/]");
@@ -66,31 +89,45 @@ public class [name.toUpperFirst()/]ServiceImpl implements [name.toUpperFirst()/]
 		 [name.toLower()/]Repository.delete[name.toUpperFirst()/]([name.toLower()/]);
 	}
 
-
+	/**
+	 * Consulta informacion de [name.toLower()/]s y la pagina.
+	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]sPagination([name.toUpperFirst()/] [name.toLower()/], int page, int size) {
 
 		return [name.toLower()/]Repository.list[name.toUpperFirst()/]sPagination([name.toLower()/], page, size);
 	}
 
+	/**
+	 * Obtiene el numero de [name.toLower()/]s consultados.
+	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public long getTotalRowsSearch(String query) {
 
 		return [name.toLower()/]Repository.getTotalRowsSearch(query);
 	}
 	
+	/**
+	 * Obtiene el numero de [name.toLower()/]s consultados.
+	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public long getTotalRows(String query) {
 
 		return [name.toLower()/]Repository.getTotalRows(query);
 	}
 
+	/**
+	 * Obtiene el numero de [name.toLower()/]s consultados.
+	 */
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public long getTotalRows() {
 
 		return [name.toLower()/]Repository.getTotalRows();
 	}
 
+	/**
+	 * Consulta informacion de los [name.toLower()/]s y la pagina.
+	 */
 	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]sQuery([name.toUpperFirst()/] [name.toLower()/], String query, int page, int size) {
 		// TODO Auto-generated method stub
 		return [name.toLower()/]Repository.list[name.toUpperFirst()/]sQuery([name.toLower()/], query, page, size);
