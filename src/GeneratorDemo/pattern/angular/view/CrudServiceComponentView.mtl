@@ -12,7 +12,7 @@
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumCheck')
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect')) ]
 
-[file ('app/admin/'.concat(aClass.name.toLowerFirst()).concat('/').concat(aClass.name.toLowerFirst()).concat('.component.service.ts'), false, 'UTF-8')]
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('.component.service.ts'), false, 'UTF-8')]
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
 import { Http, Response }                          from "@angular/http";

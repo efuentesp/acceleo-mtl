@@ -28,9 +28,10 @@ import { AuthorityEditComponent } from './authority/editAuthority/authority-edit
 
 	 	[for (aClass : Class | p.packagedElement->filter(Class))]
 			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
-import { [name.toUpperFirst()/]ManageComponent}       from './[name.toLower()/]/manage[name.toLowerFirst()/]/[name.toLower()/]-manage.component';
-import { [name.toUpperFirst()/]CreateComponent}       from './[name.toLower()/]/create[name.toLowerFirst()/]/[name.toLower()/]-create.component';
-import { [name.toUpperFirst()/]EditComponent}         from './[name.toLower()/]/edit[name.toLowerFirst()/]/[name.toLower()/]-edit.component';
+// [name.toUpperFirst()/]
+import { [name.toUpperFirst()/]ManageComponent}       from './[name.toLower()/]/manage[name.toLower()/]/[name.toLower()/]-manage.component';
+import { [name.toUpperFirst()/]CreateComponent}       from './[name.toLower()/]/create[name.toLower()/]/[name.toLower()/]-create.component';
+import { [name.toUpperFirst()/]EditComponent}         from './[name.toLower()/]/edit[name.toLower()/]/[name.toLower()/]-edit.component';
 
 			[/if]
 		[/for]	
@@ -49,9 +50,9 @@ const adminRoutes: Routes = [ '[' /]
 		// [name.toUpperFirst()/]
 		[for (aClass : Class | p.packagedElement->filter(Class))]
 			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
-		{ path: 'create[name.toUpperFirst()/]',  component: [name.toUpperFirst()/]CreateComponent},  
-		{ path: 'manage[name.toUpperFirst()/]',  component: [name.toUpperFirst()/]ManageComponent},  
-		{ path: 'edit[name.toUpperFirst()/]',  component: [name.toUpperFirst()/]EditComponent},  
+		{ path: 'create[name.toLower()/]',  component: [name.toUpperFirst()/]CreateComponent},  
+		{ path: 'manage[name.toLower()/]',  component: [name.toUpperFirst()/]ManageComponent},  
+		{ path: 'edit[name.toLower()/]',  component: [name.toUpperFirst()/]EditComponent},  
 			
 			[/if]
 		[/for]
@@ -228,9 +229,9 @@ import { AuthorityEditComponent } from './authority/editAuthority/authority-edit
 [for (aClass : Class | p.packagedElement->filter(Class))]
 	[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
   
-import { [name.toUpperFirst()/]ManageComponent } from './[name.toLower()/]/manage[name.toUpperFirst()/]/[name.toLower()/]-manage.component';
-import { [name.toUpperFirst()/]CreateComponent } from './[name.toLower()/]/create[name.toUpperFirst()/]/[name.toLower()/]-create.component';
-import { [name.toUpperFirst()/]EditComponent } from './[name.toLower()/]/edit[name.toUpperFirst()/]/[name.toLower()/]-edit.component';
+import { [name.toUpperFirst()/]ManageComponent } from './[name.toLower()/]/manage[name.toLower()/]/[name.toLower()/]-manage.component';
+import { [name.toUpperFirst()/]CreateComponent } from './[name.toLower()/]/create[name.toLower()/]/[name.toLower()/]-create.component';
+import { [name.toUpperFirst()/]EditComponent } from './[name.toLower()/]/edit[name.toLower()/]/[name.toLower()/]-edit.component';
 import { Search[name.toUpperFirst()/]Pipe } from './pipe/[name.toLower()/].filter.pipe';
 import { [name.toUpperFirst()/]Service } from './[name.toLower()/]/[name.toLower()/].component.service';
 

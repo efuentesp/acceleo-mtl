@@ -25,7 +25,7 @@
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
                 </body>
                 <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_mgmnt&quot;>&lt;a routerLink=&quot;./manage"/>
-                <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/toUpperFirst">
+                <body xsi:type="ocl.ecore:OperationCallExp">
                   <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
                   <source xsi:type="ocl.ecore:PropertyCallExp">
                     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -34,6 +34,7 @@
                     </source>
                     <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
                   </source>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
                 </body>
                 <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; routerLinkActive=&quot;active&quot;>&#xA;&#x9;&#x9;&#x9;&#x9;    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Administrar "/>
                 <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/toUpperFirst">
@@ -59,7 +60,7 @@
                   <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
                 </body>
                 <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot;>&lt;a routerLink=&quot;./create"/>
-                <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/toUpperFirst">
+                <body xsi:type="ocl.ecore:OperationCallExp">
                   <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
                   <source xsi:type="ocl.ecore:PropertyCallExp">
                     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -68,6 +69,7 @@
                     </source>
                     <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
                   </source>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
                 </body>
                 <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; routerLinkActive=&quot;active&quot; >&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Agregar "/>
                 <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/toUpperFirst">
@@ -349,7 +351,7 @@
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/generateElementRoutingModuleHtml">
       <details key="start" value="99"/>
-      <details key="end" value="6039"/>
+      <details key="end" value="6029"/>
       <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/generateElementRoutingModuleHtml/%">
@@ -359,17 +361,17 @@
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/generateElementRoutingModuleHtml/%.1">
       <details key="start" value="185"/>
-      <details key="end" value="6027"/>
+      <details key="end" value="6017"/>
       <details key="line" value="8"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/generateElementRoutingModuleHtml/%.1/%">
       <details key="start" value="248"/>
-      <details key="end" value="6020"/>
+      <details key="end" value="6010"/>
       <details key="line" value="9"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/generateElementRoutingModuleHtml/%.1/%/%">
       <details key="start" value="306"/>
-      <details key="end" value="6014"/>
+      <details key="end" value="6004"/>
       <details key="line" value="10"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%">
@@ -379,12 +381,12 @@
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1">
       <details key="start" value="1567"/>
-      <details key="end" value="2178"/>
+      <details key="end" value="2168"/>
       <details key="line" value="45"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%">
       <details key="start" value="1628"/>
-      <details key="end" value="2169"/>
+      <details key="end" value="2159"/>
       <details key="line" value="46"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%">
@@ -414,7 +416,7 @@
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.3">
       <details key="start" value="1794"/>
-      <details key="end" value="1813"/>
+      <details key="end" value="1808"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.3/%">
@@ -428,18 +430,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.4">
-      <details key="start" value="1815"/>
-      <details key="end" value="1891"/>
+      <details key="start" value="1810"/>
+      <details key="end" value="1886"/>
       <details key="line" value="47"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.5">
-      <details key="start" value="1892"/>
-      <details key="end" value="1911"/>
+      <details key="start" value="1887"/>
+      <details key="end" value="1906"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.5/%">
-      <details key="start" value="1892"/>
-      <details key="end" value="1896"/>
+      <details key="start" value="1887"/>
+      <details key="end" value="1891"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.5/%/self">
@@ -448,18 +450,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.20" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.6">
-      <details key="start" value="1913"/>
-      <details key="end" value="1960"/>
+      <details key="start" value="1908"/>
+      <details key="end" value="1955"/>
       <details key="line" value="48"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.7">
-      <details key="start" value="1961"/>
-      <details key="end" value="1975"/>
+      <details key="start" value="1956"/>
+      <details key="end" value="1970"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.7/%">
-      <details key="start" value="1961"/>
-      <details key="end" value="1965"/>
+      <details key="start" value="1956"/>
+      <details key="end" value="1960"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.7/%/self">
@@ -468,18 +470,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.8">
-      <details key="start" value="1977"/>
-      <details key="end" value="2002"/>
+      <details key="start" value="1972"/>
+      <details key="end" value="1997"/>
       <details key="line" value="50"/>
     </eAnnotations>
     <eAnnotations source="positions.25" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.9">
-      <details key="start" value="2003"/>
-      <details key="end" value="2022"/>
+      <details key="start" value="1998"/>
+      <details key="end" value="2012"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.26" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.9/%">
-      <details key="start" value="2003"/>
-      <details key="end" value="2007"/>
+      <details key="start" value="1998"/>
+      <details key="end" value="2002"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.27" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.9/%/self">
@@ -488,18 +490,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.28" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.10">
-      <details key="start" value="2024"/>
-      <details key="end" value="2109"/>
+      <details key="start" value="2014"/>
+      <details key="end" value="2099"/>
       <details key="line" value="50"/>
     </eAnnotations>
     <eAnnotations source="positions.29" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.11">
-      <details key="start" value="2110"/>
-      <details key="end" value="2129"/>
+      <details key="start" value="2100"/>
+      <details key="end" value="2119"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.30" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.11/%">
-      <details key="start" value="2110"/>
-      <details key="end" value="2114"/>
+      <details key="start" value="2100"/>
+      <details key="end" value="2104"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.11/%/self">
@@ -508,8 +510,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.12">
-      <details key="start" value="2131"/>
-      <details key="end" value="2161"/>
+      <details key="start" value="2121"/>
+      <details key="end" value="2151"/>
       <details key="line" value="51"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists">
@@ -588,8 +590,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.48" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.2">
-      <details key="start" value="2180"/>
-      <details key="end" value="6007"/>
+      <details key="start" value="2170"/>
+      <details key="end" value="5997"/>
       <details key="line" value="54"/>
     </eAnnotations>
     <eAnnotations source="positions.49" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.3">

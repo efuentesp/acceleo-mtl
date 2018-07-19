@@ -13,17 +13,20 @@
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumCheck')
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect')) ]
 
-[file ('app/admin/'.concat(aClass.name.toLowerFirst()).concat('/create').concat(aClass.name.toUpperFirst()).concat('/').concat(aClass.name.toLower()).concat('-create.component.ts'), false, 'UTF-8')]
-import { Component, OnInit, ViewChild}                     from '@angular/core';
+[comment * Create Seccion ****************************************************************************************************************************************************************/]
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/create').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-create.component.ts'), false, 'UTF-8')]
+import { Component, OnInit, ViewChild}                                     from '@angular/core';
 import { Router, ActivatedRoute }                                          from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl }                 from '@angular/forms';
 import swal from 'sweetalert2';
+
+import { Location } from '@angular/common';
+import { User } from '../../user/user.component.model';
 
 import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
 import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
 
 [for (attribute)]
-	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
 import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
 import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
@@ -32,13 +35,10 @@ import { [name.toUpperFirst()/] }                                         from '
 
 [for (p : Property | aClass.attribute)]
 	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-import { [p.name.toUpperFirst()/]Service }                                  from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.service';
-import { [p.name.toUpperFirst()/] }                                         from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.model';
+import { [p.name.toUpperFirst()/]Service }                                from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.service';
+import { [p.name.toUpperFirst()/] }                                       from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.model';
 	[/if]
 [/for]
-
-import { Location } from '@angular/common';
-import { User } from '../../user/user.component.model';
 
 @Component ({
     selector: 'app-view',
@@ -46,701 +46,521 @@ import { User } from '../../user/user.component.model';
 	styleUrls: ['['/]'./[name.toLower()/]-create.component.css'[']'/]
 })
 
-export class [name.toUpperFirst()/]Component implements OnInit {
+export class [name.toUpperFirst()/]CreateComponent implements OnInit {
 
-    title = 'Nuevo [name.toUpperFirst()/]';
-    [name.toLowerFirst()/]List: [name.toUpperFirst()/];
-    [name.toLowerFirst()/]: [name.toUpperFirst()/];
-    form: any;
+    public title = 'Nuevo [name.toUpperFirst()/]';
+    public [name.toLower()/]: [name.toUpperFirst()/];
+    public form: any;
+    public user: User;
+    public valueName: string;
+    public token: string;
 
 [for (attribute)]
-	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-	[name.toLowerFirst()/]List: [name.toUpperFirst()/];
+	public [name.toLowerFirst()/]List: [name.toUpperFirst()/];
     public [name.toLowerFirst()/]: [name.toUpperFirst()/];
-    public [name.toLowerFirst()/]Nombre: string = '';
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
+	public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
+	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
+    public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
+	public busqueda[aClass.name/]='';
+	filterInput[aClass.name.toUpperFirst()/] = new FormControl();
+[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+	public busqueda[p.name.toUpperFirst()/]='';
+	filterInput[p.name.toUpperFirst()/] = new FormControl();
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
+	public busqueda[p.name.toUpperFirst()/]='';
+	filterInput[p.name.toUpperFirst()/] = new FormControl();
+	[/if]
+[/for]
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	public busqueda[name.toUpperFirst()/]='';
+	filterInput[name.toUpperFirst()/] = new FormControl();
+	[/if]
+[/for]
+
+    constructor(private router: Router,  
+				private route: ActivatedRoute, 
+				private location: Location,
+				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	,private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+	[/if]
+[/for]
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+	,private [p.name.toLowerFirst()/]Service: [p.name.toUpperFirst()/]Service
+	[/if]
+[/for]){
+
+[for (p : Property | aClass.attribute)]
+[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
+     this.filterInput[aClass.name.toUpperFirst()/].valueChanges.subscribe(busqueda[aClass.name.toUpperFirst()/] => {
+     this.busqueda[aClass.name.toUpperFirst()/] = busqueda[aClass.name.toUpperFirst()/];
+   });
+[/if]
+[/for]
+
+[for (attribute)]
+[if (type.name.startsWith('modal'))]
+  	 this.filterInput[name.toUpperFirst()/].valueChanges.subscribe(busqueda[name.toUpperFirst()/] => {
+     this.busqueda[name.toUpperFirst()/] = busqueda[name.toUpperFirst()/];
+   });
+[/if]
+[/for]			
+
+	}
+
+    ngOnInit() {
+		this.[name.toLower()/]Service.clear();
+        this.[name.toLower()/] = new [name.toUpperFirst()/];
+       
+    } 
+
+save(){
+   this.[name.toLower()/]Service.save[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
+     if (res.status == 201 || res.status == 200){
+        swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
+        this.router.navigate(['['/] '../manage[name.toLower()/]' [']'/], { relativeTo: this.route })
+     }else if (res.status == 403){
+        swal('Error...', 'Usuario no tiene permiso para guardar [name.toUpperFirst()/].', 'error');
+     }else{
+       swal('Error...', '[name.toUpperFirst()/] save unsuccessfully.', 'error');
+     }
+   } );
+}
+
+  return([name.toLower()/]){
+      this.location.back();
+  }
+
+  
+}
+[/file]
+[comment * ./Create Seccion ****************************************************************************************************************************************************************/]
+
+[comment * ./Edit Seccion ****************************************************************************************************************************************************************/]
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/edit').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-edit.component.ts'), false, 'UTF-8')]
+import { Component, OnInit, ViewChild}                     from '@angular/core';
+import { Router, ActivatedRoute }                                          from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import swal from 'sweetalert2';
+import { Location } from '@angular/common';
+import { User } from '../../user/user.component.model';
+
+import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
+import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
+import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+import { [p.name.toUpperFirst()/]Service }                                from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.service';
+import { [p.name.toUpperFirst()/] }                                       from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.model';
 	[/if]
 [/for]
 
 
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-			[p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-		    [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-			public [p.name.toLower()/]Nombre: string = '';
-		[/if]
-	[/for]
+@Component ({
+    selector: 'app-view',
+    templateUrl: './[name.toLower()/]-edit.component.html',
+	styleUrls: ['['/]'./[name.toLower()/]-edit.component.css'[']'/]
+})
 
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-			[p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-		    [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-			public [p.name.toLower()/]Nombre: string = '';
-		[/if]
-	[/for]
+export class [name.toUpperFirst()/]EditComponent implements OnInit {
 
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-  	public busqueda[aClass.name/]='';
-	filterInput[aClass.name.toUpperFirst()/] = new FormControl();
+	public title = 'Editar [name.toUpperFirst()/]';
+    public [name.toLower()/]: [name.toUpperFirst()/];
+ 	public [name.toLower()/]List: [name.toUpperFirst()/];
+    public form: any;
+    public user: User;
+    public valueName: string;
+    public token: string;
+
+	public flag: boolean;
+    public flagDelete: boolean;
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	public [name.toLowerFirst()/]List: [name.toUpperFirst()/];
+    public [name.toLowerFirst()/]: [name.toUpperFirst()/];
 	[/if]
-	[/for]
+[/for]
 
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
+	public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
+	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
+    public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
+	public busqueda[aClass.name/]='';
+	filterInput[aClass.name.toUpperFirst()/] = new FormControl();
+[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
 	public busqueda[p.name.toUpperFirst()/]='';
 	filterInput[p.name.toUpperFirst()/] = new FormControl();
-		[/if]
-	[/for]
+	[/if]
+[/for]
 
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
 	public busqueda[p.name.toUpperFirst()/]='';
 	filterInput[p.name.toUpperFirst()/] = new FormControl();
-		[/if]
-	[/for]
+	[/if]
+[/for]
 
-	[for (attribute)]
-		[comment Foering Key/]
-		[if (type.name.startsWith('modal'))]
-		public busqueda[name.toUpperFirst()/]='';
-		filterInput[name.toUpperFirst()/] = new FormControl();
-		[/if]
-	[/for]
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	public busqueda[name.toUpperFirst()/]='';
+	filterInput[name.toUpperFirst()/] = new FormControl();
+	[/if]
+[/for]
+
+    constructor(private router: Router,  
+				private route: ActivatedRoute, 
+				private location: Location,
+				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	,private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+	[/if]
+[/for]
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+	,private [p.name.toLowerFirst()/]Service: [p.name.toUpperFirst()/]Service
+	[/if]
+[/for]){
+
+[for (p : Property | aClass.attribute)]
+[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
+     this.filterInput[aClass.name.toUpperFirst()/].valueChanges.subscribe(busqueda[aClass.name.toUpperFirst()/] => {
+     this.busqueda[aClass.name.toUpperFirst()/] = busqueda[aClass.name.toUpperFirst()/];
+   });
+[/if]
+[/for]
+
+[for (attribute)]
+[if (type.name.startsWith('modal'))]
+  	 this.filterInput[name.toUpperFirst()/].valueChanges.subscribe(busqueda[name.toUpperFirst()/] => {
+     this.busqueda[name.toUpperFirst()/] = busqueda[name.toUpperFirst()/];
+   });
+[/if]
+[/for]			
+
+	}	
+
+    ngOnInit() {
+        
+
+        this.flag = this.[name.toLower()/]Service.getEdit();
+        this.[name.toLower()/] = this.[name.toLower()/]Service.get[name.toUpperFirst()/]();
+        this.flagDelete = this.[name.toLower()/]Service.getDelete();
+        
+    }  
+
+save(){
+   this.[name.toLower()/]Service.save[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
+     if (res.status == 201 || res.status == 200){
+        swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
+        this.router.navigate(['['/] '../manage[name.toLower()/]' [']'/], { relativeTo: this.route })
+     }else if (res.status == 403){
+        swal('Error...', 'Usuario no tiene permiso para guardar [name.toUpperFirst()/].', 'error');
+     }else{
+       swal('Error...', '[name.toUpperFirst()/] save unsuccessfully.', 'error');
+     }
+   } );
+}
+
+delete(){
+  swal({
+    title: "Are you sure?",
+    text: "You will not be able to recover this [name.toLower()/]!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel!"
+  }).then((isConfirm) => {
+    if (isConfirm.value) {
+      this.[name.toLower()/]Service.delete[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
+        if (res.status == 201 || res.status == 200){
+          swal('Success...', '[name.toUpperFirst()/] item has been deleted successfully.', 'success');
+          this.router.navigate(['['/] '../manage[name.toLower()/]' [']'/], { relativeTo: this.route })
+        }else if (res.status == 403){
+          swal('Error...', 'Usuario no tiene permiso para guardar [name.toUpperFirst()/].', 'error');
+        }else{
+          swal('Error...', '[name.toUpperFirst()/] deleted unsuccessfully.', 'error');
+        }
+      });
+    } else {
+      //swal("Cancelled", "[name.toUpperFirst()/] deleted unsuccessfully", "error");
+    }
+  });
+}
+
+
+return([name.toLower()/]){
+  this.location.back();
+}
+ 
+}
+[/file]
+
+[comment * Manage Seccion ****************************************************************************************************************************************************************/]
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/manage').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-manage.component.ts'), false, 'UTF-8')]
+import { Component, OnInit, ViewChild}                     from '@angular/core';
+import { Router, ActivatedRoute }                          from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import swal from 'sweetalert2';
+
+import { Location } from '@angular/common';
+import { User } from '../../user/user.component.model';
+
+import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
+import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
+import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+import { [p.name.toUpperFirst()/]Service }                                from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.service';
+import { [p.name.toUpperFirst()/] }                                       from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.model';
+	[/if]
+[/for]
+
+@Component ({
+    selector: 'app-view',
+    templateUrl: './[name.toLower()/]-manage.component.html',
+	styleUrls: ['['/]'./[name.toLower()/]-manage.component.css'[']'/]
+})
+
+export class [name.toUpperFirst()/]ManageComponent implements OnInit {
 
     public form: any;
     public user: User;
     public valueName: string;
     public token: string;
 
-    constructor(private router: Router,  private route: ActivatedRoute, private location: Location,
-				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
-	[for (attribute)]
-		[if (type.name.startsWith('modal'))]
-		,private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
-		[/if]
-	[/for]
+    public title = 'Manage [name.toUpperFirst()/]';
+    public [name.toLowerFirst()/]List: [name.toUpperFirst()/];
+    public [name.toLowerFirst()/]: [name.toUpperFirst()/];
 
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-		,private [p.name.toLowerFirst()/]Service: [p.name.toUpperFirst()/]Service
-		[/if]
-	[/for]) {
-		
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-  		     this.filterInput[aClass.name.toUpperFirst()/].valueChanges.subscribe(busqueda[aClass.name.toUpperFirst()/] => {
-	         this.busqueda[aClass.name.toUpperFirst()/] = busqueda[aClass.name.toUpperFirst()/];
-	       });
+  	public busqueda[name.toLowerFirst()/]='';
+    public filterInput[name.toLowerFirst()/] = new FormControl();
+
+ 	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
+
+    // Buttons 
+    private searchActive: boolean = false;
+    private updateActive: boolean = false;
+    private createActive: boolean = false;
+    private deleteActive: boolean = false;
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	public [name.toLowerFirst()/]List: [name.toUpperFirst()/];
+    public [name.toLowerFirst()/]: [name.toUpperFirst()/];
 	[/if]
-	[/for]
+[/for]
 
-		[for (attribute)]
-		[comment Foering Key/]
-		[if (type.name.startsWith('modal'))]
-		  	 this.filterInput[name.toUpperFirst()/].valueChanges.subscribe(busqueda[name.toUpperFirst()/] => {
-	         this.busqueda[name.toUpperFirst()/] = busqueda[name.toUpperFirst()/];
-	       });
-		[/if]
-		[/for]
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
+	public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
+	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
+    public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
+	[/if]
+[/for]
+
+[comment Searching/]
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
+	public busqueda[aClass.name/]='';
+	filterInput[aClass.name.toUpperFirst()/] = new FormControl();
+[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+	public busqueda[p.name.toUpperFirst()/]='';
+	filterInput[p.name.toUpperFirst()/] = new FormControl();
+	[/if]
+[/for]
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
+	public busqueda[p.name.toUpperFirst()/]='';
+	filterInput[p.name.toUpperFirst()/] = new FormControl();
+	[/if]
+[/for]
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	public busqueda[name.toUpperFirst()/]='';
+	filterInput[name.toUpperFirst()/] = new FormControl();
+	[/if]
+[/for]
+
+
+    constructor(private router: Router,  
+				private route: ActivatedRoute, 
+				private location: Location,
+				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	,private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+	[/if]
+[/for]
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
+	,private [p.name.toLowerFirst()/]Service: [p.name.toUpperFirst()/]Service
+	[/if]
+[/for]){
+
+[for (p : Property | aClass.attribute)]
+	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
+	     this.filterInput[aClass.name.toUpperFirst()/].valueChanges.subscribe(busqueda[aClass.name.toUpperFirst()/] => {
+	     this.busqueda[aClass.name.toUpperFirst()/] = busqueda[aClass.name.toUpperFirst()/];
+	   });
+	[/if]
+[/for]
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	  	 this.filterInput[name.toUpperFirst()/].valueChanges.subscribe(busqueda[name.toUpperFirst()/] => {
+	     this.busqueda[name.toUpperFirst()/] = busqueda[name.toUpperFirst()/];
+	   });
+	[/if]
+[/for]		
 
 	}
 
     ngOnInit() {
+      
+	  // Get data user
+      this.user = JSON.parse(localStorage.getItem('currentUser'));
+      this.valueName = this.user.username;
+      this.token = this.user.token;
 
+      this.[name.toLower()/]Service.setEdit(false);
+      this.[name.toLower()/]Service.setDelete(false);
 
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-        this.[p.name.toLowerFirst()/] = new [p.name.toUpperFirst()/];
-        this.load[p.name.toUpperFirst()/]s();
-		[/if]
-	[/for]
+      this.load[name.toUpperFirst()/]s();
+      this.habilita();
 
-        this.[name.toLowerFirst()/] = new [name.toUpperFirst()/];
-        this.load[name.toUpperFirst()/]s();
+    }   
 
-	[for (attribute)]
-		[if (type.name.startsWith('modal'))]
-		this.load[name.toUpperFirst()/]s();
-		[/if]
-	[/for]
-
-    }
-
-	load[name.toUpperFirst()/]s(){
-      this.[name.toLowerFirst()/]Service.getAll[name.toUpperFirst()/]().subscribe(data => {
+    load[name.toUpperFirst()/]s() {
+      this.[name.toLower()/]Service.getAll[name.toUpperFirst()/]().subscribe(data => {
         if (data) {
-          this.[name.toLowerFirst()/]List = data;
+          this.[name.toLower()/]List = data;
         }
       }, error => {
-        swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
+        swal('Error...', 'An error occurred while calling the [name.toLower()/]s.', 'error');
       });
     }
 
-	[for (attribute)]
-		[comment Foering Key/]
-		[if (type.name.startsWith('modal'))]
-		load[name.toUpperFirst()/]s(){
-      		this.[name.toLowerFirst()/]Service.getAll[name.toUpperFirst()/]().subscribe(data => {
-        	if (data) {
-          	this.[name.toLowerFirst()/]List = data;
-        	}
-      		}, error => {
-        	swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
-      	});
-    }
+  add(){
+    this.[name.toLower()/]Service.clear();
+    this.router.navigate(['['/] '../create[name.toLower()/]' [']'/], { relativeTo: this.route })
+  }
 
+  editar([name.toLower()/]){
+    this.[name.toLower()/]Service.set[name.toUpperFirst()/]([name.toLower()/]);
+    this.[name.toLower()/]Service.setEdit(true);
+    this.[name.toLower()/]Service.setDelete(false);
+    this.router.navigate(['['/] '../edit[name.toLower()/]' [']'/], { relativeTo: this.route })
+  }
 
-  loadName[name.toUpperFirst()/]([aClass.name.toLower()/]){
-    this.[name.toLowerFirst()/]Service.get[name.toUpperFirst()/]ById([aClass.name.toLower()/].[name.toLowerFirst()/]Id).subscribe(data => {
-      if (data) {
-        this.[name.toLowerFirst()/] = data;
-        this.[name.toLowerFirst()/]Nombre   = this.[name.toLowerFirst()/].nombre;
+  eliminar([name.toLower()/]){
+    this.[name.toLower()/]Service.set[name.toUpperFirst()/]([name.toLower()/]);
+    this.[name.toLower()/]Service.setEdit(false);
+    this.[name.toLower()/]Service.setDelete(true);
+    this.router.navigate(['['/] '../edit[name.toLower()/]' [']'/], { relativeTo: this.route })
+  }
+
+  // Select row
+  setClickedRow[name.toUpperFirst()/](index, [name.toLower()/]){
+    this.[name.toLower()/]Service.set[name.toUpperFirst()/]([name.toLower()/]);
+    this.[name.toLower()/]Service.setEdit(true);
+    this.[name.toLower()/]Service.setDelete(false);
+    this.router.navigate(['['/] '../edit[name.toLower()/]' [']'/], { relativeTo: this.route })
+  }
+  
+  habilita(){
+    this.userAdmin.authorities.forEach(element => {
+      if (element.authority == 'ROLE_[name.toUpper()/]DELETE'){
+        this.deleteActive = true;
       }
-    }, error => {
-      swal('Error...', 'Can´t found Beneficiario, change the [name.toUpperFirst()/].', 'error');
+      if (element.authority == 'ROLE_[name.toUpper()/]CREATE'){
+        this.createActive = true;
+      }
+      if (element.authority == 'ROLE_[name.toUpper()/]UPDATE'){
+        this.updateActive = true;
+      }
+      if (element.authority == 'ROLE_[name.toUpper()/]SEARCH'){
+        this.searchActive = true;
+      }
     });
   }
 
-  setClickedRow[name.toUpperFirst()/](index, [name.toLowerFirst()/]){
-    this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id                   = [name.toLowerFirst()/].[name.toLowerFirst()/]Id;
-    this.[name.toLowerFirst()/]Nombre                        = [name.toLowerFirst()/].nombre;
-  }
-
-		[/if]
-	[/for]
-
-
-    save([name.toLowerFirst()/]){
-      this.[name.toLowerFirst()/]Service.save[name.toUpperFirst()/](this.[name.toLowerFirst()/]).subscribe(res => {
-        if (res.status == 201 || res.status == 200){
-          swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
-		  this.router.navigate(['['/]'../manage[name.toUpperFirst()/]'[']'/], { relativeTo: this.route })
-        }else{
-          swal('Error...', '[name.toUpperFirst()/] save unsuccessfully.', 'error');
-        }
-      } );
-    }
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-		    setClickedRow[aClass.name.toUpperFirst()/](id, event){
-		      this.[aClass.name.toLowerFirst()/]Service.set[aClass.name.toUpperFirst()/](event);
-		    }
-		[/if]
-	[/for]
-	
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-		    setClickedRow[p.name.toUpperFirst()/](id, event){
-			console.log('Id: ', id);
-			console.log('Event: ', event);
-		      this.[p.name.toLowerFirst()/]Service.set[p.name.toUpperFirst()/](event);
-		    }
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-		    load[p.name.toUpperFirst()/]s() {
-		      this.[p.name.toLower()/]Service.getAll[p.name.toUpperFirst()/]().subscribe(data => {
-		        if (data) {
-		          this.[p.name.toLower()/]List = data;
-		        }
-		      }, error => {
-		        swal('Error...', 'An error occurred while calling the [p.name.toLower()/]s.', 'error');
-		      });
-		    }
-		[/if]
-	[/for]
-
-	return([name.toLowerFirst()/]){
-     this.location.back();
-    }
-
-	[for (attribute)]
-	[if (type.name.startsWith('modal'))]
-	  		setClickedRow[name.toLowerFirst()/](index, [name.toLower()/]){
-			this.[aClass.name.toLower()/].[name.toLower()/]Id = [name.toLower()/].[name.toLower()/]Id;
-		}
-	[/if]
-	[/for]
-	
 }
-
 [/file]
-
-[file ('app/admin/'.concat(aClass.name.toLowerFirst()).concat('/edit').concat(aClass.name.toUpperFirst()).concat('/').concat(aClass.name.toLower()).concat('-edit.component.ts'), false, 'UTF-8')]
-import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router }                                          from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import swal from 'sweetalert2';
-
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
-
-[for (attribute)]
-	[comment Foering Key/]
-	[if (type.name.startsWith('modal'))]
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-import { [p.name.toUpperFirst()/]Service }                                  from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.service';
-import { [p.name.toUpperFirst()/] }                                         from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.model';
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-import { Search[aClass.name.toUpperFirst()/]Pipe }                from "../pipe/[aClass.name.toLower()/].filter.pipe";
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-import { Search[p.name.toUpperFirst()/]Pipe }                from "../pipe/[p.name.toLower()/].filter.pipe";
-	[/if]
-[/for]
-
-@Component ({
-    selector: 'app-view',
-    templateUrl: './[name.toLowerFirst()/]-edit.component.html',
-	styleUrls: ['['/]'./[name.toLower()/]-create.component.css'[']'/]
-})
-
-export class [name.toUpperFirst()/]Component implements OnInit {
-
-    title = 'Nuevo [name.toUpperFirst()/]';
-    [name.toLowerFirst()/]List: [name.toUpperFirst()/];
-    [name.toLowerFirst()/]: [name.toUpperFirst()/];
-    form: any;
-
-[for (attribute)]
-	[comment Foering Key/]
-	[if (type.name.startsWith('modal'))]
-	[name.toLowerFirst()/]List: [name.toUpperFirst()/];
-	[/if]
-[/for]
-
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-			[p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-		    [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-			[p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-		    [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-  	public busqueda[aClass.name/]='';
-	filterInput[aClass.name.toUpperFirst()/] = new FormControl();
-	[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
-		[/if]
-	[/for]
-
-	[for (attribute)]
-		[comment Foering Key/]
-		[if (type.name.startsWith('modal'))]
-		public busqueda[name.toUpperFirst()/]='';
-		filterInput[name.toUpperFirst()/] = new FormControl();
-		[/if]
-	[/for]
-
-    constructor(private router: Router, 
-				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
-	[for (attribute)]
-		[if (type.name.startsWith('modal'))]
-		,private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-		,private [p.name.toLowerFirst()/]Service: [p.name.toUpperFirst()/]Service
-		[/if]
-	[/for]) {
-		
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-  		     this.filterInput[aClass.name.toUpperFirst()/].valueChanges.subscribe(busqueda[aClass.name.toUpperFirst()/] => {
-	         this.busqueda[aClass.name.toUpperFirst()/] = busqueda[aClass.name.toUpperFirst()/];
-	       });
-	[/if]
-	[/for]
-
-		[for (attribute)]
-		[comment Foering Key/]
-		[if (type.name.startsWith('modal'))]
-		  	 this.filterInput[name.toUpperFirst()/].valueChanges.subscribe(busqueda[name.toUpperFirst()/] => {
-	         this.busqueda[name.toUpperFirst()/] = busqueda[name.toUpperFirst()/];
-	       });
-		[/if]
-		[/for]
-
-	}
-
-    ngOnInit() {
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-        this.[p.name.toLowerFirst()/] = this.[p.name.toLowerFirst()/]Service.get[p.name.toUpperFirst()/]();
-        this.load[p.name.toUpperFirst()/]s();
-		[/if]
-	[/for]
-        this.[name.toLowerFirst()/] = this.[name.toLowerFirst()/]Service.get[name.toUpperFirst()/]();
-        this.load[name.toUpperFirst()/]s();
-
-	[for (attribute)]
-		[if (type.name.startsWith('modal'))]
-		this.load[name.toUpperFirst()/]s();
-		[/if]
-	[/for]
-
-    }
-
-	load[name.toUpperFirst()/]s(){
-      this.[name.toLowerFirst()/]Service.getAll[name.toUpperFirst()/]().subscribe(data => {
-        if (data) {
-          this.[name.toLowerFirst()/]List = data;
-        }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
-      });
-    }
-
-	[for (attribute)]
-		[comment Foering Key/]
-		[if (type.name.startsWith('modal'))]
-		load[name.toUpperFirst()/]s(){
-      		this.[name.toLowerFirst()/]Service.getAll[name.toUpperFirst()/]().subscribe(data => {
-        	if (data) {
-          	this.[name.toLowerFirst()/]List = data;
-        	}
-      		}, error => {
-        	swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
-      	});
-    }
-		[/if]
-	[/for]
-
-
-    save([name.toLowerFirst()/]){
-      this.[name.toLowerFirst()/]Service.save[name.toUpperFirst()/](this.[name.toLowerFirst()/]).subscribe(res => {
-        if (res.status == 201 || res.status == 200){
-          swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
-		  this.router.navigate(['['/]'/[name.toLower().concat('_mgmnt')/]'[']'/]);
-        }else{
-          swal('Error...', '[name.toUpperFirst()/] save unsuccessfully.', 'error');
-        }
-      } );
-    }
-	
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-		    setClickedRow[aClass.name.toUpperFirst()/](id, event){
-		      this.[aClass.name.toLowerFirst()/]Service.set[aClass.name.toUpperFirst()/](event);
-		    }
-		[/if]
-	[/for]
-	
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-		    setClickedRow[p.name.toUpperFirst()/](id, event){
-			console.log('Id: ', id);
-			console.log('Event: ', event);
-		      this.[p.name.toLowerFirst()/]Service.set[p.name.toUpperFirst()/](event);
-		    }
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-		    load[p.name.toUpperFirst()/]s() {
-		      this.[p.name.toLower()/]Service.getAll[p.name.toUpperFirst()/]().subscribe(data => {
-		        if (data) {
-		          this.[p.name.toLower()/]List = data;
-		        }
-		      }, error => {
-		        swal('Error...', 'An error occurred while calling the [p.name.toLower()/]s.', 'error');
-		      });
-		    }
-		[/if]
-	[/for]
-
-	return([name.toLowerFirst()/]){
-      this.router.navigate(['['/]'/[name.toLower().concat('_mgmnt')/]'[']'/]);
-    }
-
-	[for (attribute)]
-	[if (type.name.startsWith('modal'))]
-	  		setClickedRow[name.toLowerFirst()/](index, [name.toLower()/]){
-			this.[aClass.name.toLower()/].[name.toLower()/]Id = [name.toLower()/].[name.toLower()/]Id;
-		}
-	[/if]
-	[/for]
-	
-}
-
-[/file]
-
-[file ('app/admin/'.concat(aClass.name.toLowerFirst()).concat('/manage').concat(aClass.name.toUpperFirst()).concat('/').concat(aClass.name.toLower()).concat('-manage.component.ts'), false, 'UTF-8')]
-import { Component, OnInit, ViewChild}                     from '@angular/core';
-import { Router }                                          from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import swal from 'sweetalert2';
-
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
-
-[for (attribute)]
-	[comment Foering Key/]
-	[if (type.name.startsWith('modal'))]
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-import { [p.name.toUpperFirst()/]Service }                                  from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.service';
-import { [p.name.toUpperFirst()/] }                                         from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.model';
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-import { Search[aClass.name.toUpperFirst()/]Pipe }                from "../pipe/[aClass.name.toLower()/].filter.pipe";
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-import { Search[p.name.toUpperFirst()/]Pipe }                from "../pipe/[p.name.toLower()/].filter.pipe";
-	[/if]
-[/for]
-
-@Component ({
-    selector: 'app-view',
-    templateUrl: './[name.toLowerFirst()/]-manage.component.html',
-	styleUrls: ['['/]'./[name.toLower()/]-create.component.css'[']'/]
-})
-
-export class [name.toUpperFirst()/]Component implements OnInit {
-
-    title = 'Nuevo [name.toUpperFirst()/]';
-    [name.toLowerFirst()/]List: [name.toUpperFirst()/];
-    [name.toLowerFirst()/]: [name.toUpperFirst()/];
-    form: any;
-
-[for (attribute)]
-	[comment Foering Key/]
-	[if (type.name.startsWith('modal'))]
-	[name.toLowerFirst()/]List: [name.toUpperFirst()/];
-	[/if]
-[/for]
-
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-			[p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-		    [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-			[p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-		    [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-  	public busqueda[aClass.name/]='';
-	filterInput[aClass.name.toUpperFirst()/] = new FormControl();
-	[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
-		[/if]
-	[/for]
-
-	[for (attribute)]
-		[comment Foering Key/]
-		[if (type.name.startsWith('modal'))]
-		public busqueda[name.toUpperFirst()/]='';
-		filterInput[name.toUpperFirst()/] = new FormControl();
-		[/if]
-	[/for]
-
-    constructor(private router: Router, 
-				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
-	[for (attribute)]
-		[if (type.name.startsWith('modal'))]
-		,private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-		,private [p.name.toLowerFirst()/]Service: [p.name.toUpperFirst()/]Service
-		[/if]
-	[/for]) {
-		
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-  		     this.filterInput[aClass.name.toUpperFirst()/].valueChanges.subscribe(busqueda[aClass.name.toUpperFirst()/] => {
-	         this.busqueda[aClass.name.toUpperFirst()/] = busqueda[aClass.name.toUpperFirst()/];
-	       });
-	[/if]
-	[/for]
-
-		[for (attribute)]
-		[comment Foering Key/]
-		[if (type.name.startsWith('modal'))]
-		  	 this.filterInput[name.toUpperFirst()/].valueChanges.subscribe(busqueda[name.toUpperFirst()/] => {
-	         this.busqueda[name.toUpperFirst()/] = busqueda[name.toUpperFirst()/];
-	       });
-		[/if]
-		[/for]
-
-	}
-
-    ngOnInit() {
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-        this.[p.name.toLowerFirst()/] = this.[p.name.toLowerFirst()/]Service.get[p.name.toUpperFirst()/]();
-        this.load[p.name.toUpperFirst()/]s();
-		[/if]
-	[/for]
-        this.[name.toLowerFirst()/] = this.[name.toLowerFirst()/]Service.get[name.toUpperFirst()/]();
-        this.load[name.toUpperFirst()/]s();
-
-	[for (attribute)]
-		[if (type.name.startsWith('modal'))]
-		this.load[name.toUpperFirst()/]s();
-		[/if]
-	[/for]
-
-    }
-
-	load[name.toUpperFirst()/]s(){
-      this.[name.toLowerFirst()/]Service.getAll[name.toUpperFirst()/]().subscribe(data => {
-        if (data) {
-          this.[name.toLowerFirst()/]List = data;
-        }
-      }, error => {
-        swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
-      });
-    }
-
-	[for (attribute)]
-		[comment Foering Key/]
-		[if (type.name.startsWith('modal'))]
-		load[name.toUpperFirst()/]s(){
-      		this.[name.toLowerFirst()/]Service.getAll[name.toUpperFirst()/]().subscribe(data => {
-        	if (data) {
-          	this.[name.toLowerFirst()/]List = data;
-        	}
-      		}, error => {
-        	swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
-      	});
-    }
-		[/if]
-	[/for]
-
-
-    save([name.toLowerFirst()/]){
-      this.[name.toLowerFirst()/]Service.save[name.toUpperFirst()/](this.[name.toLowerFirst()/]).subscribe(res => {
-        if (res.status == 201 || res.status == 200){
-          swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
-		  this.router.navigate(['['/]'/[name.toLower().concat('_mgmnt')/]'[']'/]);
-        }else{
-          swal('Error...', '[name.toUpperFirst()/] save unsuccessfully.', 'error');
-        }
-      } );
-    }
-	
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-		    setClickedRow[aClass.name.toUpperFirst()/](id, event){
-		      this.[aClass.name.toLowerFirst()/]Service.set[aClass.name.toUpperFirst()/](event);
-		    }
-		[/if]
-	[/for]
-	
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-		    setClickedRow[p.name.toUpperFirst()/](id, event){
-			console.log('Id: ', id);
-			console.log('Event: ', event);
-		      this.[p.name.toLowerFirst()/]Service.set[p.name.toUpperFirst()/](event);
-		    }
-		[/if]
-	[/for]
-
-	[for (p : Property | aClass.attribute)]
-		[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-		    load[p.name.toUpperFirst()/]s() {
-		      this.[p.name.toLower()/]Service.getAll[p.name.toUpperFirst()/]().subscribe(data => {
-		        if (data) {
-		          this.[p.name.toLower()/]List = data;
-		        }
-		      }, error => {
-		        swal('Error...', 'An error occurred while calling the [p.name.toLower()/]s.', 'error');
-		      });
-		    }
-		[/if]
-	[/for]
-
-	return([name.toLowerFirst()/]){
-      this.router.navigate(['['/]'/[name.toLower().concat('_mgmnt')/]'[']'/]);
-    }
-
-	[for (attribute)]
-	[if (type.name.startsWith('modal'))]
-	  		setClickedRow[name.toLowerFirst()/](index, [name.toLower()/]){
-			this.[aClass.name.toLower()/].[name.toLower()/]Id = [name.toLower()/].[name.toLower()/]Id;
-		}
-	[/if]
-	[/for]
-	
-}
-
-[/file]
+[comment * ./Manage Seccion ****************************************************************************************************************************************************************/]
 
 			[/if]
 		[/for]

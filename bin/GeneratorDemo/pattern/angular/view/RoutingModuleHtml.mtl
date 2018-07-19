@@ -44,10 +44,10 @@
                 <!-- entities -->
 	 	[for (aClass : Class | p.packagedElement->filter(Class))]
 			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
-				  <li *ngIf="[name.toLower()/]_mgmnt"><a routerLink="./manage[name.toUpperFirst()/]" routerLinkActive="active">
+				  <li *ngIf="[name.toLower()/]_mgmnt"><a routerLink="./manage[name.toLower()/]" routerLinkActive="active">
 				    <i class="fa fa-edit"></i> Administrar [name.toUpperFirst()/] </a>
 				  </li>
-                  <li *ngIf="[name.toLower()/]"><a routerLink="./create[name.toUpperFirst()/]" routerLinkActive="active" >
+                  <li *ngIf="[name.toLower()/]"><a routerLink="./create[name.toLower()/]" routerLinkActive="active" >
                     <i class="fa fa-edit"></i> Agregar [name.toUpperFirst()/] </a>
                   </li>
 			[/if]
