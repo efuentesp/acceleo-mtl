@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="RepositoryImpl" name="GeneratorDemo">
-    <property name="ECLIPSE_HOME" value="../../../../../Tools/eclipse"/>
-    <property name="ECLIPSE_WORKSPACE" value="../../../.."/>
+    <property name="ECLIPSE_HOME" value="../../../../../../../software/eclipse"/>
+    <property name="ECLIPSE_WORKSPACE" value="../../../../AcceleoWS"/>
 
     <!-- The classpath with only the dependencies used by the project -->
     <path id="GeneratorDemo.libraryclasspath">

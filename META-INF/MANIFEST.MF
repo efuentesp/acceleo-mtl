@@ -20,5 +20,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
 Export-Package: GeneratorDemo.common,
- GeneratorDemo.pattern.angular.view,GeneratorDemo.pattern.angular.security
+ GeneratorDemo.pattern.angular.view
 

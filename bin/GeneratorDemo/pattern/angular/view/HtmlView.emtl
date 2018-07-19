@@ -4,7 +4,7 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
     </input>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/HtmlModalView.emtl#/0"/>
+    <imports href="HtmlModalView.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="generateElementHtmlView" visibility="Public" main="true">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <body xsi:type="mtl:ForBlock">
