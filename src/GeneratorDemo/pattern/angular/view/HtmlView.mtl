@@ -96,7 +96,7 @@
 				<div class="col-lg-6">
 					<div class="input-group">
 	[for (anElement: Property | type.allOwnedElements()->filter(Property))]	
-	<input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [name.toUpperFirst()/]		
+	<input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[default/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [name.toUpperFirst()/]		
 	[/for]
 				</div>
 			</div>
@@ -418,8 +418,8 @@
 				<div class="col-lg-6">
 					<div class="input-group">
 	[for (anElement: Property | type.allOwnedElements()->filter(Property))]	
-	[name.toUpperFirst()/]  <input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id" disabled="true"> 		
-	  <input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> 
+	[name.toUpperFirst()/]  <input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[default/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id" disabled="true"> 		
+	  <input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[default/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> 
 	[/for]
 				</div>
 			</div>
