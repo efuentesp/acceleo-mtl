@@ -33,12 +33,40 @@
 
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
-		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('string'))] 
+		[if (anElement.name.equalsIgnoreCase('type'))]
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
 				<div class="form-group">
-					<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toLowerFirst()/]<span class="required">*</span></label>
-					<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
-					<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+					<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('text'))] 
+					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+[/if]
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('check'))] 
+					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>			
+[/if]
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('number'))] 
+					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+[/if]
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('date'))] 
+
+[/if]
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('longtext'))] 
+					<textarea class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required></textarea>					
+[/if]
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('decimal'))] 
+					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+[/if]	
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('email'))] 
+					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+[/if]	
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('currency'))] 
+					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+[/if]	
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('image'))] 
+					
+[/if]	
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('file'))] 
+					
+[/if]				
 				</div>
 			[/if]
 		[/if]
@@ -48,7 +76,20 @@
 
 
 [for (anAttribute: Property | getAllAttributes())]
-	[if not (anAttribute.type.name.equalsIgnoreCase('HText') or anAttribute.type.name.startsWith('modal'))]
+	[if not (anAttribute.type.name.equalsIgnoreCase('HText') 
+		or anAttribute.type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+		or type.name = ('HImage')
+		or type.name = ('HFile')	   
+)]
 	<div class='row'>
 		<label class="control-label" for="[name.toLower()/]">[name.toUpperFirst()/]:</label> 
 			<div class="row">
@@ -94,23 +135,6 @@
                                 	</div>
 	[/if]
 [/for]
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='EnumRadio'))]
-					<div class="form-group">
-						<label class="control-label" for="[p.type.name.toLower()/]">[p.type.name.toUpperFirst()/] <span class="required">*</span></label>+
-								<div layout="row" layout-align="center center" class="col-md-12" style="border: 0px solid #CCCCCC; padding-left: 0px; padding-right: 0px;">
-
-								[for (anElement: Property | type.allOwnedElements()->filter(Property))]	
-									<input *ngIf="flagDelete" type="radio" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[name.toLower()/]Id" disabled="true" />
-									<input *ngIf="!flagDelete" type="radio" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[name.toLower()/]Id" required/>
-									 [name.toLower()/]
-								
-								[/for]
-								</div>
-								<div layout="column" class="col-md-8" style="padding-left: 0px; padding-right: 0px; top: 5px;"></div>
-					</div>
-	[/if]
-[/for]
 
 [comment ************* Modal *********/]
 [for (p : Property | aClass.attribute)]
@@ -121,8 +145,8 @@
 												<div class="form-group text-right">
 														<div class="col-lg-3">
 															<div class="input-group">
-																<input type="hidden" class="form-control input-md"  name="[p.name.toLower()/]Id"  ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLower()/]Id" #[p.name.toLower()/]Id="ngModel">
-																<input type="text" class="form-control" placeholder="[p.name.toUpperFirst()/]...">
+																<input type="hidden" class="form-control input-md"  name="[p.name.toLower()/]Id"  ['['/]ngModelOptions[']'/]="{standalone: true}" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Id" #[p.name.toLowerFirst()/]Id="ngModel">
+																<input type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[p.name.toLowerFirst()/]Item="ngModel" placeholder="[p.name.toUpperFirst()/]...">
 																<span class="input-group-btn">
 																	<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[p.name.toUpperFirst()/]">
 																		<em class="fa fa-search"></em>
@@ -178,17 +202,36 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[name.toUpperFirst()/]: busqueda[name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" data-dismiss="modal" (click)="setClickedRow[name.toLowerFirst()/](i, [name.toLowerCase()/])" >
+							<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[name.toUpperFirst()/]: busqueda[name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" data-dismiss="modal" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
 								[for (pa : Package | aModel.packagedElement->filter(Package))]
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
 								[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
 									[for (anAttribute: Property | paClass.getAllAttributes())]
 										[if not(anAttribute.name.equalsIgnoreCase('id'))]
-													[if (anAttribute.type.name = ('HText'))]
+													[if (anAttribute.type.name = ('HText')
+														or anAttribute.type.name = ('HTextLong')
+														or type.name = ('HBoolean')
+														or type.name = ('HDouble')
+														or type.name = ('HEmail')
+														or type.name = ('HCurrency') 
+														or type.name = ('HFile')
+														or type.name = ('HImage')
+)]
 												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]}}</td>
 													[/if]
-													[if not (anAttribute.type.name = ('HText') or anAttribute.type.name.startsWith('modal'))]
+													[if not (anAttribute.type.name = ('HText') or anAttribute.type.name.startsWith('modal') 
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency') 
+		or type.name = ('HImage')
+		or type.name = ('HFile')	)]
 												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]Id}}</td>
 													[/if]
 													[if (anAttribute.type.name.startsWith('modal'))]
@@ -251,6 +294,12 @@
 </div>
 
 [/file]
+
+
+
+
+
+
 
 
 [file ('app/admin/'.concat(aClass.name.toLower()).concat('/edit').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-edit.component.html'), false, 'UTF-8')]
@@ -276,14 +325,73 @@
 
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
-		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('string'))] 
-			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+		[if not (anAttribute.name.equalsIgnoreCase('id'))]
+			[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('text'))] 
 				<div class="form-group">
 					<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toLowerFirst()/]<span class="required">*</span></label>
 					<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
 					<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
 				</div>
 			[/if]
+
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('check'))] 
+<div class="form-group">
+<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
+<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">					
+<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>			
+</div>
+[/if]
+
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('number'))] 
+<div class="form-group">
+<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
+<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
+<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+</div>
+[/if]
+
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('date'))] 
+
+[/if]
+
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('longtext'))] 
+<div class="form-group">
+<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
+<textarea *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true"></textarea>	
+<textarea *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required></textarea>					
+</div>
+[/if]
+
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('decimal'))] 
+<div class="form-group">
+<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
+<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
+<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+</div>
+[/if]
+	
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('email'))] 
+<div class="form-group">
+<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
+<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
+<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+</div>
+[/if]
+	
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('currency'))] 
+<div class="form-group">
+<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
+<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
+<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+</div>
+[/if]	
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('image'))] 
+					
+[/if]	
+[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('file'))] 
+					
+[/if]
+
 		[/if]
 	[/for]
 [/for]	
@@ -291,14 +399,27 @@
 
 
 [for (anAttribute: Property | getAllAttributes())]
-	[if not (anAttribute.type.name.equalsIgnoreCase('HText') or anAttribute.type.name.startsWith('modal'))]
+	[if not (anAttribute.type.name.equalsIgnoreCase('HText') or anAttribute.type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency') 
+		or type.name = ('HFile') 
+		or type.name = ('HImage') 
+)]
 	<div class='row'>
 		<label class="control-label" for="[name.toLower()/]">[name.toUpperFirst()/]:</label> 
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="input-group">
 	[for (anElement: Property | type.allOwnedElements()->filter(Property))]	
-	<input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [name.toUpperFirst()/]		
+	[name.toUpperFirst()/]  <input *ngIf="flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id" disabled="true"> 		
+	  <input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> 
 	[/for]
 				</div>
 			</div>
@@ -337,23 +458,6 @@
                                 	</div>
 	[/if]
 [/for]
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='EnumRadio'))]
-					<div class="form-group">
-						<label class="control-label" for="[p.type.name.toLower()/]">[p.type.name.toUpperFirst()/] <span class="required">*</span></label>+
-								<div layout="row" layout-align="center center" class="col-md-12" style="border: 0px solid #CCCCCC; padding-left: 0px; padding-right: 0px;">
-
-								[for (anElement: Property | type.allOwnedElements()->filter(Property))]	
-									<input *ngIf="flagDelete" type="radio" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[name.toLower()/]Id" disabled="true" />
-									<input *ngIf="!flagDelete" type="radio" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[name.toLower()/]Id" required/>
-									 [name.toLower()/]
-								
-								[/for]
-								</div>
-								<div layout="column" class="col-md-8" style="padding-left: 0px; padding-right: 0px; top: 5px;"></div>
-					</div>
-	[/if]
-[/for]
 
 [comment ************* Modal *********/]
 [for (p : Property | aClass.attribute)]
@@ -364,10 +468,14 @@
 												<div class="form-group text-right">
 														<div class="col-lg-3">
 															<div class="input-group">
-																<input type="hidden" class="form-control input-md"  name="[p.name.toLower()/]Id"  ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLower()/]Id" #[p.name.toLower()/]Id="ngModel">
-																<input type="text" class="form-control" placeholder="[p.name.toUpperFirst()/]...">
+																<input type="hidden" class="form-control input-md"  name="[p.name.toLower()/]Id"  ['['/]ngModelOptions[']'/]="{standalone: true}" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Id" #[p.name.toLowerFirst()/]Id="ngModel">
+																<input *ngIf="flagDelete" type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[p.name.toLowerFirst()/]Item="ngModel" placeholder="[p.name.toUpperFirst()/]..." readonly="true">
+																<input *ngIf="!flagDelete" type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[p.name.toLowerFirst()/]Item="ngModel" placeholder="[p.name.toUpperFirst()/]...">
 																<span class="input-group-btn">
-																	<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[p.name.toUpperFirst()/]">
+																	<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[p.name.toUpperFirst()/]">
+																		<em class="fa fa-search"></em>
+																	</button>
+																	<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[p.name.toUpperFirst()/]">
 																		<em class="fa fa-search"></em>
 																	</button>
 																</span>
@@ -421,7 +529,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[name.toUpperFirst()/]: busqueda[name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" data-dismiss="modal" (click)="setClickedRow[name.toLowerFirst()/](i, [name.toLowerCase()/])" >
+							<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[name.toUpperFirst()/]: busqueda[name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" data-dismiss="modal" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
 								[for (pa : Package | aModel.packagedElement->filter(Package))]
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
@@ -431,7 +539,19 @@
 													[if (anAttribute.type.name = ('HText'))]
 												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]}}</td>
 													[/if]
-													[if not (anAttribute.type.name = ('HText') or anAttribute.type.name.startsWith('modal'))]
+													[if not (anAttribute.type.name = ('HText') or anAttribute.type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+		or type.name = ('HImage')
+		or type.name = ('HFile')	
+ )]
 												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]Id}}</td>
 													[/if]
 													[if (anAttribute.type.name.startsWith('modal'))]
@@ -493,6 +613,16 @@
 	</div>
 </div>
 [/file]
+
+
+
+
+
+
+
+
+
+
 
 
 [file ('app/admin/'.concat(aClass.name.toLower()).concat('/manage').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-manage.component.html'), false, 'UTF-8')]
@@ -554,13 +684,34 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[aClass.name.toUpperFirst()/]: busqueda[aClass.name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" (click)="setClickedRow[name.toLowerFirst()/](i, [name.toLowerCase()/])" >
+										<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[aClass.name.toUpperFirst()/]: busqueda[aClass.name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
 											[for (anAttribute: Property | getAllAttributes())]
 												[if not(anAttribute.name.equalsIgnoreCase('id'))]	
-													[if (anAttribute.type.name = ('HText'))]
+													[if (anAttribute.type.name = ('HText') 
+														or anAttribute.type.name = ('HInteger')
+														or anAttribute.type.name = ('HTextLong')
+														or type.name = ('HBoolean')
+														or type.name = ('HDouble')
+														or type.name = ('HEmail')
+														or type.name = ('HCurrency') 
+														or type.name = ('HFile')
+														or type.name = ('HImage')
+)]
 												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[anAttribute.name.toLowerCase()/]}}</td>
 													[/if]
-													[if not (anAttribute.type.name = ('HText') or anAttribute.type.name.startsWith('modal'))]
+													[if not (anAttribute.type.name = ('HText') or anAttribute.type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency') 
+		or type.name = ('HFile')
+		or type.name = ('HImage')
+)]
 												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[anAttribute.name.toLowerCase()/]Id}}</td>
 													[/if]
 													[if (anAttribute.type.name.startsWith('modal'))]

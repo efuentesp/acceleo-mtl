@@ -28,15 +28,10 @@ import { [name.toUpperFirst()/] }                                         from '
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
-	[/if]
-[/for]
 
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-import { [p.name.toUpperFirst()/]Service }                                from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.service';
-import { [p.name.toUpperFirst()/] }                                       from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.model';
+import { [type.name.replaceAll('modal','').toUpperFirst()/]Service }                                  from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.service';
+import { [type.name.replaceAll('modal','').toUpperFirst()/] }                                         from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.model';
+
 	[/if]
 [/for]
 
@@ -57,8 +52,8 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public [name.toLowerFirst()/]List: [name.toUpperFirst()/];
-    public [name.toLowerFirst()/]: [name.toUpperFirst()/];
+	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
 	[/if]
 [/for]
 
@@ -71,8 +66,8 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
 
 [for (p : Property | aClass.attribute)]
 	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-    public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
+	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
 	[/if]
 [/for]
 
@@ -99,8 +94,8 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public busqueda[name.toUpperFirst()/]='';
-	filterInput[name.toUpperFirst()/] = new FormControl();
+	public busqueda[type.name.replaceAll('modal','').toUpperFirst()/]='';
+	filterInput[type.name.replaceAll('modal','').toUpperFirst()/] = new FormControl();
 	[/if]
 [/for]
 
@@ -110,12 +105,12 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
 				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	,private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+	,private [name.toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
 	[/if]
 [/for]
 [for (p : Property | aClass.attribute)]
 	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	,private [p.name.toLowerFirst()/]Service: [p.name.toUpperFirst()/]Service
+	,private [p.name.toLowerFirst()/]Service: [p.name.replaceAll('modal','').toUpperFirst()/]Service
 	[/if]
 [/for]){
 
@@ -129,8 +124,8 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
 
 [for (attribute)]
 [if (type.name.startsWith('modal'))]
-  	 this.filterInput[name.toUpperFirst()/].valueChanges.subscribe(busqueda[name.toUpperFirst()/] => {
-     this.busqueda[name.toUpperFirst()/] = busqueda[name.toUpperFirst()/];
+  	 this.filterInput[type.name.replaceAll('modal','').toUpperFirst()/].valueChanges.subscribe(busqueda[type.name.replaceAll('modal','').toUpperFirst()/] => {
+     this.busqueda[type.name.replaceAll('modal','').toUpperFirst()/] = busqueda[type.name.replaceAll('modal','').toUpperFirst()/];
    });
 [/if]
 [/for]			
@@ -140,6 +135,12 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
     ngOnInit() {
 		this.[name.toLower()/]Service.clear();
         this.[name.toLower()/] = new [name.toUpperFirst()/];
+
+	[for (attribute)]
+		[if (type.name.startsWith('modal'))]
+		this.load[name.toUpperFirst()/]s();
+		[/if]
+	[/for]
        
     } 
 
@@ -155,6 +156,27 @@ save(){
      }
    } );
 }
+
+[for (attribute)]
+	[comment Foering Key/]
+	[if (type.name.startsWith('modal'))]
+	load[name.toUpperFirst()/]s(){
+  		this.[name.toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
+    	if (data) {
+      	this.[name.toLowerFirst()/]List = data;
+    	}
+  		}, error => {
+    	swal('Error...', 'An error occurred while calling the [type.name.replaceAll('modal','').toUpperFirst()/]s.', 'error');
+  	});
+}
+
+ setClickedRow[name.toUpperFirst()/](id,[name.toLowerFirst()/]){
+	      this.[name.toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.toLowerFirst()/]);
+		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id = [name.toLowerFirst()/].[name.toLowerFirst()/]Id;
+		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = [name.toLowerFirst()/].[name.toLowerFirst()/]Id + "";
+	    }
+	[/if]
+[/for]
 
   return([name.toLower()/]){
       this.location.back();
@@ -179,8 +201,8 @@ import { [name.toUpperFirst()/] }                                         from '
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+import { [type.name.replaceAll('modal','').toUpperFirst()/]Service }                                  from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.service';
+import { [type.name.replaceAll('modal','').toUpperFirst()/] }                                         from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.model';
 	[/if]
 [/for]
 
@@ -213,8 +235,8 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public [name.toLowerFirst()/]List: [name.toUpperFirst()/];
-    public [name.toLowerFirst()/]: [name.toUpperFirst()/];
+	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
 	[/if]
 [/for]
 
@@ -255,8 +277,8 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public busqueda[name.toUpperFirst()/]='';
-	filterInput[name.toUpperFirst()/] = new FormControl();
+	public busqueda[type.name.replaceAll('modal','').toUpperFirst()/]='';
+	filterInput[type.name.replaceAll('modal','').toUpperFirst()/] = new FormControl();
 	[/if]
 [/for]
 
@@ -266,7 +288,7 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
 				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	,private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+	,private [name.toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
 	[/if]
 [/for]
 [for (p : Property | aClass.attribute)]
@@ -285,8 +307,8 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
 
 [for (attribute)]
 [if (type.name.startsWith('modal'))]
-  	 this.filterInput[name.toUpperFirst()/].valueChanges.subscribe(busqueda[name.toUpperFirst()/] => {
-     this.busqueda[name.toUpperFirst()/] = busqueda[name.toUpperFirst()/];
+ 	 this.filterInput[type.name.replaceAll('modal','').toUpperFirst()/].valueChanges.subscribe(busqueda[type.name.replaceAll('modal','').toUpperFirst()/] => {
+     this.busqueda[type.name.replaceAll('modal','').toUpperFirst()/] = busqueda[type.name.replaceAll('modal','').toUpperFirst()/];
    });
 [/if]
 [/for]			
@@ -300,6 +322,13 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
         this.[name.toLower()/] = this.[name.toLower()/]Service.get[name.toUpperFirst()/]();
         this.flagDelete = this.[name.toLower()/]Service.getDelete();
         
+	[for (attribute)]
+		[if (type.name.startsWith('modal'))]
+		this.load[name.toUpperFirst()/]s();
+		this.loadItem[name.toUpperFirst()/](this.[aClass.name.toLower()/]);
+		[/if]
+	[/for]
+
     }  
 
 save(){
@@ -342,6 +371,41 @@ delete(){
   });
 }
 
+[for (attribute)]
+	[comment Foering Key/]
+	[if (type.name.startsWith('modal'))]
+	load[name.toUpperFirst()/]s(){
+  		this.[name.toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
+    	if (data) {
+      	this.[name.toLowerFirst()/]List = data;
+    	}
+  		}, error => {
+    	swal('Error...', 'An error occurred while calling the [type.name.replaceAll('modal','').toUpperFirst()/]s.', 'error');
+  	});
+}
+
+ setClickedRow[name.toUpperFirst()/](id,[name.toLowerFirst()/]){
+	      this.[name.toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.toLowerFirst()/]);
+		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id = [name.toLowerFirst()/].[name.toLowerFirst()/]Id;
+		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = [name.toLowerFirst()/].[name.toLowerFirst()/]Id + "";
+	    }
+
+
+loadItem[name.toUpperFirst()/]([aClass.name.toLowerFirst()/]){
+  this.[name.toLowerFirst()/]Service.get[type.name.replaceAll('modal','').toUpperFirst()/]ById([aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id).subscribe(data => {
+    if (data) {
+      this.[name.toLowerFirst()/] = data;
+      this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = this.[name.toLowerFirst()/].[name.toLowerFirst()/]Id +"";
+    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
+  });
+
+}
+
+	[/if]
+[/for]
+
 
 return([name.toLower()/]){
   this.location.back();
@@ -365,8 +429,8 @@ import { [name.toUpperFirst()/] }                                         from '
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+import { [type.name.replaceAll('modal','').toUpperFirst()/]Service }                                  from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.service';
+import { [type.name.replaceAll('modal','').toUpperFirst()/] }                                         from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.model';
 	[/if]
 [/for]
 
@@ -407,8 +471,8 @@ export class [name.toUpperFirst()/]ManageComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public [name.toLowerFirst()/]List: [name.toUpperFirst()/];
-    public [name.toLowerFirst()/]: [name.toUpperFirst()/];
+	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
 	[/if]
 [/for]
 
@@ -462,7 +526,7 @@ export class [name.toUpperFirst()/]ManageComponent implements OnInit {
 				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	,private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+	,private [name.toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
 	[/if]
 [/for]
 [for (p : Property | aClass.attribute)]
@@ -481,8 +545,8 @@ export class [name.toUpperFirst()/]ManageComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	  	 this.filterInput[name.toUpperFirst()/].valueChanges.subscribe(busqueda[name.toUpperFirst()/] => {
-	     this.busqueda[name.toUpperFirst()/] = busqueda[name.toUpperFirst()/];
+  	 this.filterInput[type.name.replaceAll('modal','').toUpperFirst()/].valueChanges.subscribe(busqueda[type.name.replaceAll('modal','').toUpperFirst()/] => {
+     this.busqueda[type.name.replaceAll('modal','').toUpperFirst()/] = busqueda[type.name.replaceAll('modal','').toUpperFirst()/];
 	   });
 	[/if]
 [/for]		

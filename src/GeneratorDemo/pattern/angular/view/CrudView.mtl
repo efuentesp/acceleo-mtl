@@ -2,9 +2,7 @@
 [module CrudView('http://www.eclipse.org/uml2/5.0.0/UML')]
 [import GeneratorDemo::pattern::angular::view::CrudModelComponentView/]
 [import GeneratorDemo::pattern::angular::view::CrudServiceComponentView/]
-[comment import GeneratorDemo::pattern::angular::view::CrudServiceFakeComponentView/]
 [import GeneratorDemo::pattern::angular::view::CrudComponentView/]
-[comment import GeneratorDemo::pattern::angular::view::CrudMngComponentView/]
 
 [template public generateElementCrudView(aModel : Model)]
 [comment @main /]
@@ -12,7 +10,5 @@
 [aModel.generateElementCrudModelComponentView(aModel)/]			[comment Model del componente/]
 [aModel.generateElementCrudServiceComponentView(aModel)/]		[comment Service del componenet /]
 [aModel.generateElementCrudComponentView(aModel)/]		        [comment Component /]
-[comment aModel.generateElementCrudServiceFakeComponentView()/]		    [comment Service Fake del componenet /]
-[comment aModel.generateElementCrudComponentMngView(aModel)/]		    [comment ComponentMng /]
 
 [/template]

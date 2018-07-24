@@ -23,20 +23,45 @@ export class [name.toUpperFirst()/] {
 	[anAttribute.name.toLower()/]: string = '';
 			[/if]
 		[/if]
-		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('date'))] 
+		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Integer'))] 
+			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+	[anAttribute.name.toLower()/]: number = null;
+			[/if]
+		[/if]
+		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Double'))] 
+			[if not (anAttribute.name.equalsIgnoreCase('id'))]
 	[anAttribute.name.toLower()/]: string = '';
+			[/if]
+		[/if]
+		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Date'))] 
+			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+	[anAttribute.name.toLower()/]: string = '';
+			[/if]
 		[/if]
 	[/for]
 [/for]
 
 [for (attribute)]
 	[comment Enum/]
-	[if not (type.name = ('HText') or type.name.startsWith('modal'))]
+	[if not (type.name = ('HText') or type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+		or type.name = ('HImage')
+		or type.name = ('HFile')
+)]
 	[type.name.toLowerFirst()/]Id: number = null;	
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
 	[name.toLowerFirst()/]Id: number = null;
+	[name.toLowerFirst()/]Item: string = '';
 	[/if]
 [/for]
 

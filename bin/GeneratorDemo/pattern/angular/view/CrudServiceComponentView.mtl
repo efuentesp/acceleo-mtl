@@ -96,12 +96,25 @@ export class [name.toUpperFirst()/]Service {
 					
 [for (attribute)]
 	[comment Enum/]
-	[if not (type.name = ('HText') or type.name.startsWith('modal'))]
+	[if not (type.name = ('HText') or type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+		or type.name = ('HImage')
+		or type.name = ('HFile')
+)]
 					[type.name.toLowerFirst()/]Id: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id,
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
 					[name.toLowerFirst()/]Id: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id,
+					[name.toLowerFirst()/]Item: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Item,
 	[/if]
 [/for]
 					[name.toLowerFirst()/]Id: this.[name.toLowerFirst()/].[name.toLowerFirst()/]Id	
@@ -125,12 +138,25 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 [/for]
 [for (attribute)]
 	[comment Enum/]
-	[if not (type.name = ('HText') or type.name.startsWith('modal'))]
+	[if not (type.name = ('HText') or type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+		or type.name = ('HImage')
+		or type.name = ('HFile')
+)]
 			this.[aClass.name.toLower()/].[type.name.toLowerFirst()/]Id = [aClass.name.toLower()/].[type.name.toLowerFirst()/]Id;
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
 			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id = [aClass.name.toLower()/].[name.toLowerFirst()/]Id;
+			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Item = [aClass.name.toLower()/].[name.toLowerFirst()/]Item;
 	[/if]
 [/for]
 			this.[name.toLower()/].[name.toLowerFirst()/]Id        = [name.toLower()/].[name.toLowerFirst()/]Id;
@@ -149,19 +175,42 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
-		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('string'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
 			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = '';    
 			[/if]
 		[/if]
+		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Integer'))] 
+			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = null;    
+			[/if]
+		[/if]
+		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Double'))] 
+			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = '';    
+			[/if]
+		[/if]		
 	[/for]
 [/for]
 [for (attribute)]
-	[if not (type.name = ('HText') or type.name.startsWith('modal'))]
+	[if not (type.name = ('HText') or type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+		or type.name = ('HImage')
+		or type.name = ('HFile')
+)]
 			this.[aClass.name.toLower()/].[type.name.toLowerFirst()/]Id = null;
 	[/if]
 	[if (type.name.startsWith('modal'))]
 			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id = null;
+			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Item = null;
 	[/if]
 [/for]
 			this.[name.toLower()/].[aClass.name.toLowerFirst()/]Id = null;

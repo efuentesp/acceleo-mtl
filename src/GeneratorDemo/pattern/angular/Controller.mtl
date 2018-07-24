@@ -148,7 +148,19 @@ public class [name.toUpperFirst()/]Controller {
 	 
 			[for (attribute)]
 				[comment Enum/]
-				[if not (type.name = ('HText') or type.name.startsWith('modal'))]
+				[if not (type.name = ('HText') or type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+or type.name = ('HImage')
+or type.name = ('HFile')
+)]
 				[aClass.name.toLower()/]Found.set[type.name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
 				[/if]
 				[comment Foering Key/]
@@ -319,7 +331,19 @@ public class [name.toUpperFirst()/]Controller {
 
 				[for (attribute)]
 					[comment Enum/]
-					[if not (type.name = ('HText') or type.name.startsWith('modal'))]
+					[if not (type.name = ('HText') or type.name.startsWith('modal')
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+or type.name = ('HImage')
+or type.name = ('HFile')
+)]
 				//bean.set[type.name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
 					[/if]
 					[comment Foering Key/]

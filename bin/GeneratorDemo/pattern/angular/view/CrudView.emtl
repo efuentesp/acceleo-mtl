@@ -7,12 +7,6 @@
     <imports href="CrudModelComponentView.emtl#/0"/>
     <imports href="CrudServiceComponentView.emtl#/0"/>
     <imports href="CrudComponentView.emtl#/0"/>
-    <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="242" endPosition="317" value=" import GeneratorDemo::pattern::angular::view::CrudServiceFakeComponentView"/>
-    </ownedModuleElement>
-    <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="395" endPosition="462" value=" import GeneratorDemo::pattern::angular::view::CrudMngComponentView"/>
-    </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="generateElementCrudView" visibility="Public" main="true">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <body xsi:type="mtl:TemplateInvocation">
@@ -38,7 +32,6 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <parameter name="aModel">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
@@ -163,80 +156,65 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
-    <eAnnotations source="positions.0" references="/0/%">
-      <details key="start" value="234"/>
-      <details key="end" value="319"/>
-      <details key="line" value="0"/>
+    <eAnnotations source="positions.0" references="/0/generateElementCrudView">
+      <details key="start" value="302"/>
+      <details key="end" value="657"/>
+      <details key="line" value="7"/>
     </eAnnotations>
-    <eAnnotations source="positions.1" references="/0/%.1">
-      <details key="start" value="387"/>
-      <details key="end" value="464"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.2" references="/0/generateElementCrudView">
-      <details key="start" value="466"/>
-      <details key="end" value="1022"/>
+    <eAnnotations source="positions.1" references="/0/generateElementCrudView/%">
+      <details key="start" value="378"/>
+      <details key="end" value="379"/>
       <details key="line" value="9"/>
     </eAnnotations>
-    <eAnnotations source="positions.3" references="/0/generateElementCrudView/%">
-      <details key="start" value="542"/>
-      <details key="end" value="543"/>
+    <eAnnotations source="positions.2" references="/0/generateElementCrudView/%.1">
+      <details key="start" value="380"/>
+      <details key="end" value="432"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateElementCrudView/%.1/aModel">
+      <details key="start" value="425"/>
+      <details key="end" value="431"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateElementCrudView/%.2">
+      <details key="start" value="468"/>
+      <details key="end" value="469"/>
       <details key="line" value="11"/>
     </eAnnotations>
-    <eAnnotations source="positions.4" references="/0/generateElementCrudView/%.1">
-      <details key="start" value="544"/>
-      <details key="end" value="596"/>
+    <eAnnotations source="positions.5" references="/0/generateElementCrudView/%.3">
+      <details key="start" value="470"/>
+      <details key="end" value="524"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.5" references="/0/generateElementCrudView/%.1/aModel">
-      <details key="start" value="589"/>
-      <details key="end" value="595"/>
+    <eAnnotations source="positions.6" references="/0/generateElementCrudView/%.3/aModel">
+      <details key="start" value="517"/>
+      <details key="end" value="523"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.6" references="/0/generateElementCrudView/%.2">
-      <details key="start" value="632"/>
-      <details key="end" value="633"/>
+    <eAnnotations source="positions.7" references="/0/generateElementCrudView/%.4">
+      <details key="start" value="562"/>
+      <details key="end" value="563"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generateElementCrudView/%.5">
+      <details key="start" value="564"/>
+      <details key="end" value="611"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generateElementCrudView/%.5/aModel">
+      <details key="start" value="604"/>
+      <details key="end" value="610"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generateElementCrudView/%.6">
+      <details key="start" value="644"/>
+      <details key="end" value="645"/>
       <details key="line" value="13"/>
     </eAnnotations>
-    <eAnnotations source="positions.7" references="/0/generateElementCrudView/%.3">
-      <details key="start" value="634"/>
-      <details key="end" value="688"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.8" references="/0/generateElementCrudView/%.3/aModel">
-      <details key="start" value="681"/>
-      <details key="end" value="687"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.9" references="/0/generateElementCrudView/%.4">
-      <details key="start" value="726"/>
-      <details key="end" value="727"/>
-      <details key="line" value="14"/>
-    </eAnnotations>
-    <eAnnotations source="positions.10" references="/0/generateElementCrudView/%.5">
-      <details key="start" value="728"/>
-      <details key="end" value="775"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.11" references="/0/generateElementCrudView/%.5/aModel">
-      <details key="start" value="768"/>
-      <details key="end" value="774"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.12" references="/0/generateElementCrudView/%.6">
-      <details key="start" value="808"/>
-      <details key="end" value="809"/>
-      <details key="line" value="15"/>
-    </eAnnotations>
-    <eAnnotations source="positions.13" references="/0/generateElementCrudView/%.7">
-      <details key="start" value="1010"/>
-      <details key="end" value="1011"/>
-      <details key="line" value="17"/>
-    </eAnnotations>
-    <eAnnotations source="positions.14" references="/0/generateElementCrudView/aModel">
-      <details key="start" value="507"/>
-      <details key="end" value="521"/>
-      <details key="line" value="9"/>
+    <eAnnotations source="positions.11" references="/0/generateElementCrudView/aModel">
+      <details key="start" value="343"/>
+      <details key="end" value="357"/>
+      <details key="line" value="7"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

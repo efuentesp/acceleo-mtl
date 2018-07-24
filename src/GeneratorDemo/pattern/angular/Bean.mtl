@@ -42,18 +42,18 @@ public class [name.toUpperFirst()/]Bean {
 [for (attribute)]
 	[comment Enum/]
 	[if not (type.name = ('HText') 
-		or type.name.startsWith('modal') 
-		or type.name = ('HDate') 
-		or type.name = ('HNumber') 
-		or type.name = ('HLong') 
-		or type.name = ('HBoolean')
-		or type.name = ('HTextOrdered') 
-		or type.name = ('HTextNotNullOrdered')
-		or type.name = ('HTextNotNull')
-		or type.name = ('HNumberNotNull')
-		or type.name = ('HLongNotNull')
-		or type.name = ('HBooleanNotNull')
-		or type.name = ('HDateNotNull')
+or type.name.startsWith('modal') 
+or type.name = ('HCheckbox') 
+or type.name = ('HInteger') 
+or type.name = ('HDate')
+or type.name = ('HTextLong') 
+or type.name = ('HRadio')
+or type.name = ('HBoolean')
+or type.name = ('HDouble')
+or type.name = ('HEmail')
+or type.name = ('HCurrency')
+or type.name = ('HImage')
+or type.name = ('HFile')
 )]
 	private [type.name.toUpperFirst()/] [type.name.toLowerFirst()/]Id;
 	private enum [type.name.toUpperFirst()/] { [for (anElement: Property | type.allOwnedElements()->filter(Property) ) separator (',')][name.toLower()/][/for]}
@@ -90,15 +90,18 @@ public class [name.toUpperFirst()/]Bean {
 
 [for (attribute)]
 	[comment Enum/]
-	[if not (type.name = ('HText') or type.name.startsWith('modal')  or type.name = ('HDate') 
-		or type.name = ('HNumber') or type.name = ('HLong') or type.name = ('HBoolean')
-		or type.name = ('HTextOrdered') 
-		or type.name = ('HTextNotNullOrdered')
-		or type.name = ('HTextNotNull')
-		or type.name = ('HNumberNotNull')
-		or type.name = ('HLongNotNull')
-		or type.name = ('HBooleanNotNull')
-		or type.name = ('HDateNotNull')
+	[if not (type.name = ('HText') or type.name.startsWith('modal')  		
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
+		or type.name = ('HBoolean')
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+or type.name = ('HImage')
+or type.name = ('HFile')
 )]
 	public [name.toUpperFirst()/] get[name.toUpperFirst()/]Id () {
 	    return [name.toLowerFirst()/]Id;  		

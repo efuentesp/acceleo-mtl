@@ -37,17 +37,18 @@ CREATE TABLE `[name.toLower()/]` (
 	[comment Enum/]
 	[if not (type.name = ('HText') 
 		or type.name.startsWith('modal') 
-		or type.name = ('HDate') 
-		or type.name = ('HNumber') 
-		or type.name = ('HLong') 
+		or type.name = ('HCheckbox') 
+		or type.name = ('HInteger') 
+		or type.name = ('HDate')
+		or type.name = ('HTextLong') 
+		or type.name = ('HRadio')
 		or type.name = ('HBoolean')
-		or type.name = ('HTextOrdered') 
-		or type.name = ('HTextNotNullOrdered')
-		or type.name = ('HTextNotNull')
-		or type.name = ('HNumberNotNull')
-		or type.name = ('HLongNotNull')
-		or type.name = ('HBooleanNotNull')
-		or type.name = ('HDateNotNull'))]
+		or type.name = ('HDouble')
+		or type.name = ('HEmail')
+		or type.name = ('HCurrency')
+or type.name = ('HImage')
+or type.name = ('HFile')
+)]
 `[type.name.toLowerFirst()/]Id` varchar(100) DEFAULT NULL,
 	[/if]
 	[comment Foering Key/]
@@ -110,7 +111,11 @@ INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.t
 INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.toUpper()/]DELETE',(SELECT ID_GRUPO FROM `grupo` WHERE NAME = '[name.toUpper()/]'),1,now());
 INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.toUpper()/]CREATE',(SELECT ID_GRUPO FROM `grupo` WHERE NAME = '[name.toUpper()/]'),1,now());
 COMMIT;
-
+INSERT INTO `authority_privilege` (id_authority, id_privilege, enabled) VALUES (1,(SELECT id_privilege FROM `privilege` WHERE NAME = '[name.toUpper()/]SEARCH'),1);
+INSERT INTO `authority_privilege` (id_authority, id_privilege, enabled) VALUES (1,(SELECT id_privilege FROM `privilege` WHERE NAME = '[name.toUpper()/]UPDATE'),1);
+INSERT INTO `authority_privilege` (id_authority, id_privilege, enabled) VALUES (1,(SELECT id_privilege FROM `privilege` WHERE NAME = '[name.toUpper()/]DELETE'),1);
+INSERT INTO `authority_privilege` (id_authority, id_privilege, enabled) VALUES (1,(SELECT id_privilege FROM `privilege` WHERE NAME = '[name.toUpper()/]CREATE'),1);
+COMMIT;
 [/file]
 			[/if]
 		[/for]
