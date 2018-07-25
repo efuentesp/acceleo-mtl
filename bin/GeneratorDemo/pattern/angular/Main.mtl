@@ -1,0 +1,34 @@
+[comment encoding = UTF-8 /]
+[module Main('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import GeneratorDemo::pattern::angular::Bean/]
+[import GeneratorDemo::pattern::angular::Domain/]
+[import GeneratorDemo::pattern::angular::ScriptDDL/]
+[import GeneratorDemo::pattern::angular::Controller/]
+[import GeneratorDemo::pattern::angular::Repository/]
+[import GeneratorDemo::pattern::angular::RepositoryImpl/]
+[import GeneratorDemo::pattern::angular::Service/]
+[import GeneratorDemo::pattern::angular::ServiceImpl/]
+[import GeneratorDemo::pattern::angular::AuthorityName/]
+
+
+[template public mainClass(aModel : Model)]
+
+	[comment @main /]	
+	[comment Java BackEnd/]
+	
+	[aModel.generateElementBean()/]
+	[aModel.generateElementDomain()/]
+	[aModel.generateElementScriptDDL()/]
+	[aModel.generateElementController()/]
+	[aModel.generateElementRepository()/]
+	[aModel.generateElementRepositoryImpl()/]
+	[aModel.generateElementService()/]
+	[aModel.generateElementServiceImpl()/]
+	[aModel.generateElementAuthorityName()/]
+	
+
+
+
+
+[/template]
+

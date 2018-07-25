@@ -1,0 +1,167 @@
+[comment encoding = UTF-8 /]
+[module RepositoryImpl('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateElementRepositoryImpl(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+					    [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
+						   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect'))]
+[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/repository/').concat('/impl/').concat(aClass.name.toUpperFirst()).concat('RepositoryImpl.java'), false), 'UTF-8')]
+/**
+ * Autor: PSG.
+ * Proyecto:
+ * Version: 0.1 
+ * Clase para generar consultas de los [name.toLower()/]. 
+ */
+package [aClass._package.name.toLower()/].repository.impl;
+
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Example;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+
+import [aClass._package.name.toLower()/].domain.[name.toUpperFirst()/];
+import [aClass._package.name.toLower()/].repository.[name.toUpperFirst()/]Repository;
+/**
+ * Clase [name.toLower()/]RepositoryImpl.
+ * @author PSG.
+ *
+ */
+@Repository("[name.toLower()/]Repository")
+public class [name.toUpperFirst()/]RepositoryImpl implements [name.toUpperFirst()/]Repository {
+
+	@Autowired
+	private SessionFactory sessionFactory;
+	/**
+	 * Agrega un [name.toLower()/].
+	 */
+	public void add[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]) {
+		sessionFactory.getCurrentSession().persist([name.toLower()/]);
+	}
+	/**
+	 * Edita un [name.toLower()/].
+	 */
+	public void edit[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]) {
+		sessionFactory.getCurrentSession().update([name.toLower()/]);
+
+	}
+	/**
+	 * Consulta informacion de [name.toLower()/].
+	 */
+	@SuppressWarnings({ "unchecked" })
+	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]s([name.toUpperFirst()/] [name.toLower()/]) {
+
+		return (List<[name.toUpperFirst()/]>) sessionFactory.getCurrentSession()
+				.createCriteria([name.toUpperFirst()/].class).list();
+	}
+
+	/**
+	 * Consulta informacion de [name.toLower()/] y la pagina.
+	 */
+	@SuppressWarnings("unchecked")
+	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]sQuery([name.toUpperFirst()/] [name.toLower()/], String query, int page, int size) {
+		
+		return (List<[name.toUpperFirst()/]>) sessionFactory.getCurrentSession()
+			.createCriteria([name.toUpperFirst()/].class).setFirstResult((page - 1) * size)
+			[if aClass.getAllAttributes()-> asSequence() -> size() > 0 ]
+			.add([for (p: Property | aClass.getAllAttributes())]
+				[if aClass.getAllAttributes()-> asSequence() -> size() = 1 ]Restrictions.like("[aClass.getAllAttributes().name.toLower()/]", "%" + query +"%")[/if]	
+				[if i = 1  and  aClass.getAllAttributes()-> asSequence() -> size() > 1 ]
+					[for (p: Property | aClass.getAllAttributes())][if i > 1]Restrictions.or([/if][/for]	
+				[for (p: Property | aClass.getAllAttributes())]Restrictions.like("[p.name.toLower()/]", "%" + query +"%")[if i > 1])[/if][if i < aClass.getAllAttributes()-> asSequence() -> size()],[/if]
+				[/for]	
+				[/if] 		
+			[/for]).list();
+			[/if]
+	}
+
+	/**
+	 * Consulta informacion de [name.toLower()/] y la pagina.
+	 */
+	@SuppressWarnings("unchecked")
+	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]sPagination([name.toUpperFirst()/] [name.toLower()/], int page, int size) {
+			return (List<[name.toUpperFirst()/]>) sessionFactory.getCurrentSession()
+				.createCriteria([name.toUpperFirst()/].class).setFirstResult((page - 1) * size)
+				.setMaxResults(size).list();
+	}
+
+	/**
+	 * Obtiene el numero de [name.toLower()/] consultados.
+	 */
+	@SuppressWarnings({ "unchecked" })
+	public long getTotalRows() {
+		
+		long totalRows = 0;
+		totalRows = (Long) sessionFactory.getCurrentSession()
+		.createCriteria([name.toUpperFirst()/].class).setProjection(Projections.rowCount())
+		.uniqueResult();	
+		return totalRows;  
+	}
+
+	/**
+	 * Obtiene el numero de [name.toLower()/] consultados.
+	 */
+	@SuppressWarnings({ "unchecked" })
+	public long getTotalRowsSearch(String query) {
+		
+		long totalRows = 0;
+		totalRows = (Long) sessionFactory.getCurrentSession()
+		.createCriteria([name.toUpperFirst()/].class).setProjection(Projections.rowCount())
+		[if aClass.getAllAttributes()-> asSequence() -> size() > 0 ]
+					.add([for (p: Property | aClass.getAllAttributes())][if aClass.getAllAttributes()-> asSequence() -> size() = 1 ]Restrictions.like("[aClass.getAllAttributes().name.toLower()/]", "%" + query +"%")[/if]	
+						[if i = 1  and  aClass.getAllAttributes()-> asSequence() -> size() > 1 ]
+							[for (p: Property | aClass.getAllAttributes())][if i > 1]Restrictions.or([/if][/for]	
+						[for (p: Property | aClass.getAllAttributes())]Restrictions.like("[p.name.toLower()/]", "%" + query +"%")[if i > 1])[/if][if i < aClass.getAllAttributes()-> asSequence() -> size()],[/if][/for]	
+						[/if] 		
+					[/for]).uniqueResult();
+		[/if]	
+		return totalRows;  
+	}
+
+	/**
+	 * Obtiene el numero de [name.toLower()/] consultados.
+	 */
+	@SuppressWarnings({ "unchecked" })
+	public long getTotalRows(String query) {
+		
+		long totalRows = 0;
+		totalRows = (Long) sessionFactory.getCurrentSession()
+		.createCriteria([name.toUpperFirst()/].class).setProjection(Projections.rowCount())
+		
+		.uniqueResult();
+		return totalRows;  
+	}
+
+	
+	/**
+	 * Consulta informacion de un [name.toLower()/].
+	 */
+	public [name.toUpperFirst()/] get[name.toUpperFirst()/](int empid) {
+		return ([name.toUpperFirst()/]) sessionFactory.getCurrentSession().get(
+				[name.toUpperFirst()/].class, empid);
+	}
+
+	/**
+	 * Elimina un [name.toLower()/].
+	 */
+	public void delete[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]) {
+		sessionFactory.getCurrentSession().delete([name.toLower()/]);
+	}
+
+}
+[/file]
+
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+
+[/template]
