@@ -31,130 +31,87 @@
 			<form #[aClass.name.toLower()/]Form="ngForm" id="[aClass.name.toLower()/]Form" class="form-horizontal form-label-left" data-parsley-validate>
 				<input class="form-control" #[aClass.name.toLower()/]Id="ngModel" [aClass.name.toLower()/]Id="[aClass.name.toLower()/]Id" name="[aClass.name.toLower()/]Id" type="hidden" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[aClass.name.toLower()/]Id">
 
-[for (anAttribute: Property | getAllAttributes())]
-	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
-		[if (anElement.name.equalsIgnoreCase('type'))]
-			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-				<div class="form-group">
-					<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('text'))] 
-					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-[/if]
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('check'))] 
-					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>			
-[/if]
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('number'))] 
-					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-[/if]
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('date'))] 
 
-[/if]
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('longtext'))] 
-					<textarea class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required></textarea>					
-[/if]
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('decimal'))] 
-					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-[/if]	
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('email'))] 
-					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-[/if]	
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('currency'))] 
-					<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-[/if]	
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('image'))] 
-					
-[/if]	
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('file'))] 
-					
-[/if]				
+[for (anAttribute: Property | getAllAttributes() -> sortedBy(lower))]
+<div class="form-group">
+[if not (anAttribute.name.equalsIgnoreCase('id'))]
+	[if anAttribute.type.name.startsWith('modal')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<div class="form-group text-right">
+			<div class="col-lg-3">
+				<div class="input-group">
+					<input type="hidden" class="form-control input-md"  name="[anAttribute.name.toLower()/]Id"  ['['/]ngModelOptions[']'/]="{standalone: true}" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLowerFirst()/]Id" #[anAttribute.name.toLowerFirst()/]Id="ngModel">
+					<input type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[anAttribute.name.toLowerFirst()/]Item="ngModel" placeholder="[anAttribute.name.toUpperFirst()/]...">
+					<span class="input-group-btn">
+						<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[anAttribute.name.toUpperFirst()/]">
+							<em class="fa fa-search"></em>
+						</button>
+					</span>
 				</div>
-			[/if]
-		[/if]
-	[/for]
-[/for]	
-
-
-
-[for (anAttribute: Property | getAllAttributes())]
-	[if not (anAttribute.type.name.equalsIgnoreCase('HText') 
-		or anAttribute.type.name.startsWith('modal')
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency')
-		or type.name = ('HImage')
-		or type.name = ('HFile')	   
-)]
-	<div class='row'>
-		<label class="control-label" for="[name.toLower()/]">[anAttribute.default/]:</label> 	
-		<div class="input-group">
-	[for (anElement: Property | type.allOwnedElements()->filter(Property))]	
-	<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/]</div>		
-	[/for]
+			</div>
 		</div>
-	   <br/>
-	</div>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HText')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HCheckbox')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HInteger')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HDate')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HTextLong')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<textarea class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required></textarea>	
+	[/if]
+	[if anAttribute.type.name.startsWith('radio')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		
+			[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]	
+			<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/]</div>		
+			[/for]		
+	
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HBoolean')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HDouble')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HEmail')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HCurrency')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HImage')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HFile')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
 [/if]
+</div>
 [/for]
 
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='EnumCheck'))]
-									  
-                                      <div *ngFor="let status of statusList; let i = index;">
-                                          <div class="row">
-											  <label class="control-label" for="[p.type.name.toLower()/]">[p.type.name.toUpperFirst()/]:</label>  
-                                              <div class="input-group">
-                                                <span class="input-group-addon">
-                                                  <input type="checkbox" aria-label="Checkbox button for following text input" id="{{[p.type.name.toLower()/].valor}}" name="{{[p.type.name.toLower()/].nombre}}"
-                                                  (change)="changeCheckbox([p.type.name.toLower()/]List, i)"
-                                                  ['['/]checked[']'/]="[p.type.name.toLower()/].checked">
-                                                </span>
-                                                {{status.nombre}}
-                                              </div>
-                                        </div>
-                                      </div>
-	[/if]
-[/for]
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='EnumSelect'))]
-                                  	<div class="row">
-									  <label class="control-label" for="[p.type.name.toLower()/]">[p.type.name.toUpperFirst()/]:</label>  
-                                      <select id="id" #Id="ngModel" class="hideLabel form-control" ['['/](ngModel)[']'/]="[p.type.name.toLower()/].id" name="id" (change)="selectName();">
-                                         <option  selected="" value=""></option>
-                                         <option  ['['/]ngValue[']'/]="[p.type.name.toLower()/].id" *ngFor="let [p.type.name.toLower()/] of [p.type.name.toLower()/]List">{{[p.type.name.toLower()/].nombre}} </option>
-                                      </select>
-                                	</div>
-	[/if]
-[/for]
+
 
 [comment ************* Modal *********/]
 [for (p : Property | aClass.attribute)]
 	[if (p.type.name.startsWith('modal'))]
-								<div class="row">
-										<div class="form-group">
-											<label class="control-label" for="[p.name.toLowerCase()/]">[p.name.toUpperFirst()/]:</label>
-												<div class="form-group text-right">
-														<div class="col-lg-3">
-															<div class="input-group">
-																<input type="hidden" class="form-control input-md"  name="[p.name.toLower()/]Id"  ['['/]ngModelOptions[']'/]="{standalone: true}" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Id" #[p.name.toLowerFirst()/]Id="ngModel">
-																<input type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[p.name.toLowerFirst()/]Item="ngModel" placeholder="[p.name.toUpperFirst()/]...">
-																<span class="input-group-btn">
-																	<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[p.name.toUpperFirst()/]">
-																		<em class="fa fa-search"></em>
-																	</button>
-																</span>
-															</div>
-														</div>
-												</div>
-										</div>
-								</div>
-
-
 <!-- Modal [p.name.toLowerCase()/] -->
 <div id="modal[p.name.toUpperFirst()/]" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
 	<div class="modal-dialog" style="width:60%">
@@ -260,8 +217,6 @@
 	</div>
 </div>
 
-
-            
 	[/if]
 [/for]
 
@@ -319,169 +274,100 @@
 			<form #[aClass.name.toLower()/]Form="ngForm" id="[aClass.name.toLower()/]Form" class="form-horizontal form-label-left" data-parsley-validate>
 				<input class="form-control" #[aClass.name.toLower()/]Id="ngModel" [aClass.name.toLower()/]Id="[aClass.name.toLower()/]Id" name="[aClass.name.toLower()/]Id" type="hidden" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[aClass.name.toLower()/]Id">
 
-[for (anAttribute: Property | getAllAttributes())]
-	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
-		[if not (anAttribute.name.equalsIgnoreCase('id'))]
-			[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('text'))] 
-				<div class="form-group">
-					<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toLowerFirst()/]<span class="required">*</span></label>
-					<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
-					<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-				</div>
-			[/if]
 
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('check'))] 
+[for (anAttribute: Property | getAllAttributes() -> sortedBy(lower))]
 <div class="form-group">
-<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
-<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">					
-<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>			
-</div>
-[/if]
+[if not (anAttribute.name.equalsIgnoreCase('id'))]
 
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('number'))] 
-<div class="form-group">
-<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
-<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
-<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-</div>
-[/if]
-
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('date'))] 
-
-[/if]
-
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('longtext'))] 
-<div class="form-group">
-<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
-<textarea *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true"></textarea>	
-<textarea *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required></textarea>					
-</div>
-[/if]
-
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('decimal'))] 
-<div class="form-group">
-<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
-<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
-<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-</div>
-[/if]
-	
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('email'))] 
-<div class="form-group">
-<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
-<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
-<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-</div>
-[/if]
-	
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('currency'))] 
-<div class="form-group">
-<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.name.toUpperFirst()/]<span class="required">*</span></label>
-<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
-<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
-</div>
-[/if]	
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('image'))] 
-					
-[/if]	
-[if (anElement.name.equalsIgnoreCase('type') and anElement.default.equalsIgnoreCase('file'))] 
-					
-[/if]
-
-		[/if]
-	[/for]
-[/for]	
-
-
-
-[for (anAttribute: Property | getAllAttributes())]
-	[if not (anAttribute.type.name.equalsIgnoreCase('HText') or anAttribute.type.name.startsWith('modal')
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency') 
-		or type.name = ('HFile') 
-		or type.name = ('HImage') 
-)]
-	<div class='row'>
-		<label class="control-label" for="[name.toLower()/]">[name.toUpperFirst()/]:</label> 
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="input-group">
-	[for (anElement: Property | type.allOwnedElements()->filter(Property))]	
-	<div class="col-md-12"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"  disabled="true"> [default/] </div>		
-	<div class="col-md-12"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/] </div>
-	[/for]
+	[if anAttribute.type.name.startsWith('modal')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<div class="form-group text-right">
+			<div class="col-lg-3">
+				<div class="input-group">
+					<input type="hidden" class="form-control input-md"  name="[anAttribute.name.toLower()/]Id"  ['['/]ngModelOptions[']'/]="{standalone: true}" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLowerFirst()/]Id" #[anAttribute.name.toLowerFirst()/]Id="ngModel">
+					<input *ngIf="flagDelete" type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[anAttribute.name.toLowerFirst()/]Item="ngModel" placeholder="[anAttribute.name.toUpperFirst()/]..." readonly="true">
+					<input *ngIf="!flagDelete" type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[anAttribute.name.toLowerFirst()/]Item="ngModel" placeholder="[anAttribute.name.toUpperFirst()/]...">
+					<span class="input-group-btn">
+						<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[anAttribute.name.toUpperFirst()/]">
+							<em class="fa fa-search"></em>
+						</button>
+						<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[anAttribute.name.toUpperFirst()/]">
+							<em class="fa fa-search"></em>
+						</button>
+					</span>
 				</div>
 			</div>
 		</div>
-	   <br/>
-	</div>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HText')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
+		<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HCheckbox')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">					
+		<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>			
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HInteger')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
+		<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HDate')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HTextLong')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<textarea *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true"></textarea>	
+		<textarea *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required></textarea>	
+	[/if]
+	[if anAttribute.type.name.startsWith('radio')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		
+			[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]	
+				<div class="col-md-12"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"  disabled="true"> [default/] </div>		
+				<div class="col-md-12"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/] </div>
+			[/for]		
+	
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HBoolean')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HDouble')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
+		<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HEmail')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
+		<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HCurrency')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input *ngIf="flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" readonly="true">
+		<input *ngIf="!flagDelete" class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HImage')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
+	[if anAttribute.type.name.equalsIgnoreCase('HFile')]
+		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+		<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+	[/if]
 [/if]
+</div>
 [/for]
 
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='EnumCheck'))]
-									  
-                                      <div *ngFor="let status of statusList; let i = index;">
-                                          <div class="row">
-											  <label class="control-label" for="[p.type.name.toLower()/]">[p.type.name.toUpperFirst()/]:</label>  
-                                              <div class="input-group">
-                                                <span class="input-group-addon">
-                                                  <input type="checkbox" aria-label="Checkbox button for following text input" id="{{[p.type.name.toLower()/].valor}}" name="{{[p.type.name.toLower()/].nombre}}"
-                                                  (change)="changeCheckbox([p.type.name.toLower()/]List, i)"
-                                                  ['['/]checked[']'/]="[p.type.name.toLower()/].checked">
-                                                </span>
-                                                {{status.nombre}}
-                                              </div>
-                                        </div>
-                                      </div>
-	[/if]
-[/for]
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='EnumSelect'))]
-                                  	<div class="row">
-									  <label class="control-label" for="[p.type.name.toLower()/]">[p.type.name.toUpperFirst()/]:</label>  
-                                      <select id="id" #Id="ngModel" class="hideLabel form-control" ['['/](ngModel)[']'/]="[p.type.name.toLower()/].id" name="id" (change)="selectName();">
-                                         <option  selected="" value=""></option>
-                                         <option  ['['/]ngValue[']'/]="[p.type.name.toLower()/].id" *ngFor="let [p.type.name.toLower()/] of [p.type.name.toLower()/]List">{{[p.type.name.toLower()/].nombre}} </option>
-                                      </select>
-                                	</div>
-	[/if]
-[/for]
+
 
 [comment ************* Modal *********/]
 [for (p : Property | aClass.attribute)]
 	[if (p.type.name.startsWith('modal'))]
-								<div class="row">
-										<div class="form-group">
-											<label class="control-label" for="[p.name.toLowerCase()/]">[p.name.toUpperFirst()/]:</label>
-												<div class="form-group text-right">
-														<div class="col-lg-3">
-															<div class="input-group">
-																<input type="hidden" class="form-control input-md"  name="[p.name.toLower()/]Id"  ['['/]ngModelOptions[']'/]="{standalone: true}" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Id" #[p.name.toLowerFirst()/]Id="ngModel">
-																<input *ngIf="flagDelete" type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[p.name.toLowerFirst()/]Item="ngModel" placeholder="[p.name.toUpperFirst()/]..." readonly="true">
-																<input *ngIf="!flagDelete" type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[p.name.toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[p.name.toLowerFirst()/]Item="ngModel" placeholder="[p.name.toUpperFirst()/]...">
-																<span class="input-group-btn">
-																	<button *ngIf="flagDelete" disabled class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[p.name.toUpperFirst()/]">
-																		<em class="fa fa-search"></em>
-																	</button>
-																	<button *ngIf="!flagDelete" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[p.name.toUpperFirst()/]">
-																		<em class="fa fa-search"></em>
-																	</button>
-																</span>
-															</div>
-														</div>
-												</div>
-										</div>
-								</div>
-
-
 <!-- Modal [p.name.toLowerCase()/] -->
 <div id="modal[p.name.toUpperFirst()/]" class="modal fade"  role="dialog" data-backdrop="false" style="background: rgba(0, 0, 0, 0.31);">
 	<div class="modal-dialog" style="width:60%">
@@ -671,7 +557,7 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-										[for (anAttribute: Property | getAllAttributes())]
+										[for (anAttribute: Property | getAllAttributes() -> sortedBy(lower))]
 											[if not(anAttribute.name.equalsIgnoreCase('id'))]
 											<th style="max-width:10%">[anAttribute.name.toUpperFirst()/]</th>
 											[/if]
@@ -681,7 +567,7 @@
 									</thead>
 									<tbody>
 										<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[aClass.name.toUpperFirst()/]: busqueda[aClass.name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
-											[for (anAttribute: Property | getAllAttributes())]
+											[for (anAttribute: Property | getAllAttributes() -> sortedBy(lower))]
 												[if not(anAttribute.name.equalsIgnoreCase('id'))]	
 													[if (anAttribute.type.name = ('HText') 
 														or anAttribute.type.name = ('HInteger')
