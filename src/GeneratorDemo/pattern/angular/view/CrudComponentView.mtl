@@ -434,13 +434,6 @@ import { [type.name.replaceAll('modal','').toUpperFirst()/] }                   
 	[/if]
 [/for]
 
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-import { [p.name.toUpperFirst()/]Service }                                from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.service';
-import { [p.name.toUpperFirst()/] }                                       from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.model';
-	[/if]
-[/for]
-
 @Component ({
     selector: 'app-view',
     templateUrl: './[name.toLower()/]-manage.component.html',

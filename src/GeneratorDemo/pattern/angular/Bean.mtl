@@ -28,6 +28,7 @@ public class [name.toUpperFirst()/]Bean {
  */
 	private Integer [name.toLowerFirst()/]Id;
 
+[comment Atributes/]
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]	
 		[if (anElement.name.equalsIgnoreCase('typeJava'))]
@@ -37,46 +38,31 @@ public class [name.toUpperFirst()/]Bean {
 		[/if]	
 	[/for]
 [/for]
-
-
 [for (attribute)]
-	[comment Enum/]
-	[if not (type.name = ('HText') 
-or type.name.startsWith('modal') 
-or type.name = ('HCheckbox') 
-or type.name = ('HInteger') 
-or type.name = ('HDate')
-or type.name = ('HTextLong') 
-or type.name = ('HRadio')
-or type.name = ('HBoolean')
-or type.name = ('HDouble')
-or type.name = ('HEmail')
-or type.name = ('HCurrency')
-or type.name = ('HImage')
-or type.name = ('HFile')
-)]
-	private [type.name.toUpperFirst()/] [type.name.toLowerFirst()/]Id;
-	private enum [type.name.toUpperFirst()/] { [for (anElement: Property | type.allOwnedElements()->filter(Property) ) separator (',')][name.toLower()/][/for]}
-	[/if]
-	[comment Foering Key/]
+	[comment Modal/]
 	[if (type.name.startsWith('modal'))]
-	private Integer [name.toLowerFirst()/]Id;
+	private Integer [type.name.replaceAll('modal','').toLowerFirst()/]Id;
+	[/if]
+	[comment Radio/]
+	[if (type.name.startsWith('radio'))]
+	private [type.name.replaceAll('radio','').toUpperFirst()/] [type.name.replaceAll('radio','').toLowerFirst()/]Id;
+	private enum [type.name.replaceAll('radio','').toUpperFirst()/] { [for (anElement: Property | type.allOwnedElements()->filter(Property) ) separator (',')][name.toLower()/][/for]}
 	[/if]
 [/for]
 
-
+	[comment Getters & Setters/]
 	public Integer get[name.toUpperFirst()/]Id() {
 		return [name.toLowerFirst()/]Id;
 	}
-
 	public void set[name.toUpperFirst()/]Id(Integer [name.toLowerFirst()/]Id) {
 		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
 	}
-
+	[comment Getters & Setters/]
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property) )]
 		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
 			[if not(anAttribute.name.equalsIgnoreCase('id'))]
+	
 	public [anElement.default/] get[anAttribute.name.toUpperFirst()/] () {
 	    return [anAttribute.name.toLowerFirst()/];  		
     }
@@ -87,40 +73,26 @@ or type.name = ('HFile')
 		[/if]
 	[/for]
 [/for]
-
 [for (attribute)]
-	[comment Enum/]
-	[if not (type.name = ('HText') or type.name.startsWith('modal')  		
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency')
-or type.name = ('HImage')
-or type.name = ('HFile')
-)]
-	public [name.toUpperFirst()/] get[name.toUpperFirst()/]Id () {
-	    return [name.toLowerFirst()/]Id;  		
+	[comment Radio/]
+	[if (type.name.startsWith('radio'))]
+	public [name.replaceAll('radio','').toUpperFirst()/] get[name.replaceAll('radio','').toUpperFirst()/]Id () {
+	    return [name.replaceAll('radio','').toLowerFirst()/]Id;  		
     }
-	public void set[name.toUpperFirst()/]Id ([name.toUpperFirst()/] [name.toLowerFirst()/]Id) {
-		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
+	public void set[name.replaceAll('radio','').toUpperFirst()/]Id ([name.replaceAll('radio','').toUpperFirst()/] [name.replaceAll('radio','').toLowerFirst()/]Id) {
+		this.[name.replaceAll('radio','').toLowerFirst()/]Id = [name.replaceAll('radio','').toLowerFirst()/]Id;
 	}
 	[/if]
-	[comment Foering Key/]
+	[comment Modal/]
 	[if (type.name.startsWith('modal'))]
-	public Integer get[name.toUpperFirst()/]Id () {
-	    return [name.toLowerFirst()/]Id;  		
+	public Integer get[name.replaceAll('modal','').toUpperFirst()/]Id () {
+	    return [name.replaceAll('modal','').toLowerFirst()/]Id;  		
     }
-	public void set[name.toUpperFirst()/]Id (Integer [name.toLowerFirst()/]Id) {
-		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
+	public void set[name.replaceAll('modal','').toUpperFirst()/]Id (Integer [name.replaceAll('modal','').toLowerFirst()/]Id) {
+		this.[name.replaceAll('modal','').toLowerFirst()/]Id = [name.replaceAll('modal','').toLowerFirst()/]Id;
 	}
 	[/if]
 [/for]
-
 
 }
 [/file]

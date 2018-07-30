@@ -145,37 +145,27 @@ public class [name.toUpperFirst()/]Controller {
 	            System.out.println("User with id " + id + " not found");
 	            return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.NOT_FOUND);
 	        }
-	 
-			[for (attribute)]
-				[comment Enum/]
-				[if not (type.name = ('HText') or type.name.startsWith('modal')
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency')
-or type.name = ('HImage')
-or type.name = ('HFile')
-)]
-				[aClass.name.toLower()/]Found.set[type.name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
-				[/if]
-				[comment Foering Key/]
-				[if (type.name.startsWith('modal'))]
-				[aClass.name.toLower()/]Found.set[name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
-				[/if]
-			[/for]
-			
-			[for (attribute)]
-				[if (type.name = ('HText'))]
-					[if not (name.equalsIgnoreCase('id'))]
-				[aClass.name.toLower()/]Found.set[name.toUpperFirst()/]([aClass.name.toLower()/].get[name.toUpperFirst()/]());
-					[/if]
-				[/if]
-			[/for]
+	
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property) )]
+		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+			[if not(anAttribute.name.equalsIgnoreCase('id'))]
+	[aClass.name.toLower()/]Found.set[anAttribute.name.toUpperFirst()/]([aClass.name.toLower()/].get[anAttribute.name.toUpperFirst()/]());
+			[/if]
+		[/if]
+	[/for]
+[/for]
+[for (attribute)]
+	[comment Radio/]
+	[if (type.name.startsWith('radio'))]
+[aClass.name.toLower()/]Found.set[name.replaceAll('radio','').toUpperFirst()/]Id([aClass.name.toLower()/].get[name.replaceAll('radio','').toUpperFirst()/]Id());
+	[/if]
+	[comment Modal/]
+	[if (type.name.startsWith('modal'))]
+[aClass.name.toLower()/]Found.set[name.replaceAll('modal','').toUpperFirst()/]Id([aClass.name.toLower()/].get[name.replaceAll('modal','').toUpperFirst()/]Id());
+	[/if]
+[/for]
+
 			
 			[aClass.name.toLower()/]Found.set[aClass.name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
 

@@ -557,9 +557,13 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-										[for (anAttribute: Property | getAllAttributes() -> sortedBy(lower))]
-											[if not(anAttribute.name.equalsIgnoreCase('id'))]
-											<th style="max-width:10%">[anAttribute.name.toUpperFirst()/]</th>
+										
+										[for (attribute)]
+											[comment Display Result/]
+											[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+											[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+											<th style="max-width:10%">[default.toUpperFirst()/]</th>
+											[/for]
 											[/if]
 										[/for]
 										<th style="max-width:20%">Acciones</th>
@@ -567,38 +571,12 @@
 									</thead>
 									<tbody>
 										<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[aClass.name.toUpperFirst()/]: busqueda[aClass.name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
-											[for (anAttribute: Property | getAllAttributes() -> sortedBy(lower))]
-												[if not(anAttribute.name.equalsIgnoreCase('id'))]	
-													[if (anAttribute.type.name = ('HText') 
-														or anAttribute.type.name = ('HInteger')
-														or anAttribute.type.name = ('HTextLong')
-														or type.name = ('HBoolean')
-														or type.name = ('HDouble')
-														or type.name = ('HEmail')
-														or type.name = ('HCurrency') 
-														or type.name = ('HFile')
-														or type.name = ('HImage')
-)]
-												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[anAttribute.name.toLowerCase()/]}}</td>
-													[/if]
-													[if not (anAttribute.type.name = ('HText') or anAttribute.type.name.startsWith('modal')
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency') 
-		or type.name = ('HFile')
-		or type.name = ('HImage')
-)]
-												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[anAttribute.name.toLowerCase()/]Id}}</td>
-													[/if]
-													[if (anAttribute.type.name.startsWith('modal'))]
-												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[anAttribute.name.toLowerCase()/]Id}}</td>
-													[/if]
+											[for (attribute)]
+												[comment Display Result/]
+												[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+												[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[name.toLowerCase()/]}}</td>
+												[/for]
 												[/if]
 											[/for]
 											<td style="max-width: 20%">															
