@@ -117,7 +117,7 @@
 	<div class="modal-dialog" style="width:60%">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<button type="button" class="close">&times;</button>
 				<h4 class="modal-title">[p.name.toUpperFirst()/]</h4>
 			</div>
 			<div class="modal-body">
@@ -139,6 +139,7 @@
 				<table class="table table-striped table-bordered" style="border: 1px solid #dee2e6; margin:20px; width:96%;">
 						<thead>
 							<tr>
+								<th style="max-width:10%"></th>
 								[for (pa : Package | aModel.packagedElement->filter(Package))]
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
@@ -158,7 +159,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[name.toUpperFirst()/]: busqueda[name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" data-dismiss="modal" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
+							<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[name.toUpperFirst()/]: busqueda[name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" >
+								<td  style="max-width: 10%"><input type="checkbox" name="[name.toLowerCase()/]Id" ['['/]checked[']'/]="[name.toLowerCase()/].checked" value="{{[name.toLowerCase()/].[name.toLowerCase()/]Id}}" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])"></td>
 								[for (pa : Package | aModel.packagedElement->filter(Package))]
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
@@ -193,6 +195,7 @@
 					<div class="row">
 						<div class="text-right" style="padding-right:40px">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Regresar</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Elegir</button>
 						</div>
 					</div>
 				</div>
@@ -357,7 +360,7 @@
 	<div class="modal-dialog" style="width:60%">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<button type="button" class="close">&times;</button>
 				<h4 class="modal-title">[p.name.toUpperFirst()/]</h4>
 			</div>
 			<div class="modal-body">
@@ -379,6 +382,7 @@
 				<table class="table table-striped table-bordered" style="border: 1px solid #dee2e6; margin:20px; width:96%;">
 						<thead>
 							<tr>
+								<th style="max-width:10%"></th>
 								[for (pa : Package | aModel.packagedElement->filter(Package))]
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
@@ -398,7 +402,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[name.toUpperFirst()/]: busqueda[name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" data-dismiss="modal" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
+							<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[name.toUpperFirst()/]: busqueda[name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index">
+								<td  style="max-width: 10%"><input type="checkbox" name="[name.toLowerCase()/]Id" ['['/]checked[']'/]="[name.toLowerCase()/].checked" value="{{[name.toLowerCase()/].[name.toLowerCase()/]Id}}" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])"></td>
 								[for (pa : Package | aModel.packagedElement->filter(Package))]
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
@@ -407,7 +412,12 @@
 										[comment Display Result/]
 										[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
 										[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+											[if (type.name.startsWith('modal') or type.name.startsWith('radio'))]
+										<td  style="max-width: 10%">{{[p.name.toLower()/].[name.toLowerCase()/]Id}}</td>
+											[/if]
+											[if not (type.name.startsWith('modal') or type.name.startsWith('radio'))]
 										<td  style="max-width: 10%">{{[p.name.toLower()/].[name.toLowerCase()/]}}</td>
+											[/if]
 										[/for]
 										[/if]										
 									[/for]
@@ -428,6 +438,7 @@
 					<div class="row">
 						<div class="text-right" style="padding-right:40px">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Regresar</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Elegir</button>
 						</div>
 					</div>
 				</div>
@@ -539,7 +550,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[aClass.name.toUpperFirst()/]: busqueda[aClass.name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: '1'}; let i = index" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
+										<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[aClass.name.toUpperFirst()/]: busqueda[aClass.name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTable[aClass.name.toUpperFirst()/]'}; let i = index" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
 											[for (attribute)]
 												[comment Display Result/]
 												[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
@@ -566,7 +577,7 @@
 
 								<div align="row" align="right">
 									<div align="left" style="margin-top:15px; background: #DDDDDD; width: 35%; position: relative;">
-										<pagination-controls (pageChange)="page = $event" id="paginationTableAfiliado" maxSize="10" directionLinks="true" autoHide="false" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+										<pagination-controls (pageChange)="page = $event" id="paginationTable[aClass.name.toUpperFirst()/]" maxSize="10" directionLinks="true" autoHide="false" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
 										</pagination-controls>
 									</div>
 								</div>

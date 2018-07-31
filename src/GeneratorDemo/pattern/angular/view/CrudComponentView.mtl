@@ -121,11 +121,20 @@ save(){
   	});
 }
 
- setClickedRow[name.replaceAll('radio', '').toUpperFirst()/](id,[name.replaceAll('radio', '').toLowerFirst()/]){
-	      this.[name.replaceAll('radio', '').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.replaceAll('radio', '').toLowerFirst()/]);
+ setClickedRow[name.replaceAll('radio', '').toUpperFirst()/](index,[name.replaceAll('radio', '').toLowerFirst()/]){
+	      
+		  [name.replaceAll('radio', '').toLowerFirst()/].checked = ![name.replaceAll('radio', '').toLowerFirst()/].checked;
+
+		  if ([name.replaceAll('radio', '').toLowerFirst()/].checked){
+		  this.[name.replaceAll('radio', '').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.replaceAll('radio', '').toLowerFirst()/]);
 		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id;
 		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id + "";
-	    }
+	    	}else{
+            this.[name.replaceAll('radio', '').toLowerFirst()/]Service.clear();
+			this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = null;
+		    this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = "";
+		}
+ }
 	[/if]
 [/for]
 
@@ -280,12 +289,20 @@ delete(){
   	});
 }
 
- setClickedRow[name.replaceAll('radio', '').toUpperFirst()/](id,[name.replaceAll('radio', '').toLowerFirst()/]){
-	      this.[name.replaceAll('radio', '').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.replaceAll('radio', '').toLowerFirst()/]);
+ setClickedRow[name.replaceAll('radio', '').toUpperFirst()/](index,[name.replaceAll('radio', '').toLowerFirst()/]){
+	      
+		  [name.replaceAll('radio', '').toLowerFirst()/].checked = ![name.replaceAll('radio', '').toLowerFirst()/].checked;
+
+		  if ([name.replaceAll('radio', '').toLowerFirst()/].checked){
+		  this.[name.replaceAll('radio', '').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.replaceAll('radio', '').toLowerFirst()/]);
 		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id;
 		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id + "";
-	    }
-
+	    	}else{
+            this.[name.replaceAll('radio', '').toLowerFirst()/]Service.clear();
+			this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = null;
+		    this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = "";
+		}
+}
 
 loadItem[name.replaceAll('radio', '').toUpperFirst()/]([aClass.name.replaceAll('radio', '').toLowerFirst()/]){
   this.[name.replaceAll('radio', '').toLowerFirst()/]Service.get[type.name.replaceAll('modal','').toUpperFirst()/]ById([aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id).subscribe(data => {
