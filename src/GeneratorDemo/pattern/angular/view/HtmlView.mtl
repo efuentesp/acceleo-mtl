@@ -74,9 +74,9 @@
 	[if anAttribute.type.name.startsWith('radio')]
 		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 		
-			[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]	
-			<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/]</div>		
-			[/for]		
+		[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]	
+		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/]</div>		
+		[/for]		
 	
 	[/if]
 	[if anAttribute.type.name.equalsIgnoreCase('HBoolean')]
@@ -143,9 +143,12 @@
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
 								[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
-									[for (anAttribute: Property | paClass.getAllAttributes())]
-										[if not(anAttribute.name.equalsIgnoreCase('id'))]
-										<th>[anAttribute.name.toUpperFirst()/]</th>
+									[for (attribute)]
+										[comment Display Result/]
+										[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+										[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+										<th style="max-width:10%">[default.toUpperFirst()/]</th>
+										[/for]
 										[/if]
 									[/for]
 								[/if]
@@ -160,37 +163,18 @@
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
 								[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
-									[for (anAttribute: Property | paClass.getAllAttributes())]
-										[if not(anAttribute.name.equalsIgnoreCase('id'))]
-													[if (anAttribute.type.name = ('HText')
-														or anAttribute.type.name = ('HTextLong')
-														or type.name = ('HBoolean')
-														or type.name = ('HDouble')
-														or type.name = ('HEmail')
-														or type.name = ('HCurrency') 
-														or type.name = ('HFile')
-														or type.name = ('HImage')
-)]
-												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]}}</td>
-													[/if]
-													[if not (anAttribute.type.name = ('HText') or anAttribute.type.name.startsWith('modal') 
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency') 
-		or type.name = ('HImage')
-		or type.name = ('HFile')	)]
-												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]Id}}</td>
-													[/if]
-													[if (anAttribute.type.name.startsWith('modal'))]
-												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]Id}}</td>
-													[/if]
-										[/if]
+									[for (attribute)]
+										[comment Display Result/]
+										[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+										[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+											[if (type.name.startsWith('modal') or type.name.startsWith('radio'))]
+										<td  style="max-width: 10%">{{[p.name.toLower()/].[name.toLowerCase()/]Id}}</td>
+											[/if]
+											[if not (type.name.startsWith('modal') or type.name.startsWith('radio'))]
+										<td  style="max-width: 10%">{{[p.name.toLower()/].[name.toLowerCase()/]}}</td>
+											[/if]
+										[/for]
+										[/if]										
 									[/for]
 								[/if]
 								[/for]
@@ -326,10 +310,10 @@
 	[if anAttribute.type.name.startsWith('radio')]
 		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 		
-			[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]	
-				<div class="col-md-12"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"  disabled="true"> [default/] </div>		
-				<div class="col-md-12"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/] </div>
-			[/for]		
+	[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]	
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"  disabled="true"> [default/] </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/] </div>
+	[/for]		
 	
 	[/if]
 	[if anAttribute.type.name.equalsIgnoreCase('HBoolean')]
@@ -399,9 +383,12 @@
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
 								[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
-									[for (anAttribute: Property | paClass.getAllAttributes())]
-										[if not(anAttribute.name.equalsIgnoreCase('id'))]
-										<th>[anAttribute.name.toUpperFirst()/]</th>
+									[for (attribute)]
+										[comment Display Result/]
+										[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+										[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+										<th style="max-width:10%">[default.toUpperFirst()/]</th>
+										[/for]
 										[/if]
 									[/for]
 								[/if]
@@ -416,30 +403,13 @@
 								[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
 								[for (paClass : Class | pa.packagedElement->filter(Class))]
 								[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
-									[for (anAttribute: Property | paClass.getAllAttributes())]
-										[if not(anAttribute.name.equalsIgnoreCase('id'))]
-													[if (anAttribute.type.name = ('HText'))]
-												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]}}</td>
-													[/if]
-													[if not (anAttribute.type.name = ('HText') or anAttribute.type.name.startsWith('modal')
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency')
-		or type.name = ('HImage')
-		or type.name = ('HFile')	
- )]
-												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]Id}}</td>
-													[/if]
-													[if (anAttribute.type.name.startsWith('modal'))]
-												<td>{{[p.name.toLowerCase()/].[anAttribute.name.toLowerCase()/]Id}}</td>
-													[/if]
-										[/if]
+									[for (attribute)]
+										[comment Display Result/]
+										[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+										[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+										<td  style="max-width: 10%">{{[p.name.toLower()/].[name.toLowerCase()/]}}</td>
+										[/for]
+										[/if]										
 									[/for]
 								[/if]
 								[/for]
@@ -557,11 +527,10 @@
 								<table id="datatable" class="table table-striped" style="resizable = true;">
 									<thead>
 										<tr>
-										
 										[for (attribute)]
 											[comment Display Result/]
 											[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
-											[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+											[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
 											<th style="max-width:10%">[default.toUpperFirst()/]</th>
 											[/for]
 											[/if]
@@ -574,8 +543,13 @@
 											[for (attribute)]
 												[comment Display Result/]
 												[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
-												[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+												[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+													[if (type.name.startsWith('modal') or type.name.startsWith('radio'))]
+												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[name.toLowerCase()/]Id}}</td>
+													[/if]
+													[if not(type.name.startsWith('modal') or type.name.startsWith('radio'))]
 												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[name.toLowerCase()/]}}</td>
+													[/if]
 												[/for]
 												[/if]
 											[/for]

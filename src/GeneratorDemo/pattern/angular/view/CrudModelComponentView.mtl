@@ -12,30 +12,30 @@
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumCheck')
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect')) ]
 
-[file ('app/admin/'.concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('.component.model.ts'), false, 'UTF-8')]
-export class [name.toUpperFirst()/] {
+[file ('app/admin/'.concat(aClass.name.replaceAll('radio', '').toLower()).concat('/').concat(aClass.name.replaceAll('radio', '').toLower()).concat('.component.model.ts'), false, 'UTF-8')]
+export class [name.replaceAll('radio', '').toUpperFirst()/] {
 
-	[name.toLowerFirst()/]Id: number = null;
+	[name.replaceAll('radio', '').toLowerFirst()/]Id: number = null;
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('string'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-	[anAttribute.name.toLower()/]: string = '';
+	[anAttribute.name.replaceAll('radio', '').toLower()/]: string = '';
 			[/if]
 		[/if]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Integer'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-	[anAttribute.name.toLower()/]: number = null;
+	[anAttribute.name.replaceAll('radio', '').toLower()/]: number = null;
 			[/if]
 		[/if]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Double'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-	[anAttribute.name.toLower()/]: string = '';
+	[anAttribute.name.replaceAll('radio', '').toLower()/]: string = '';
 			[/if]
 		[/if]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Date'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-	[anAttribute.name.toLower()/]: string = '';
+	[anAttribute.name.replaceAll('radio', '').toLower()/]: string = '';
 			[/if]
 		[/if]
 	[/for]
@@ -56,12 +56,12 @@ export class [name.toUpperFirst()/] {
 		or type.name = ('HImage')
 		or type.name = ('HFile')
 )]
-	[type.name.toLowerFirst()/]Id: number = null;	
+	[type.name.replaceAll('radio', '').toLowerFirst()/]Id: number = null;	
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-	[name.toLowerFirst()/]Id: number = null;
-	[name.toLowerFirst()/]Item: string = '';
+	[name.replaceAll('radio', '').toLowerFirst()/]Id: number = null;
+	[name.replaceAll('radio', '').toLowerFirst()/]Item: string = '';
 	[/if]
 [/for]
 

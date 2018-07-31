@@ -14,7 +14,7 @@
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect')) ]
 
 [comment * Create Seccion ****************************************************************************************************************************************************************/]
-[file ('app/admin/'.concat(aClass.name.toLower()).concat('/create').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-create.component.ts'), false, 'UTF-8')]
+[file ('app/admin/'.concat(aClass.name.replaceAll('radio', '').toLower()).concat('/create').concat(aClass.name.replaceAll('radio', '').toLower()).concat('/').concat(aClass.name.replaceAll('radio', '').toLower()).concat('-create.component.ts'), false, 'UTF-8')]
 import { Component, OnInit, ViewChild}                                     from '@angular/core';
 import { Router, ActivatedRoute }                                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl }                 from '@angular/forms';
@@ -23,28 +23,26 @@ import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
 
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+import { [name.replaceAll('radio', '').toUpperFirst()/]Service }                                  from '../../[name.replaceAll('radio', '').toLowerFirst()/]/[name.replaceAll('radio', '').toLowerFirst()/].component.service';
+import { [name.replaceAll('radio', '').toUpperFirst()/] }                                         from '../../[name.replaceAll('radio', '').toLowerFirst()/]/[name.replaceAll('radio', '').toLowerFirst()/].component.model';
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-
 import { [type.name.replaceAll('modal','').toUpperFirst()/]Service }                                  from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.service';
 import { [type.name.replaceAll('modal','').toUpperFirst()/] }                                         from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.model';
-
 	[/if]
 [/for]
 
 @Component ({
     selector: 'app-view',
-    templateUrl: './[name.toLower()/]-create.component.html',
-	styleUrls: ['['/]'./[name.toLower()/]-create.component.css'[']'/]
+    templateUrl: './[name.replaceAll('radio', '').toLower()/]-create.component.html',
+	styleUrls: ['['/]'./[name.replaceAll('radio', '').toLower()/]-create.component.css'[']'/]
 })
 
-export class [name.toUpperFirst()/]CreateComponent implements OnInit {
+export class [name.replaceAll('radio', '').toUpperFirst()/]CreateComponent implements OnInit {
 
-    public title = 'Nuevo [name.toUpperFirst()/]';
-    public [name.toLower()/]: [name.toUpperFirst()/];
+    public title = 'Nuevo [name.replaceAll('radio', '').toUpperFirst()/]';
+    public [name.replaceAll('radio', '').toLower()/]: [name.replaceAll('radio', '').toUpperFirst()/];
     public form: any;
     public user: User;
     public valueName: string;
@@ -52,43 +50,8 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
-    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-	public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
-    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-	public busqueda[aClass.name/]='';
-	filterInput[aClass.name.toUpperFirst()/] = new FormControl();
-[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
+	public [name.replaceAll('radio', '').toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [name.replaceAll('radio', '').toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
 	[/if]
 [/for]
 
@@ -102,25 +65,13 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+				private [name.replaceAll('radio', '').toLowerFirst()/]Service: [name.replaceAll('radio', '').toUpperFirst()/]Service
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	,private [name.toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
+	,private [name.replaceAll('radio', '').toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
 	[/if]
 [/for]
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	,private [p.name.toLowerFirst()/]Service: [p.name.replaceAll('modal','').toUpperFirst()/]Service
-	[/if]
-[/for]){
-
-[for (p : Property | aClass.attribute)]
-[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-     this.filterInput[aClass.name.toUpperFirst()/].valueChanges.subscribe(busqueda[aClass.name.toUpperFirst()/] => {
-     this.busqueda[aClass.name.toUpperFirst()/] = busqueda[aClass.name.toUpperFirst()/];
-   });
-[/if]
-[/for]
+){
 
 [for (attribute)]
 [if (type.name.startsWith('modal'))]
@@ -133,26 +84,26 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
 	}
 
     ngOnInit() {
-		this.[name.toLower()/]Service.clear();
-        this.[name.toLower()/] = new [name.toUpperFirst()/];
+		this.[name.replaceAll('radio', '').toLower()/]Service.clear();
+        this.[name.replaceAll('radio', '').toLower()/] = new [name.replaceAll('radio', '').toUpperFirst()/];
 
 	[for (attribute)]
 		[if (type.name.startsWith('modal'))]
-		this.load[name.toUpperFirst()/]s();
+		this.load[name.replaceAll('radio', '').toUpperFirst()/]s();
 		[/if]
 	[/for]
        
     } 
 
 save(){
-   this.[name.toLower()/]Service.save[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
+   this.[name.replaceAll('radio', '').toLower()/]Service.save[name.replaceAll('radio', '').toUpperFirst()/](this.[name.replaceAll('radio', '').toLower()/]).subscribe(res => {
      if (res.status == 201 || res.status == 200){
-        swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
-        this.router.navigate(['['/] '../manage[name.toLower()/]' [']'/], { relativeTo: this.route })
+        swal('Success...', '[name.replaceAll('radio', '').toUpperFirst()/] save successfully.', 'success');
+        this.router.navigate(['['/] '../manage[name.replaceAll('radio', '').toLower()/]' [']'/], { relativeTo: this.route })
      }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar [name.toUpperFirst()/].', 'error');
+        swal('Error...', 'Usuario no tiene permiso para guardar [name.replaceAll('radio', '').toUpperFirst()/].', 'error');
      }else{
-       swal('Error...', '[name.toUpperFirst()/] save unsuccessfully.', 'error');
+       swal('Error...', '[name.replaceAll('radio', '').toUpperFirst()/] save unsuccessfully.', 'error');
      }
    } );
 }
@@ -160,25 +111,25 @@ save(){
 [for (attribute)]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-	load[name.toUpperFirst()/]s(){
-  		this.[name.toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
+	load[name.replaceAll('radio', '').toUpperFirst()/]s(){
+  		this.[name.replaceAll('radio', '').toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
     	if (data) {
-      	this.[name.toLowerFirst()/]List = data;
+      	this.[name.replaceAll('radio', '').toLowerFirst()/]List = data;
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the [type.name.replaceAll('modal','').toUpperFirst()/]s.', 'error');
   	});
 }
 
- setClickedRow[name.toUpperFirst()/](id,[name.toLowerFirst()/]){
-	      this.[name.toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.toLowerFirst()/]);
-		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id = [name.toLowerFirst()/].[name.toLowerFirst()/]Id;
-		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = [name.toLowerFirst()/].[name.toLowerFirst()/]Id + "";
+ setClickedRow[name.replaceAll('radio', '').toUpperFirst()/](id,[name.replaceAll('radio', '').toLowerFirst()/]){
+	      this.[name.replaceAll('radio', '').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.replaceAll('radio', '').toLowerFirst()/]);
+		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id;
+		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id + "";
 	    }
 	[/if]
 [/for]
 
-  return([name.toLower()/]){
+  return([name.replaceAll('radio', '').toLower()/]){
       this.location.back();
   }
 
@@ -188,7 +139,7 @@ save(){
 [comment * ./Create Seccion ****************************************************************************************************************************************************************/]
 
 [comment * ./Edit Seccion ****************************************************************************************************************************************************************/]
-[file ('app/admin/'.concat(aClass.name.toLower()).concat('/edit').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-edit.component.ts'), false, 'UTF-8')]
+[file ('app/admin/'.concat(aClass.name.replaceAll('radio', '').toLower()).concat('/edit').concat(aClass.name.replaceAll('radio', '').toLower()).concat('/').concat(aClass.name.replaceAll('radio', '').toLower()).concat('-edit.component.ts'), false, 'UTF-8')]
 import { Component, OnInit, ViewChild}                     from '@angular/core';
 import { Router, ActivatedRoute }                                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -196,8 +147,8 @@ import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
 
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+import { [name.replaceAll('radio', '').toUpperFirst()/]Service }                                  from '../../[name.replaceAll('radio', '').toLowerFirst()/]/[name.replaceAll('radio', '').toLowerFirst()/].component.service';
+import { [name.replaceAll('radio', '').toUpperFirst()/] }                                         from '../../[name.replaceAll('radio', '').toLowerFirst()/]/[name.replaceAll('radio', '').toLowerFirst()/].component.model';
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
@@ -206,25 +157,18 @@ import { [type.name.replaceAll('modal','').toUpperFirst()/] }                   
 	[/if]
 [/for]
 
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-import { [p.name.toUpperFirst()/]Service }                                from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.service';
-import { [p.name.toUpperFirst()/] }                                       from '../../[p.name.toLowerFirst()/]/[p.name.toLowerFirst()/].component.model';
-	[/if]
-[/for]
-
 
 @Component ({
     selector: 'app-view',
-    templateUrl: './[name.toLower()/]-edit.component.html',
-	styleUrls: ['['/]'./[name.toLower()/]-edit.component.css'[']'/]
+    templateUrl: './[name.replaceAll('radio', '').toLower()/]-edit.component.html',
+	styleUrls: ['['/]'./[name.replaceAll('radio', '').toLower()/]-edit.component.css'[']'/]
 })
 
-export class [name.toUpperFirst()/]EditComponent implements OnInit {
+export class [name.replaceAll('radio', '').toUpperFirst()/]EditComponent implements OnInit {
 
-	public title = 'Editar [name.toUpperFirst()/]';
-    public [name.toLower()/]: [name.toUpperFirst()/];
- 	public [name.toLower()/]List: [name.toUpperFirst()/];
+	public title = 'Editar [name.replaceAll('radio', '').toUpperFirst()/]';
+    public [name.replaceAll('radio', '').toLower()/]: [name.replaceAll('radio', '').toUpperFirst()/];
+ 	public [name.replaceAll('radio', '').toLower()/]List: [name.replaceAll('radio', '').toUpperFirst()/];
     public form: any;
     public user: User;
     public valueName: string;
@@ -235,43 +179,8 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
-    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-	public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-    public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-	public busqueda[aClass.name/]='';
-	filterInput[aClass.name.toUpperFirst()/] = new FormControl();
-[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
+	public [name.replaceAll('radio', '').toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [name.replaceAll('radio', '').toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
 	[/if]
 [/for]
 
@@ -285,25 +194,12 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+				private [name.replaceAll('radio', '').toLowerFirst()/]Service: [name.replaceAll('radio', '').toUpperFirst()/]Service
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	,private [name.toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
-	[/if]
-[/for]
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	,private [p.name.toLowerFirst()/]Service: [p.name.toUpperFirst()/]Service
+	,private [name.replaceAll('radio', '').toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
 	[/if]
 [/for]){
-
-[for (p : Property | aClass.attribute)]
-[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-     this.filterInput[aClass.name.toUpperFirst()/].valueChanges.subscribe(busqueda[aClass.name.toUpperFirst()/] => {
-     this.busqueda[aClass.name.toUpperFirst()/] = busqueda[aClass.name.toUpperFirst()/];
-   });
-[/if]
-[/for]
 
 [for (attribute)]
 [if (type.name.startsWith('modal'))]
@@ -318,28 +214,28 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
     ngOnInit() {
         
 
-        this.flag = this.[name.toLower()/]Service.getEdit();
-        this.[name.toLower()/] = this.[name.toLower()/]Service.get[name.toUpperFirst()/]();
-        this.flagDelete = this.[name.toLower()/]Service.getDelete();
+        this.flag = this.[name.replaceAll('radio', '').toLower()/]Service.getEdit();
+        this.[name.replaceAll('radio', '').toLower()/] = this.[name.replaceAll('radio', '').toLower()/]Service.get[name.replaceAll('radio', '').toUpperFirst()/]();
+        this.flagDelete = this.[name.replaceAll('radio', '').toLower()/]Service.getDelete();
         
 	[for (attribute)]
 		[if (type.name.startsWith('modal'))]
-		this.load[name.toUpperFirst()/]s();
-		this.loadItem[name.toUpperFirst()/](this.[aClass.name.toLower()/]);
+		this.load[name.replaceAll('radio', '').toUpperFirst()/]s();
+		this.loadItem[name.replaceAll('radio', '').toUpperFirst()/](this.[aClass.name.replaceAll('radio', '').toLower()/]);
 		[/if]
 	[/for]
 
     }  
 
 save(){
-   this.[name.toLower()/]Service.save[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
+   this.[name.replaceAll('radio', '').toLower()/]Service.save[name.replaceAll('radio', '').toUpperFirst()/](this.[name.replaceAll('radio', '').toLower()/]).subscribe(res => {
      if (res.status == 201 || res.status == 200){
-        swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
-        this.router.navigate(['['/] '../manage[name.toLower()/]' [']'/], { relativeTo: this.route })
+        swal('Success...', '[name.replaceAll('radio', '').toUpperFirst()/] save successfully.', 'success');
+        this.router.navigate(['['/] '../manage[name.replaceAll('radio', '').toLower()/]' [']'/], { relativeTo: this.route })
      }else if (res.status == 403){
-        swal('Error...', 'Usuario no tiene permiso para guardar [name.toUpperFirst()/].', 'error');
+        swal('Error...', 'Usuario no tiene permiso para guardar [name.replaceAll('radio', '').toUpperFirst()/].', 'error');
      }else{
-       swal('Error...', '[name.toUpperFirst()/] save unsuccessfully.', 'error');
+       swal('Error...', '[name.replaceAll('radio', '').toUpperFirst()/] save unsuccessfully.', 'error');
      }
    } );
 }
@@ -347,7 +243,7 @@ save(){
 delete(){
   swal({
     title: "Are you sure?",
-    text: "You will not be able to recover this [name.toLower()/]!",
+    text: "You will not be able to recover this [name.replaceAll('radio', '').toLower()/]!",
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#DD6B55",
@@ -355,18 +251,18 @@ delete(){
     cancelButtonText: "No, cancel!"
   }).then((isConfirm) => {
     if (isConfirm.value) {
-      this.[name.toLower()/]Service.delete[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
+      this.[name.replaceAll('radio', '').toLower()/]Service.delete[name.replaceAll('radio', '').toUpperFirst()/](this.[name.replaceAll('radio', '').toLower()/]).subscribe(res => {
         if (res.status == 201 || res.status == 200){
-          swal('Success...', '[name.toUpperFirst()/] item has been deleted successfully.', 'success');
-          this.router.navigate(['['/] '../manage[name.toLower()/]' [']'/], { relativeTo: this.route })
+          swal('Success...', '[name.replaceAll('radio', '').toUpperFirst()/] item has been deleted successfully.', 'success');
+          this.router.navigate(['['/] '../manage[name.replaceAll('radio', '').toLower()/]' [']'/], { relativeTo: this.route })
         }else if (res.status == 403){
-          swal('Error...', 'Usuario no tiene permiso para guardar [name.toUpperFirst()/].', 'error');
+          swal('Error...', 'Usuario no tiene permiso para guardar [name.replaceAll('radio', '').toUpperFirst()/].', 'error');
         }else{
-          swal('Error...', '[name.toUpperFirst()/] deleted unsuccessfully.', 'error');
+          swal('Error...', '[name.replaceAll('radio', '').toUpperFirst()/] deleted unsuccessfully.', 'error');
         }
       });
     } else {
-      //swal("Cancelled", "[name.toUpperFirst()/] deleted unsuccessfully", "error");
+      //swal("Cancelled", "[name.replaceAll('radio', '').toUpperFirst()/] deleted unsuccessfully", "error");
     }
   });
 }
@@ -374,31 +270,31 @@ delete(){
 [for (attribute)]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-	load[name.toUpperFirst()/]s(){
-  		this.[name.toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
+	load[name.replaceAll('radio', '').toUpperFirst()/]s(){
+  		this.[name.replaceAll('radio', '').toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
     	if (data) {
-      	this.[name.toLowerFirst()/]List = data;
+      	this.[name.replaceAll('radio', '').toLowerFirst()/]List = data;
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the [type.name.replaceAll('modal','').toUpperFirst()/]s.', 'error');
   	});
 }
 
- setClickedRow[name.toUpperFirst()/](id,[name.toLowerFirst()/]){
-	      this.[name.toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.toLowerFirst()/]);
-		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id = [name.toLowerFirst()/].[name.toLowerFirst()/]Id;
-		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = [name.toLowerFirst()/].[name.toLowerFirst()/]Id + "";
+ setClickedRow[name.replaceAll('radio', '').toUpperFirst()/](id,[name.replaceAll('radio', '').toLowerFirst()/]){
+	      this.[name.replaceAll('radio', '').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.replaceAll('radio', '').toLowerFirst()/]);
+		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id;
+		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id + "";
 	    }
 
 
-loadItem[name.toUpperFirst()/]([aClass.name.toLowerFirst()/]){
-  this.[name.toLowerFirst()/]Service.get[type.name.replaceAll('modal','').toUpperFirst()/]ById([aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id).subscribe(data => {
+loadItem[name.replaceAll('radio', '').toUpperFirst()/]([aClass.name.replaceAll('radio', '').toLowerFirst()/]){
+  this.[name.replaceAll('radio', '').toLowerFirst()/]Service.get[type.name.replaceAll('modal','').toUpperFirst()/]ById([aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id).subscribe(data => {
     if (data) {
-      this.[name.toLowerFirst()/] = data;
-      this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = this.[name.toLowerFirst()/].[name.toLowerFirst()/]Id +"";
+      this.[name.replaceAll('radio', '').toLowerFirst()/] = data;
+      this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = this.[name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id +"";
     }
     }, error => {
-    swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
+    swal('Error...', 'An error occurred while calling the [name.replaceAll('radio', '').toLowerFirst()/]s.', 'error');
   });
 
 }
@@ -407,7 +303,7 @@ loadItem[name.toUpperFirst()/]([aClass.name.toLowerFirst()/]){
 [/for]
 
 
-return([name.toLower()/]){
+return([name.replaceAll('radio', '').toLower()/]){
   this.location.back();
 }
  
@@ -415,7 +311,7 @@ return([name.toLower()/]){
 [/file]
 
 [comment * Manage Seccion ****************************************************************************************************************************************************************/]
-[file ('app/admin/'.concat(aClass.name.toLower()).concat('/manage').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-manage.component.ts'), false, 'UTF-8')]
+[file ('app/admin/'.concat(aClass.name.replaceAll('radio', '').toLower()).concat('/manage').concat(aClass.name.replaceAll('radio', '').toLower()).concat('/').concat(aClass.name.replaceAll('radio', '').toLower()).concat('-manage.component.ts'), false, 'UTF-8')]
 import { Component, OnInit, ViewChild}                     from '@angular/core';
 import { Router, ActivatedRoute }                          from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -424,8 +320,8 @@ import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { User } from '../../user/user.component.model';
 
-import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
-import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+import { [name.replaceAll('radio', '').toUpperFirst()/]Service }                                  from '../../[name.replaceAll('radio', '').toLowerFirst()/]/[name.replaceAll('radio', '').toLowerFirst()/].component.service';
+import { [name.replaceAll('radio', '').toUpperFirst()/] }                                         from '../../[name.replaceAll('radio', '').toLowerFirst()/]/[name.replaceAll('radio', '').toLowerFirst()/].component.model';
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
@@ -436,23 +332,23 @@ import { [type.name.replaceAll('modal','').toUpperFirst()/] }                   
 
 @Component ({
     selector: 'app-view',
-    templateUrl: './[name.toLower()/]-manage.component.html',
-	styleUrls: ['['/]'./[name.toLower()/]-manage.component.css'[']'/]
+    templateUrl: './[name.replaceAll('radio', '').toLower()/]-manage.component.html',
+	styleUrls: ['['/]'./[name.replaceAll('radio', '').toLower()/]-manage.component.css'[']'/]
 })
 
-export class [name.toUpperFirst()/]ManageComponent implements OnInit {
+export class [name.replaceAll('radio', '').toUpperFirst()/]ManageComponent implements OnInit {
 
     public form: any;
     public user: User;
     public valueName: string;
     public token: string;
 
-    public title = 'Manage [name.toUpperFirst()/]';
-    public [name.toLowerFirst()/]List: [name.toUpperFirst()/];
-    public [name.toLowerFirst()/]: [name.toUpperFirst()/];
+    public title = 'Manage [name.replaceAll('radio', '').toUpperFirst()/]';
+    public [name.replaceAll('radio', '').toLowerFirst()/]List: [name.replaceAll('radio', '').toUpperFirst()/];
+    public [name.replaceAll('radio', '').toLowerFirst()/]: [name.replaceAll('radio', '').toUpperFirst()/];
 
-  	public busqueda[name.toLowerFirst()/]='';
-    public filterInput[name.toLowerFirst()/] = new FormControl();
+  	public busqueda[name.replaceAll('radio', '').toLowerFirst()/]='';
+    public filterInput[name.replaceAll('radio', '').toLowerFirst()/] = new FormControl();
 
  	public userAdmin: User = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -464,51 +360,16 @@ export class [name.toUpperFirst()/]ManageComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
-    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
+	public [name.replaceAll('radio', '').toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [name.replaceAll('radio', '').toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
 	[/if]
 [/for]
 
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-	public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-	public [p.name.toLowerFirst()/]List: [p.name.toUpperFirst()/];
-    public [p.name.toLowerFirst()/]: [p.name.toUpperFirst()/];
-	[/if]
-[/for]
-
-[comment Searching/]
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-	public busqueda[aClass.name/]='';
-	filterInput[aClass.name.toUpperFirst()/] = new FormControl();
-[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
-	[/if]
-[/for]
-
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Modal'))]
-	public busqueda[p.name.toUpperFirst()/]='';
-	filterInput[p.name.toUpperFirst()/] = new FormControl();
-	[/if]
-[/for]
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public busqueda[name.toUpperFirst()/]='';
-	filterInput[name.toUpperFirst()/] = new FormControl();
+	public busqueda[name.replaceAll('radio', '').toUpperFirst()/]='';
+	filterInput[name.replaceAll('radio', '').toUpperFirst()/] = new FormControl();
 	[/if]
 [/for]
 
@@ -516,25 +377,13 @@ export class [name.toUpperFirst()/]ManageComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
-				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+				private [name.replaceAll('radio', '').toLowerFirst()/]Service: [name.replaceAll('radio', '').toUpperFirst()/]Service
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	,private [name.toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
-	[/if]
-[/for]
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='ModalSearch'))]
-	,private [p.name.toLowerFirst()/]Service: [p.name.toUpperFirst()/]Service
+	,private [name.replaceAll('radio', '').toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
 	[/if]
 [/for]){
 
-[for (p : Property | aClass.attribute)]
-	[if (p.type.getAppliedStereotypes() -> exists(s: Stereotype | s.name='Grid'))]
-	     this.filterInput[aClass.name.toUpperFirst()/].valueChanges.subscribe(busqueda[aClass.name.toUpperFirst()/] => {
-	     this.busqueda[aClass.name.toUpperFirst()/] = busqueda[aClass.name.toUpperFirst()/];
-	   });
-	[/if]
-[/for]
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
@@ -553,63 +402,63 @@ export class [name.toUpperFirst()/]ManageComponent implements OnInit {
       this.valueName = this.user.username;
       this.token = this.user.token;
 
-      this.[name.toLower()/]Service.setEdit(false);
-      this.[name.toLower()/]Service.setDelete(false);
+      this.[name.replaceAll('radio', '').toLower()/]Service.setEdit(false);
+      this.[name.replaceAll('radio', '').toLower()/]Service.setDelete(false);
 
-      this.load[name.toUpperFirst()/]s();
+      this.load[name.replaceAll('radio', '').toUpperFirst()/]s();
       this.habilita();
 
     }   
 
-    load[name.toUpperFirst()/]s() {
-      this.[name.toLower()/]Service.getAll[name.toUpperFirst()/]().subscribe(data => {
+    load[name.replaceAll('radio', '').toUpperFirst()/]s() {
+      this.[name.replaceAll('radio', '').toLower()/]Service.getAll[name.replaceAll('radio', '').toUpperFirst()/]().subscribe(data => {
         if (data) {
-          this.[name.toLower()/]List = data;
+          this.[name.replaceAll('radio', '').toLower()/]List = data;
         }
       }, error => {
-        swal('Error...', 'An error occurred while calling the [name.toLower()/]s.', 'error');
+        swal('Error...', 'An error occurred while calling the [name.replaceAll('radio', '').toLower()/]s.', 'error');
       });
     }
 
   add(){
-    this.[name.toLower()/]Service.clear();
-    this.router.navigate(['['/] '../create[name.toLower()/]' [']'/], { relativeTo: this.route })
+    this.[name.replaceAll('radio', '').toLower()/]Service.clear();
+    this.router.navigate(['['/] '../create[name.replaceAll('radio', '').toLower()/]' [']'/], { relativeTo: this.route })
   }
 
-  editar([name.toLower()/]){
-    this.[name.toLower()/]Service.set[name.toUpperFirst()/]([name.toLower()/]);
-    this.[name.toLower()/]Service.setEdit(true);
-    this.[name.toLower()/]Service.setDelete(false);
-    this.router.navigate(['['/] '../edit[name.toLower()/]' [']'/], { relativeTo: this.route })
+  editar([name.replaceAll('radio', '').toLower()/]){
+    this.[name.replaceAll('radio', '').toLower()/]Service.set[name.replaceAll('radio', '').toUpperFirst()/]([name.replaceAll('radio', '').toLower()/]);
+    this.[name.replaceAll('radio', '').toLower()/]Service.setEdit(true);
+    this.[name.replaceAll('radio', '').toLower()/]Service.setDelete(false);
+    this.router.navigate(['['/] '../edit[name.replaceAll('radio', '').toLower()/]' [']'/], { relativeTo: this.route })
   }
 
-  eliminar([name.toLower()/]){
-    this.[name.toLower()/]Service.set[name.toUpperFirst()/]([name.toLower()/]);
-    this.[name.toLower()/]Service.setEdit(false);
-    this.[name.toLower()/]Service.setDelete(true);
-    this.router.navigate(['['/] '../edit[name.toLower()/]' [']'/], { relativeTo: this.route })
+  eliminar([name.replaceAll('radio', '').toLower()/]){
+    this.[name.replaceAll('radio', '').toLower()/]Service.set[name.replaceAll('radio', '').toUpperFirst()/]([name.replaceAll('radio', '').toLower()/]);
+    this.[name.replaceAll('radio', '').toLower()/]Service.setEdit(false);
+    this.[name.replaceAll('radio', '').toLower()/]Service.setDelete(true);
+    this.router.navigate(['['/] '../edit[name.replaceAll('radio', '').toLower()/]' [']'/], { relativeTo: this.route })
   }
 
   // Select row
-  setClickedRow[name.toUpperFirst()/](index, [name.toLower()/]){
-    this.[name.toLower()/]Service.set[name.toUpperFirst()/]([name.toLower()/]);
-    this.[name.toLower()/]Service.setEdit(true);
-    this.[name.toLower()/]Service.setDelete(false);
-    this.router.navigate(['['/] '../edit[name.toLower()/]' [']'/], { relativeTo: this.route })
+  setClickedRow[name.replaceAll('radio', '').toUpperFirst()/](index, [name.replaceAll('radio', '').toLower()/]){
+    this.[name.replaceAll('radio', '').toLower()/]Service.set[name.replaceAll('radio', '').toUpperFirst()/]([name.replaceAll('radio', '').toLower()/]);
+    this.[name.replaceAll('radio', '').toLower()/]Service.setEdit(true);
+    this.[name.replaceAll('radio', '').toLower()/]Service.setDelete(false);
+    this.router.navigate(['['/] '../edit[name.replaceAll('radio', '').toLower()/]' [']'/], { relativeTo: this.route })
   }
   
   habilita(){
     this.userAdmin.authorities.forEach(element => {
-      if (element.authority == 'ROLE_[name.toUpper()/]DELETE'){
+      if (element.authority == 'ROLE_[name.replaceAll('radio', '').toUpper()/]DELETE'){
         this.deleteActive = true;
       }
-      if (element.authority == 'ROLE_[name.toUpper()/]CREATE'){
+      if (element.authority == 'ROLE_[name.replaceAll('radio', '').toUpper()/]CREATE'){
         this.createActive = true;
       }
-      if (element.authority == 'ROLE_[name.toUpper()/]UPDATE'){
+      if (element.authority == 'ROLE_[name.replaceAll('radio', '').toUpper()/]UPDATE'){
         this.updateActive = true;
       }
-      if (element.authority == 'ROLE_[name.toUpper()/]SEARCH'){
+      if (element.authority == 'ROLE_[name.replaceAll('radio', '').toUpper()/]SEARCH'){
         this.searchActive = true;
       }
     });

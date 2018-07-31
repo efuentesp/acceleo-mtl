@@ -12,7 +12,7 @@
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumCheck')
 			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect')) ]
 
-[file ('app/admin/'.concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('.component.service.ts'), false, 'UTF-8')]
+[file ('app/admin/'.concat(aClass.name.replaceAll('radio', '').toLower()).concat('/').concat(aClass.name.replaceAll('radio', '').toLower()).concat('.component.service.ts'), false, 'UTF-8')]
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
 import { Http, Response }                          from "@angular/http";
@@ -20,16 +20,16 @@ import { Headers, RequestOptions }                 from '@angular/http';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { [name.toUpperFirst()/] }                           from '../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+import { [name.replaceAll('radio', '').toUpperFirst()/] }                           from '../[name.replaceAll('radio', '').toLowerFirst()/]/[name.replaceAll('radio', '').toLowerFirst()/].component.model';
 import { User } from '../user/user.component.model';
 import { UserStorageComponent } from '../user/user-storage.component';
 
 @Injectable()
-export class [name.toUpperFirst()/]Service {
+export class [name.replaceAll('radio', '').toUpperFirst()/]Service {
 
-    private is[name.toUpperFirst()/]FormValid: boolean = false;
+    private is[name.replaceAll('radio', '').toUpperFirst()/]FormValid: boolean = false;
     private env: any = environment;
-    private [name.toLowerFirst()/] = new [name.toUpperFirst()/]();
+    private [name.replaceAll('radio', '').toLowerFirst()/] = new [name.replaceAll('radio', '').toUpperFirst()/]();
     private flag :boolean = false;
     private flagDelete :boolean = false;
     private storage: UserStorageComponent;
@@ -39,56 +39,56 @@ export class [name.toUpperFirst()/]Service {
     constructor(private http: Http) {
     }
 
-    getAll[name.toUpperFirst()/](){
+    getAll[name.replaceAll('radio', '').toUpperFirst()/](){
 		let headers = new Headers;
          headers.append('Content-Type','application/json');
          headers.append('Authorization','Bearer ' + this.user.token+'');
          let opts = new RequestOptions({ headers: headers });
-      return this.http.get(this.env.api + "/[name.toLower()/]", opts).pipe(map(res => res.json()));
+      return this.http.get(this.env.api + "/[name.replaceAll('radio', '').toLower()/]", opts).pipe(map(res => res.json()));
     }
 
-    save[name.toUpperFirst()/]([name.toLower()/]){
+    save[name.replaceAll('radio', '').toUpperFirst()/]([name.replaceAll('radio', '').toLower()/]){
         let headers = new Headers;
         headers.append('Content-Type','application/json');
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
 
-		if (![name.toLower()/].[name.toLower()/]Id){
-            return this.http.post(this.env.api + "/[name.toLower()/]", [name.toLower()/], opts).pipe(map(res => res));
+		if (![name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLower()/]Id){
+            return this.http.post(this.env.api + "/[name.replaceAll('radio', '').toLower()/]", [name.replaceAll('radio', '').toLower()/], opts).pipe(map(res => res));
         }else{
-            return this.http.put(this.env.api + "/[name.toLower()/]/"+ [name.toLower()/].[name.toLower()/]Id, [name.toLower()/], opts).pipe(map(res => res));
+            return this.http.put(this.env.api + "/[name.replaceAll('radio', '').toLower()/]/"+ [name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLower()/]Id, [name.replaceAll('radio', '').toLower()/], opts).pipe(map(res => res));
         }
     }
 
-    delete[name.toUpperFirst()/]([name.toLower()/]){
+    delete[name.replaceAll('radio', '').toUpperFirst()/]([name.replaceAll('radio', '').toLower()/]){
         let headers = new Headers;
         headers.append('Content-Type','application/json');
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
-        return this.http.delete(this.env.api + "/[name.toLower()/]/"+[name.toLower()/].[name.toLower()/]Id, opts).pipe(map(res => res));
+        return this.http.delete(this.env.api + "/[name.replaceAll('radio', '').toLower()/]/"+[name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLower()/]Id, opts).pipe(map(res => res));
     }
 
-    get[name.toUpperFirst()/]ById([name.toLower()/]Id){
+    get[name.replaceAll('radio', '').toUpperFirst()/]ById([name.replaceAll('radio', '').toLower()/]Id){
 
         let headers = new Headers;
         headers.append('Content-Type','application/json');
         headers.append('Authorization','Bearer ' + this.user.token+'');
         let opts = new RequestOptions({ headers: headers });
-        return this.http.get(this.env.api + "/id[name.toLower()/]/"+[name.toLower()/]Id, opts).pipe(map(res => res.json()));
+        return this.http.get(this.env.api + "/id[name.replaceAll('radio', '').toLower()/]/"+[name.replaceAll('radio', '').toLower()/]Id, opts).pipe(map(res => res.json()));
     }
 
-    reset[name.toUpperFirst()/](): [name.toUpperFirst()/] {
+    reset[name.replaceAll('radio', '').toUpperFirst()/](): [name.replaceAll('radio', '').toUpperFirst()/] {
         this.clear();
-        return this.[name.toLower()/];
+        return this.[name.replaceAll('radio', '').toLower()/];
     }
 
-    get[name.toUpperFirst()/](): [name.toUpperFirst()/] {
-        var [name.toLower()/]: [name.toUpperFirst()/] = {
+    get[name.replaceAll('radio', '').toUpperFirst()/](): [name.replaceAll('radio', '').toUpperFirst()/] {
+        var [name.replaceAll('radio', '').toLower()/]: [name.replaceAll('radio', '').toUpperFirst()/] = {
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
 		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
 			[if not anAttribute.name.equalsIgnoreCase('id')]
-					[anAttribute.name.toLower()/]: this.[aClass.name.toLower()/].[anAttribute.name.toLower()/], 
+					[anAttribute.name.replaceAll('radio', '').toLower()/]: this.[aClass.name.replaceAll('radio', '').toLower()/].[anAttribute.name.replaceAll('radio', '').toLower()/], 
 			[/if]    
 		[/if]
 	[/for]
@@ -109,29 +109,29 @@ export class [name.toUpperFirst()/]Service {
 		or type.name = ('HImage')
 		or type.name = ('HFile')
 )]
-					[type.name.toLowerFirst()/]Id: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id,
+					[type.name.replaceAll('radio', '').toLowerFirst()/]Id: this.[aClass.name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Id,
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-					[name.toLowerFirst()/]Id: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id,
-					[name.toLowerFirst()/]Item: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Item,
+					[name.replaceAll('radio', '').toLowerFirst()/]Id: this.[aClass.name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Id,
+					[name.replaceAll('radio', '').toLowerFirst()/]Item: this.[aClass.name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Item,
 	[/if]
 [/for]
-					[name.toLowerFirst()/]Id: this.[name.toLowerFirst()/].[name.toLowerFirst()/]Id	
+					[name.replaceAll('radio', '').toLowerFirst()/]Id: this.[name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id	
 
         };
-        return [name.toLowerFirst()/];
+        return [name.replaceAll('radio', '').toLowerFirst()/];
     }
 
 
-set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
+set[name.replaceAll('radio', '').toUpperFirst()/]([name.replaceAll('radio', '').toLower()/]: [name.replaceAll('radio', '').toUpperFirst()/]) {
        
-	this.is[name.toUpperFirst()/]FormValid = true;
+	this.is[name.replaceAll('radio', '').toUpperFirst()/]FormValid = true;
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
 		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
 			[if not anAttribute.name.equalsIgnoreCase('id')]
-			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = [aClass.name.toLower()/].[anAttribute.name.toLower()/];    
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[anAttribute.name.replaceAll('radio', '').toLower()/] = [aClass.name.replaceAll('radio', '').toLower()/].[anAttribute.name.replaceAll('radio', '').toLower()/];    
 			[/if]
 		[/if]
 	[/for]
@@ -151,23 +151,23 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 		or type.name = ('HImage')
 		or type.name = ('HFile')
 )]
-			this.[aClass.name.toLower()/].[type.name.toLowerFirst()/]Id = [aClass.name.toLower()/].[type.name.toLowerFirst()/]Id;
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[type.name.replaceAll('radio', '').toLowerFirst()/]Id = [aClass.name.replaceAll('radio', '').toLower()/].[type.name.replaceAll('radio', '').toLowerFirst()/]Id;
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id = [aClass.name.toLower()/].[name.toLowerFirst()/]Id;
-			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Item = [aClass.name.toLower()/].[name.toLowerFirst()/]Item;
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = [aClass.name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Id;
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = [aClass.name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Item;
 	[/if]
 [/for]
-			this.[name.toLower()/].[name.toLowerFirst()/]Id        = [name.toLower()/].[name.toLowerFirst()/]Id;
-        	this.validate[name.toUpperFirst()/]();
+			this.[name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Id        = [name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Id;
+        	this.validate[name.replaceAll('radio', '').toUpperFirst()/]();
     }
 
     isFormValid() {
-        return this.is[name.toUpperFirst()/]FormValid;
+        return this.is[name.replaceAll('radio', '').toUpperFirst()/]FormValid;
     }
 
-    validate[name.toUpperFirst()/]() {
+    validate[name.replaceAll('radio', '').toUpperFirst()/]() {
 
     }
 
@@ -177,17 +177,17 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('string'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = '';    
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[anAttribute.name.replaceAll('radio', '').toLower()/] = '';    
 			[/if]
 		[/if]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Integer'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = null;    
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[anAttribute.name.replaceAll('radio', '').toLower()/] = null;    
 			[/if]
 		[/if]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Double'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = '';    
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[anAttribute.name.replaceAll('radio', '').toLower()/] = '';    
 			[/if]
 		[/if]		
 	[/for]
@@ -206,14 +206,14 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 		or type.name = ('HImage')
 		or type.name = ('HFile')
 )]
-			this.[aClass.name.toLower()/].[type.name.toLowerFirst()/]Id = null;
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[type.name.replaceAll('radio', '').toLowerFirst()/]Id = null;
 	[/if]
 	[if (type.name.startsWith('modal'))]
-			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id = null;
-			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Item = null;
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = null;
+			this.[aClass.name.replaceAll('radio', '').toLower()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = null;
 	[/if]
 [/for]
-			this.[name.toLower()/].[aClass.name.toLowerFirst()/]Id = null;
+			this.[name.replaceAll('radio', '').toLower()/].[aClass.name.replaceAll('radio', '').toLowerFirst()/]Id = null;
     }
 
     setEdit(flag){
