@@ -75,7 +75,7 @@
 		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 		
 		[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]	
-		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/]</div>		
+		<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name.replaceAll('radio', '')/]Id"> [default/]</div>		
 		[/for]		
 	
 	[/if]
@@ -314,8 +314,8 @@
 		<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 		
 	[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]	
-		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"  disabled="true"> [default/] </div>		
-		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name/]Id"> [default/] </div>
+		<div class="col-md-12" *ngIf="flagDelete"><input *ngIf="flagDelete"  type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name.replaceAll('radio', '')/]Id"  disabled="true"> [default/] </div>		
+		<div class="col-md-12" *ngIf="!flagDelete"><input *ngIf="!flagDelete" type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name.replaceAll('radio', '')/]Id"> [default/] </div>
 	[/for]		
 	
 	[/if]
