@@ -128,7 +128,27 @@ save(){
 		  if ([name.replaceAll('radio', '').toLowerFirst()/].checked){
 		  this.[name.replaceAll('radio', '').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.replaceAll('radio', '').toLowerFirst()/]);
 		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id;
-		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id + "";
+		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = [name.replaceAll('radio', '').toLowerFirst()/].
+[for (p : Property | aClass.attribute)]
+	[if (p.type.name.startsWith('modal'))]
+			[for (pa : Package | aModel.packagedElement->filter(Package))]
+			[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
+			[for (paClass : Class | pa.packagedElement->filter(Class))]
+			[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
+				[for (attribute)]
+					[comment Display Result/]
+					[if (type.name.startsWith('display_modal'.concat(name.toLowerCase())))]
+					[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+						[name.toLower()/]+ "";
+					[/for]
+					[/if]
+				[/for]
+			[/if]
+			[/for]
+			[/if]
+			[/for]
+	[/if]
+[/for]
 	    	}else{
             this.[name.replaceAll('radio', '').toLowerFirst()/]Service.clear();
 			this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = null;
@@ -301,7 +321,26 @@ delete(){
 		  if ([name.replaceAll('radio', '').toLowerFirst()/].checked){
 		  this.[name.replaceAll('radio', '').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.replaceAll('radio', '').toLowerFirst()/]);
 		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id;
-		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = [name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id + "";
+		  this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = [name.replaceAll('radio', '').toLowerFirst()/].
+[for (p : Property | aClass.attribute)]
+	[if (p.type.name.startsWith('modal'))]
+			[for (pa : Package | aModel.packagedElement->filter(Package))]
+			[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
+			[for (paClass : Class | pa.packagedElement->filter(Class))]
+			[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
+				[for (attribute)]
+					[if (type.name.startsWith('display_modal'.concat(name.toLowerCase())))]
+					[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+						[name.toLower()/]+ "";
+					[/for]
+					[/if]
+				[/for]
+			[/if]
+			[/for]
+			[/if]
+			[/for]
+	[/if]
+[/for]
 	    	}else{
             this.[name.replaceAll('radio', '').toLowerFirst()/]Service.clear();
 			this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id = null;
@@ -313,7 +352,26 @@ loadItem[name.replaceAll('radio', '').toUpperFirst()/]([aClass.name.replaceAll('
   this.[name.replaceAll('radio', '').toLowerFirst()/]Service.get[type.name.replaceAll('modal','').toUpperFirst()/]ById([aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id).subscribe(data => {
     if (data) {
       this.[name.replaceAll('radio', '').toLowerFirst()/] = data;
-      this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = this.[name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Id +"";
+      this.[aClass.name.replaceAll('radio', '').toLowerFirst()/].[name.replaceAll('radio', '').toLowerFirst()/]Item = this.[name.replaceAll('radio', '').toLowerFirst()/].
+[for (p : Property | aClass.attribute)]
+	[if (p.type.name.startsWith('modal'))]
+			[for (pa : Package | aModel.packagedElement->filter(Package))]
+			[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
+			[for (paClass : Class | pa.packagedElement->filter(Class))]
+			[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
+				[for (attribute)]
+					[if (type.name.startsWith('display_modal'.concat(name.toLowerCase())))]
+					[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+						[name.toLower()/]+ "";
+					[/for]
+					[/if]
+				[/for]
+			[/if]
+			[/for]
+			[/if]
+			[/for]
+	[/if]
+[/for]
     }
     }, error => {
     swal('Error...', 'An error occurred while calling the [name.replaceAll('radio', '').toLowerFirst()/]s.', 'error');
