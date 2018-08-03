@@ -48,6 +48,13 @@ public class [name.toUpperFirst()/]Bean {
 	private [type.name.replaceAll('radio','').toUpperFirst()/] [type.name.replaceAll('radio','').toLowerFirst()/]Id;
 	private enum [type.name.replaceAll('radio','').toUpperFirst()/] { [for (anElement: Property | type.allOwnedElements()->filter(Property) ) separator (',')][name.toLower()/][/for]}
 	[/if]
+	[if (type.name.startsWith('notrequired'))]
+		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+			[if (anElement.type.name.equalsIgnoreCase('HText'))]
+	private String [name.toLowerFirst()/];
+			[/if]
+		[/for]
+	[/if]
 [/for]
 
 	[comment Getters & Setters/]
@@ -91,6 +98,18 @@ public class [name.toUpperFirst()/]Bean {
 	public void set[name.replaceAll('modal','').toUpperFirst()/]Id (Integer [name.replaceAll('modal','').toLowerFirst()/]Id) {
 		this.[name.replaceAll('modal','').toLowerFirst()/]Id = [name.replaceAll('modal','').toLowerFirst()/]Id;
 	}
+	[/if]
+	[if (type.name.startsWith('notrequired'))]
+		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+			[if (anElement.type.name.equalsIgnoreCase('HText'))]
+	public String get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (String [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+		[/for]
 	[/if]
 [/for]
 

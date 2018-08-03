@@ -42,10 +42,6 @@ public class [name.toUpperFirst()/] implements Serializable {
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]	
 		[if (anElement.name.equalsIgnoreCase('typeJava'))]
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-	
-
-
-
 	@NotNull
 	@Column(name = "[anAttribute.name.toLower()/]") 
 	private [anElement.default/] [anAttribute.name.toLowerFirst()/];
@@ -65,17 +61,21 @@ public class [name.toUpperFirst()/] implements Serializable {
 	@NotNull
 	@Column(name = "[type.name.replaceAll('radio','').toLower()/]Id", nullable = false)
 	@Enumerated(EnumType.STRING)
-	[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/domain/').concat(type.name.replaceAll('radio','').toUpperFirst()).concat('.java'), false), 'UTF-8')]
-	package [aClass._package.name/].domain;
-	public enum [type.name.replaceAll('radio','').toUpperFirst()/] {
-	[for (anElement: Property | type.allOwnedElements()->filter(Property) ) separator (',')][name.toLower()/][/for]
-	}
-	[/file]
 	private [type.name.replaceAll('radio','').toUpperFirst()/] [type.name.replaceAll('radio','').toLowerFirst()/]Id;
+		[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/domain/').concat(type.name.replaceAll('radio','').toUpperFirst()).concat('.java'), false), 'UTF-8')]
+			package [aClass._package.name/].domain;
+			public enum [type.name.replaceAll('radio','').toUpperFirst()/] {
+			[for (anElement: Property | type.allOwnedElements()->filter(Property) ) separator (',')][name.toLower()/][/for]
+			}
+		[/file]
 	[/if]
-
-	[if (type.name.startsWith('required'))]	
-		[for (anElement: Property | type.allOwnedElements()->filter(Property) ) separator (',')][name.toLower()/][/for]
+	[if (type.name.startsWith('notrequired'))]
+		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+			[if (anElement.type.name.equalsIgnoreCase('HText'))]
+	@Column(name = "[anElement.name.toLower()/]") 
+	private String [name.toLowerFirst()/];
+			[/if]
+		[/for]
 	[/if]
 [/for]
 
@@ -121,6 +121,18 @@ public class [name.toUpperFirst()/] implements Serializable {
 	public void set[name.replaceAll('modal','').toUpperFirst()/]Id (Integer [name.replaceAll('modal','').toLowerFirst()/]Id) {
 		this.[name.replaceAll('modal','').toLowerFirst()/]Id = [name.replaceAll('modal','').toLowerFirst()/]Id;
 	}
+	[/if]
+	[if (type.name.startsWith('notrequired'))]
+		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+			[if (anElement.type.name.equalsIgnoreCase('HText'))]
+	public String get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (String [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+		[/for]
 	[/if]
 [/for]
 }			

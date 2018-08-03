@@ -158,16 +158,22 @@ public class [name.toUpperFirst()/]Controller {
 [for (attribute)]
 	[comment Radio/]
 	[if (type.name.startsWith('radio'))]
-[aClass.name.toLower()/]Found.set[name.replaceAll('radio','').toUpperFirst()/]Id([aClass.name.toLower()/].get[name.replaceAll('radio','').toUpperFirst()/]Id());
+	[aClass.name.toLower()/]Found.set[name.replaceAll('radio','').toUpperFirst()/]Id([aClass.name.toLower()/].get[name.replaceAll('radio','').toUpperFirst()/]Id());
 	[/if]
 	[comment Modal/]
 	[if (type.name.startsWith('modal'))]
-[aClass.name.toLower()/]Found.set[name.replaceAll('modal','').toUpperFirst()/]Id([aClass.name.toLower()/].get[name.replaceAll('modal','').toUpperFirst()/]Id());
+	[aClass.name.toLower()/]Found.set[name.replaceAll('modal','').toUpperFirst()/]Id([aClass.name.toLower()/].get[name.replaceAll('modal','').toUpperFirst()/]Id());
 	[/if]
-[/for]
-
-			
-			[aClass.name.toLower()/]Found.set[aClass.name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
+	[comment Notrequired/]
+	[if (type.name.startsWith('notrequired'))]
+		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+			[if (anElement.type.name.equalsIgnoreCase('HText'))]
+	[aClass.name.toLower()/]Found.set[name.toUpperFirst()/]([aClass.name.toLower()/].get[anElement.name.toUpperFirst()/]());
+			[/if]
+		[/for]
+	[/if]
+[/for]		
+	[aClass.name.toLower()/]Found.set[aClass.name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
 
 		    [name.toLower()/]Service.edit[name.toUpperFirst()/]([name.toLower()/]Found);
 	        return new ResponseEntity<[name.toUpperFirst()/]>([name.toLower()/]Found, HttpStatus.OK);
@@ -202,8 +208,6 @@ public class [name.toUpperFirst()/]Controller {
            	//} catch(GenericException e) {
             //	 return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.PRECONDITION_FAILED);
             //}
-
-
 		}
 
 	/**
