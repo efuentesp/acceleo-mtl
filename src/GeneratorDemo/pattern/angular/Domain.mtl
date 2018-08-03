@@ -132,12 +132,83 @@ public class [name.toUpperFirst()/] implements Serializable {
 		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
 	}
 			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HInteger'))]
+	public Integer get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (Integer [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HDate'))]
+	public Date get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (Date [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HTextLong'))]
+	public String get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (String [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HBoolean'))]
+	public Boolean get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (Boolean [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HDouble'))]
+	public Double get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (Double [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HCurrency'))]
+	public Double get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (Double [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HFile'))]
+	public String get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (String [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HImage'))]
+	public String get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (String [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HEmail'))]
+	public String get[name.toUpperFirst()/] () {
+	    return [name.toLowerFirst()/];  		
+    }
+	public void set[name.toUpperFirst()/] (String [name.toLowerFirst()/]) {
+		this.[name.toLowerFirst()/] = [name.toLowerFirst()/];
+	}
+			[/if]
 		[/for]
 	[/if]
 [/for]
 }			
 [/file]
-
 			[/if]
 		[/for]
 	[/if]	

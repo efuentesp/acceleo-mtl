@@ -1,0 +1,174 @@
+[comment encoding = UTF-8 /]
+[module CrudComponentManageHtml('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateElementCrudComponentManageHtml(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 	[for (aClass : Class | p.packagedElement->filter(Class))]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/manage').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-manage.component.html'), false, 'UTF-8')]
+<!-- principal -->
+<div>
+	<!-- page-title -->
+	<div class="page-title" style="background: #F7F7F7;">
+		<div class="title_left">
+	 	[for (apClass : Class | p.packagedElement->filter(Class))]
+			[if (apClass.name.startsWith('entity_name')) ]
+				[for (anElementPa: Property | apClass.allOwnedElements()->filter(Property) )]
+					[if anElementPa.name.equalsIgnoreCase(aClass.name)]
+			<h3>Administrar [anElementPa.default/]</h3>
+					[/if]
+				[/for]
+			[/if]
+		[/for]	
+		</div>
+	</div>
+	<!-- ./page-title -->
+
+	<!-- x_panel -->
+	<div class="x_panel">
+		<div class="x_content">
+			<form #[aClass.name.toLower()/]MngForm="ngForm" class="editForm" novalidate>
+				
+				<!-- row -->
+				<div class='row'>
+					<div class="col-lg-6">
+						<button *ngIf="createActive" class="btn btn-primary" (click)="add()"><span class="fa fa-plus"></span></button>
+					</div>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Criterios de busqueda..." name="busqueda[aClass.name.toUpperFirst()/]" ['['/](ngModel)[']'/]="busqueda[aClass.name.toUpperFirst()/]">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default"><em class="fa fa-search"></em></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+
+				<br/>
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="x_panel">
+							
+							<div class="x_title">
+								<h2>Resultados de la busqueda</h2>
+								<div class="clearfix"></div>
+							</div>
+						
+							<div class="x_content table-responsive">
+								<br/>
+
+								<!-- table -->
+								<table id="datatable" class="table table-striped" style="resizable = true;">
+									<thead>
+										<tr>
+										[for (attribute)]
+											[comment Display Result/]
+											[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+											[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+												[if (type.name.startsWith('modal') or type.name.startsWith('radio'))]
+												<th style="max-width:10%" hidden="true">[default.toUpperFirst()/]</th>
+												<th style="max-width:10%">[default.toUpperFirst()/]</th>
+												[/if]
+												[if not (type.name.startsWith('modal') or type.name.startsWith('radio'))]
+												<th style="max-width:10%">[default.toUpperFirst()/]</th>
+												[/if]
+											[/for]
+											[/if]
+										[/for]
+										<th style="max-width:20%">Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[aClass.name.toUpperFirst()/]: busqueda[aClass.name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTable[aClass.name.toUpperFirst()/]'}; let i = index" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
+											[for (attribute)]
+												[comment Display Result/]
+												[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+												[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+													[if (type.name.startsWith('modal') or type.name.startsWith('radio'))]
+												<td  style="max-width: 10%" hidden="true">{{[aClass.name.toLower()/].[name.toLowerCase()/]Id}}</td>
+												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[name.toLowerCase()/]Item}}</td>
+													[/if]
+													[if not(type.name.startsWith('modal') or type.name.startsWith('radio'))]
+												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[name.toLowerCase()/]}}</td>
+													[/if]
+												[/for]
+												[/if]
+											[/for]
+											<td style="max-width: 20%">															
+												<div class="container">
+												<button *ngIf="updateActive" class="btn btn-default" (click)="editar([aClass.name.toLower()/])"><span class="fa fa-pencil"></span></button>
+												<button *ngIf="deleteActive" class="btn btn-default" (click)="eliminar([aClass.name.toLower()/])"><span class="fa fa-trash"></span></button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- ./table -->
+
+								<div align="row" align="right">
+									<div align="left" style="margin-top:15px; background: #DDDDDD; width: 35%; position: relative;">
+										<pagination-controls (pageChange)="page = $event" id="paginationTable[aClass.name.toUpperFirst()/]" maxSize="10" directionLinks="true" autoHide="false" previousLabel="Anterior" nextLabel="Siguiente" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+										</pagination-controls>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /.row -->
+
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- /.x_panel -->
+</div>
+<!-- /.principal -->
+[/file]
+
+[comment Style/]
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/create').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-create.component.css'), false, 'UTF-8')]
+.required{
+  color: #FF0000;
+}
+
+.horizontalScroll{
+  width: 100px; 
+  overflow-x: scroll ;
+}
+[/file]
+
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/edit').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-edit.component.css'), false, 'UTF-8')]
+.required{
+  color: #FF0000;
+}
+
+.horizontalScroll{
+  width: 100px; 
+  overflow-x: scroll ;
+}
+[/file]
+
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/manage').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-manage.component.css'), false, 'UTF-8')]
+.required{
+  color: #FF0000;
+}
+
+.horizontalScroll{
+  width: 100px; 
+  overflow-x: scroll ;
+}
+[/file]
+			[/if]
+		[/for]
+	[/if]
+[/for]
+
+[/template]

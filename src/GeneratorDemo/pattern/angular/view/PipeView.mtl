@@ -25,7 +25,7 @@ export class Search[name.toUpperFirst()/]Pipe implements PipeTransform {
 			[if (type.name.startsWith('exposed_filter'.concat(name.toLowerCase())))]
 			[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower)) separator ('||')]
 			[if (type.name.startsWith('modal'))]
-			((item.[name.toLowerCase()/]Id+"").toString().indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1)
+			((item.[name.toLowerCase()/]Item+"").toString().indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1)
 			[/if]
 			[if (type.name.startsWith('radio'))]
 			((item.[name.replaceAll('radio','').toLowerCase()/]Id+"").toString().indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1)

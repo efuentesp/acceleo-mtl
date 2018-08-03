@@ -1,0 +1,233 @@
+[comment encoding = UTF-8 /]
+[module CrudComponentEditView('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateElementCrudComponentEditView(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 	[for (aClass : Class | p.packagedElement->filter(Class))]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/edit').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-edit.component.ts'), false, 'UTF-8')]
+import { Component, OnInit, ViewChild}                     from '@angular/core';
+import { Router, ActivatedRoute }                                          from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import swal from 'sweetalert2';
+import { Location } from '@angular/common';
+import { User } from '../../user/user.component.model';
+
+import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
+import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+import { [type.name.replaceAll('modal','').toUpperFirst()/]Service }                                  from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.service';
+import { [type.name.replaceAll('modal','').toUpperFirst()/] }                                         from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.model';
+	[/if]
+[/for]
+
+@Component ({
+    selector: 'app-view',
+    templateUrl: './[name.toLower()/]-edit.component.html',
+	styleUrls: ['['/]'./[name.toLower()/]-edit.component.css'[']'/]
+})
+
+export class [name.toUpperFirst()/]EditComponent implements OnInit {
+
+	public title = 'Editar [name.toUpperFirst()/]';
+    public [name.toLower()/]: [name.toUpperFirst()/];
+ 	public [name.toLower()/]List: [name.toUpperFirst()/];
+    public form: any;
+    public user: User;
+    public valueName: string;
+    public token: string;
+
+	public flag: boolean;
+    public flagDelete: boolean;
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
+
+	public busqueda[type.name.replaceAll('modal','').toUpperFirst()/]='';
+	filterInput[type.name.replaceAll('modal','').toUpperFirst()/] = new FormControl();
+	[/if]
+[/for]
+
+    constructor(private router: Router,  
+				private route: ActivatedRoute, 
+				private location: Location,
+				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	,private [name.toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
+	[/if]
+[/for]){
+
+[for (attribute)]
+[if (type.name.startsWith('modal'))]
+ 	 this.filterInput[type.name.replaceAll('modal','').toUpperFirst()/].valueChanges.subscribe(busqueda[type.name.replaceAll('modal','').toUpperFirst()/] => {
+     this.busqueda[type.name.replaceAll('modal','').toUpperFirst()/] = busqueda[type.name.replaceAll('modal','').toUpperFirst()/];
+   });
+[/if]
+[/for]			
+
+	}	
+
+    ngOnInit() {
+        
+        this.flag = this.[name.toLower()/]Service.getEdit();
+        this.[name.toLower()/] = this.[name.toLower()/]Service.get[name.toUpperFirst()/]();
+        this.flagDelete = this.[name.toLower()/]Service.getDelete();
+        
+	[for (attribute)]
+		[if (type.name.startsWith('modal'))]
+		this.load[name.toUpperFirst()/]s();
+		this.loadItem[name.toUpperFirst()/](this.[aClass.name.toLower()/]);
+		[/if]
+	[/for]
+
+    }  
+
+save(){
+   this.[name.toLower()/]Service.save[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
+     if (res.status == 201 || res.status == 200){
+        swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
+        this.router.navigate(['['/] '../manage[name.toLower()/]' [']'/], { relativeTo: this.route })
+     }else if (res.status == 403){
+        swal('Error...', 'Usuario no tiene permiso para guardar [name.toUpperFirst()/].', 'error');
+     }else{
+       swal('Error...', '[name.toUpperFirst()/] save unsuccessfully.', 'error');
+     }
+   } );
+}
+
+delete(){
+  swal({
+    title: "Are you sure?",
+    text: "You will not be able to recover this [name.toLower()/]!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel!"
+  }).then((isConfirm) => {
+    if (isConfirm.value) {
+      this.[name.toLower()/]Service.delete[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
+        if (res.status == 201 || res.status == 200){
+          swal('Success...', '[name.toUpperFirst()/] item has been deleted successfully.', 'success');
+          this.router.navigate(['['/] '../manage[name.toLower()/]' [']'/], { relativeTo: this.route })
+        }else if (res.status == 403){
+          swal('Error...', 'Usuario no tiene permiso para guardar [name.toUpperFirst()/].', 'error');
+        }else{
+          swal('Error...', '[name.toUpperFirst()/] deleted unsuccessfully.', 'error');
+        }
+      },error =>{
+        if (error.status == 500){
+          swal('Warning...', '[name.toUpperFirst()/] no se puede eliminar debido a que esta asociado con otra entidad.', 'warning');
+        }
+      }
+	);
+    } else {
+      //swal("Cancelled", "[name.toUpperFirst()/] deleted unsuccessfully", "error");
+    }
+  });
+}
+
+[for (attribute)]
+	[comment Foering Key/]
+	[if (type.name.startsWith('modal'))]
+	load[name.toUpperFirst()/]s(){
+  		this.[name.toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
+    	if (data) {
+      	this.[name.toLowerFirst()/]List = data;
+    	}
+  		}, error => {
+    	swal('Error...', 'An error occurred while calling the [type.name.replaceAll('modal','').toUpperFirst()/]s.', 'error');
+  	});
+}
+
+ setClickedRow[name.toUpperFirst()/](index,[name.toLowerFirst()/]){
+	      
+		  [name.toLowerFirst()/].checked = ![name.toLowerFirst()/].checked;
+
+		  if ([name.toLowerFirst()/].checked){
+		  this.[name.toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.toLowerFirst()/]);
+		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id = [name.toLowerFirst()/].[name.toLowerFirst()/]Id;
+		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = [name.toLowerFirst()/].
+[for (p : Property | aClass.attribute)]
+	[if (p.type.name.startsWith('modal'))]
+			[for (pa : Package | aModel.packagedElement->filter(Package))]
+			[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
+			[for (paClass : Class | pa.packagedElement->filter(Class))]
+			[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
+				[for (attribute)]
+					[if (type.name.startsWith('display_modal'.concat(name.toLowerCase())))]
+					[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+						[name.toLower()/]+ "";
+					[/for]
+					[/if]
+				[/for]
+			[/if]
+			[/for]
+			[/if]
+			[/for]
+	[/if]
+[/for]
+	    	}else{
+            this.[name.toLowerFirst()/]Service.clear();
+			this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id = null;
+		    this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = "";
+		}
+}
+
+loadItem[name.toUpperFirst()/]([aClass.name.toLowerFirst()/]){
+  this.[name.toLowerFirst()/]Service.get[type.name.replaceAll('modal','').toUpperFirst()/]ById([aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id).subscribe(data => {
+    if (data) {
+      this.[name.toLowerFirst()/] = data;
+      this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = this.[name.toLowerFirst()/].
+[for (p : Property | aClass.attribute)]
+	[if (p.type.name.startsWith('modal'))]
+			[for (pa : Package | aModel.packagedElement->filter(Package))]
+			[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
+			[for (paClass : Class | pa.packagedElement->filter(Class))]
+			[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
+				[for (attribute)]
+					[if (type.name.startsWith('display_modal'.concat(name.toLowerCase())))]
+					[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+						[name.toLower()/]+ "";
+					[/for]
+					[/if]
+				[/for]
+			[/if]
+			[/for]
+			[/if]
+			[/for]
+	[/if]
+[/for]
+    }
+    }, error => {
+    swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
+  });
+
+}
+
+	[/if]
+[/for]
+
+
+return([name.toLower()/]){
+  this.location.back();
+}
+ 
+}
+[/file]
+			[/if]
+		[/for]
+	[/if]
+[/for]
+
+[/template]

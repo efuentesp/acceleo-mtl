@@ -43,13 +43,15 @@
                 <ul class="nav side-menu">{{user.authority}}
                 <!-- entities -->
 	 	[for (aClass : Class | p.packagedElement->filter(Class))]
-			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
-				  <li *ngIf="[name.toLower()/]_mgmnt"><a routerLink="./manage[name.toLower()/]" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar [name.toUpperFirst()/] </a>
+			[if (aClass.name.startsWith('entity_name')) ]
+				[for (anElement: Property | aClass.allOwnedElements()->filter(Property) )]
+				  <li *ngIf="[anElement.name.toLower()/]_mgmnt"><a routerLink="./manage[anElement.name.toLower()/]" routerLinkActive="active">
+				    <i class="fa fa-edit"></i> Administrar [anElement.default/] </a>
 				  </li>
-                  <li *ngIf="[name.toLower()/]"><a routerLink="./create[name.toLower()/]" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar [name.toUpperFirst()/] </a>
+                  <li *ngIf="[anElement.name.toLower()/]"><a routerLink="./create[anElement.name.toLower()/]" routerLinkActive="active" >
+                    <i class="fa fa-edit"></i> Agregar [anElement.default/] </a>
                   </li>
+				[/for]
 			[/if]
 		[/for]	
                 <!-- /entities -->  
