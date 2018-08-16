@@ -55,8 +55,8 @@ export class [name.toUpperFirst()/] {
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-	[name.toLowerFirst()/]Id: number = null;
-	[name.toLowerFirst()/]Item: string = '';
+	[type.name.replaceAll('modal', '').toLowerFirst()/]Id: number = null;
+	[type.name.replaceAll('modal', '').toLowerFirst()/]Item: string = '';
 	[/if]
 	[if (type.name.startsWith('notrequired'))]
 		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]

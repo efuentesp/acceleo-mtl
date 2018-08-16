@@ -17,7 +17,7 @@
 	<div class="page-title" style="background: #F7F7F7;">
 		<div class="title_left">
 	 	[for (apClass : Class | p.packagedElement->filter(Class))]
-			[if (apClass.name.startsWith('entity_name')) ]
+			[if (apClass.name.startsWith('entityname')) ]
 				[for (anElementPa: Property | apClass.allOwnedElements()->filter(Property) )]
 					[if anElementPa.name.equalsIgnoreCase(aClass.name)]
 			<h3>Administrar [anElementPa.default/]</h3>
@@ -70,7 +70,7 @@
 										<tr>
 										[for (attribute)]
 											[comment Display Result/]
-											[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+											[if (type.name.startsWith('displayresult'.concat(name.toLowerCase())))]
 											[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
 												[if (type.name.startsWith('modal') or type.name.startsWith('radio'))]
 												<th style="max-width:10%" hidden="true">[default.toUpperFirst()/]</th>
@@ -89,11 +89,15 @@
 										<tr *ngFor="let [name.toLowerCase()/] of [name.toLowerCase()/]List | filter[aClass.name.toUpperFirst()/]: busqueda[aClass.name.toUpperFirst()/] | paginate: {itemsPerPage: 10, currentPage:page, id: 'paginationTable[aClass.name.toUpperFirst()/]'}; let i = index" (click)="setClickedRow[name.toUpperFirst()/](i, [name.toLowerCase()/])" >
 											[for (attribute)]
 												[comment Display Result/]
-												[if (type.name.startsWith('display_result'.concat(name.toLowerCase())))]
+												[if (type.name.startsWith('displayresult'.concat(name.toLowerCase())))]
 												[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
-													[if (type.name.startsWith('modal') or type.name.startsWith('radio'))]
-												<td  style="max-width: 10%" hidden="true">{{[aClass.name.toLower()/].[name.toLowerCase()/]Id}}</td>
-												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[name.toLowerCase()/]Item}}</td>
+													[if (type.name.startsWith('modal'))]
+												<td  style="max-width: 10%" hidden="true">{{[aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerCase()/]Id}}</td>
+												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerCase()/]Item}}</td>
+													[/if]
+													[if (type.name.startsWith('radio'))]
+												<td  style="max-width: 10%" hidden="true">{{[aClass.name.toLower()/].[type.name.replaceAll('radio','').toLowerCase()/]Id}}</td>
+												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[type.name.replaceAll('radio','').toLowerCase()/]Item}}</td>
 													[/if]
 													[if not(type.name.startsWith('modal') or type.name.startsWith('radio'))]
 												<td  style="max-width: 10%">{{[aClass.name.toLower()/].[name.toLowerCase()/]}}</td>

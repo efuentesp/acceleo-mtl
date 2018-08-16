@@ -49,8 +49,8 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	public [name.toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
-    public [name.toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
+	public [type.name.replaceAll('modal','').toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [type.name.replaceAll('modal','').toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
 
 	public busqueda[type.name.replaceAll('modal','').toUpperFirst()/]='';
 	filterInput[type.name.replaceAll('modal','').toUpperFirst()/] = new FormControl();
@@ -63,7 +63,7 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
 				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
-	,private [name.toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
+	,private [type.name.replaceAll('modal','').toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
 	[/if]
 [/for]){
 
@@ -85,8 +85,8 @@ export class [name.toUpperFirst()/]EditComponent implements OnInit {
         
 	[for (attribute)]
 		[if (type.name.startsWith('modal'))]
-		this.load[name.toUpperFirst()/]s();
-		this.loadItem[name.toUpperFirst()/](this.[aClass.name.toLower()/]);
+		this.load[type.name.replaceAll('modal','').toUpperFirst()/]s();
+		this.loadItem[type.name.replaceAll('modal','').toUpperFirst()/](this.[aClass.name.toLower()/]);
 		[/if]
 	[/for]
 
@@ -140,24 +140,24 @@ delete(){
 [for (attribute)]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-	load[name.toUpperFirst()/]s(){
-  		this.[name.toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
+	load[type.name.replaceAll('modal','').toUpperFirst()/]s(){
+  		this.[type.name.replaceAll('modal','').toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
     	if (data) {
-      	this.[name.toLowerFirst()/]List = data;
+      	this.[type.name.replaceAll('modal','').toLowerFirst()/]List = data;
     	}
   		}, error => {
     	swal('Error...', 'An error occurred while calling the [type.name.replaceAll('modal','').toUpperFirst()/]s.', 'error');
   	});
 }
 
- setClickedRow[name.toUpperFirst()/](index,[name.toLowerFirst()/]){
+ setClickedRow[type.name.replaceAll('modal','').toUpperFirst()/](index,[type.name.replaceAll('modal','').toLowerFirst()/]){
 	      
-		  [name.toLowerFirst()/].checked = ![name.toLowerFirst()/].checked;
+		  [type.name.replaceAll('modal','').toLowerFirst()/].checked = ![type.name.replaceAll('modal','').toLowerFirst()/].checked;
 
-		  if ([name.toLowerFirst()/].checked){
-		  this.[name.toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([name.toLowerFirst()/]);
-		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id = [name.toLowerFirst()/].[name.toLowerFirst()/]Id;
-		  this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = [name.toLowerFirst()/].
+		  if ([type.name.replaceAll('modal','').toLowerFirst()/].checked){
+		  this.[type.name.replaceAll('modal','').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([type.name.replaceAll('modal','').toLowerFirst()/]);
+		  this.[aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id = [type.name.replaceAll('modal','').toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id;
+		  this.[aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Item = [type.name.replaceAll('modal','').toLowerFirst()/].
 [for (p : Property | aClass.attribute)]
 	[if (p.type.name.startsWith('modal'))]
 			[for (pa : Package | aModel.packagedElement->filter(Package))]
@@ -165,7 +165,7 @@ delete(){
 			[for (paClass : Class | pa.packagedElement->filter(Class))]
 			[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
 				[for (attribute)]
-					[if (type.name.startsWith('display_modal'.concat(name.toLowerCase())))]
+					[if (type.name.startsWith('displaymodal'.concat(name.toLowerCase())))]
 					[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
 						[name.toLower()/]+ "";
 					[/for]
@@ -178,17 +178,17 @@ delete(){
 	[/if]
 [/for]
 	    	}else{
-            this.[name.toLowerFirst()/]Service.clear();
-			this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id = null;
-		    this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = "";
+            this.[type.name.replaceAll('modal','').toLowerFirst()/]Service.clear();
+			this.[aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id = null;
+		    this.[aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Item = "";
 		}
 }
 
-loadItem[name.toUpperFirst()/]([aClass.name.toLowerFirst()/]){
-  this.[name.toLowerFirst()/]Service.get[type.name.replaceAll('modal','').toUpperFirst()/]ById([aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Id).subscribe(data => {
+loadItem[type.name.replaceAll('modal','').toUpperFirst()/]([aClass.name.toLowerFirst()/]){
+  this.[type.name.replaceAll('modal','').toLowerFirst()/]Service.get[type.name.replaceAll('modal','').toUpperFirst()/]ById([aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id).subscribe(data => {
     if (data) {
-      this.[name.toLowerFirst()/] = data;
-      this.[aClass.name.toLowerFirst()/].[name.toLowerFirst()/]Item = this.[name.toLowerFirst()/].
+      this.[type.name.replaceAll('modal','').toLowerFirst()/] = data;
+      this.[aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Item = this.[type.name.replaceAll('modal','').toLowerFirst()/].
 [for (p : Property | aClass.attribute)]
 	[if (p.type.name.startsWith('modal'))]
 			[for (pa : Package | aModel.packagedElement->filter(Package))]
@@ -196,7 +196,7 @@ loadItem[name.toUpperFirst()/]([aClass.name.toLowerFirst()/]){
 			[for (paClass : Class | pa.packagedElement->filter(Class))]
 			[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
 				[for (attribute)]
-					[if (type.name.startsWith('display_modal'.concat(name.toLowerCase())))]
+					[if (type.name.startsWith('displaymodal'.concat(name.toLowerCase())))]
 					[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
 						[name.toLower()/]+ "";
 					[/for]
@@ -210,7 +210,7 @@ loadItem[name.toUpperFirst()/]([aClass.name.toLowerFirst()/]){
 [/for]
     }
     }, error => {
-    swal('Error...', 'An error occurred while calling the [name.toLowerFirst()/]s.', 'error');
+    swal('Error...', 'An error occurred while calling the [type.name.replaceAll('modal','').toLowerFirst()/]s.', 'error');
   });
 
 }

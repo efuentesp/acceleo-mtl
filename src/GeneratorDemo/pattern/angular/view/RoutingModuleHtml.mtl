@@ -43,7 +43,7 @@
                 <ul class="nav side-menu">{{user.authority}}
                 <!-- entities -->
 	 	[for (aClass : Class | p.packagedElement->filter(Class))]
-			[if (aClass.name.startsWith('entity_name')) ]
+			[if (aClass.name.startsWith('entityname')) ]
 				[for (anElement: Property | aClass.allOwnedElements()->filter(Property) )]
 				  <li *ngIf="[anElement.name.toLower()/]_mgmnt"><a routerLink="./manage[anElement.name.toLower()/]" routerLinkActive="active">
 				    <i class="fa fa-edit"></i> Administrar [anElement.default/] </a>

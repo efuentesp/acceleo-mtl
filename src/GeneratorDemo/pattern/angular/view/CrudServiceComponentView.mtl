@@ -93,13 +93,13 @@ export class [name.toUpperFirst()/]Service {
 [for (attribute)]
 	[comment Enum/]
 	[if (type.name.startsWith('radio'))]
-		[type.name.replaceAll('radio','').toLowerFirst()/]Id: this.[aClass.name.toLower()/].[name.replaceAll('radio','').toLowerFirst()/]Id,
-		[type.name.replaceAll('radio','').toLowerFirst()/]Item: this.[aClass.name.toLower()/].[name.replaceAll('radio','').toLowerFirst()/]Item,
+		[type.name.replaceAll('radio','').toLowerFirst()/]Id: this.[aClass.name.toLower()/].[type.name.replaceAll('radio','').toLowerFirst()/]Id,
+		[type.name.replaceAll('radio','').toLowerFirst()/]Item: this.[aClass.name.toLower()/].[type.name.replaceAll('radio','').toLowerFirst()/]Item,
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-		[name.toLowerFirst()/]Id: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id,
-		[name.toLowerFirst()/]Item: this.[aClass.name.toLower()/].[name.toLowerFirst()/]Item,
+		[type.name.replaceAll('modal','').toLowerFirst()/]Id: this.[aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id,
+		[type.name.replaceAll('modal','').toLowerFirst()/]Item: this.[aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerFirst()/]Item,
 	[/if]
 	[if (type.name.startsWith('notrequired'))]
 		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
@@ -158,11 +158,12 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 	[comment Enum/]
 	[if (type.name.startsWith('radio'))]
 		this.[aClass.name.toLower()/].[type.name.replaceAll('radio','').toLowerFirst()/]Id = [aClass.name.toLower()/].[type.name.replaceAll('radio','').toLowerFirst()/]Id;
+		this.[aClass.name.toLower()/].[type.name.replaceAll('radio','').toLowerFirst()/]Item = [aClass.name.toLower()/].[type.name.replaceAll('radio','').toLowerFirst()/]Item;
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-		this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id = [aClass.name.toLower()/].[name.toLowerFirst()/]Id;
-		this.[aClass.name.toLower()/].[name.toLowerFirst()/]Item = [aClass.name.toLower()/].[name.toLowerFirst()/]Item;
+		this.[aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id = [aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id;
+		this.[aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerFirst()/]Item = [aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerFirst()/]Item;
 	[/if]
 	[if (type.name.startsWith('notrequired'))]
 		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
@@ -250,8 +251,8 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 			this.[aClass.name.toLower()/].[type.name.replaceAll('radio','').toLowerFirst()/]Item = null;
 	[/if]
 	[if (type.name.startsWith('modal'))]
-			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Id = null;
-			this.[aClass.name.toLower()/].[name.toLowerFirst()/]Item = null;
+			this.[aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id = null;
+			this.[aClass.name.toLower()/].[type.name.replaceAll('modal','').toLowerFirst()/]Item = null;
 	[/if]
 	[if (type.name.startsWith('notrequired'))]
 		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]

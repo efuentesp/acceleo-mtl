@@ -158,11 +158,11 @@ public class [name.toUpperFirst()/]Controller {
 [for (attribute)]
 	[comment Radio/]
 	[if (type.name.startsWith('radio'))]
-	[aClass.name.toLower()/]Found.set[name.replaceAll('radio','').toUpperFirst()/]Id([aClass.name.toLower()/].get[name.replaceAll('radio','').toUpperFirst()/]Id());
+	[aClass.name.toLower()/]Found.set[type.name.replaceAll('radio','').toUpperFirst()/]Id([aClass.name.toLower()/].get[type.name.replaceAll('radio','').toUpperFirst()/]Id());
 	[/if]
 	[comment Modal/]
 	[if (type.name.startsWith('modal'))]
-	[aClass.name.toLower()/]Found.set[name.replaceAll('modal','').toUpperFirst()/]Id([aClass.name.toLower()/].get[name.replaceAll('modal','').toUpperFirst()/]Id());
+	[aClass.name.toLower()/]Found.set[type.name.replaceAll('modal','').toUpperFirst()/]Id([aClass.name.toLower()/].get[type.name.replaceAll('modal','').toUpperFirst()/]Id());
 	[/if]
 	[comment Notrequired/]
 	[if (type.name.startsWith('notrequired'))]
@@ -303,7 +303,7 @@ public class [name.toUpperFirst()/]Controller {
 				[/if]
 				[comment Foering Key/]
 				[if (type.name.startsWith('modal'))]
-		[aClass.name.toLower()/].set[name.toUpperFirst()/]Id([aClass.name.toLower()/]Bean.get[name.toUpperFirst()/]Id());
+		//[aClass.name.toLower()/].set[name.toUpperFirst()/]Id([aClass.name.toLower()/]Bean.get[name.toUpperFirst()/]Id());
 				[/if]
 			[/for]
 		[for (attribute)]
@@ -351,7 +351,7 @@ or type.name = ('HFile')
 					[/if]
 					[comment Foering Key/]
 					[if (type.name.startsWith('modal'))]
-				bean.set[name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
+				//bean.set[name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
 					[/if]
 				[/for]
 				[for (attribute)]

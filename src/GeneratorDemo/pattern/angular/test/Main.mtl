@@ -1,0 +1,13 @@
+[comment encoding = UTF-8 /]
+[module Main('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import GeneratorDemo::pattern::angular::test::Crud/]
+
+
+[template public mainClass(aModel : Model)]
+
+	[comment @main /]	
+	[comment Java BackEnd/]
+	[aModel.generateElementCrud()/]   
+
+[/template]
+
