@@ -8,7 +8,11 @@
 [for (p : Package | aModel.packagedElement->filter(Package))]
 	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
 
-[file (('integration/java-crud-demo').concat('/java-crud-demo.js'), false, 'UTF-8')]
+
+[for (aClass : Class | p.packagedElement->filter(Class))]
+	[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud'))]
+[file (('integration/java-crud-demo').concat(aClass.name.toUpperFirst()).concat('-demo.js'), false, 'UTF-8')]
+
 
 describe('Prueba de Seguridad', function() {
 	//This turn off uncaught errors 
@@ -26,21 +30,6 @@ describe('Prueba de Seguridad', function() {
 		cy.url().should('contain', 'admin')
 		cy.screenshot('login_3')
 	})
-
-
-[for (aClass : Class | p.packagedElement->filter(Class))]
-	[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud'))]
-
-[for(attribute)]
-	
-	[name/]
-	[type.name/]
-	
-[/for]
-
-	[/if]
-[/for]
-
 
 	it('1. Crear una Aplicación nueva con datos incompletos', function() {		
 		cy.get('div#sidebar-menu').within(() => {
@@ -580,8 +569,11 @@ describe('Prueba de Seguridad', function() {
 	
 
 })
-
 [/file]
+	[/if]
+[/for]
+
+
 		
 	[/if]
 [/for]
