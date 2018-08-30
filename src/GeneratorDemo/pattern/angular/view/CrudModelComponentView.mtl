@@ -10,6 +10,8 @@
 			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
 
 [file ('app/admin/'.concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('.component.model.ts'), false, 'UTF-8')]
+import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+
 export class [name.toUpperFirst()/] {
 
 	[name.toLowerFirst()/]Id: number = null;
@@ -36,6 +38,7 @@ export class [name.toUpperFirst()/] {
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Date'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
 	[anAttribute.name.toLower()/]: string = '';
+	[anAttribute.name.toLower()/]Aux: NgbDateStruct = null;
 			[/if]
 		[/if]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Boolean'))] 

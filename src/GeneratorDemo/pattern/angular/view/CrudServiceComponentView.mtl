@@ -12,8 +12,7 @@
 [file ('app/admin/'.concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('.component.service.ts'), false, 'UTF-8')]
 import { Injectable }                              from '@angular/core';
 import { environment }                             from "../../../environments/environment";
-import { Http, Response }                          from "@angular/http";
-import { Headers, RequestOptions }                 from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -85,7 +84,13 @@ export class [name.toUpperFirst()/]Service {
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
 		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
 			[if not anAttribute.name.equalsIgnoreCase('id')]
+				[if anAttribute.type.name.equalsIgnoreCase('HDate')]
 		[anAttribute.name.toLower()/]: this.[aClass.name.toLower()/].[anAttribute.name.toLower()/], 
+		[anAttribute.name.toLower()/]Aux: this.[aClass.name.toLower()/].[anAttribute.name.toLower()/]Aux, 
+				[/if]
+				[if not anAttribute.type.name.equalsIgnoreCase('HDate')]
+		[anAttribute.name.toLower()/]: this.[aClass.name.toLower()/].[anAttribute.name.toLower()/], 
+				[/if]
 			[/if]    
 		[/if]
 	[/for]
@@ -111,6 +116,7 @@ export class [name.toUpperFirst()/]Service {
 			[/if]
 			[if (anElement.type.name.equalsIgnoreCase('HDate'))]
 		[anElement.name.toLower()/]: this.[aClass.name.toLower()/].[anElement.name.toLower()/],
+		[anElement.name.toLower()/]Aux: this.[aClass.name.toLower()/].[anElement.name.toLower()/]Aux,
 			[/if]
 			[if (anElement.type.name.equalsIgnoreCase('HTextLong'))]
 		[anElement.name.toLower()/]: this.[aClass.name.toLower()/].[anElement.name.toLower()/],
@@ -149,7 +155,13 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
 		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
 			[if not anAttribute.name.equalsIgnoreCase('id')]
-		this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = [aClass.name.toLower()/].[anAttribute.name.toLower()/];    
+				[if (anAttribute.type.name.equalsIgnoreCase('HDate'))]
+		this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = [aClass.name.toLower()/].[anAttribute.name.toLower()/];  
+		this.[aClass.name.toLower()/].[anAttribute.name.toLower()/]Aux = [aClass.name.toLower()/].[anAttribute.name.toLower()/]Aux;  
+				[/if]  
+				[if not (anAttribute.type.name.equalsIgnoreCase('HDate'))]
+		this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = [aClass.name.toLower()/].[anAttribute.name.toLower()/];  
+				[/if]  
 			[/if]
 		[/if]
 	[/for]
@@ -175,6 +187,7 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 			[/if]
 			[if (anElement.type.name.equalsIgnoreCase('HDate'))]
 		this.[aClass.name.toLower()/].[anElement.name.toLower()/] = [aClass.name.toLower()/].[anElement.name.toLower()/];
+		this.[aClass.name.toLower()/].[anElement.name.toLower()/]Aux = [aClass.name.toLower()/].[anElement.name.toLower()/]Aux;
 			[/if]
 			[if (anElement.type.name.equalsIgnoreCase('HTextLong'))]
 		this.[aClass.name.toLower()/].[anElement.name.toLower()/] = [aClass.name.toLower()/].[anElement.name.toLower()/];
@@ -229,12 +242,13 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 		[/if]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Double'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = '';    
+			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = '';  
 			[/if]
 		[/if]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Date'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
-			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = '';    
+			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/] = '';  
+			this.[aClass.name.toLower()/].[anAttribute.name.toLower()/]Aux = null;    
 			[/if]
 		[/if]
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Boolean'))] 
@@ -264,6 +278,7 @@ set[name.toUpperFirst()/]([name.toLower()/]: [name.toUpperFirst()/]) {
 			[/if]
 			[if (anElement.type.name.equalsIgnoreCase('HDate'))]
 		this.[aClass.name.toLower()/].[anElement.name.toLower()/] = '';
+		this.[aClass.name.toLower()/].[anElement.name.toLower()/]Aux = null;
 			[/if]
 			[if (anElement.type.name.equalsIgnoreCase('HTextLong'))]
 		this.[aClass.name.toLower()/].[anElement.name.toLower()/] = '';

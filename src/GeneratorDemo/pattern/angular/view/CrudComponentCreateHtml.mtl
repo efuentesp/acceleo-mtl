@@ -42,7 +42,7 @@
 
 		<div class="x_content">
 			<!-- start form for validation -->
-			<form #[aClass.name.toLower()/]Form="ngForm" id="[aClass.name.toLower()/]Form" class="form-horizontal form-label-left" data-parsley-validate>
+			<form #[aClass.name.toLower()/]Form="ngForm" id="[aClass.name.toLower()/]Form" class="form-horizontal form-label-left" (ngSubmit)="[aClass.name.toLower()/]Form.valid && save()" novalidate>
 				<input class="form-control" #[aClass.name.toLower()/]Id="ngModel" [aClass.name.toLower()/]Id="[aClass.name.toLower()/]Id" name="[aClass.name.toLower()/]Id" type="hidden" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[aClass.name.toLower()/]Id">
 					
 					[for (anAttribute: Property | getAllAttributes() -> sortedBy(lower))]
@@ -54,92 +54,110 @@
 						or anAttribute.type.name.startsWith('notrequired'))]
 						[comment modal/]
 						[if anAttribute.type.name.startsWith('modal')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.type.name.replaceAll('modal', '').toLower()/]Id.valid}">
 						<label class="control-label" for="[anAttribute.type.name.replaceAll('modal', '').toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<div class="input-group">
-							<input type="hidden" class="form-control input-md"  name="[anAttribute.type.name.replaceAll('modal', '').toLower()/]Id"  ['['/]ngModelOptions[']'/]="{standalone: true}" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name.replaceAll('modal', '').toLowerFirst()/]Id" #[anAttribute.type.name.replaceAll('modal', '').toLowerFirst()/]Id="ngModel">
-							<input type="text" class="form-control" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name.replaceAll('modal', '').toLowerFirst()/]Item"  ['['/]ngModelOptions[']'/]="{standalone: true}" #[anAttribute.type.name.replaceAll('modal', '').toLowerFirst()/]Item="ngModel" placeholder="[anAttribute.type.name.replaceAll('modal', '').toUpperFirst()/]...">
+							<input type="hidden" class="form-control input-md"  name="[anAttribute.type.name.replaceAll('modal', '').toLower()/]Id"   ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name.replaceAll('modal', '').toLowerFirst()/]Id"    #[anAttribute.type.name.replaceAll('modal', '').toLowerFirst()/]Id="ngModel" required>
+							<input type="text"   class="form-control input-md"  name="[anAttribute.type.name.replaceAll('modal', '').toLower()/]Item" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name.replaceAll('modal', '').toLowerFirst()/]Item"  #[anAttribute.type.name.replaceAll('modal', '').toLowerFirst()/]Item="ngModel" placeholder="[anAttribute.type.name.replaceAll('modal', '').toUpperFirst()/]...">
 							<span class="input-group-btn">
 								<button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modal[anAttribute.type.name.replaceAll('modal', '').toUpperFirst()/]">
 									<em class="fa fa-search"></em>
 								</button>
 							</span>
 						</div>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.type.name.replaceAll('modal', '').toLower()/]Id.valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 						[/if]
 					[comment atributes/]
 					[if anAttribute.type.name.equalsIgnoreCase('HText')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HCheckbox')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HInteger')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HDate')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/]Aux.valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
-						<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+						<div class="input-group col-md-12">	
+							<input class="form-control" placeholder="yyyy-mm-dd" name="[anAttribute.name.toLower()/]Aux" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]Aux" ngbDatepicker #[anAttribute.name.toLower()/]Aux="ngbDatepicker" required>
+							<span class="input-group-btn">
+								<button class="btn btn-outline-secondary" (click)="[anAttribute.name.toLower()/]Aux.toggle()" type="button">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/]Aux.valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HTextLong')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<textarea class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required></textarea>	
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.startsWith('radio')]
-					<div class="form-group">
-						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>		
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.type.name.toLower().replaceAll('radio', '')/].valid}">
+						<label class="control-label" for="[anAttribute.type.name.toLower().replaceAll('radio', '')/]">[anAttribute.default/]<span class="required">*</span></label>		
 						[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]	
-						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[name.toLower()/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name.replaceAll('radio', '')/]Id"> [default/]</div>		
+						<div class="col-md-12"><input type="radio" aria-label="Radio button for following text input" value="[name.toLower()/]" name="[anAttribute.type.name.toLower().replaceAll('radio', '')/]" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.type.name.replaceAll('radio', '')/]Id" required> [default/]</div>		
 						[/for]		
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HBoolean')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
-						
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HDouble')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" ng-pattern="/^['['/]0-9]+(\.['['/]0-9[']'/]{1,2})?$/" step="0.01" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="number" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HEmail')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HCurrency')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HImage')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[if anAttribute.type.name.equalsIgnoreCase('HFile')]
-					<div class="form-group">
+					<div class="form-group" ['['/]ngClass[']'/]="{ 'has-error': [aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid}">
 						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
 						<input class="form-control col-md-12" #[anAttribute.name.toLower()/]="ngModel" id="[anAttribute.name.toLower()/]" name="[anAttribute.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]" required>
+						<div *ngIf="[aClass.name.toLower()/]Form.submitted && ![anAttribute.name.toLower()/].valid" class="help-block">[anAttribute.default/] es requerido</div>
 					</div>
 					[/if]
 					[comment notrequired/]
@@ -164,9 +182,16 @@
 					</div>		
 							[/if]
 							[if anElement.type.name.equalsIgnoreCase('HDate')]
-					<div class="form-group">
-						<label class="control-label" for="[anElement.name.toLower()/]">[anAttribute.default/]</label>
-						<input class="form-control col-md-12" #[anElement.name.toLower()/]="ngModel" id="[anElement.name.toLower()/]" name="[anElement.name.toLower()/]" maxlength="128" type="text" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anElement.name.toLower()/]">
+					<div class="form-group ">
+						<label class="control-label" for="[anAttribute.name.toLower()/]">[anAttribute.default/]<span class="required">*</span></label>
+						<div class="input-group col-md-12">	
+							<input class="form-control" placeholder="yyyy-mm-dd" name="[anAttribute.name.toLower()/]Aux" ['['/](ngModel)[']'/]="[aClass.name.toLower()/].[anAttribute.name.toLower()/]Aux" ngbDatepicker #[anAttribute.name.toLower()/]Aux="ngbDatepicker">
+							<span class="input-group-btn">
+								<button class="btn btn-outline-secondary" (click)="[anAttribute.name.toLower()/]Aux.toggle()" type="button">
+									<em class="fa fa-calendar"></em>
+								</button>
+							</span>
+						</div>
 					</div>	
 							[/if]
 							[if anElement.type.name.equalsIgnoreCase('HTextLong')]
@@ -337,11 +362,11 @@
 							<button class="btn btn-link" (click)="return([aClass.name.toLower()/]Form)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="flag && !flagDelete">
-							<button class="btn btn-primary" ['['/]disabled[']'/]="![aClass.name.toLower()/]Form.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Modificar</button>
 							<button class="btn btn-link" (click)="return([aClass.name.toLower()/]Form)"> <span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 						<div *ngIf="!flag && !flagDelete">
-							<button class="btn btn-primary" ['['/]disabled[']'/]="![aClass.name.toLower()/]Form.valid" (click)="save()"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
+							<button class="btn btn-primary"><span style="margin-right:10px;"  class="fa fa-save"></span>Agregar</button>
 							<button class="btn btn-link" (click)="return([aClass.name.toLower()/]Form)"><span style="margin-right:10px;"  class="fa fa-arrow-left"></span>Regresar</button>
 						</div>
 					</div>

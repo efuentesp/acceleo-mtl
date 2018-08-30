@@ -16,8 +16,9 @@ import { Router, ActivatedRoute }                                          from 
 import { FormGroup, FormBuilder, Validators, FormControl }                 from '@angular/forms';
 import swal from 'sweetalert2';
 
-import { Location } from '@angular/common';
+import { Location, , DatePipe } from '@angular/common';
 import { User } from '../../user/user.component.model';
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
 import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
@@ -43,6 +44,7 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
     public user: User;
     public valueName: string;
     public token: string;
+	public datePipe = new DatePipe('en-US');
 
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
@@ -59,6 +61,7 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
     constructor(private router: Router,  
 				private route: ActivatedRoute, 
 				private location: Location,
+				private parserFormatter: NgbDateParserFormatter,
 				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
 [for (attribute)]
 	[if (type.name.startsWith('modal'))]
@@ -88,6 +91,13 @@ export class [name.toUpperFirst()/]CreateComponent implements OnInit {
     } 
 
 save(){
+
+	[for (attribute)]
+		[if (type.name.equalsIgnoreCase('HDate'))]
+	this.[aClass.name.toLower()/].[name.toLower()/] = this.parserFormatter.format(this.[aClass.name.toLower()/].[name.toLower()/]Aux);
+		[/if]
+	[/for]
+
    this.[name.toLower()/]Service.save[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
      if (res.status == 201 || res.status == 200){
         swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
