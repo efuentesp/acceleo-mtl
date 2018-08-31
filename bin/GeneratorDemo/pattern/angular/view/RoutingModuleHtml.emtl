@@ -9,110 +9,98 @@
       <body xsi:type="mtl:ForBlock">
         <body xsi:type="mtl:IfBlock">
           <body xsi:type="mtl:FileBlock" openMode="OverWrite">
-            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&lt;div class=&quot;nav-md&quot;>&#xA;    &lt;div class=&quot;container body&quot;>&#xA;      &lt;div class=&quot;main_container&quot;>&#xA;        &lt;div class=&quot;col-md-3 left_col&quot;>&#xA;          &lt;div class=&quot;left_col scroll-view&quot;>&#xA;            &lt;div class=&quot;navbar nav_title&quot; style=&quot;border: 0;&quot;>&#xA;                &lt;a href=&quot;index.html&quot; class=&quot;site_title&quot;>&lt;img src=&quot;../../assets/img/logo.png&quot; width=&quot;30px&quot;> &lt;span>PSG&lt;/span>&lt;/a>&#xA;            &lt;/div>&#xA;&#xA;            &lt;div class=&quot;clearfix&quot;>&lt;/div>&#xA;&#xA;            &lt;!-- menu profile quick info -->&#xA;            &lt;div class=&quot;profile clearfix&quot;>&#xA;              &lt;div class=&quot;profile_pic&quot;>&#xA;                &lt;img src=&quot;../../assets/img/body.jpg&quot; alt=&quot;...&quot; class=&quot;img-circle profile_img&quot;>&#xA;              &lt;/div>&#xA;              &lt;div class=&quot;profile_info&quot;>&#xA;                &lt;span>Welcome,&lt;/span>&#xA;                &lt;h2>{{valueName}} &lt;/h2>&#xA;                &lt;/div>&#xA;            &lt;/div>&#xA;            &lt;!-- /menu profile quick info -->&#xA;&#xA;            &lt;br />&#xA;&#xA;            &lt;!-- sidebar menu -->&#xA;&#xA;            &lt;div id=&quot;sidebar-menu&quot; class=&quot;main_menu_side hidden-print main_menu&quot;>&#xA;              &lt;div class=&quot;menu_section&quot;>&#xA;                &lt;h3>General&lt;/h3>&#xA;&#xA;                &lt;ul class=&quot;nav side-menu&quot;>{{user.authority}}&#xA;                &lt;!-- entities -->&#xA;"/>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&lt;div class=&quot;nav-md&quot;>&#xA;    &lt;div class=&quot;container body&quot;>&#xA;      &lt;div class=&quot;main_container&quot;>&#xA;        &lt;div class=&quot;col-md-3 left_col&quot;>&#xA;          &lt;div class=&quot;left_col scroll-view&quot;>&#xA;            &lt;div class=&quot;navbar nav_title&quot; style=&quot;border: 0;&quot;>&#xA;                &lt;a href=&quot;index.html&quot; class=&quot;site_title&quot;>&lt;img src=&quot;../../assets/img/logo.png&quot; width=&quot;30px&quot;> &lt;span>PSG&lt;/span>&lt;/a>&#xA;            &lt;/div>&#xA;&#xA;            &lt;div class=&quot;clearfix&quot;>&lt;/div>&#xA;&#xA;            &lt;!-- menu profile quick info -->&#xA;            &lt;div class=&quot;profile clearfix&quot;>&#xA;              &lt;div class=&quot;profile_pic&quot;>&#xA;                &lt;img src=&quot;../../assets/img/body.jpg&quot; alt=&quot;...&quot; class=&quot;img-circle profile_img&quot;>&#xA;              &lt;/div>&#xA;              &lt;div class=&quot;profile_info&quot;>&#xA;                &lt;span>Welcome,&lt;/span>&#xA;                &lt;h2>{{valueName}} &lt;/h2>&#xA;                &lt;/div>&#xA;            &lt;/div>&#xA;            &lt;!-- /menu profile quick info -->&#xA;&#xA;            &lt;br />&#xA;&#xA;            &lt;!-- sidebar menu -->&#xA;&#xA;            &lt;div id=&quot;sidebar-menu&quot; class=&quot;main_menu_side hidden-print main_menu scrollMenu&quot;>&#xA;              &lt;div class=&quot;menu_section&quot;>&#xA;                &lt;h3>General&lt;/h3>&#xA;&#xA;                &lt;ul class=&quot;nav side-menu&quot;>{{user.authority}}&#xA;                &lt;!-- entities -->&#xA;&#xA;"/>
             <body xsi:type="mtl:ForBlock">
               <body xsi:type="mtl:IfBlock">
-                <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&#x9;&#x9;  &lt;li *ngIf=&quot;"/>
-                <body xsi:type="ocl.ecore:OperationCallExp">
-                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                <body xsi:type="mtl:ForBlock">
+                  <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="              &lt;li>&lt;a>&lt;i class=&quot;fa fa-home&quot;>&lt;/i> "/>
+                  <body xsi:type="ocl.ecore:PropertyCallExp">
                     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/16">
-                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+                    <source xsi:type="ocl.ecore:VariableExp" name="anElement" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/anElement">
+                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
                     </source>
-                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
-                  </source>
-                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
-                </body>
-                <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_mgmnt&quot;>&lt;a routerLink=&quot;./manage"/>
-                <body xsi:type="ocl.ecore:OperationCallExp">
-                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                  <source xsi:type="ocl.ecore:PropertyCallExp">
-                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/17">
-                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-                    </source>
-                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
-                  </source>
-                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
-                </body>
-                <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; routerLinkActive=&quot;active&quot;>&#xA;&#x9;&#x9;&#x9;&#x9;    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Administrar "/>
-                <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/toUpperFirst">
-                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                  <source xsi:type="ocl.ecore:PropertyCallExp">
-                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/18">
-                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-                    </source>
-                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
-                  </source>
-                </body>
-                <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" &lt;/a>&#xA;&#x9;&#x9;&#x9;&#x9;  &lt;/li>&#xA;                  &lt;li *ngIf=&quot;"/>
-                <body xsi:type="ocl.ecore:OperationCallExp">
-                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                  <source xsi:type="ocl.ecore:PropertyCallExp">
-                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/19">
-                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-                    </source>
-                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
-                  </source>
-                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
-                </body>
-                <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot;>&lt;a routerLink=&quot;./create"/>
-                <body xsi:type="ocl.ecore:OperationCallExp">
-                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                  <source xsi:type="ocl.ecore:PropertyCallExp">
-                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/20">
-                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-                    </source>
-                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
-                  </source>
-                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
-                </body>
-                <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; routerLinkActive=&quot;active&quot; >&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Agregar "/>
-                <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/toUpperFirst">
-                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                  <source xsi:type="ocl.ecore:PropertyCallExp">
-                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/21">
-                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-                    </source>
-                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
-                  </source>
-                </body>
-                <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" &lt;/a>&#xA;                  &lt;/li>&#xA;"/>
-                <ifExpr xsi:type="ocl.ecore:IteratorExp" name="exists">
-                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-                  <source xsi:type="ocl.ecore:OperationCallExp" eType="/6/Set(Stereotype)" referredOperation="/1/oclstdlib_Collection(T)_Class/filter">
-                    <source xsi:type="ocl.ecore:OperationCallExp" eType="/6/Set(Stereotype)">
-                      <source xsi:type="ocl.ecore:VariableExp" name="aClass" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/aClass">
-                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-                      </source>
-                      <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getAppliedStereotypes"/>
-                    </source>
-                    <argument xsi:type="ocl.ecore:TypeExp" eType="/7/Stereotype">
-                      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
-                    </argument>
-                  </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property/default"/>
+                  </body>
+                  <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" &lt;span class=&quot;fa fa-chevron-down&quot;>&lt;/span>&lt;/a>&#xA;                &lt;ul class=&quot;nav child_menu&quot;>&#xA;                  &lt;li *ngIf=&quot;cuentadeahorro_mgmnt&quot;>&#xA;                    &lt;a routerLink=&quot;./manage"/>
                   <body xsi:type="ocl.ecore:OperationCallExp">
-                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
                     <source xsi:type="ocl.ecore:PropertyCallExp">
                       <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                      <source xsi:type="ocl.ecore:VariableExp" name="s" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/s">
-                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="anElement" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/anElement">
+                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
                       </source>
                       <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
                     </source>
-                    <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Crud">
-                      <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                    </argument>
-                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/="/>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
                   </body>
-                  <iterator xsi:type="ocl.ecore:Variable" name="s">
-                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
-                  </iterator>
+                  <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; >&#xA;                      Administrar "/>
+                  <body xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:VariableExp" name="anElement" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/anElement">
+                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property/default"/>
+                  </body>
+                  <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;                    &lt;/a>&#xA;                  &lt;/li>&#xA;                  &lt;li *ngIf=&quot;"/>
+                  <body xsi:type="ocl.ecore:OperationCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:PropertyCallExp">
+                      <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="anElement" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/anElement">
+                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+                      </source>
+                      <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+                    </source>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
+                  </body>
+                  <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot;>&#xA;                      &lt;a routerLink=&quot;./create"/>
+                  <body xsi:type="ocl.ecore:OperationCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:PropertyCallExp">
+                      <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="anElement" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/anElement">
+                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+                      </source>
+                      <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+                    </source>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLower"/>
+                  </body>
+                  <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&quot; >&#xA;                        Agregar "/>
+                  <body xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:VariableExp" name="anElement" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/anElement">
+                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property/default"/>
+                  </body>
+                  <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;                      &lt;/a>&#xA;                  &lt;/li>&#xA;                &lt;/ul>&#xA;&#x9;&#x9;&#x9;   &lt;/li>&#xA;"/>
+                  <loopVariable name="anElement">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+                  </loopVariable>
+                  <iterSet xsi:type="ocl.ecore:OperationCallExp" eType="/6/Set(Property)" referredOperation="/1/oclstdlib_Collection(T)_Class/filter">
+                    <source xsi:type="ocl.ecore:OperationCallExp" eType="/6/Set(Element)">
+                      <source xsi:type="ocl.ecore:VariableExp" name="aClass" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/aClass">
+                        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+                      </source>
+                      <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/allOwnedElements"/>
+                    </source>
+                    <argument xsi:type="ocl.ecore:TypeExp" eType="/7/Property">
+                      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+                    </argument>
+                  </iterSet>
+                </body>
+                <ifExpr xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/startsWith">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    <source xsi:type="ocl.ecore:VariableExp" name="aClass" referredVariable="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/aClass">
+                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="entityname">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </argument>
                 </ifExpr>
               </body>
               <loopVariable name="aClass">
@@ -130,7 +118,7 @@
                 </argument>
               </iterSet>
             </body>
-            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="                &lt;!-- /entities -->  &#xA;                &lt;/ul>&#xA;&#xA;                &lt;div *ngIf=&quot;manage&quot;>&#xA;                &lt;h3>Admin&lt;/h3>&#xA;                &lt;/div>&#xA;&#xA;                &lt;ul class=&quot;nav side-menu&quot;>&#xA;                  &lt;li>&lt;a *ngIf=&quot;manage&quot; routerLink=&quot;./manage&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Manage Privileges &lt;/a>&#xA;                  &lt;/li>&#xA;                  &lt;li  *ngIf=&quot;authority_mgmnt&quot;>&lt;a routerLink=&quot;./manageAuthority&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Administrar Authority &lt;/a>&#xA;                  &lt;/li>&#xA;                  &lt;li  *ngIf=&quot;authority&quot;>&lt;a routerLink=&quot;./createAuthority&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Agregar Authority&lt;/a>&#xA;                  &lt;/li>&#xA;                  &lt;li  *ngIf=&quot;user_mgmnt&quot;>&lt;a routerLink=&quot;./manageUser&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Administrar User &lt;/a>&#xA;                  &lt;/li>&#xA;                  &lt;li  *ngIf=&quot;user&quot;>&lt;a routerLink=&quot;./createUser&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Agregar User &lt;/a>&#xA;                  &lt;/li>&#xA;                &lt;/ul>&#xA;&#xA;            &lt;/div>&#xA;            &lt;/div>&#xA;            &lt;!-- /sidebar menu -->&#xA;&#xA;            &lt;!-- /menu footer buttons -->&#xA;            &lt;div class=&quot;sidebar-footer hidden-small&quot;>&#xA;              &lt;a data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Settings&quot;>&#xA;                &lt;span class=&quot;glyphicon glyphicon-cog&quot; aria-hidden=&quot;true&quot;>&lt;/span>&#xA;              &lt;/a>&#xA;              &lt;a data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;FullScreen&quot;>&#xA;                &lt;span class=&quot;glyphicon glyphicon-fullscreen&quot; aria-hidden=&quot;true&quot;>&lt;/span>&#xA;              &lt;/a>&#xA;              &lt;a data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Lock&quot;>&#xA;                &lt;span class=&quot;glyphicon glyphicon-eye-close&quot; aria-hidden=&quot;true&quot;>&lt;/span>&#xA;              &lt;/a>&#xA;              &lt;a data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Logout&quot; href=&quot;login.html&quot;>&#xA;                &lt;span class=&quot;glyphicon glyphicon-off&quot; aria-hidden=&quot;true&quot;>&lt;/span>&#xA;              &lt;/a>&#xA;            &lt;/div>&#xA;            &lt;!-- /menu footer buttons -->&#xA;          &lt;/div>&#xA;        &lt;/div>&#xA;&#xA;        &lt;!-- top navigation -->&#xA;        &lt;div class=&quot;top_nav&quot;>&#xA;          &lt;div class=&quot;nav_menu&quot;>&#xA;            &lt;nav>&#xA;              &lt;div class=&quot;nav toggle&quot;>&#xA;                &lt;a id=&quot;menu_toggle&quot;>&lt;i class=&quot;fa fa-bars&quot;>&lt;/i>&lt;/a>&#xA;              &lt;/div>&#xA;&#xA;              &lt;ul class=&quot;nav navbar-nav navbar-right&quot;>&#xA;                &lt;li class=&quot;&quot;>&#xA;                  &lt;a href=&quot;javascript:;&quot; class=&quot;user-profile dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; aria-expanded=&quot;false&quot;>&#xA;                    &lt;img src=&quot;../../assets/img/body.jpg&quot; alt=&quot;&quot;>{{valueName}}&#xA;                    &lt;span class=&quot; fa fa-angle-down&quot;>&lt;/span>&#xA;                  &lt;/a>&#xA;                  &lt;ul class=&quot;dropdown-menu dropdown-usermenu pull-right&quot;>&#xA;                    &lt;li style=&quot;text-align: right&quot;>&lt;button (click) = &quot;logout()&quot; style=&quot;background: none;&quot; >LogOut&lt;/button>&lt;/li>&#xA;                  &lt;/ul>&#xA;                &lt;/li>&#xA;              &lt;/ul>&#xA;            &lt;/nav>&#xA;          &lt;/div>&#xA;        &lt;/div>&#xA;        &lt;!-- /top navigation -->&#xA;&#xA;        &lt;!-- page content -->&#xA;        &lt;div class=&quot;container body&quot;>&#xA;          &lt;div class=&quot;right_col&quot; role=&quot;main&quot;>&#xA;              &lt;div class=&quot;row&quot;>&#xA;                  &lt;div class=&quot;col-md-12 col-sm-12 col-xs-12&quot;>&#xA;&#xA;&#xA;                            &lt;router-outlet>&lt;/router-outlet>&#xA;&#xA;&#xA;                  &lt;/div>&#xA;                &lt;/div>&#xA;              &lt;/div>&#xA;            &lt;/div>&#xA;&#xA;        &lt;!-- /page content -->&#xA;&#xA;        &lt;!-- footer content -->&#xA;        &lt;footer>&#xA;          &lt;div class=&quot;pull-right&quot;>&#xA;            &lt;a href=&quot;http://www.softtek.com/es/&quot;>@ Softtek 2018&lt;/a>&#xA;          &lt;/div>&#xA;          &lt;div class=&quot;clearfix&quot;>&lt;/div>&#xA;        &lt;/footer>&#xA;        &lt;!-- /footer content -->&#xA;      &lt;/div>&#xA;    &lt;/div>&#xA;    &lt;/div>&#xA;&#xA;"/>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;                &lt;!-- /entities -->  &#xA;                &lt;/ul>&#xA;&#xA;                &lt;div *ngIf=&quot;manage&quot;>&#xA;                &lt;h3>Admin&lt;/h3>&#xA;                &lt;/div>&#xA;&#xA;                &lt;ul class=&quot;nav side-menu&quot;>&#xA;                  &lt;li>&lt;a *ngIf=&quot;manage&quot; routerLink=&quot;./manage&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Manage Privileges &lt;/a>&#xA;                  &lt;/li>&#xA;                  &lt;li  *ngIf=&quot;authority_mgmnt&quot;>&lt;a routerLink=&quot;./manageAuthority&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Administrar Authority &lt;/a>&#xA;                  &lt;/li>&#xA;                  &lt;li  *ngIf=&quot;authority&quot;>&lt;a routerLink=&quot;./createAuthority&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Agregar Authority&lt;/a>&#xA;                  &lt;/li>&#xA;                  &lt;li  *ngIf=&quot;user_mgmnt&quot;>&lt;a routerLink=&quot;./manageUser&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Administrar User &lt;/a>&#xA;                  &lt;/li>&#xA;                  &lt;li  *ngIf=&quot;user&quot;>&lt;a routerLink=&quot;./createUser&quot; routerLinkActive=&quot;active&quot;>&#xA;                    &lt;i class=&quot;fa fa-edit&quot;>&lt;/i> Agregar User &lt;/a>&#xA;                  &lt;/li>&#xA;                &lt;/ul>&#xA;&#xA;            &lt;/div>&#xA;            &lt;/div>&#xA;            &lt;!-- /sidebar menu -->&#xA;&#xA;            &lt;!-- /menu footer buttons -->&#xA;            &lt;div class=&quot;sidebar-footer hidden-small&quot;>&#xA;              &lt;a data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Settings&quot;>&#xA;                &lt;span class=&quot;glyphicon glyphicon-cog&quot; aria-hidden=&quot;true&quot;>&lt;/span>&#xA;              &lt;/a>&#xA;              &lt;a data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;FullScreen&quot;>&#xA;                &lt;span class=&quot;glyphicon glyphicon-fullscreen&quot; aria-hidden=&quot;true&quot;>&lt;/span>&#xA;              &lt;/a>&#xA;              &lt;a data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Lock&quot;>&#xA;                &lt;span class=&quot;glyphicon glyphicon-eye-close&quot; aria-hidden=&quot;true&quot;>&lt;/span>&#xA;              &lt;/a>&#xA;              &lt;a data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Logout&quot; href=&quot;login.html&quot;>&#xA;                &lt;span class=&quot;glyphicon glyphicon-off&quot; aria-hidden=&quot;true&quot;>&lt;/span>&#xA;              &lt;/a>&#xA;            &lt;/div>&#xA;            &lt;!-- /menu footer buttons -->&#xA;          &lt;/div>&#xA;        &lt;/div>&#xA;&#xA;        &lt;!-- top navigation -->&#xA;        &lt;div class=&quot;top_nav&quot;>&#xA;          &lt;div class=&quot;nav_menu&quot;>&#xA;            &lt;nav>&#xA;              &lt;div class=&quot;nav toggle&quot;>&#xA;                &lt;a id=&quot;menu_toggle&quot;>&lt;i class=&quot;fa fa-bars&quot;>&lt;/i>&lt;/a>&#xA;              &lt;/div>&#xA;&#xA;              &lt;ul class=&quot;nav navbar-nav navbar-right&quot;>&#xA;                &lt;li class=&quot;&quot;>&#xA;                  &lt;a href=&quot;javascript:;&quot; class=&quot;user-profile dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; aria-expanded=&quot;false&quot;>&#xA;                    &lt;img src=&quot;../../assets/img/body.jpg&quot; alt=&quot;&quot;>{{valueName}}&#xA;                    &lt;span class=&quot; fa fa-angle-down&quot;>&lt;/span>&#xA;                  &lt;/a>&#xA;                  &lt;ul class=&quot;dropdown-menu dropdown-usermenu pull-right&quot;>&#xA;                    &lt;li style=&quot;text-align: right&quot;>&lt;button (click) = &quot;logout()&quot; style=&quot;background: none;&quot; >LogOut&lt;/button>&lt;/li>&#xA;                  &lt;/ul>&#xA;                &lt;/li>&#xA;              &lt;/ul>&#xA;            &lt;/nav>&#xA;          &lt;/div>&#xA;        &lt;/div>&#xA;        &lt;!-- /top navigation -->&#xA;&#xA;        &lt;!-- page content -->&#xA;        &lt;div class=&quot;container body&quot;>&#xA;          &lt;div class=&quot;right_col&quot; role=&quot;main&quot;>&#xA;              &lt;div class=&quot;row&quot;>&#xA;                  &lt;div class=&quot;col-md-12 col-sm-12 col-xs-12&quot;>&#xA;&#xA;&#xA;                            &lt;router-outlet>&lt;/router-outlet>&#xA;&#xA;&#xA;                  &lt;/div>&#xA;                &lt;/div>&#xA;              &lt;/div>&#xA;            &lt;/div>&#xA;&#xA;        &lt;!-- /page content -->&#xA;&#xA;        &lt;!-- footer content -->&#xA;        &lt;footer>&#xA;          &lt;div class=&quot;pull-right&quot;>&#xA;            &lt;a href=&quot;http://www.softtek.com/es/&quot;>@ Softtek 2018&lt;/a>&#xA;          &lt;/div>&#xA;          &lt;div class=&quot;clearfix&quot;>&lt;/div>&#xA;        &lt;/footer>&#xA;        &lt;!-- /footer content -->&#xA;      &lt;/div>&#xA;    &lt;/div>&#xA;    &lt;/div>&#xA;&#xA;"/>
             <fileUrl xsi:type="ocl.ecore:OperationCallExp">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
               <source xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="app/admin">
@@ -184,9 +172,12 @@
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eAnnotations>
-      <eOperations name="toUpperFirst">
-        <eAnnotations source="MTL"/>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      <eOperations name="startsWith">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="substring">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
       </eOperations>
       <eOperations name="equalsIgnoreCase">
         <eAnnotations source="MTL non-standard"/>
@@ -276,8 +267,11 @@
     <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Class)" instanceClassName="java.util.Set">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Stereotype)" instanceClassName="java.util.Set">
-      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Element)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Property)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="types">
@@ -287,8 +281,8 @@
     <eClassifiers xsi:type="ocl.ecore:TypeType" name="Class">
       <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:TypeType" name="Stereotype">
-      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="Property">
+      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
     </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
@@ -319,19 +313,31 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
   </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
@@ -351,7 +357,7 @@
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/generateElementRoutingModuleHtml">
       <details key="start" value="99"/>
-      <details key="end" value="6029"/>
+      <details key="end" value="6301"/>
       <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/generateElementRoutingModuleHtml/%">
@@ -361,305 +367,290 @@
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/generateElementRoutingModuleHtml/%.1">
       <details key="start" value="185"/>
-      <details key="end" value="6017"/>
+      <details key="end" value="6289"/>
       <details key="line" value="8"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/generateElementRoutingModuleHtml/%.1/%">
       <details key="start" value="248"/>
-      <details key="end" value="6010"/>
+      <details key="end" value="6282"/>
       <details key="line" value="9"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/generateElementRoutingModuleHtml/%.1/%/%">
       <details key="start" value="306"/>
-      <details key="end" value="6004"/>
+      <details key="end" value="6276"/>
       <details key="line" value="10"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%">
       <details key="start" value="378"/>
-      <details key="end" value="1564"/>
+      <details key="end" value="1576"/>
       <details key="line" value="11"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1">
-      <details key="start" value="1567"/>
-      <details key="end" value="2168"/>
-      <details key="line" value="45"/>
-    </eAnnotations>
-    <eAnnotations source="positions.7" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%">
-      <details key="start" value="1628"/>
-      <details key="end" value="2159"/>
+      <details key="start" value="1576"/>
+      <details key="end" value="2440"/>
       <details key="line" value="46"/>
     </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%">
+      <details key="start" value="1635"/>
+      <details key="end" value="2433"/>
+      <details key="line" value="47"/>
+    </eAnnotations>
     <eAnnotations source="positions.8" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%">
-      <details key="start" value="1728"/>
-      <details key="end" value="1745"/>
-      <details key="line" value="47"/>
-    </eAnnotations>
-    <eAnnotations source="positions.9" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.1">
-      <details key="start" value="1746"/>
-      <details key="end" value="1760"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.10" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.1/%">
-      <details key="start" value="1746"/>
-      <details key="end" value="1750"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.11" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.1/%/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.12" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.2">
-      <details key="start" value="1762"/>
-      <details key="end" value="1793"/>
-      <details key="line" value="47"/>
-    </eAnnotations>
-    <eAnnotations source="positions.13" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.3">
-      <details key="start" value="1794"/>
-      <details key="end" value="1808"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.14" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.3/%">
-      <details key="start" value="1794"/>
-      <details key="end" value="1798"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.15" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.3/%/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.16" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.4">
-      <details key="start" value="1810"/>
-      <details key="end" value="1886"/>
-      <details key="line" value="47"/>
-    </eAnnotations>
-    <eAnnotations source="positions.17" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.5">
-      <details key="start" value="1887"/>
-      <details key="end" value="1906"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.18" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.5/%">
-      <details key="start" value="1887"/>
-      <details key="end" value="1891"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.19" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.5/%/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.20" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.6">
-      <details key="start" value="1908"/>
-      <details key="end" value="1955"/>
+      <details key="start" value="1682"/>
+      <details key="end" value="2426"/>
       <details key="line" value="48"/>
     </eAnnotations>
-    <eAnnotations source="positions.21" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.7">
-      <details key="start" value="1956"/>
-      <details key="end" value="1970"/>
+    <eAnnotations source="positions.9" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%">
+      <details key="start" value="1757"/>
+      <details key="end" value="1805"/>
+      <details key="line" value="49"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.1">
+      <details key="start" value="1806"/>
+      <details key="end" value="1823"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.22" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.7/%">
-      <details key="start" value="1956"/>
-      <details key="end" value="1960"/>
+    <eAnnotations source="positions.11" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.1/anElement">
+      <details key="start" value="1806"/>
+      <details key="end" value="1815"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.23" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.7/%/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
+    <eAnnotations source="positions.12" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.2">
+      <details key="start" value="1825"/>
+      <details key="end" value="2010"/>
+      <details key="line" value="49"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.3">
+      <details key="start" value="2011"/>
+      <details key="end" value="2035"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.24" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.8">
-      <details key="start" value="1972"/>
-      <details key="end" value="1997"/>
-      <details key="line" value="50"/>
-    </eAnnotations>
-    <eAnnotations source="positions.25" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.9">
-      <details key="start" value="1998"/>
-      <details key="end" value="2012"/>
+    <eAnnotations source="positions.14" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.3/%">
+      <details key="start" value="2011"/>
+      <details key="end" value="2025"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.26" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.9/%">
-      <details key="start" value="1998"/>
-      <details key="end" value="2002"/>
+    <eAnnotations source="positions.15" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.3/%/anElement">
+      <details key="start" value="2011"/>
+      <details key="end" value="2020"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.27" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.9/%/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
+    <eAnnotations source="positions.16" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.4">
+      <details key="start" value="2037"/>
+      <details key="end" value="2075"/>
+      <details key="line" value="52"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.5">
+      <details key="start" value="2076"/>
+      <details key="end" value="2093"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.28" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.10">
-      <details key="start" value="2014"/>
-      <details key="end" value="2099"/>
-      <details key="line" value="50"/>
-    </eAnnotations>
-    <eAnnotations source="positions.29" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.11">
-      <details key="start" value="2100"/>
-      <details key="end" value="2119"/>
+    <eAnnotations source="positions.18" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.5/anElement">
+      <details key="start" value="2076"/>
+      <details key="end" value="2085"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.30" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.11/%">
-      <details key="start" value="2100"/>
-      <details key="end" value="2104"/>
+    <eAnnotations source="positions.19" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.6">
+      <details key="start" value="2095"/>
+      <details key="end" value="2174"/>
+      <details key="line" value="54"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.7">
+      <details key="start" value="2175"/>
+      <details key="end" value="2199"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.31" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.11/%/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
+    <eAnnotations source="positions.21" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.7/%">
+      <details key="start" value="2175"/>
+      <details key="end" value="2189"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.32" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.12">
-      <details key="start" value="2121"/>
-      <details key="end" value="2151"/>
-      <details key="line" value="51"/>
-    </eAnnotations>
-    <eAnnotations source="positions.33" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists">
-      <details key="start" value="1633"/>
-      <details key="end" value="1725"/>
+    <eAnnotations source="positions.22" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.7/%/anElement">
+      <details key="start" value="2175"/>
+      <details key="end" value="2184"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.34" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/%">
-      <details key="start" value="1634"/>
-      <details key="end" value="1684"/>
+    <eAnnotations source="positions.23" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.8">
+      <details key="start" value="2201"/>
+      <details key="end" value="2249"/>
+      <details key="line" value="56"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.9">
+      <details key="start" value="2250"/>
+      <details key="end" value="2274"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.35" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/%/%">
-      <details key="start" value="1634"/>
-      <details key="end" value="1664"/>
+    <eAnnotations source="positions.25" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.9/%">
+      <details key="start" value="2250"/>
+      <details key="end" value="2264"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.36" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/%/%/aClass">
-      <details key="start" value="1634"/>
-      <details key="end" value="1640"/>
+    <eAnnotations source="positions.26" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.9/%/anElement">
+      <details key="start" value="2250"/>
+      <details key="end" value="2259"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.37" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/%/%.1">
-      <details key="start" value="1673"/>
-      <details key="end" value="1683"/>
+    <eAnnotations source="positions.27" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.10">
+      <details key="start" value="2276"/>
+      <details key="end" value="2312"/>
+      <details key="line" value="57"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.11">
+      <details key="start" value="2313"/>
+      <details key="end" value="2330"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.38" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/%.1">
+    <eAnnotations source="positions.29" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.11/anElement">
+      <details key="start" value="2313"/>
+      <details key="end" value="2322"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.12">
+      <details key="start" value="2332"/>
+      <details key="end" value="2418"/>
+      <details key="line" value="59"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/anElement">
+      <details key="start" value="1688"/>
+      <details key="end" value="1707"/>
+      <details key="line" value="48"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.13">
       <details key="start" value="1710"/>
-      <details key="end" value="1723"/>
+      <details key="end" value="1753"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.39" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/%.1/%">
+    <eAnnotations source="positions.33" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.13/%">
+      <details key="start" value="1710"/>
+      <details key="end" value="1735"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.13/%/aClass">
       <details key="start" value="1710"/>
       <details key="end" value="1716"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.40" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/%.1/%/s">
-      <details key="start" value="1710"/>
-      <details key="end" value="1711"/>
+    <eAnnotations source="positions.35" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%/%.13/%.1">
+      <details key="start" value="1744"/>
+      <details key="end" value="1752"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.41" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/%.1/%.1">
-      <details key="start" value="1717"/>
-      <details key="end" value="1723"/>
+    <eAnnotations source="positions.36" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.1">
+      <details key="start" value="1639"/>
+      <details key="end" value="1677"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.42" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/exists/s">
-      <details key="start" value="1694"/>
-      <details key="end" value="1707"/>
+    <eAnnotations source="positions.37" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.1/%">
+      <details key="start" value="1640"/>
+      <details key="end" value="1651"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.43" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/aClass">
-      <details key="start" value="1573"/>
-      <details key="end" value="1587"/>
-      <details key="line" value="45"/>
-    </eAnnotations>
-    <eAnnotations source="positions.44" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%.1">
-      <details key="start" value="1590"/>
-      <details key="end" value="1622"/>
+    <eAnnotations source="positions.38" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.1/%/aClass">
+      <details key="start" value="1640"/>
+      <details key="end" value="1646"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.45" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%.1/%">
-      <details key="start" value="1590"/>
-      <details key="end" value="1607"/>
+    <eAnnotations source="positions.39" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%/%.1/%.1">
+      <details key="start" value="1663"/>
+      <details key="end" value="1675"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.46" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%.1/%/p">
-      <details key="start" value="1590"/>
-      <details key="end" value="1591"/>
+    <eAnnotations source="positions.40" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/aClass">
+      <details key="start" value="1582"/>
+      <details key="end" value="1596"/>
+      <details key="line" value="46"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%.1">
+      <details key="start" value="1599"/>
+      <details key="end" value="1631"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.47" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%.1/%.1">
-      <details key="start" value="1616"/>
-      <details key="end" value="1621"/>
+    <eAnnotations source="positions.42" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%.1/%">
+      <details key="start" value="1599"/>
+      <details key="end" value="1616"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.48" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.2">
-      <details key="start" value="2170"/>
-      <details key="end" value="5997"/>
-      <details key="line" value="54"/>
+    <eAnnotations source="positions.43" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%.1/%/p">
+      <details key="start" value="1599"/>
+      <details key="end" value="1600"/>
+      <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.49" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.3">
+    <eAnnotations source="positions.44" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.1/%.1/%.1">
+      <details key="start" value="1625"/>
+      <details key="end" value="1630"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.2">
+      <details key="start" value="2441"/>
+      <details key="end" value="6269"/>
+      <details key="line" value="66"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.3">
       <details key="start" value="313"/>
       <details key="end" value="359"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.50" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.3/%">
+    <eAnnotations source="positions.47" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.3/%">
       <details key="start" value="313"/>
       <details key="end" value="326"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.51" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.3/%.1">
+    <eAnnotations source="positions.48" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.3/%.1">
       <details key="start" value="334"/>
       <details key="end" value="358"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.52" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.4">
+    <eAnnotations source="positions.49" references="/0/generateElementRoutingModuleHtml/%.1/%/%/%.4">
       <details key="start" value="368"/>
       <details key="end" value="375"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.53" references="/0/generateElementRoutingModuleHtml/%.1/%/%.1">
+    <eAnnotations source="positions.50" references="/0/generateElementRoutingModuleHtml/%.1/%/%.1">
       <details key="start" value="252"/>
       <details key="end" value="303"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.54" references="/0/generateElementRoutingModuleHtml/%.1/%/%.1/%">
+    <eAnnotations source="positions.51" references="/0/generateElementRoutingModuleHtml/%.1/%/%.1/%">
       <details key="start" value="252"/>
       <details key="end" value="258"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.55" references="/0/generateElementRoutingModuleHtml/%.1/%/%.1/%/p">
+    <eAnnotations source="positions.52" references="/0/generateElementRoutingModuleHtml/%.1/%/%.1/%/p">
       <details key="start" value="252"/>
       <details key="end" value="253"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.56" references="/0/generateElementRoutingModuleHtml/%.1/%/%.1/%.1">
+    <eAnnotations source="positions.53" references="/0/generateElementRoutingModuleHtml/%.1/%/%.1/%.1">
       <details key="start" value="276"/>
       <details key="end" value="302"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.57" references="/0/generateElementRoutingModuleHtml/%.1/p">
+    <eAnnotations source="positions.54" references="/0/generateElementRoutingModuleHtml/%.1/p">
       <details key="start" value="191"/>
       <details key="end" value="202"/>
       <details key="line" value="8"/>
     </eAnnotations>
-    <eAnnotations source="positions.58" references="/0/generateElementRoutingModuleHtml/%.1/%.1">
+    <eAnnotations source="positions.55" references="/0/generateElementRoutingModuleHtml/%.1/%.1">
       <details key="start" value="205"/>
       <details key="end" value="244"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.59" references="/0/generateElementRoutingModuleHtml/%.1/%.1/%">
+    <eAnnotations source="positions.56" references="/0/generateElementRoutingModuleHtml/%.1/%.1/%">
       <details key="start" value="205"/>
       <details key="end" value="227"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.60" references="/0/generateElementRoutingModuleHtml/%.1/%.1/%/aModel">
+    <eAnnotations source="positions.57" references="/0/generateElementRoutingModuleHtml/%.1/%.1/%/aModel">
       <details key="start" value="205"/>
       <details key="end" value="211"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.61" references="/0/generateElementRoutingModuleHtml/%.1/%.1/%.1">
+    <eAnnotations source="positions.58" references="/0/generateElementRoutingModuleHtml/%.1/%.1/%.1">
       <details key="start" value="236"/>
       <details key="end" value="243"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.62" references="/0/generateElementRoutingModuleHtml/aModel">
+    <eAnnotations source="positions.59" references="/0/generateElementRoutingModuleHtml/aModel">
       <details key="start" value="149"/>
       <details key="end" value="163"/>
       <details key="line" value="5"/>

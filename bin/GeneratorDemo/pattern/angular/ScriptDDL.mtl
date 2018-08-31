@@ -27,78 +27,59 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `afiliado`
+-- Table structure for table `[name.toLower()/]`
 --
 DROP TABLE IF EXISTS `[name.toLower()/]`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `[name.toLower()/]` ( 
+[comment Required Attributes/]
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]	
+		[if (anElement.name.equalsIgnoreCase('typeSql'))]
+			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+`[anAttribute.name.toLowerFirst()/]` [anElement.default/] DEFAULT NULL,
+			[/if]
+		[/if]	
+	[/for]
+[/for]
+[comment Not Required Attributes/]
+[for (c : Package | aModel.packagedElement->filter(Package))]
+	[if c.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+		[for (class : Class | c.packagedElement->filter(Class))]
+			[if (class.name.startsWith('notrequired'.concat(aClass.name.toLower())))]
+				[for (attribute: Property | getAllAttributes())]
+					[for (element: Property | attribute.type.allOwnedElements()->filter(Property) )]
+						[if (element.name.equalsIgnoreCase('typeJava'))]
+							[if not (attribute.name.equalsIgnoreCase('id'))]
+`[attribute.name.toLowerFirst()/]` [element.default/] DEFAULT NULL,
+							[/if]
+						[/if]
+					[/for]
+				[/for]
+			[/if]
+		[/for]
+	[/if]
+[/for]
 [for (attribute)]
 	[comment Enum/]
-	[if not (type.name = ('HText') 
-		or type.name.startsWith('modal') 
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency')
-or type.name = ('HImage')
-or type.name = ('HFile')
-)]
-`[type.name.toLowerFirst()/]Id` varchar(100) DEFAULT NULL,
+	[if (type.name.startsWith('radio'))]
+`[type.name.replaceAll('radio','').toLowerFirst()/]Id` varchar(100) DEFAULT NULL,
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-`[name.toLowerFirst()/]Id` int(11) DEFAULT NULL,
+`[type.name.replaceAll('modal','').toLowerFirst()/]Id` int(11) DEFAULT NULL,
 	[/if]
 [/for]
+`[name.toLower()/]Id` INT NOT NULL AUTO_INCREMENT, 
+PRIMARY KEY(`[name.toLower()/]Id`),
 [for (attribute)]
-	[if (type.name = ('HText') or type.name = ('HTextOrdered'))]
-	[if not (name.equalsIgnoreCase('id'))]
-`[name.toLowerFirst()/]` VARCHAR(100),
-	[/if]
-	[/if]
-	[if (type.name = ('HTextNotNull') or type.name = ('HTextNotNullOrdered'))]
-		[if not (name.equalsIgnoreCase('id'))]
-`[name.toLowerFirst()/]` VARCHAR(100) NOT NULL,
-	[/if]
-	[/if]
-	[if (type.name = ('HNumber') or type.name = ('HLong'))]
-	[if not (name.equalsIgnoreCase('id'))]
-`[name.toLowerFirst()/]` INT(11),
-	[/if]
-	[/if]
-	[if (type.name = ('HNumberNotNull') or type.name = ('HLongNotNull'))]
-	[if not (name.equalsIgnoreCase('id'))]
-`[name.toLowerFirst()/]` INT(11) NOT NULL,
-	[/if]
-	[/if]
-	[if (type.name = ('HBoolean'))]
-	[if not (name.equalsIgnoreCase('id'))]
-`[name.toLowerFirst()/]` TINYINT(1),
-	[/if]
-	[/if]
-	[if (type.name = ('HBooleanNotNull'))]
-	[if not (name.equalsIgnoreCase('id'))]
-`[name.toLowerFirst()/]` TINYINT(1) NOT NULL,
-	[/if]
-	[/if]
-	[if (type.name = ('HDate'))]
-	[if not (name.equalsIgnoreCase('id'))]
-`[name.toLowerFirst()/]` TIMESTAMP,
-	[/if]
-	[/if]
-	[if (type.name = ('HDateNotNull'))]
-	[if not (name.equalsIgnoreCase('id'))]
-`[name.toLowerFirst()/]` TIMESTAMP NOT NULL,
-	[/if]
+	[if (type.name.startsWith('modal'))]
+KEY `[type.name.replaceAll('modal','').toLowerFirst()/]Id_idx` (`[type.name.replaceAll('modal','').toLowerFirst()/]Id`),
+CONSTRAINT `[type.name.replaceAll('modal','').toLowerFirst()/]Id` FOREIGN KEY (`[type.name.replaceAll('modal','').toLowerFirst()/]Id`) 
+REFERENCES `[type.name.replaceAll('modal','').toLowerFirst()/]` (`[type.name.replaceAll('modal','').toLowerFirst()/]Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 	[/if]
 [/for]
-`[name.toLower()/]Id` INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`[name.toLower()/]Id`)
 )ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -111,11 +92,7 @@ INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.t
 INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.toUpper()/]DELETE',(SELECT ID_GRUPO FROM `grupo` WHERE NAME = '[name.toUpper()/]'),1,now());
 INSERT INTO `privilege` (NAME, ID_GRUPO, ENABLED, CREATIONDATE) VALUES ('[name.toUpper()/]CREATE',(SELECT ID_GRUPO FROM `grupo` WHERE NAME = '[name.toUpper()/]'),1,now());
 COMMIT;
-INSERT INTO `authority_privilege` (id_authority, id_privilege, enabled) VALUES (1,(SELECT id_privilege FROM `privilege` WHERE NAME = '[name.toUpper()/]SEARCH'),1);
-INSERT INTO `authority_privilege` (id_authority, id_privilege, enabled) VALUES (1,(SELECT id_privilege FROM `privilege` WHERE NAME = '[name.toUpper()/]UPDATE'),1);
-INSERT INTO `authority_privilege` (id_authority, id_privilege, enabled) VALUES (1,(SELECT id_privilege FROM `privilege` WHERE NAME = '[name.toUpper()/]DELETE'),1);
-INSERT INTO `authority_privilege` (id_authority, id_privilege, enabled) VALUES (1,(SELECT id_privilege FROM `privilege` WHERE NAME = '[name.toUpper()/]CREATE'),1);
-COMMIT;
+
 [/file]
 			[/if]
 		[/for]

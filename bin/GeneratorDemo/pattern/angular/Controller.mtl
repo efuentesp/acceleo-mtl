@@ -145,39 +145,35 @@ public class [name.toUpperFirst()/]Controller {
 	            System.out.println("User with id " + id + " not found");
 	            return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.NOT_FOUND);
 	        }
-	 
-			[for (attribute)]
-				[comment Enum/]
-				[if not (type.name = ('HText') or type.name.startsWith('modal')
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency')
-or type.name = ('HImage')
-or type.name = ('HFile')
-)]
-				[aClass.name.toLower()/]Found.set[type.name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
-				[/if]
-				[comment Foering Key/]
-				[if (type.name.startsWith('modal'))]
-				[aClass.name.toLower()/]Found.set[name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
-				[/if]
-			[/for]
-			
-			[for (attribute)]
-				[if (type.name = ('HText'))]
-					[if not (name.equalsIgnoreCase('id'))]
-				[aClass.name.toLower()/]Found.set[name.toUpperFirst()/]([aClass.name.toLower()/].get[name.toUpperFirst()/]());
-					[/if]
-				[/if]
-			[/for]
-			
-			[aClass.name.toLower()/]Found.set[aClass.name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
+	
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property) )]
+		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+			[if not(anAttribute.name.equalsIgnoreCase('id'))]
+	[aClass.name.toLower()/]Found.set[anAttribute.name.toUpperFirst()/]([aClass.name.toLower()/].get[anAttribute.name.toUpperFirst()/]());
+			[/if]
+		[/if]
+	[/for]
+[/for]
+[for (attribute)]
+	[comment Radio/]
+	[if (type.name.startsWith('radio'))]
+	[aClass.name.toLower()/]Found.set[type.name.replaceAll('radio','').toUpperFirst()/]Id([aClass.name.toLower()/].get[type.name.replaceAll('radio','').toUpperFirst()/]Id());
+	[/if]
+	[comment Modal/]
+	[if (type.name.startsWith('modal'))]
+	[aClass.name.toLower()/]Found.set[type.name.replaceAll('modal','').toUpperFirst()/]Id([aClass.name.toLower()/].get[type.name.replaceAll('modal','').toUpperFirst()/]Id());
+	[/if]
+	[comment Notrequired/]
+	[if (type.name.startsWith('notrequired'))]
+		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+			[if (anElement.type.name.equalsIgnoreCase('HText'))]
+	[aClass.name.toLower()/]Found.set[name.toUpperFirst()/]([aClass.name.toLower()/].get[anElement.name.toUpperFirst()/]());
+			[/if]
+		[/for]
+	[/if]
+[/for]		
+	[aClass.name.toLower()/]Found.set[aClass.name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
 
 		    [name.toLower()/]Service.edit[name.toUpperFirst()/]([name.toLower()/]Found);
 	        return new ResponseEntity<[name.toUpperFirst()/]>([name.toLower()/]Found, HttpStatus.OK);
@@ -199,9 +195,16 @@ or type.name = ('HFile')
 	             return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.NOT_FOUND);
 	         }
 	  
-           
+           	 try{
 	             [name.toLower()/]Service.delete[name.toUpperFirst()/]([name.toLower()/]);
-            	 return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.OK);
+	             return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.OK);
+	         }catch (Exception e) {
+	        	 HttpHeaders responseHeaders = new HttpHeaders();
+	        	 responseHeaders.set("Exception", "Exception: "+e);
+	        	 responseHeaders.set("Message", "[name.toUpperFirst()/] no se puede eliminar debido a que esta asociado con otra entidad.");	  
+	             return new ResponseEntity<[name.toUpperFirst()/]>(responseHeaders,HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+
            	//} catch(GenericException e) {
             //	 return new ResponseEntity<[name.toUpperFirst()/]>(HttpStatus.PRECONDITION_FAILED);
             //}
@@ -300,7 +303,7 @@ or type.name = ('HFile')
 				[/if]
 				[comment Foering Key/]
 				[if (type.name.startsWith('modal'))]
-		[aClass.name.toLower()/].set[name.toUpperFirst()/]Id([aClass.name.toLower()/]Bean.get[name.toUpperFirst()/]Id());
+		//[aClass.name.toLower()/].set[name.toUpperFirst()/]Id([aClass.name.toLower()/]Bean.get[name.toUpperFirst()/]Id());
 				[/if]
 			[/for]
 		[for (attribute)]
@@ -348,7 +351,7 @@ or type.name = ('HFile')
 					[/if]
 					[comment Foering Key/]
 					[if (type.name.startsWith('modal'))]
-				bean.set[name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
+				//bean.set[name.toUpperFirst()/]Id([aClass.name.toLower()/].get[name.toUpperFirst()/]Id());
 					[/if]
 				[/for]
 				[for (attribute)]

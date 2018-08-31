@@ -1,0 +1,177 @@
+[comment encoding = UTF-8 /]
+[module CrudComponentCreateView('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementCrudComponentCreateView(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 	[for (aClass : Class | p.packagedElement->filter(Class))]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+
+[aClass.name/]
+[file ('app/admin/'.concat(aClass.name.toLower()).concat('/create').concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('-create.component.ts'), false, 'UTF-8')]
+import { Component, OnInit, ViewChild}                                     from '@angular/core';
+import { Router, ActivatedRoute }                                          from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormControl }                 from '@angular/forms';
+import swal from 'sweetalert2';
+
+import { Location, , DatePipe } from '@angular/common';
+import { User } from '../../user/user.component.model';
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
+import { [name.toUpperFirst()/]Service }                                  from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.service';
+import { [name.toUpperFirst()/] }                                         from '../../[name.toLowerFirst()/]/[name.toLowerFirst()/].component.model';
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+import { [type.name.replaceAll('modal','').toUpperFirst()/]Service }                                  from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.service';
+import { [type.name.replaceAll('modal','').toUpperFirst()/] }                                         from '../../[type.name.replaceAll('modal','')/]/[type.name.replaceAll('modal','')/].component.model';
+	[/if]
+[/for]
+
+@Component ({
+    selector: 'app-view',
+    templateUrl: './[name.toLower()/]-create.component.html',
+	styleUrls: ['['/]'./[name.toLower()/]-create.component.css'[']'/]
+})
+
+export class [name.toUpperFirst()/]CreateComponent implements OnInit {
+
+    public title = 'Nuevo [name.toUpperFirst()/]';
+    public [name.toLower()/]: [name.toUpperFirst()/];
+    public form: any;
+    public user: User;
+    public valueName: string;
+    public token: string;
+	public datePipe = new DatePipe('en-US');
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	public [type.name.replaceAll('modal','').toLowerFirst()/]List: [type.name.replaceAll('modal','').toUpperFirst()/] ['['/][']'/];
+    public [type.name.replaceAll('modal','').toLowerFirst()/]: [type.name.replaceAll('modal','').toUpperFirst()/];
+    public [type.name.replaceAll('modal','').toLowerFirst()/]Aux: [type.name.replaceAll('modal','').toUpperFirst()/];
+
+	public busqueda[type.name.replaceAll('modal','').toUpperFirst()/]='';
+	filterInput[type.name.replaceAll('modal','').toUpperFirst()/] = new FormControl();
+
+	[/if]
+[/for]
+
+    constructor(private router: Router,  
+				private route: ActivatedRoute, 
+				private location: Location,
+				private parserFormatter: NgbDateParserFormatter,
+				private [name.toLowerFirst()/]Service: [name.toUpperFirst()/]Service
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+	,private [type.name.replaceAll('modal','').toLowerFirst()/]Service: [type.name.replaceAll('modal','').toUpperFirst()/]Service
+	[/if]
+[/for]
+){
+[for (attribute)]
+[if (type.name.startsWith('modal'))]
+  	 this.filterInput[type.name.replaceAll('modal','').toUpperFirst()/].valueChanges.subscribe(busqueda[type.name.replaceAll('modal','').toUpperFirst()/] => {
+     this.busqueda[type.name.replaceAll('modal','').toUpperFirst()/] = busqueda[type.name.replaceAll('modal','').toUpperFirst()/];
+   });
+[/if]
+[/for]			
+	}
+
+    ngOnInit() {
+		this.[name.toLower()/]Service.clear();
+        this.[name.toLower()/] = new [name.toUpperFirst()/];
+
+	[for (attribute)]
+		[if (type.name.startsWith('modal'))]
+		this.load[type.name.replaceAll('modal','').toUpperFirst()/]s();
+		[/if]
+	[/for]
+       
+    } 
+
+save(){
+
+	[for (attribute)]
+		[if (type.name.equalsIgnoreCase('HDate'))]
+	this.[aClass.name.toLower()/].[name.toLower()/] = this.parserFormatter.format(this.[aClass.name.toLower()/].[name.toLower()/]Aux);
+		[/if]
+	[/for]
+
+   this.[name.toLower()/]Service.save[name.toUpperFirst()/](this.[name.toLower()/]).subscribe(res => {
+     if (res.status == 201 || res.status == 200){
+        swal('Success...', '[name.toUpperFirst()/] save successfully.', 'success');
+        this.router.navigate(['['/] '../manage[name.toLower()/]' [']'/], { relativeTo: this.route })
+     }else if (res.status == 403){
+        swal('Error...', 'Usuario no tiene permiso para guardar [name.toUpperFirst()/].', 'error');
+     }else{
+       swal('Error...', '[name.toUpperFirst()/] save unsuccessfully.', 'error');
+     }
+   } );
+}
+
+[for (attribute)]
+	[if (type.name.startsWith('modal'))]
+
+	load[type.name.replaceAll('modal','').toUpperFirst()/]s(){
+  		this.[type.name.replaceAll('modal','').toLowerFirst()/]Service.getAll[type.name.replaceAll('modal','').toUpperFirst()/]().subscribe(data => {
+    	if (data) {
+      	
+		this.[type.name.replaceAll('modal','').toLowerFirst()/]List = data;
+// Cambios por cada modal
+    	}
+  		}, error => {
+    	swal('Error...', 'An error occurred while calling the [type.name.replaceAll('modal','').toUpperFirst()/]s.', 'error');
+  	});
+
+
+
+}
+
+ setClickedRow[type.name.replaceAll('modal','').toUpperFirst()/](index,[type.name.replaceAll('modal','').toLowerFirst()/]){
+	      
+		  [type.name.replaceAll('modal','').toLowerFirst()/].checked = ![type.name.replaceAll('modal','').toLowerFirst()/].checked;
+		  if ([type.name.replaceAll('modal','').toLowerFirst()/].checked){
+		  this.[type.name.replaceAll('modal','').toLowerFirst()/]Service.set[type.name.replaceAll('modal','').toUpperFirst()/]([type.name.replaceAll('modal','').toLowerFirst()/]);
+		  this.[aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id = [type.name.replaceAll('modal','').toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id;
+		  this.[aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Item = [type.name.replaceAll('modal','').toLowerFirst()/].
+[for (p : Property | aClass.attribute)]
+	[if (p.type.name.startsWith('modal'))]
+			[for (pa : Package | aModel.packagedElement->filter(Package))]
+			[if pa.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
+			[for (paClass : Class | pa.packagedElement->filter(Class))]
+			[if p.name.toLowerCase().equalsIgnoreCase(paClass.name)]
+				[for (attribute)]
+					[if (type.name.startsWith('displaymodal'.concat(name.toLowerCase())))]
+					[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower))]
+						[name.toLower()/]+ "";
+					[/for]
+					[/if]
+				[/for]
+			[/if]
+			[/for]
+			[/if]
+			[/for]
+	[/if]
+[/for]
+	    	}else{
+            this.[type.name.replaceAll('modal','').toLowerFirst()/]Service.clear();
+			this.[aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Id = null;
+		    this.[aClass.name.toLowerFirst()/].[type.name.replaceAll('modal','').toLowerFirst()/]Item = "";
+		}
+ }
+	[/if]
+[/for]
+
+  return([name.toLower()/]){
+      this.location.back();
+  }
+}
+[/file]
+
+			[/if]
+		[/for]
+	[/if]
+[/for]
+
+[/template]

@@ -7,18 +7,20 @@
 [for (p : Package | aModel.packagedElement->filter(Package))]
 	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
 	 	[for (aClass : Class | p.packagedElement->filter(Class))]
-			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
-               or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumRadio')
-			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumCheck')
-			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect')) ]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
 
 [file ('app/admin/'.concat(aClass.name.toLower()).concat('/').concat(aClass.name.toLower()).concat('.component.model.ts'), false, 'UTF-8')]
+import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+
 export class [name.toUpperFirst()/] {
 
 	[name.toLowerFirst()/]Id: number = null;
+	[name.toLowerFirst()/]Item: string = '';
+
+[comment Normal Entities/]
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
-		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('string'))] 
+		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('String'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
 	[anAttribute.name.toLower()/]: string = '';
 			[/if]
@@ -36,36 +38,64 @@ export class [name.toUpperFirst()/] {
 		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Date'))] 
 			[if not (anAttribute.name.equalsIgnoreCase('id'))]
 	[anAttribute.name.toLower()/]: string = '';
+	[anAttribute.name.toLower()/]Aux: NgbDateStruct = null;
+			[/if]
+		[/if]
+		[if (anElement.name.equalsIgnoreCase('typeJava') and anElement.default.equalsIgnoreCase('Boolean'))] 
+			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+	[anAttribute.name.toLower()/]: string = '';
 			[/if]
 		[/if]
 	[/for]
 [/for]
 
+[comment Not Required/]
 [for (attribute)]
 	[comment Enum/]
-	[if not (type.name = ('HText') or type.name.startsWith('modal')
-		or type.name = ('HCheckbox') 
-		or type.name = ('HInteger') 
-		or type.name = ('HDate')
-		or type.name = ('HTextLong') 
-		or type.name = ('HRadio')
-		or type.name = ('HBoolean')
-		or type.name = ('HDouble')
-		or type.name = ('HEmail')
-		or type.name = ('HCurrency')
-		or type.name = ('HImage')
-		or type.name = ('HFile')
-)]
-	[type.name.toLowerFirst()/]Id: number = null;	
+	[if (type.name.startsWith('radio'))]
+	[type.name.replaceAll('radio', '').toLowerFirst()/]Id: string = '';
+	[type.name.replaceAll('radio', '').toLowerFirst()/]Item: string = '';	
 	[/if]
 	[comment Foering Key/]
 	[if (type.name.startsWith('modal'))]
-	[name.toLowerFirst()/]Id: number = null;
-	[name.toLowerFirst()/]Item: string = '';
+	[type.name.replaceAll('modal', '').toLowerFirst()/]Id: number = null;
+	[type.name.replaceAll('modal', '').toLowerFirst()/]Item: string = '';
+	[/if]
+	[if (type.name.startsWith('notrequired'))]
+		[for (anElement: Property | type.allOwnedElements()->filter(Property) )]
+			[if (anElement.type.name.equalsIgnoreCase('HText'))]
+	[name.toLower()/]: string = '';
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HInteger'))]
+	[name.toLower()/]: number = null;
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HDate'))]
+	[name.toLower()/]: date = null;
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HTextLong'))]
+	[name.toLower()/]: string = '';
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HBoolean'))]
+	[name.toLower()/]: string = '';
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HDouble'))]
+	[name.toLower()/]: string = '';
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HCurrency'))]
+	[name.toLower()/]: string = '';
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HFile'))]
+	[name.toLower()/]: string = '';
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HImage'))]
+	[name.toLower()/]: string = '';
+			[/if]
+			[if (anElement.type.name.equalsIgnoreCase('HEmail'))]
+	[name.toLower()/]: string = '';
+			[/if]
+		[/for]		
 	[/if]
 [/for]
-
-
 }
 [/file]
 			[/if]

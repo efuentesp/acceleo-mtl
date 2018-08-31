@@ -5,18 +5,16 @@
 [import GeneratorDemo::pattern::angular::view::RoutingModuleHtml/]	[comment Agregar los componentes para routing module /]
 [import GeneratorDemo::pattern::angular::view::CrudView/]			[comment Genera crud, contiene los archivos service y component /]
 [import GeneratorDemo::pattern::angular::view::PipeView/]
-[import GeneratorDemo::pattern::angular::view::HtmlView/]			[comment Genera crud, contiene los archivos de html /]
 
 
 [template public mainClass(aModel : Model)]
 
 	[comment @main /]	
 
-	[aModel.generateRoutingModuleView()/]   
-	[aModel.generateElementRoutingModuleHtml()/]
+	[comment aModel.generateRoutingModuleView()/]   
+	[comment aModel.generateElementRoutingModuleHtml()/]
 	[aModel.generateElementCrudView()/] 
-	[aModel.generateElementHtmlView()/] 
-	[aModel.generateElementPipeView()/] 
+	[comment aModel.generateElementPipeView()/] 
 
 
 [/template]

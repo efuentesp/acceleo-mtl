@@ -21,65 +21,53 @@ import { Injectable, Pipe, PipeTransform } from '@angular/core';
 export class Search[name.toUpperFirst()/]Pipe implements PipeTransform {
       transform(items: any['['/][']'/], busqueda[name.toUpperFirst()/]): any {
         return busqueda[name.toUpperFirst()/] && items ? items.filter(item =>
-          	[for (anAttribute: Property | getAllAttributes()) separator ('||')] 
-			[comment Enum/]
-			[if not (type.name = ('HText') or type.name.startsWith('modal')
-				or type.name = ('HCheckbox') 
-				or type.name = ('HInteger') 
-				or type.name = ('HDate')
-				or type.name = ('HTextLong') 
-				or type.name = ('HRadio')
-				or type.name = ('HBoolean')
-				or type.name = ('HDouble')
-				or type.name = ('HEmail')
-				or type.name = ('HCurrency')
-				or type.name = ('HImage')
-				or type.name = ('HFile')
-)]
-			(item.[type.name.toLowerCase()/]Id.indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1)
-			[/if]
-			[comment Foering Key/]
-			[if (type.name.startsWith('modal'))]
-			((item.[name.toLowerCase()/]Id+"").toString().indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1)
-			[/if]
-
-			[if (type.name = ('HCheckbox') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HInteger') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HDate') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HTextLong') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HRadio') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HBoolean') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HDouble') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HEmail') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HCurrency') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HImage') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-			[if (type.name = ('HFile') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
-
-			[if (type.name = ('HText') and not(name.equalsIgnoreCase('id')))]
-			((item.[anAttribute.name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
-			[/if]
+          	[for (attribute)] 
+				[if (type.name.startsWith('exposedfilter'.concat(name.toLowerCase())))]
+					[for (anElement: Property | type.allOwnedElements()->filter(Property) -> sortedBy(lower)) separator ('||')]
+						[if (type.name.startsWith('modal'))]
+			((item.[name.toLowerCase()/]Item+"").toString().indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1)
+						[/if]
+						[if (type.name.startsWith('radio'))]
+			((item.[name.replaceAll('radio','').toLowerCase()/]Id+"").toString().indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1)
+						[/if]
+						[if (type.name = ('HCheckbox') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HInteger') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HDate') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HTextLong') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HRadio') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HBoolean') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HDouble') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HEmail') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HCurrency') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HImage') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HFile') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]
+						[if (type.name = ('HText') and not(name.equalsIgnoreCase('id')))]
+			((item.[name.toLowerCase()/]+"").toLowerCase().indexOf((busqueda[aClass.name.toUpperFirst()/]+"").toLowerCase()) !== -1) 
+						[/if]			
+					[/for]
+				[/if]
 			[/for]
         ): items;
     }

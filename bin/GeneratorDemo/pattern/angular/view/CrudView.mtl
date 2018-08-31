@@ -2,13 +2,25 @@
 [module CrudView('http://www.eclipse.org/uml2/5.0.0/UML')]
 [import GeneratorDemo::pattern::angular::view::CrudModelComponentView/]
 [import GeneratorDemo::pattern::angular::view::CrudServiceComponentView/]
-[import GeneratorDemo::pattern::angular::view::CrudComponentView/]
+[import GeneratorDemo::pattern::angular::view::CrudComponentCreateView/]
+[import GeneratorDemo::pattern::angular::view::CrudComponentEditView/]
+[import GeneratorDemo::pattern::angular::view::CrudComponentManageView/]
+[import GeneratorDemo::pattern::angular::view::CrudComponentCreateHtml/]
+[import GeneratorDemo::pattern::angular::view::CrudComponentEditHtml/]
+[import GeneratorDemo::pattern::angular::view::CrudComponentManageHtml/]
 
 [template public generateElementCrudView(aModel : Model)]
 [comment @main /]
 
-[aModel.generateElementCrudModelComponentView(aModel)/]			[comment Model del componente/]
-[aModel.generateElementCrudServiceComponentView(aModel)/]		[comment Service del componenet /]
-[aModel.generateElementCrudComponentView(aModel)/]		        [comment Component /]
+[comment aModel.generateElementCrudModelComponentView(aModel)/]			[comment Model del componente/]
+[comment aModel.generateElementCrudServiceComponentView(aModel)/]		[comment Service del componenet /]
+
+[comment aModel.generateElementCrudComponentCreateView(aModel)/]		[comment Component /]
+[comment aModel.generateElementCrudComponentEditView(aModel)/]		    [comment Component /]
+[comment aModel.generateElementCrudComponentManageView(aModel)/]		[comment Component /]
+
+[aModel.generateElementCrudComponentCreateHtml(aModel)/]		[comment Component /]
+[aModel.generateElementCrudComponentEditHtml(aModel)/]		    [comment Component /]
+[comment aModel.generateElementCrudComponentManageHtml(aModel)/]		[comment Component /]
 
 [/template]

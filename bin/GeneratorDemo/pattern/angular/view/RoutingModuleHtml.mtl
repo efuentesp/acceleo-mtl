@@ -36,22 +36,34 @@
 
             <!-- sidebar menu -->
 
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu scrollMenu">
               <div class="menu_section">
                 <h3>General</h3>
 
                 <ul class="nav side-menu">{{user.authority}}
                 <!-- entities -->
-	 	[for (aClass : Class | p.packagedElement->filter(Class))]
-			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
-				  <li *ngIf="[name.toLower()/]_mgmnt"><a routerLink="./manage[name.toLower()/]" routerLinkActive="active">
-				    <i class="fa fa-edit"></i> Administrar [name.toUpperFirst()/] </a>
-				  </li>
-                  <li *ngIf="[name.toLower()/]"><a routerLink="./create[name.toLower()/]" routerLinkActive="active" >
-                    <i class="fa fa-edit"></i> Agregar [name.toUpperFirst()/] </a>
+
+[for (aClass : Class | p.packagedElement->filter(Class))]
+	[if (aClass.name.startsWith('entityname')) ]
+		[for (anElement: Property | aClass.allOwnedElements()->filter(Property) )]
+              <li><a><i class="fa fa-home"></i> [anElement.default/] <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                  <li *ngIf="cuentadeahorro_mgmnt">
+                    <a routerLink="./manage[anElement.name.toLower()/]" >
+                      Administrar [anElement.default/]
+                    </a>
                   </li>
-			[/if]
-		[/for]	
+                  <li *ngIf="[anElement.name.toLower()/]">
+                      <a routerLink="./create[anElement.name.toLower()/]" >
+                        Agregar [anElement.default/]
+                      </a>
+                  </li>
+                </ul>
+			   </li>
+		[/for]
+	[/if]
+[/for]
+
                 <!-- /entities -->  
                 </ul>
 
