@@ -1,0 +1,59 @@
+[comment encoding = UTF-8 /]
+[module Service('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import GeneratorDemo::pattern::crud::MasterDetailFilterClass/]
+
+
+[template public generateElementService(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+      					[comment if aClass.getEAnnotation('crud').toString().contains('crud')/]
+                        [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/service/').concat(aClass.name).concat('Service.java'), false), 'UTF-8') ]
+[if (aClass.getOperations() -> asSequence() -> size()) > 0]
+	[comment aClass.generateElementServiceAdapter('sda')/]
+[/if]
+package [aClass._package.name.toLower()/].service;
+
+import [aClass._package.name.toLower()/].domain.[name.toUpperFirst()/];
+import java.util.List;
+
+public interface [name.toUpperFirst()/]Service {
+
+	public void add[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]);
+
+	public void edit[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]);
+	
+	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]ss([name.toUpperFirst()/] [name.toLower()/]);
+
+	public [name.toUpperFirst()/] get[name.toUpperFirst()/](int empid);
+
+	public void delete[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]);
+	
+	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]ssQuery([name.toUpperFirst()/] [name.toLower()/], String query, int page, int size);
+
+	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]sPagination([name.toUpperFirst()/] [name.toLower()/], int page, int size[aModel.generateElementFilterClass(aClass, 'parentAloneNameDefinitionComma')/]);
+	
+
+	public long getTotalRows();
+
+	public long getTotalRows(String query);
+
+	public long getTotalRowsSearch(String query);
+
+	[aModel.generateElementFilterClass(aClass, 'getTotalRowsRepo')/]
+
+	[aModel.generateElementFilterClass(aClass, 'addServiceDetail')/]
+
+	[aModel.generateElementFilterClass(aClass, 'listOrdenssQueryByCliente')/]
+}
+
+[/file]
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+[/template]

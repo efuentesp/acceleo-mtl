@@ -1,0 +1,73 @@
+[comment enconding = UTF-8 /]
+[module Bean('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementBean(aModel : Model)]
+
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')] 
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+						[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/catalogo/').concat('/bean/').concat(aClass.name).concat('Bean.java'), false), 'UTF-8') ]
+/**
+ * Autor: PSG.
+ * Proyecto:
+ * Version: 0.1 
+ * Clase para encapsular informacion de un [name.toLowerFirst()/].
+ */
+package [aClass._package.name/].catalogo.bean;
+/**
+ * Clase [name.toUpperFirst()/]Bean.
+ * @author PSG.
+ *
+ */
+import java.util.Date;
+
+public class [name.toUpperFirst()/]Bean {
+
+	private Integer [name.toLowerFirst()/]Id;
+
+[for (anAttribute: Property | getAllAttributes())][for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
+[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+	private [anElement.default/] [anAttribute.name.toLowerFirst()/];
+[/if][/for][/for]
+	
+	/**
+	 * Obtiene el id del [name.toUpperFirst()/]
+	 * @return Integer.
+	 */
+	public Integer get[name.toUpperFirst()/]Id() {
+		return [name.toLowerFirst()/]Id;
+	}
+
+	/**
+	 * Asigna el id del [name.toUpperFirst()/]
+	 * @param afiliadoId.
+	 */
+	public void set[name.toUpperFirst()/]Id(Integer [name.toLowerFirst()/]Id) {
+		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
+	}
+
+[for (anAttribute: Property | getAllAttributes())][for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property) )]
+[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+	/**
+	 * Obtiene el [anAttribute.name.toUpperFirst()/]
+	 * @return [anElement.default/]
+	 */
+	public [anElement.default/] get[anAttribute.name.toUpperFirst()/] () {
+	    return [anAttribute.name/];  		
+    }
+
+	public void set[anAttribute.name.toUpperFirst()/]([anElement.default/] [anAttribute.name.toLowerFirst()/]) {
+		this.[anAttribute.name/] = [anAttribute.name/];
+	}
+[/if][/for][/for]
+}
+[/file]
+
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+[/template]

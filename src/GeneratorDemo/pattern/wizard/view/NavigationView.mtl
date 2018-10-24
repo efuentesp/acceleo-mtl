@@ -1,0 +1,68 @@
+[comment encoding = UTF-8 /]
+[module NavigationView('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateElementNavigation(aModel : Model)]
+[comment @main /]
+
+
+[file (('src/app/navbar').concat('/navbar.component.html'), false, 'UTF-8')]
+
+<div class="board-inner" id="status-buttons">
+    <ul class="nav nav-tabs" id="myTab">
+        <div class="liner"></div>
+        <li>
+            <a routerLink="/personal" routerLinkActive="active" [ '[' /]routerLinkActiveOptions[ ']' /]="{ exact: true }" data-toggle="tab" title="personal">
+                <span class="round-tabs one">
+                    <i class="fa fa-user"></i>
+                </span>
+            </a>
+        </li>
+
+         <li>
+            <a routerLink="/work" routerLinkActive="active" data-toggle="tab" title="work">
+                <span class="round-tabs two">
+                    <i class="fa fa-tasks"></i>
+                </span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/address" routerLinkActive="active" data-toggle="tab" title="address">
+                <span class="round-tabs three">
+                    <i class="fa fa-home"></i>
+                </span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/result" routerLinkActive="active" data-toggle="tab" title="completed">
+                <span class="round-tabs four">
+                    <i class="fa fa-check"></i>
+                </span>
+            </a>
+        </li>
+
+    </ul>
+    <div class="clearfix"></div>
+</div>
+
+<script src="assets/js/loading-bars.js"></script>
+
+
+[/file]
+
+[file (('src/app/navbar').concat('/navbar.component.ts'), false, 'UTF-8')]
+
+import { Component } from '@angular/core';
+
+@Component ({
+    selector: 'msw-navbar'
+    ,templateUrl: './navbar.component.html'
+})
+
+export class NavbarComponent {}
+
+[/file]
+
+[/template]

@@ -1,0 +1,154 @@
+[comment encoding = UTF-8 /]
+[module EntityView('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateElementEntity(aModel : Model)]
+[comment @main /]
+
+[file (('src/app/data').concat('/formData.model.ts'), false, 'UTF-8')]
+	[for (p : Package | aModel.packagedElement->filter(Package))]
+		[for (c : Class | p.packagedElement->filter(Class))]
+			[ if (c.name='FormData') ]
+
+export class [c.name/] {
+	[for (pty: Property | c.getAllAttributes())]
+		[ if (pty.type.name ='Integer') ]
+			[pty.name /] : number = null;
+		[elseif (pty.type.name ='String')]
+			[pty.name /] : [pty.type.name /] = '';
+		[else]
+		[/if]
+	[/for]
+
+	clear() {
+		[for (pty: Property | c.getAllAttributes())]
+			[ if (pty.type.name ='Integer') ]
+				this.[pty.name /] = null;
+			[elseif (pty.type.name ='String')]
+				this.[pty.name /] = '';
+			[else]
+			[/if]
+		[/for]
+	}
+}
+
+			[else]
+
+export class [c.name/] {
+	[for (pty: Property | c.getAllAttributes())]
+		[ if (pty.type.name ='Integer') ]
+			[pty.name /] : number = null;
+		[elseif (pty.type.name ='String')]
+			[pty.name /] : [pty.type.name /] = '';
+		[else]
+		[/if]
+	[/for]
+}
+
+			[/if]
+		[/for]
+	[/for]
+
+
+
+[/file]
+
+[file (('src/app/data').concat('/formData.service.ts'), false, 'UTF-8')]
+
+import { Injectable }                        from '@angular/core';
+import {
+	[for (p : Package | aModel.packagedElement->filter(Package))]
+		[for (c : Class | p.packagedElement->filter(Class))]
+			[c.name/],
+		[/for]
+	[/for]
+ } from './formData.model';
+
+import { WorkflowService }                   from '../workflow/workflow.service';
+import { STEPS }                             from '../workflow/workflow.model';
+
+import { environment } from "../../environments/environment";
+import { Http, Response, Request, RequestOptionsArgs } from "@angular/http";
+import { Headers, RequestOptions } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
+import swal from 'sweetalert2';
+
+@Injectable()
+export class FormDataService {
+
+    private formData: FormData = new FormData();
+    private isPersonalFormValid: boolean = false;
+    private isWorkFormValid: boolean = false;
+    private isAddressFormValid: boolean = false;
+
+    env: any = environment;
+    result: String ='';
+    constructor(private workflowService: WorkflowService, private http: Http, defaultOptions: RequestOptions) {
+    }
+
+	[for (p : Package | aModel.packagedElement->filter(Package))]
+		[for (c : Class | p.packagedElement->filter(Class))]
+			[if (c.name<>'FormData') ]
+				get[c.name/](): [c.name/] {
+					var [c.name.toLowerCase()/]:[c.name/]{
+					[for (pty: Property | c.getAllAttributes())]
+							[pty.name /] : this.formData.[pty.name/];
+					[/for]
+					}:
+					return [c.name.toLowerCase()/];
+				}
+			[/if]
+		[/for]
+	[/for]
+
+	[for (p : Package | aModel.packagedElement->filter(Package))]
+		[for (c : Class | p.packagedElement->filter(Class))]
+			[if (c.name<>'FormData') ]
+				set[c.name/](data:[c.name/]): [c.name/] {
+					this.isAddressFormValid = true;
+				[for (pty: Property | c.getAllAttributes())]
+					this.formData.[pty.name /] = data.[pty.name/];
+				[/for]
+				this.workflowService.validateStep(STEPS.[c.name.toLowerCase()/]);
+				}
+			[/if]
+		[/for]
+	[/for]
+
+    getFormData(): FormData {
+        return this.formData;
+    }
+
+    resetFormData(): FormData {
+        this.workflowService.resetSteps();
+        this.formData.clear();
+        this.isPersonalFormValid = this.isWorkFormValid = this.isAddressFormValid = false;
+        return this.formData;
+    }
+
+    isFormValid() {
+        return this.isPersonalFormValid &&
+                this.isWorkFormValid &&
+                this.isAddressFormValid;
+    }
+
+    saveFormData(data){
+      return this.http.post(this.env.api + "/wizardFormato", data).subscribe(res =>
+          swal('Success...', 'Tag saved successfully.', 'success'),
+        err =>
+          swal('Error...', 'There was an error saving the article, try again!.', 'error'));
+    }
+
+    getAllData(){
+      return this.http.get(this.env.api + "/formData").map(res => res.json());
+    }
+
+}
+
+[/file]
+
+[/template]

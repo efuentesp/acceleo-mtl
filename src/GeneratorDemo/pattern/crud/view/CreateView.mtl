@@ -1,0 +1,138 @@
+[comment encoding = UTF-8 /]
+[module CreateView('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import GeneratorDemo::pattern::crud::view::MasterDertailView/]
+[import GeneratorDemo::pattern::crud::view::generateParentOrSon/]
+
+[template public generateElementView(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+      					[comment if aClass.getEAnnotation('crud').toString().contains('crud')/]
+                        [if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+[file (('features/Entities/').concat(aClass.name.toUpperFirst()).concat('/').concat(aClass.name.toUpperFirst()).concat('Create.js'), false), 'UTF-8') ]
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { Panel, ButtonToolbar, Button } from 'react-bootstrap';
+import { reduxForm, Field } from 'redux-form';
+import { toastr } from 'react-redux-toastr';
+
+import ContentWrapper from "../../Common/Layout/ContentWrapper";
+import FormTextField from "../../Common/Form/FormTextField";
+[aModel.generateElementParentOrSon(aClass, 'ParentActions')/]
+
+class [name.toUpperFirst()/]Create extends Component {
+
+  constructor(props) {
+    super(props);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+componentWillMount() {
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+    if ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) {
+      this.props.fetch[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/]([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id)
+      .then(() => {
+        this.props.initialize({
+          "[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id": [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id
+        });
+    });
+  }
+}
+
+onFormSubmit(props) {
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+    this.props.create[name.toUpperFirst()/](props)
+      .then(() => {
+        const [name.toLowerCase()/]_mgmnt = ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) ? "/[name.toLowerCase()/]_mgmnt?[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id=" + [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id : "/[name.toLowerCase()/]_mgmnt";
+        this.context.router.push([name.toLowerCase()/]_mgmnt);
+        toastr.success("[name.toUpperFirst()/] creado", `El [name.toUpperFirst()/] fue creado exitosamente.`);
+    });
+ }
+
+  render() {
+[if (p.packagedElement -> filter(Association).memberEnd.name -> count(aClass.name) > 1 or (p.packagedElement -> filter(Association).memberEnd -> select( p | p.name.equalsIgnoreCase(aClass.name)).upperValue.stringValue().equalsIgnoreCase('*') = Bag{true}))]	
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+[/if]
+    const { handleSubmit, pristine, submitSucceeded } = this.props;
+[if (p.packagedElement -> filter(Association).memberEnd.name -> count(aClass.name) > 1 or (p.packagedElement -> filter(Association).memberEnd -> select( p | p.name.equalsIgnoreCase(aClass.name)).upperValue.stringValue().equalsIgnoreCase('*') = Bag{true}))]
+	const [name.toLowerCase()/]_mgmnt = ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) ? "/[name.toLowerCase()/]_mgmnt?[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id=" + [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id : "/[name.toLowerCase()/]_mgmnt";
+[/if]    
+    return (
+      <ContentWrapper>
+        [aModel.generateElementMasterDetailView(aClass, 'breadcrumb')/]
+        <Panel header="[name.toUpperFirst()/]">
+          <form
+            role="form"
+            onSubmit={handleSubmit(this.onFormSubmit)}>
+			[for (p: Property | aClass.getAllAttributes())]
+			<Field
+              name="[p.name.toLower()/]"
+              component={FormTextField}
+              label="[p.name.toUpperFirst()/]" />
+			[/for]
+            <ButtonToolbar>
+              <Button
+                type="submit"
+                bsStyle="primary"
+                disabled={pristine || submitSucceeded}>
+                  <i className={`${submitSucceeded ? 'fa fa-refresh fa-spin' : 'fa fa-save'}`} />
+                  <span> Guardar</span>
+              </Button>
+            </ButtonToolbar>
+          </form>
+        </Panel>
+      </ContentWrapper>
+    );
+  }
+}
+
+[name.toUpperFirst()/]Create.propTypes = {
+  location: PropTypes.object,
+  initialize: PropTypes.func.isRequired,
+  [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]: PropTypes.object,
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitSucceeded: PropTypes.bool.isRequired,
+  create[name.toUpperFirst()/]: PropTypes.func.isRequired,
+  fetch[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/]: PropTypes.func
+};
+
+[name.toUpperFirst()/]Create.contextTypes = {
+  router: PropTypes.object.isRequired
+};
+
+const validate = values => {
+  const errors = {};
+
+  [for (p: Property | aClass.getAllAttributes())]	
+  if (!values.[p.name.toLower()/]) {
+    errors.[p.name.toLower()/] = 'Campo requerido.';
+  }
+  [/for]	
+
+  return errors;
+};
+
+function mapStateToProps(state) {
+  return {
+    [aModel.generateElementParentOrSon(aClass, 'ParentOrSonMapProps')/]
+    [name.toLowerCase()/]: state.[name.toLowerCase()/].item
+  };
+}
+
+const form = reduxForm({
+  form: '[name.toUpperFirst()/]CreateForm',
+  validate
+});
+
+export default connect(mapStateToProps, { fetch[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/], fetch[name.toUpperFirst()/], create[name.toUpperFirst()/] })(form([name.toUpperFirst()/]Create));
+
+[/file]
+			[/if]        
+   		[/for]
+	[/if]	
+[/for]
+[/template]

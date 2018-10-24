@@ -1,0 +1,66 @@
+[module ScriptDDL('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementScriptDDL(aModel : Model)]
+
+[comment @main /]
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.wizard')]	
+	 	[for (aClass : Class | p.packagedElement->filter(Class))]
+			[if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Wizard')) ]
+
+[file ('main/resources/DDLscript'.concat(aClass.name.toUpperFirst()).concat('.sql'), false), 'UTF-8') ]
+
+[let nameclass : String = ''] 
+DROP TABLE IF EXISTS [name.toLower()/];
+CREATE TABLE [name.toLower()/] ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	[for (anAttribute: Property | aClass.getAllAttributes() ) ]
+		[for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property) ) ]
+			[if not  (anElement.name.equalsIgnoreCase('typeJava') or anElement.name.equalsIgnoreCase('type') or anElement.name.equalsIgnoreCase('typeSql') or anElement.name.equalsIgnoreCase('size')) ]      
+[nameclass.concat(anElement.name).concat(' VARCHAR(100),')/]
+			[/if]
+		[/for]
+	[/for]);
+[/let]	
+[/file]
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+
+
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.wizard')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+					    [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
+						   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumRadio')
+						   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumCheck')
+						   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect') )]
+[file ('main/resources/DDLscript'.concat(aClass.name.toUpperFirst()).concat('.sql'), false), 'UTF-8') ]
+
+DROP TABLE IF EXISTS [name.toLower()/];
+
+CREATE TABLE [name.toLower()/] ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+[for (anAttribute: Property | getAllAttributes() ) separator(',')]
+		[let classAtribute : Class = anAttribute.type]
+           [for (superclasses: Class | classAtribute.getSuperClasses())]
+           		[let nameclass : String = superclasses.name]
+                	[if (nameclass.equalsIgnoreCase('HInput'))]	
+                        [for (att: Property | classAtribute.getAllAttributes() -> select(s: Property | s.name='typeSql'))]
+						[anAttribute.name.toLower()/] [att.default/]
+						[/for]	
+					[/if]
+				[/let]
+			[/for]
+        [/let]
+[/for]);
+
+[/file]
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+
+[/template]
+
+

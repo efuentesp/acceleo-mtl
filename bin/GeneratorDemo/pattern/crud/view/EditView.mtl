@@ -1,0 +1,168 @@
+[comment encoding = UTF-8 /]
+[module EditView('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import GeneratorDemo::pattern::crud::view::MasterDertailView/]
+[import GeneratorDemo::pattern::crud::view::generateParentOrSon/]
+
+[template public generateElementEditView(aModel : Model) post(trim())]
+[comment @main /]
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+      					[comment if aClass.getEAnnotation('crud').toString().contains('crud') /]
+                        [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+[file (('features/Entities/').concat(aClass.name.toUpperFirst()).concat('/').concat(aClass.name.toUpperFirst()).concat('Edit.js'), false), 'UTF-8') ]
+
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { Panel, ButtonToolbar, Button } from 'react-bootstrap';
+import { reduxForm, Field } from 'redux-form';
+import { toastr } from 'react-redux-toastr';
+
+import ContentWrapper from "../../Common/Layout/ContentWrapper";
+import FormTextField from "../../Common/Form/FormTextField";
+import Loading from '../../Common/Loading/Loading';
+import { fetch[name.toUpperFirst()/], update[name.toUpperFirst()/] } from './actions';
+
+class [name.toUpperFirst()/]Edit extends Component {
+
+  constructor(props) {
+    super(props);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.fetch[name.toUpperFirst()/](this.props.params.id)
+      .then(() => {
+        this.props.initialize({
+        [for (p: Property | aClass.getAllAttributes())]
+		"[p.name.toLower()/]": this.props.[aClass.name.toLower()/].[p.name.toLower()/][if i < aClass.getAllAttributes()-> asSequence() -> size() and aClass.getAllAttributes()-> asSequence() -> size() > 1],[/if]
+		[/for]
+        });
+      });
+  }
+
+ onFormSubmit(props) {
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+    this.props.update[aClass.name.toUpperFirst()/](this.props.params.id, props)
+      .then(() => {
+        const [aClass.name.toLower()/]_mgmnt = ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) ? "/[aClass.name.toLower()/]_mgmnt?[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id=" + [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id : "/[aClass.name.toLower()/]_mgmnt";
+        this.context.router.push([aClass.name.toLower()/]_mgmnt);
+        toastr.success("[aClass.name.toUpperFirst()/] modificado", `El [aClass.name.toUpperFirst()/] fue modificado exitosamente.`);
+      });
+  }
+
+  render() {
+[if (p.packagedElement -> filter(Association).memberEnd.name -> count(aClass.name) > 1 or (p.packagedElement -> filter(Association).memberEnd -> select( p | p.name.equalsIgnoreCase(aClass.name)).upperValue.stringValue().equalsIgnoreCase('*') = Bag{true}))]
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+[/if]
+    const { [aClass.name.toLower()/], handleSubmit, reset, pristine, submitSucceeded } = this.props;
+
+    if (([name.toLower()/] || {}).loading) {
+      return (
+        <ContentWrapper>
+          <h3>Editar [name.toUpperFirst()/]</h3>
+          <Panel header="[name.toUpperFirst()/]">
+            <Loading />
+          </Panel>
+        </ContentWrapper>
+      );
+    }
+
+    return (
+      <ContentWrapper>
+        <ol className="breadcrumb pull-right">
+           <li>
+             <Link to="/">Inicio</Link>
+           </li>
+           <li className="active">[name.toUpperFirst()/]</li>
+           <li>
+             <Link to="/[name.toLower()/]_mgmnt">Administrar [name.toUpperFirst()/]</Link>
+           </li>
+           <li className="active">Editar [name.toUpperFirst()/]</li>
+        </ol>
+        <h3>
+          <span className="mr">Editar [name.toUpperFirst()/]</span>
+        </h3>
+        <Panel header="[name.toUpperFirst()/]">
+          <form
+            role="form"
+            onSubmit={handleSubmit(this.onFormSubmit)}>
+			[for (prop: Property | aClass.getAllAttributes())]
+            <Field
+[if (p.packagedElement -> filter(Association).memberEnd.name -> count(aClass.name) > 1 or (p.packagedElement -> filter(Association).memberEnd -> select( p | p.name.equalsIgnoreCase(aClass.name)).upperValue.stringValue().equalsIgnoreCase('*') = Bag{true}))]
+[if aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.concat('_id').equalsIgnoreCase(prop.name) = Bag{true}]
+              type={([prop.name.toLower()/])? "label" : ""}[('\n')/][/if]
+[/if]          name="[prop.name.toLower()/]"
+              component={FormTextField}
+              label="[prop.name.toUpperFirst()/]" />
+			[/for]
+            <ButtonToolbar>
+              <Button
+                type="submit"
+                bsStyle="primary"
+                disabled={pristine || submitSucceeded}>
+                  <i className={`${submitSucceeded ? 'fa fa-refresh fa-spin' : 'fa fa-save'}`} />
+                  <span> Guardar</span>
+              </Button>
+              <Button
+                type="button"
+                bsStyle="default"
+                disabled={pristine || submitSucceeded}
+                onClick={reset}>
+                  <i className="fa fa-undo" />
+                  <span> Deshacer</span>
+              </Button>
+            </ButtonToolbar>
+          </form>
+        </Panel>
+      </ContentWrapper>
+    );
+  }
+}
+
+[name.toUpperFirst()/]Edit.contextTypes = {
+  router: PropTypes.object.isRequired
+};
+
+[name.toUpperFirst()/]Edit.propTypes = {
+  location: PropTypes.object,
+  params: PropTypes.object.isRequired,
+  fetch[name.toUpperFirst()/]: PropTypes.func.isRequired,
+  update[name.toUpperFirst()/]: PropTypes.func.isRequired,
+  initialize: PropTypes.func.isRequired,
+  [name.toLowerCase()/]: PropTypes.object,
+  handleSubmit: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
+  submitSucceeded: PropTypes.bool.isRequired,
+  pristine: PropTypes.bool.isRequired,
+};
+
+const validate = values => {
+  const errors = {};
+
+  [for (p: Property | aClass.getAllAttributes())]	
+  if (!values.[p.name.toLower()/]) {
+    errors.[p.name.toLower()/] = 'Campo requerido.';
+  }
+  [/for]	
+
+  return errors;
+};
+
+function mapStateToProps(state) {
+  return { [name.toLower()/]: state.[name.toLower()/].item };
+}
+
+const form = reduxForm({
+  form: '[name.toUpperFirst()/]EditForm',
+  validate
+});
+
+export default connect(mapStateToProps, { fetch[name.toUpperFirst()/], update[name.toUpperFirst()/] })(form([name.toUpperFirst()/]Edit));
+[/file]
+			[/if]        
+   		[/for]
+	[/if]	
+[/for]
+[/template]

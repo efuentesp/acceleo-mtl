@@ -1,0 +1,79 @@
+[comment encoding = UTF-8 /]
+[module Service('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateElementService(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.wizard')]	
+	 	[for (aClass : Class | p.packagedElement->filter(Class))]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Wizard')) ]
+				[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/service/').concat(aClass.name.toUpperFirst()).concat('Service.java'), false), 'UTF-8') ]
+package [aClass._package.name/].service;
+
+import java.util.List;
+import [aClass._package.name/].domain.[name.toUpperFirst()/];
+
+public interface [name.toUpperFirst()/]Service {
+
+	 public void add[name.toUpperFirst()/]([name.toUpperFirst()/] [name/]);   
+	 public void edit[name.toUpperFirst()/]([name.toUpperFirst()/] [name/]);  
+	 public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]([name.toUpperFirst()/] [name/]);   
+	 public [name.toUpperFirst()/] get[name.toUpperFirst()/](int id);  
+				
+}
+				[/file]
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.wizard')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+                        		    [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
+									   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumRadio')
+									   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumCheck')
+									   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect') )]
+[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/service/').concat(aClass.name).concat('Service.java'), false), 'UTF-8') ]
+[if (aClass.getOperations() -> asSequence() -> size()) > 0]
+	[comment aClass.generateElementServiceAdapter('sda')/]
+[/if]
+package [aClass._package.name.toLower()/].service;
+
+import [aClass._package.name.toLower()/].domain.[name.toUpperFirst()/];
+import java.util.List;
+
+public interface [name.toUpperFirst()/]Service {
+
+	public void add[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]);
+
+	public void edit[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]);
+	
+	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]s([name.toUpperFirst()/] [name.toLower()/]);
+
+	public [name.toUpperFirst()/] get[name.toUpperFirst()/](int empid);
+
+	public void delete[name.toUpperFirst()/]([name.toUpperFirst()/] [name.toLower()/]);
+	
+	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]sQuery([name.toUpperFirst()/] [name.toLower()/], String query, int page, int size);
+
+	public List<[name.toUpperFirst()/]> list[name.toUpperFirst()/]sPagination([name.toUpperFirst()/] [name.toLower()/], int page, int size);
+	
+
+	public long getTotalRows();
+
+	public long getTotalRows(String query);
+
+	public long getTotalRowsSearch(String query);
+
+}
+
+[/file]
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+
+[/template]

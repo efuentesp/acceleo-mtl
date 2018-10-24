@@ -4,21 +4,19 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
     </input>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudModelComponentView.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudServiceComponentView.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentCreateView.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentEditView.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentManageView.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentCreateHtml.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentEditHtml.emtl#/0"/>
-    <imports href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentManageHtml.emtl#/0"/>
+    <imports href="CrudModelComponentView.emtl#/0"/>
+    <imports href="CrudServiceComponentView.emtl#/0"/>
+    <imports href="CrudComponentCreateView.emtl#/0"/>
+    <imports href="CrudComponentEditView.emtl#/0"/>
+    <imports href="CrudComponentManageView.emtl#/0"/>
+    <imports href="CrudComponentCreateHtml.emtl#/0"/>
+    <imports href="CrudComponentEditHtml.emtl#/0"/>
+    <imports href="CrudComponentManageHtml.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="generateElementCrudView" visibility="Public" main="true">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentCreateHtml.emtl#/0/generateElementCrudComponentCreateHtml"/>
+        <definition href="CrudModelComponentView.emtl#/0/generateElementCrudModelComponentView"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/generateElementCrudView/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
@@ -26,12 +24,59 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentEditHtml.emtl#/0/generateElementCrudComponentEditHtml"/>
+        <definition href="CrudServiceComponentView.emtl#/0/generateElementCrudServiceComponentView"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/generateElementCrudView/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="CrudComponentCreateView.emtl#/0/generateElementCrudComponentCreateView"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/generateElementCrudView/aModel">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </argument>
       </body>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="CrudComponentEditView.emtl#/0/generateElementCrudComponentEditView"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/generateElementCrudView/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="CrudComponentManageView.emtl#/0/generateElementCrudComponentManageView"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/generateElementCrudView/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="CrudComponentCreateHtml.emtl#/0/generateElementCrudComponentCreateHtml"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/generateElementCrudView/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="CrudComponentEditHtml.emtl#/0/generateElementCrudComponentEditHtml"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/generateElementCrudView/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="CrudComponentManageHtml.emtl#/0/generateElementCrudComponentManageHtml"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="aModel" referredVariable="/0/generateElementCrudView/aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </argument>
+      </body>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
       <parameter name="aModel">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
@@ -68,12 +113,72 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </eParameters>
       </eOperations>
+      <eOperations name="generateElementCrudModelComponentView">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="CrudModelComponentView.emtl#/0/generateElementCrudModelComponentView"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementCrudServiceComponentView">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="CrudServiceComponentView.emtl#/0/generateElementCrudServiceComponentView"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementCrudComponentCreateView">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="CrudComponentCreateView.emtl#/0/generateElementCrudComponentCreateView"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementCrudComponentEditView">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="CrudComponentEditView.emtl#/0/generateElementCrudComponentEditView"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementCrudComponentManageView">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="CrudComponentManageView.emtl#/0/generateElementCrudComponentManageView"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="generateElementCrudComponentCreateHtml">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentCreateHtml.emtl#/0/generateElementCrudComponentCreateHtml"/>
+          <references href="CrudComponentCreateHtml.emtl#/0/generateElementCrudComponentCreateHtml"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -85,7 +190,19 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/resource/GeneratorDemo/bin/GeneratorDemo/pattern/angular/view/CrudComponentEditHtml.emtl#/0/generateElementCrudComponentEditHtml"/>
+          <references href="CrudComponentEditHtml.emtl#/0/generateElementCrudComponentEditHtml"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aModel">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateElementCrudComponentManageHtml">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="CrudComponentManageHtml.emtl#/0/generateElementCrudComponentManageHtml"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="aModel">
@@ -138,12 +255,30 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/generateElementCrudView">
       <details key="start" value="669"/>
-      <details key="end" value="1476"/>
+      <details key="end" value="1428"/>
       <details key="line" value="12"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/generateElementCrudView/%">
@@ -152,51 +287,126 @@
       <details key="line" value="14"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/generateElementCrudView/%.1">
-      <details key="start" value="946"/>
-      <details key="end" value="947"/>
+      <details key="start" value="747"/>
+      <details key="end" value="799"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateElementCrudView/%.1/aModel">
+      <details key="start" value="792"/>
+      <details key="end" value="798"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateElementCrudView/%.2">
+      <details key="start" value="835"/>
+      <details key="end" value="836"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generateElementCrudView/%.3">
+      <details key="start" value="837"/>
+      <details key="end" value="891"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generateElementCrudView/%.3/aModel">
+      <details key="start" value="884"/>
+      <details key="end" value="890"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generateElementCrudView/%.4">
+      <details key="start" value="929"/>
+      <details key="end" value="931"/>
       <details key="line" value="17"/>
     </eAnnotations>
-    <eAnnotations source="positions.3" references="/0/generateElementCrudView/%.2">
-      <details key="start" value="1213"/>
-      <details key="end" value="1214"/>
+    <eAnnotations source="positions.8" references="/0/generateElementCrudView/%.5">
+      <details key="start" value="932"/>
+      <details key="end" value="985"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generateElementCrudView/%.5/aModel">
+      <details key="start" value="978"/>
+      <details key="end" value="984"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generateElementCrudView/%.6">
+      <details key="start" value="1010"/>
+      <details key="end" value="1011"/>
+      <details key="line" value="19"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/generateElementCrudView/%.7">
+      <details key="start" value="1012"/>
+      <details key="end" value="1063"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/generateElementCrudView/%.7/aModel">
+      <details key="start" value="1056"/>
+      <details key="end" value="1062"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generateElementCrudView/%.8">
+      <details key="start" value="1092"/>
+      <details key="end" value="1093"/>
+      <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/generateElementCrudView/%.9">
+      <details key="start" value="1094"/>
+      <details key="end" value="1147"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/generateElementCrudView/%.9/aModel">
+      <details key="start" value="1140"/>
+      <details key="end" value="1146"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generateElementCrudView/%.10">
+      <details key="start" value="1172"/>
+      <details key="end" value="1174"/>
       <details key="line" value="21"/>
     </eAnnotations>
-    <eAnnotations source="positions.4" references="/0/generateElementCrudView/%.3">
-      <details key="start" value="1215"/>
-      <details key="end" value="1268"/>
+    <eAnnotations source="positions.17" references="/0/generateElementCrudView/%.11">
+      <details key="start" value="1175"/>
+      <details key="end" value="1228"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.5" references="/0/generateElementCrudView/%.3/aModel">
-      <details key="start" value="1261"/>
-      <details key="end" value="1267"/>
+    <eAnnotations source="positions.18" references="/0/generateElementCrudView/%.11/aModel">
+      <details key="start" value="1221"/>
+      <details key="end" value="1227"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.6" references="/0/generateElementCrudView/%.4">
-      <details key="start" value="1293"/>
-      <details key="end" value="1294"/>
+    <eAnnotations source="positions.19" references="/0/generateElementCrudView/%.12">
+      <details key="start" value="1253"/>
+      <details key="end" value="1254"/>
       <details key="line" value="23"/>
     </eAnnotations>
-    <eAnnotations source="positions.7" references="/0/generateElementCrudView/%.5">
-      <details key="start" value="1295"/>
-      <details key="end" value="1346"/>
+    <eAnnotations source="positions.20" references="/0/generateElementCrudView/%.13">
+      <details key="start" value="1255"/>
+      <details key="end" value="1306"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.8" references="/0/generateElementCrudView/%.5/aModel">
-      <details key="start" value="1339"/>
-      <details key="end" value="1345"/>
+    <eAnnotations source="positions.21" references="/0/generateElementCrudView/%.13/aModel">
+      <details key="start" value="1299"/>
+      <details key="end" value="1305"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.9" references="/0/generateElementCrudView/%.6">
-      <details key="start" value="1375"/>
-      <details key="end" value="1376"/>
+    <eAnnotations source="positions.22" references="/0/generateElementCrudView/%.14">
+      <details key="start" value="1335"/>
+      <details key="end" value="1336"/>
       <details key="line" value="24"/>
     </eAnnotations>
-    <eAnnotations source="positions.10" references="/0/generateElementCrudView/%.7">
-      <details key="start" value="1464"/>
-      <details key="end" value="1465"/>
+    <eAnnotations source="positions.23" references="/0/generateElementCrudView/%.15">
+      <details key="start" value="1337"/>
+      <details key="end" value="1390"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generateElementCrudView/%.15/aModel">
+      <details key="start" value="1383"/>
+      <details key="end" value="1389"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generateElementCrudView/%.16">
+      <details key="start" value="1415"/>
+      <details key="end" value="1416"/>
       <details key="line" value="25"/>
     </eAnnotations>
-    <eAnnotations source="positions.11" references="/0/generateElementCrudView/aModel">
+    <eAnnotations source="positions.26" references="/0/generateElementCrudView/aModel">
       <details key="start" value="710"/>
       <details key="end" value="724"/>
       <details key="line" value="12"/>

@@ -1,0 +1,129 @@
+[comment encoding = UTF-8 /]
+[module PanelSideView('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementPanelSideView(aModel : Model)]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.wizard')]	
+[file (('src/app').concat('/app.component.html'), false, 'UTF-8')]
+<!-- Principal Page -->
+<div class="wrapper">
+   
+   <!-- header -->
+   <header class="topnavbar-wrapper">
+      <nav class="navbar topnavbar" role="navigation">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="#/">
+               <div class="brand-logo-collapsed">
+               </div>
+            </a>
+         </div>
+         <div class="nav-wrapper">
+            <ul class="nav navbar-nav">
+               <li>
+                  <a class="hidden-xs" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
+                     <em class="fa fa-navicon"></em>
+                  </a>
+                  <a class="visible-xs sidebar-toggle" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+                     <em class="fa fa-navicon"></em>
+                  </a>
+               </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+               <li>
+                  <a href="#" data-search-open="">
+                     <em class="fa fa-search"></em>
+                  </a>
+               </li>
+               <li class="visible-lg">
+                  <a href="#" data-toggle-fullscreen="">
+                     <em class="fa fa-power-off"></em>
+                  </a>
+               </li>
+            </ul>
+         </div>
+         <form class="navbar-form" role="search" action="search.html">
+            <div class="form-group has-feedback">
+               <input class="form-control" type="text" placeholder="Type and hit enter ...">
+               <div class="fa fa-times form-control-feedback" data-search-dismiss=""></div>
+            </div>
+            <button class="hidden btn btn-default" type="submit">Submit</button>
+         </form>
+      </nav>
+   </header>
+   
+   <!-- sidebar-->
+   <aside class="aside">
+      <div class="aside-inner">
+         <nav class="sidebar" data-sidebar-anyclick-close="">
+            <ul class="nav">
+              <div class="item user-block">
+                <div class="user-block-picture">
+                   <div class="user-block-status">
+                      <img class="img-thumbnail img-circle" src="assets/img/user/efp.jpg" alt="Avatar" width="60" height="60">
+                      <div class="circle circle-success circle-lg"></div>
+                   </div>
+                </div>
+                <div class="user-block-info">
+                   <span class="user-block-name">Edgar Felipe Fuentes Perea (EFP)</span>
+                   <span class="user-block-role">Especialista de Práctica</span>
+                </div>
+              </div>
+               <li class="nav-heading ">
+                  <span data-localize="sidebar.heading.HEADER">Principal</span>
+               </li>
+               <li class=" ">
+               
+               	  <a href="#inicio" title="Dashboard" data-toggle="collapse">
+                     <em class="fa fa-dashboard"></em>
+                     <span data-localize="sidebar.nav.DASHBOARD">Inicio</span>
+                  </a>
+
+				[for (aClass : Class | p.packagedElement->filter(Class))]
+					[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+				  <a href="#[name.toLowerFirst()/]" title="[name.toUpperFirst()/]" data-toggle="collapse">
+                     <em class="fa fa-briefcase"></em>
+                     <span data-localize="sidebar.nav.DASHBOARD">[name.toUpperFirst()/]s</span>
+                  </a>
+
+                  <ul class="nav sidebar-subnav collapse" id="[name.toLowerFirst()/]">
+                     <li class="sidebar-subnav-header">[name.toUpperFirst()/]s</li>
+                     <li class="">
+                        <a href="/" routerLink="[name.toLowerFirst()/]_mgmnt" title="Administrar [name.toUpperFirst()/]">
+                           <span>Administrar [name.toUpperFirst()/]</span>
+                        </a>
+                     </li>
+                     <li class="">
+                        <a href="/"  routerLink="[name.toLowerFirst()/]" title="Agregar [name.toUpperFirst()/]" onclick="">
+                           <span>Agregar [name.toUpperFirst()/]</span>
+                        </a>
+                     </li>
+                  </ul>
+					[/if]
+				[/for]	
+               </li>
+            </ul>
+         </nav>
+      </div>
+   </aside>
+
+   <!-- Main section-->
+   <section>
+     <div class="container">
+         <div class="board">
+             <router-outlet></router-outlet>
+         </div>
+     </div>
+   </section>
+
+   <!-- Footer section-->
+   <footer>
+      <span>&copy; Softtek - 2018</span>
+   </footer>
+   
+</div>
+[/file]
+	[/if]
+[/for]
+
+[/template]

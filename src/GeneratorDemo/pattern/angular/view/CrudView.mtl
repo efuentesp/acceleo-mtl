@@ -12,15 +12,15 @@
 [template public generateElementCrudView(aModel : Model)]
 [comment @main /]
 
-[comment aModel.generateElementCrudModelComponentView(aModel)/]			[comment Model del componente/]
-[comment aModel.generateElementCrudServiceComponentView(aModel)/]		[comment Service del componenet /]
+[aModel.generateElementCrudModelComponentView(aModel)/]			[comment Model del componente/]
+[aModel.generateElementCrudServiceComponentView(aModel)/]		[comment Service del componenet /]
 
-[comment aModel.generateElementCrudComponentCreateView(aModel)/]		[comment Component /]
-[comment aModel.generateElementCrudComponentEditView(aModel)/]		    [comment Component /]
-[comment aModel.generateElementCrudComponentManageView(aModel)/]		[comment Component /]
+[aModel.generateElementCrudComponentCreateView(aModel)/]		[comment Component /]
+[aModel.generateElementCrudComponentEditView(aModel)/]		    [comment Component /]
+[aModel.generateElementCrudComponentManageView(aModel)/]		[comment Component /]
 
 [aModel.generateElementCrudComponentCreateHtml(aModel)/]		[comment Component /]
 [aModel.generateElementCrudComponentEditHtml(aModel)/]		    [comment Component /]
-[comment aModel.generateElementCrudComponentManageHtml(aModel)/]		[comment Component /]
+[aModel.generateElementCrudComponentManageHtml(aModel)/]		[comment Component /]
 
 [/template]

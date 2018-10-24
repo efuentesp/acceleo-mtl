@@ -1,0 +1,116 @@
+[comment enconding = UTF-8 /]
+[module Bean('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementBean(aModel : Model)]
+[comment @main /]
+
+[comment ******* Wizard Bean *********/]
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.wizard')]	
+	 	[for (aClass : Class | p.packagedElement->filter(Class))]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Wizard')) ]
+				[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/catalogo/').concat('/bean/').concat(aClass.name.toUpperFirst()).concat('Bean.java'), false), 'UTF-8') ]
+package [aClass._package.name/].catalogo.bean;
+
+import java.util.Date;
+
+public class [name.toUpperFirst()/]Bean {
+
+	private Integer id;
+
+	[for (anAttribute: Property | aClass.getAllAttributes())]
+		[for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property))]	
+			[if not  (anElement.name.equalsIgnoreCase('typeJava') 
+					or anElement.name.equalsIgnoreCase('type') 
+					or anElement.name.equalsIgnoreCase('typeSql') 
+					or anElement.name.equalsIgnoreCase('size'))] 
+	private String [anElement.name/];	
+			[/if]
+		[/for]
+	[/for]		
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}		
+
+	[for (anAttribute: Property | aClass.getAllAttributes())]
+		[for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property) )]
+			[if not  (anElement.name.equalsIgnoreCase('typeJava') 
+				   or anElement.name.equalsIgnoreCase('type') 
+			       or anElement.name.equalsIgnoreCase('typeSql') 
+                   or anElement.name.equalsIgnoreCase('size'))] 
+	public String get[anElement.name.toUpperFirst()/] () {
+	    return [anElement.name/];  		
+	}
+	
+	public void set[anElement.name.toUpperFirst()/](String [anElement.name/]) {
+		this.[anElement.name/] = [anElement.name/];
+	}
+			[/if]
+		[/for]
+	[/for]
+}
+				[/file]
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+
+[comment ******* Crud Bean *********/]
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.wizard')]	
+		[for (aClass : Class | p.packagedElement->filter(Class))]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud') 
+			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumRadio')
+			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumCheck')
+			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='EnumSelect') )]
+[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/catalogo/').concat('/bean/').concat(aClass.name).concat('Bean.java'), false), 'UTF-8') ]
+package [aClass._package.name/].catalogo.bean;
+
+import java.util.Date;
+
+public class [name.toUpperFirst()/]Bean {
+
+	private Integer id;
+
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]	
+		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+	private [anElement.default/] [anAttribute.name.toLower()/];
+		[/if]
+	[/for]
+[/for]
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+[for (anAttribute: Property | getAllAttributes())]
+	[for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property) )]
+		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+	public [anElement.default/] get[anAttribute.name.toUpperFirst()/] () {
+	    return [anAttribute.name.toLower()/];  		
+    }
+
+	public void set[anAttribute.name.toUpperFirst()/]([anElement.default/] [anAttribute.name.toLower()/]) {
+		this.[anAttribute.name.toLower()/] = [anAttribute.name.toLower()/];
+	}
+		[/if]
+	[/for]
+[/for]
+}
+[/file]
+
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+[/template]

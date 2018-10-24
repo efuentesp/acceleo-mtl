@@ -1,0 +1,231 @@
+[comment encoding = UTF-8 /]
+[module ActionsView('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import GeneratorDemo::pattern::crud::view::MasterDertailView/]
+[import GeneratorDemo::pattern::crud::view::generateParentOrSon/]
+
+[template public generateElementActions(aModel : Model)]
+[comment @main /]
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+      					[comment if aClass.getEAnnotation('crud').toString().contains('crud')/]
+                        [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+[file (('features/Entities/').concat(aClass.name.toUpperFirst()).concat('/actions.js'), false), 'UTF-8') ]
+import axios from 'axios';
+import {browserHistory } from 'react-router';
+import { toastr } from 'react-redux-toastr';
+
+export const FETCH_[name.toUpper()/]_LIST_REQUEST = 'FETCH_[name.toUpper()/]_LIST_REQUEST';
+export const FETCH_[name.toUpper()/]_LIST_SUCCESS = 'FETCH_[name.toUpper()/]_LIST_SUCCESS';
+export const FETCH_[name.toUpper()/]_LIST_FAILURE = 'FETCH_[name.toUpper()/]_LIST_FAILURE';
+export const FETCH_[name.toUpper()/]_REQUEST = 'FETCH_[name.toUpper()/]_REQUEST';
+export const FETCH_[name.toUpper()/]_SUCCESS = 'FETCH_[name.toUpper()/]_SUCCESS';
+export const FETCH_[name.toUpper()/]_FAILURE = 'FETCH_[name.toUpper()/]_FAILURE';
+export const CREATE_[name.toUpper()/]_REQUEST = 'CREATE_[name.toUpper()/]_REQUEST';
+export const CREATE_[name.toUpper()/]_SUCCESS = 'CREATE_[name.toUpper()/]_SUCCESS';
+export const CREATE_[name.toUpper()/]_FAILURE = 'CREATE_[name.toUpper()/]_FAILURE';
+export const UPDATE_[name.toUpper()/]_REQUEST = 'UPDATE_[name.toUpper()/]_REQUEST';
+export const UPDATE_[name.toUpper()/]_SUCCESS = 'UPDATE_[name.toUpper()/]_SUCCESS';
+export const UPDATE_[name.toUpper()/]_FAILURE = 'UPDATE_[name.toUpper()/]_FAILURE';
+
+const ROOT_URL = 'http://localhost:8080/SADF';
+
+/**
+ ** Fetch [name.toUpperFirst()/] List actions
+ **/
+
+export function fetch[name.toUpperFirst()/]ListRequest() {
+  return { type: FETCH_[name.toUpper()/]_LIST_REQUEST };
+}
+
+export function fetch[name.toUpperFirst()/]ListSuccess(payload) {
+  return { type: FETCH_[name.toUpper()/]_LIST_SUCCESS, payload };
+}
+
+export function fetch[name.toUpperFirst()/]ListFailure(error) {
+  return { type: FETCH_[name.toUpper()/]_LIST_FAILURE, payload: error };
+}
+
+export function fetch[name.toUpperFirst()/]List(page, term) {
+
+  let url = `${ROOT_URL}/[name.toLower()/]?_page=${page}`;
+  if (term) {
+    url = `${url}&q=${term}`;
+  }
+
+  const request = axios({
+    method: 'get',
+    url: url,
+    headers: ['[]'/]
+  });
+
+  return dispatch => {
+    dispatch(fetch[name.toUpperFirst()/]ListRequest());
+    return request
+      .then(res => dispatch(fetch[name.toUpperFirst()/]ListSuccess(res)))
+      .catch(ex => dispatch(fetch[name.toUpperFirst()/]ListFailure(ex)));
+  };
+}
+
+/**
+ ** Fetch Cliente actions
+ **/
+
+export function fetch[name.toUpperFirst()/]Request() {
+  return { type: FETCH_[name.toUpper()/]_REQUEST };
+}
+
+export function fetch[name.toUpperFirst()/]Success(payload) {
+  return { type: FETCH_[name.toUpper()/]_SUCCESS, payload };
+}
+
+export function fetch[name.toUpperFirst()/]Failure(error) {
+  return { type: FETCH_[name.toUpper()/]_FAILURE, payload: error };
+}
+
+export function fetch[name.toUpperFirst()/](id) {
+
+  const url = `${ROOT_URL}/[name.toLower()/]/${id}`;
+
+  const request = axios({
+    method: 'get',
+    url: url,
+    headers: ['[]'/]
+  });
+
+  return dispatch => {
+    dispatch(fetch[name.toUpperFirst()/]Request());
+    return request
+      .then(res => dispatch(fetch[name.toUpperFirst()/]Success(res)))
+      .catch(ex => dispatch(fetch[name.toUpperFirst()/]Failure(ex)));
+  };
+}
+[aModel.generateElementMasterDetailView(aClass, 'FetchListDetail')/]
+/**
+ ** Create [name.toUpperFirst()/] actions
+ **/
+
+export function create[name.toUpperFirst()/]Request() {
+  return { type: CREATE_[name.toUpper()/]_REQUEST };
+}
+
+export function create[name.toUpperFirst()/]Success(payload) {
+  return { type: CREATE_[name.toUpper()/]_SUCCESS, payload };
+}
+
+export function create[name.toUpperFirst()/]Failure(error) {
+  return { type: CREATE_[name.toUpper()/]_FAILURE, payload: error };
+}
+
+export function create[name.toUpperFirst()/](props) {
+
+  const url = `${ROOT_URL}/[name.toLower()/]`;
+
+  const request = axios({
+    method: 'post',
+    url: url,
+    data: props,
+    headers: ['[]'/]
+  });
+
+  return dispatch => {
+    dispatch(create[name.toUpperFirst()/]Request());
+    return request
+      .then(res => dispatch(create[name.toUpperFirst()/]Success(res)))
+      .catch(ex => dispatch(create[name.toUpperFirst()/]Failure(ex)));
+  };
+}
+
+/**
+ ** Update [name.toUpperFirst()/] actions
+ **/
+
+export function update[name.toUpperFirst()/]Request() {
+  return { type: UPDATE_[name.toUpper()/]_REQUEST };
+}
+
+export function update[name.toUpperFirst()/]Success(payload) {
+  return { type: UPDATE_[name.toUpper()/]_SUCCESS, payload };
+}
+
+export function update[name.toUpperFirst()/]Failure(error) {
+  return { type: UPDATE_[name.toUpper()/]_FAILURE, payload: error };
+}
+
+export function update[name.toUpperFirst()/](id, props) {
+
+  const url = `${ROOT_URL}/[name.toLower()/]/${id}`;
+
+  const request = axios({
+    method: 'put',
+    url: url,
+    data: props,
+    headers: ['[]'/]
+  });
+
+  return dispatch => {
+    dispatch(update[name.toUpperFirst()/]Request());
+    return request
+      .then(res => dispatch(update[name.toUpperFirst()/]Success(res)))
+      .catch(ex => dispatch(update[name.toUpperFirst()/]Failure(ex)));
+  };
+}
+
+/**
+ ** Delete [name.toUpperFirst()/] actions
+ **/
+
+export function delete[name.toUpperFirst()/](id, [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) {
+
+  const url = `${ROOT_URL}/[name.toLowerCase()/]/${id}`;
+
+  const request = axios({
+    method: 'delete',
+    url: url,
+    headers: ['[]'/]
+  });
+
+  return () => {
+    request
+      .then((res) => {
+      if (res.status == 200){ 
+        const [name.toLowerCase()/]_mgmnt = ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) ? "/[name.toLowerCase()/]_mgmnt?[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id=" + [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id : "/[name.toLowerCase()/]_mgmnt";
+        browserHistory.push([name.toLowerCase()/]_mgmnt);
+        toastr.success("[name.toUpperFirst()/] borrada", `El [name.toUpperFirst()/] fue borrado exitosamente.`);
+      }	
+      })
+      .catch(() => {
+        const toastrOptions = {
+          timeOut: 8000
+        };
+        toastr.error("Error al borrar [name.toUpperFirst()/]", toastrOptions);
+      });
+  };
+}
+
+[if (p.packagedElement -> filter(Association).memberEnd.name -> count(aClass.name) <= 1 )]
+[if (p.packagedElement -> filter(Association).memberEnd -> select( p | p.name.equalsIgnoreCase(aClass.name)).lower.toString().equalsIgnoreCase('1') = Bag{true})]
+export function fetch[aClass.name.toUpperFirst()/]ListByParent () {
+
+}
+
+export function fetchParent () {
+
+}
+[/if]
+[/if]
+[if (p.packagedElement -> filter(Association).memberEnd.name -> count(aClass.name) = 0 )]
+export function fetch[aClass.name.toUpperFirst()/]ListByParent () {
+
+}
+
+export function fetchParent () {
+
+}
+[/if]
+[/file]
+			[/if]        
+   		[/for]
+	[/if]	
+[/for]
+[/template]

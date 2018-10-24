@@ -32,7 +32,7 @@ public class [name.toUpperFirst()/]Bean {
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]	
 		[if (anElement.name.equalsIgnoreCase('typeJava'))]
-			[if not (anAttribute.name.equalsIgnoreCase('id'))]
+			[if not (anAttribute.name.equalsIgnoreCase('Id'))]
 	private [anElement.default/] [anAttribute.name.toLowerFirst()/];
 			[/if]
 		[/if]	
@@ -79,7 +79,7 @@ public class [name.toUpperFirst()/]Bean {
 [for (anAttribute: Property | getAllAttributes())]
 	[for (anElement: Property | anAttribute.type.allOwnedElements() ->filter(Property) )]
 		[if (anElement.name.equalsIgnoreCase('typeJava'))] 
-			[if not(anAttribute.name.equalsIgnoreCase('id'))]
+			[if not(anAttribute.name.equalsIgnoreCase('Id'))]
 	public [anElement.default/] get[anAttribute.name.toUpperFirst()/] () {
 	    return [anAttribute.name.toLowerFirst()/];  		
     }

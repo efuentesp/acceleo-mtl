@@ -11,10 +11,10 @@
 
 	[comment @main /]	
 
-	[comment aModel.generateRoutingModuleView()/]   
-	[comment aModel.generateElementRoutingModuleHtml()/]
+	[aModel.generateRoutingModuleView()/]   
+	[aModel.generateElementRoutingModuleHtml()/]
 	[aModel.generateElementCrudView()/] 
-	[comment aModel.generateElementPipeView()/] 
+	[aModel.generateElementPipeView()/] 
 
 
 [/template]

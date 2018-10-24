@@ -103,7 +103,7 @@
                               </source>
                               <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
                             </source>
-                            <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="id">
+                            <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Id">
                               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
                             </argument>
                           </source>
@@ -656,7 +656,7 @@
                               </source>
                               <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
                             </source>
-                            <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="id">
+                            <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Id">
                               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
                             </argument>
                           </source>

@@ -48,7 +48,7 @@
 		[for (anElement: Property | aClass.allOwnedElements()->filter(Property) )]
               <li><a><i class="fa fa-home"></i> [anElement.default/] <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li *ngIf="cuentadeahorro_mgmnt">
+                  <li *ngIf="[anElement.name.toLower()/]_mgmnt">
                     <a routerLink="./manage[anElement.name.toLower()/]" >
                       Administrar [anElement.default/]
                     </a>

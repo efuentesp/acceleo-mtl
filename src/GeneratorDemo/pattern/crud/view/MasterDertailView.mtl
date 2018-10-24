@@ -1,0 +1,434 @@
+[comment encoding = UTF-8 /]
+[module MasterDertailView('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import GeneratorDemo::pattern::crud::view::generateRecursiveAsoc/]
+[template public generateElementMasterDetailView(aModel : Model, aClass : Class, sString : String)]
+[comment @main /]
+[if aClass.getEAnnotation('crud-').toString().contains('crud-')]
+[if sString.equalsIgnoreCase('ManagmentView')]
+import React from 'react';
+import { Link } from 'react-router';
+import { Col, Row, Panel } from 'react-bootstrap';
+
+import ContentWrapper from "../../Common/Layout/ContentWrapper";
+import [aClass.name.toUpperFirst()/]Search from './[aClass.name.toUpperFirst()/]Search';
+import [aClass.name.toUpperFirst()/]List from './[aClass.name.toUpperFirst()/]List';
+
+const [aClass.name.toUpperFirst()/]Management = () => {
+  return (
+    <ContentWrapper>
+      <ol className="breadcrumb pull-right">
+         <li>
+           <Link to="/">Inicio</Link>
+         </li>
+         <li className="active">[aClass.name.toUpperFirst()/]</li>
+         <li className="active">Administrar [aClass.name.toUpperFirst()/]</li>
+      </ol>
+      <h3>Administraci�n de [aClass.name.toUpperFirst()/]</h3>
+      <Panel header="[aClass.name.toUpperFirst()/] registrados">
+        <Col sm={12}>
+          <Row>
+            <[aClass.name.toUpperFirst()/]Search />
+            <br />
+          </Row>
+          <Row>
+            <Link className="btn btn-info" to="/[aClass.name.toLower()/]">
+              <em className="fa fa-plus" />
+            </Link>
+          </Row>
+          <Row>
+            <[aClass.name.toUpperFirst()/]List />
+          </Row>
+        </Col>
+      </Panel>
+    </ContentWrapper>
+  );
+};
+
+export default [aClass.name.toUpperFirst()/]Management;
+[/if]
+[if sString.equalsIgnoreCase('breadcrumb')]
+<ol className="breadcrumb pull-right">
+           <li>
+             <Link to="/">Inicio</Link>
+           </li>
+           <li className="active">[aClass.name.toUpperFirst()/]</li>
+           <li>
+             <Link to="/[aClass.name.toLowerCase()/]_mgmnt">Administrar [aClass.name.toUpperFirst()/]</Link>
+           </li>
+           <li className="active">Agregar [aClass.name.toUpperFirst()/]</li>
+        </ol>
+        <h3>
+          <span className="mr">Agregar de [aClass.name.toUpperFirst()/]</span>
+        </h3>
+[/if]
+[if sString.equalsIgnoreCase('DeleteViewconstconst_orden_mgmnt')]
+this.context.router.push('/[aClass.name.toLowerCase()/]_mgmnt');
+[/if]
+[if sString.equalsIgnoreCase('EditViewconstconst_orden_mgmnt')]
+this.context.router.push('/[aClass.name.toLowerCase()/]_mgmnt');
+[/if]
+[if sString.equalsIgnoreCase('const orden_mgmnt')]
+this.context.router.push('/[aClass.name.toLowerCase()/]_mgmnt');
+[/if]
+[if sString.equalsIgnoreCase('PropTypes.string')]
+fetch[aClass.name.toUpperFirst()/]List: PropTypes.func.isRequired,
+[/if]
+[if sString.equalsIgnoreCase('searchImport')]fetch[aClass.name.toUpperFirst()/]List[/if]
+[if sString.equalsIgnoreCase('this.props.fetchOrdenListByCliente')]
+this.props.fetch[aClass.name.toUpperFirst()/]List(props.term)
+[/if]
+[if sString.equalsIgnoreCase('Menu')]
+<SidebarMenu
+              title="[aClass.name.toUpperFirst()/]"
+              icon="fa fa-briefcase">
+              <SidebarSubMenu
+                route="/[aClass.name.toLowerCase()/]_mgmnt"
+                title="Administrar [aClass.name.toUpperFirst()/]" />
+              <SidebarSubMenu
+                route="/[aClass.name.toLowerCase()/]"
+                title="Agregar [aClass.name.toUpperFirst()/]" />
+            </SidebarMenu>
+[/if]
+[/if]
+[for (p : Package | aModel.packagedElement->filter(Package))]
+[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]
+[if (p.packagedElement -> filter(Association).memberEnd.name -> count(aClass.name) = 1 )]
+[if (p.packagedElement -> filter(Association).memberEnd -> select( p | p.name.equalsIgnoreCase(aClass.name)).lower.toString().equalsIgnoreCase('1') = Bag{true})]
+[if sString.equalsIgnoreCase('ParentOrSonLowerCase')]parent[/if]
+[if sString.equalsIgnoreCase('constructor(props)')]
+constructor(props) {
+    super(props);
+
+    this.state = {
+      current_page: 1
+    };
+  }
+
+  componentWillMount() {
+    this.props.fetch[aClass.name.toUpperFirst()/]List(this.state.current_page);
+  }
+
+  onRetryLoad() {
+    this.props.fetch[aClass.name.toUpperFirst()/]List(this.state.current_page);
+  }
+
+  onPaginationClick(pageSelected) {
+    this.props.fetch[aClass.name.toUpperFirst()/]List(pageSelected);
+    this.setState({
+      current_page: pageSelected
+    });
+  }
+[/if]
+[if sString.equalsIgnoreCase('ManagmentView')]
+import React from 'react';
+import { Link } from 'react-router';
+import { Col, Row, Panel } from 'react-bootstrap';
+
+import ContentWrapper from "../../Common/Layout/ContentWrapper";
+import [aClass.name.toUpperFirst()/]Search from './[aClass.name.toUpperFirst()/]Search';
+import [aClass.name.toUpperFirst()/]List from './[aClass.name.toUpperFirst()/]List';
+
+const [aClass.name.toUpperFirst()/]Management = () => {
+  return (
+    <ContentWrapper>
+      <ol className="breadcrumb pull-right">
+         <li>
+           <Link to="/">Inicio</Link>
+         </li>
+         <li className="active">[aClass.name.toUpperFirst()/]</li>
+         <li className="active">Administrar [aClass.name.toUpperFirst()/]</li>
+      </ol>
+      <h3>Administraci�n de [aClass.name.toUpperFirst()/]</h3>
+      <Panel header="[aClass.name.toUpperFirst()/] registrados">
+        <Col sm={12}>
+          <Row>
+            <[aClass.name.toUpperFirst()/]Search />
+            <br />
+          </Row>
+          <Row>
+            <Link className="btn btn-info" to="/[aClass.name.toLower()/]">
+              <em className="fa fa-plus" />
+            </Link>
+          </Row>
+          <Row>
+            <[aClass.name.toUpperFirst()/]List />
+          </Row>
+        </Col>
+      </Panel>
+    </ContentWrapper>
+  );
+};
+
+export default [aClass.name.toUpperFirst()/]Management;
+[/if]
+[if sString.equalsIgnoreCase('DetailButton')]
+<Link className="btn btn-default" to={`/[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('*'))).name.toLower()/]_mgmnt?[aClass.name.toLower()/]_id=${item.id}`}>
+		<em className="fa fa-check-circle-o" />
+		<span> [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('*'))).name.toUpperFirst()/]</span>
+</Link>
+[/if]
+[if sString.equalsIgnoreCase('div')]<div>[/if]
+[if sString.equalsIgnoreCase('Rowpagination')]
+<Row>
+          <Col sm={12}>
+            <Pagination
+              activePage={this.state.current_page}
+              items={Math.ceil((this.props.[aClass.name.toLowerCase()/] || {}).total_count / this.props.items_per_page)}
+              maxButtons={5}
+              boundaryLinks
+              onSelect={this.onPaginationClick.bind(this)} />
+          </Col>
+        </Row>
+      </div>
+[/if]
+[if sString.equalsIgnoreCase('breadcrumb')]
+<ol className="breadcrumb pull-right">
+           <li>
+             <Link to="/">Inicio</Link>
+           </li>
+           <li className="active">[aClass.name.toUpperFirst()/]</li>
+           <li>
+             <Link to="/[aClass.name.toLowerCase()/]_mgmnt">Administrar [aClass.name.toUpperFirst()/]</Link>
+           </li>
+           <li className="active">Agregar [aClass.name.toUpperFirst()/]</li>
+        </ol>
+        <h3>
+          <span className="mr">Agregar de [aClass.name.toUpperFirst()/]</span>
+        </h3>
+[/if]
+[if sString.equalsIgnoreCase('DeleteViewconstconst_orden_mgmnt')]
+this.context.router.push('/[aClass.name.toLowerCase()/]_mgmnt');
+[/if]
+[if sString.equalsIgnoreCase('EditViewconstconst_orden_mgmnt')]
+this.context.router.push('/[aClass.name.toLowerCase()/]_mgmnt');
+[/if]
+[if sString.equalsIgnoreCase('const orden_mgmnt')]
+this.context.router.push('/[aClass.name.toLowerCase()/]_mgmnt');
+[/if]
+[if sString.equalsIgnoreCase('PropTypes.string')]
+fetch[aClass.name.toUpperFirst()/]List: PropTypes.func.isRequired,
+[/if]
+[if sString.equalsIgnoreCase('searchImport')]fetch[aClass.name.toUpperFirst()/]List[/if]
+[if sString.equalsIgnoreCase('this.props.fetchOrdenListByCliente')]
+this.props.fetch[aClass.name.toUpperFirst()/]List(props.term)
+[/if]
+[if sString.equalsIgnoreCase('Menu')]
+<SidebarMenu
+              title="[aClass.name.toUpperFirst()/]"
+              icon="fa fa-briefcase">
+              <SidebarSubMenu
+                route="/[aClass.name.toLowerCase()/]_mgmnt"
+                title="Administrar [aClass.name.toUpperFirst()/]" />
+              <SidebarSubMenu
+                route="/[aClass.name.toLowerCase()/]"
+                title="Agregar [aClass.name.toUpperFirst()/]" />
+            </SidebarMenu>
+[/if]
+[/if]
+[/if]
+[if (p.packagedElement -> filter(Association).memberEnd.name -> count(aClass.name) > 1 or (p.packagedElement -> filter(Association).memberEnd -> select( p | p.name.equalsIgnoreCase(aClass.name)).upperValue.stringValue().equalsIgnoreCase('*') = Bag{true}))]
+[if p.packagedElement -> filter(Association).memberEnd.name -> count(aClass.name) > 1 and sString.equalsIgnoreCase('DetailButton')]
+<Link className="btn btn-default" to={`/[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('*'))).name.toLower()/]_mgmnt?[aClass.name.toLower()/]_id=${item.id}`}>
+		<em className="fa fa-check-circle-o" />
+		<span> [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('*'))).name.toUpperFirst()/]es</span>
+</Link>
+[/if]
+[if sString.equalsIgnoreCase('ParentOrSonLowerCase')][aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLower()/][/if]
+[if sString.equalsIgnoreCase('FetchListDetail')]
+export function fetch[aClass.name.toUpperFirst()/]ListBy[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/](page, [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLower()/]_id, term) {
+
+  let url = `${ROOT_URL}/[aClass.name.toLower()/]?_page=${page}&[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLower()/]_id=${[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLower()/]_id}`; 	
+
+  if (term) {
+    url = `${url}&q=${term}`;
+  }
+
+  const request = axios({
+    method: 'get',
+    url: url,
+    headers: ['[]'/]
+  });
+
+  return dispatch => {
+    dispatch(fetch[aClass.name.toUpperFirst()/]ListRequest());
+    return request
+      .then(res => dispatch(fetch[aClass.name.toUpperFirst()/]ListSuccess(res)))
+      .catch(ex => dispatch(fetch[aClass.name.toUpperFirst()/]ListFailure(ex)));
+  };
+}
+[/if]
+[if sString.equalsIgnoreCase('ImportCreateVDetail')]
+import { fetch[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/] } from '../[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]/actions';[elseif]
+[/if]
+[if sString.equalsIgnoreCase('componentWillMount')]
+componentWillMount() {
+    if (this.props.params.id) {
+      this.props.fetch[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/](this.props.params.id)
+      .then(() => {
+        this.props.initialize({
+          "[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLower()/]_id": this.props.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLower()/].id
+        });
+      });
+    }
+}
+[/if]
+[if sString.equalsIgnoreCase('const orden_mgmnt')]
+const [aClass.name.toLowerCase()/]_mgmnt = (this.props.params.id) ? "/[aClass.name.toLowerCase()/]_mgmnt?[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLower()/]_id=" + this.props.params.id : "/[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_mgmnt";
+[/if]
+[if sString.equalsIgnoreCase('const orden_mgmntII')]
+const [aClass.name.toLowerCase()/]_mgmnt = (this.props.params.id) ? "/[aClass.name.toLowerCase()/]_mgmnt?[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLower()/]_id=" + this.props.params.id : "/[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_mgmnt";
+[/if]
+[if sString.equalsIgnoreCase('breadcrumb')]
+<ol className="breadcrumb pull-right">
+           <li>
+             <Link to="/">Inicio</Link>
+           </li>
+           <li className="active">[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]</li>
+             <li>
+               <Link to="/[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_mgmnt">Administrar [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]</Link>
+             </li>
+           <li>
+             <Link to={[aClass.name.toLower()/]_mgmnt}>Administrar [aClass.name.toUpperFirst()/]</Link>
+           </li>
+           <li className="active">Agregar [aClass.name.toUpperFirst()/]</li>
+        </ol><h3>Agregar [aClass.name.toUpperFirst()/] <small>{(this.props.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/] || {}).nombre}</small></h3>
+[/if]
+[if sString.equalsIgnoreCase('CreatePropTypes')]
+params: PropTypes.object,
+initialize: PropTypes.func.isRequired,
+[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]: PropTypes.object,
+fetch[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]: PropTypes.func,
+[/if]
+[if sString.equalsIgnoreCase('mapStateToProps')]
+[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]: state.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/].item,
+[/if]
+[if sString.equalsIgnoreCase('DeleteViewconst')]
+const [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id = this.props.[aClass.name.toLowerCase()/].[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id;
+[/if]
+[if sString.equalsIgnoreCase('DeleteViewconstconst_orden_mgmnt')]
+const [aClass.name.toLowerCase()/]_mgmnt = (this.props.params.id) ? "/[aClass.name.toLowerCase()/]_mgmnt?[p.name.toLowerCase()/]_id=" + [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id : "/[aClass.name.toLowerCase()/]_mgmnt";
+this.context.router.push([aClass.name.toLowerCase()/]_mgmnt);
+[/if]
+[if sString.equalsIgnoreCase('EditViewconstconst_orden_mgmnt')]
+const [aClass.name.toLowerCase()/]_mgmnt = (this.props.params.id) ? "/[aClass.name.toLowerCase()/]_mgmnt?[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id=" + this.props.[aClass.name.toLowerCase()/].[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id : "/[aClass.name.toLowerCase()/]_mgmnt";
+this.context.router.push([aClass.name.toLowerCase()/]_mgmnt);
+[/if]
+[if sString.equalsIgnoreCase('fetchCliente')]fetch[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/],[/if]
+[if sString.equalsIgnoreCase('this.context.router.push')]
+this.context.router.push([aClass.name.toLowerCase()/]_mgmnt);
+[/if]
+[if sString.equalsIgnoreCase('ImportfetchOrdenListByCliente')]import { fetch[p.name.toUpperFirst()/]List } from './actions';[/if]
+[if sString.equalsIgnoreCase('constructor(props)')]
+constructor(props) {
+    super(props);
+
+    this.state = {
+      current_page: 1
+    };
+  }
+
+  componentWillMount() {
+    this.props.fetch[p.name.toUpperFirst()/]List(this.state.current_page);
+  }
+
+  onRetryLoad() {
+    this.props.fetch[p.name.toUpperFirst()/]List(this.state.current_page);
+  }
+
+  onPaginationClick(pageSelected) {
+    this.props.fetch[p.name.toUpperFirst()/]List(pageSelected);
+    this.setState({
+      current_page: pageSelected
+    });
+  }
+[/if]
+[if sString.equalsIgnoreCase('ListComponentWillSecond')]
+}
+[/if]
+[if sString.equalsIgnoreCase('List.propTypes')]
+[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]Id: PropTypes.string,
+fetch[aClass.name.toUpperFirst()/]ListBy[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]: PropTypes.func.isRequired,
+[/if]
+[if sString.equalsIgnoreCase('Route path')]
+<Route path="[aClass.name.toLowerCase()/]/:id" component={[aClass.name.toUpperFirst()/]Create} />
+[/if]
+[if sString.equalsIgnoreCase('PropTypes.string')]
+[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]Id: PropTypes.string,
+fetch[aClass.name.toUpperFirst()/]ListBy[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]: PropTypes.func.isRequired,
+[/if]
+[if sString.equalsIgnoreCase('searchImport')]fetch[aClass.name.toUpperFirst()/]ListBy[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/][/if]
+[if sString.equalsIgnoreCase('this.props.fetchOrdenListByCliente')]
+this.props.fetch[aClass.name.toUpperFirst()/]ListBy[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/](this.props.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]Id, props.term)
+[/if]
+[if sString.equalsIgnoreCase('ManagmentView')]
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import { Col, Row, Panel } from 'react-bootstrap';
+
+import ContentWrapper from "../../Common/Layout/ContentWrapper";
+import { fetch[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/] } from '../[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]/actions';
+import [aClass.name.toUpperFirst()/]Search from './[aClass.name.toUpperFirst()/]Search';
+import [aClass.name.toUpperFirst()/]List from './[aClass.name.toUpperFirst()/]List';
+
+class [aClass.name.toUpperFirst()/]Management extends Component {
+
+  componentWillMount() {
+    if (this.props.location.query.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id) {
+      this.props.fetch[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/](this.props.location.query.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id);
+    }
+  }
+  render() {
+    return (
+      <ContentWrapper>
+        <ol className="breadcrumb pull-right">
+           <li>
+             <Link to="/">Inicio</Link>
+           </li>
+           <li className="active">[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]</li>
+           <li>
+             <Link to={`/[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_mgmnt[for (a : Association | aClass.getAssociations())][for (p: Property | a.memberEnd )]	
+[if not p.name.equalsIgnoreCase(aClass.name) and p.upperValue.stringValue().equalsIgnoreCase('1')][aModel.generateElementRecursiveAsoc(p.name.toString(), 'ManagmentView')/][/if][/for][/for]`}>Administrar [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]</Link>
+           </li>
+           <li className="active">Administrar [aClass.name.toUpperFirst()/]</li>
+        </ol>
+        <h3>Administraci�n de [aClass.name.toUpperFirst()/] <small>{(this.props.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/] || {}).nombre}</small></h3>
+        <Panel header="[aClass.name.toUpperFirst()/] registrados">
+          <Col sm={12}>
+            <Row>
+              <[aClass.name.toUpperFirst()/]Search
+                [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]Id={this.props.location.query.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id} />
+              <br />
+            </Row>
+            <Row>
+              <Link className="btn btn-info" to={`/[aClass.name.toLowerCase()/]/${this.props.location.query.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id}`}>
+                <em className="fa fa-plus" />
+              </Link>
+            </Row>
+            <Row>
+              <[aClass.name.toUpperFirst()/]List
+                [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]Id={this.props.location.query.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]_id} />
+            </Row>
+          </Col>
+        </Panel>
+      </ContentWrapper>
+    );
+  }
+}
+
+[aClass.name.toUpperFirst()/]Management.propTypes = {
+  location: PropTypes.object,
+  [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]: PropTypes.object,
+  fetch[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/]: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+  return { [aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/]: state.[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toLowerCase()/].item };
+}
+
+export default connect(mapStateToProps, { fetch[aClass.getAssociations().memberEnd -> select(p |not p.name.equalsIgnoreCase(aClass.name) and (p.upperValue.stringValue().equalsIgnoreCase('1'))).name.toUpperFirst()/] })([aClass.name.toUpperFirst()/]Management);
+[/if]
+						[/if]
+[/if]
+[/for]
+[/template]

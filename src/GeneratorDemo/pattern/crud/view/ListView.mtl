@@ -1,0 +1,138 @@
+[comment encoding = UTF-8 /]
+[module ListView('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import GeneratorDemo::pattern::crud::view::MasterDertailView/]
+[import GeneratorDemo::pattern::crud::view::generateParentOrSon/]
+
+
+[template public generateElementListView(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+      					[comment if aClass.getEAnnotation('crud').toString().contains('crud')/]
+                        [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+[file (('features/Entities/').concat(aClass.name.toUpperFirst()).concat('/').concat(aClass.name.toUpperFirst()).concat('List.js'), false), 'UTF-8') ]
+
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import { Row, Col, Table, ButtonToolbar } from 'react-bootstrap';
+
+import Loading from '../../Common/Loading/Loading';
+
+class [name.toUpperFirst()/]List extends Component {
+
+renderEditItem(item_id) {
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]Id;
+    if ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) {
+      return (
+        <Link className="btn btn-default" to={`/[name.toLowerCase()/]/edit/${item_id}?[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id=${[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id}`}>
+          <em className="fa fa-pencil" />
+        </Link>
+      );
+    } else {
+      return (
+        <Link className="btn btn-default" to={`/[name.toLowerCase()/]/edit/${item_id}`}>
+          <em className="fa fa-pencil" />
+        </Link>
+      );
+   }
+}
+
+renderDeleteItem(item_id) {
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]Id;
+    if ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) {
+      return (
+        <Link className="btn btn-default" to={`/[name.toLowerCase()/]/delete/${item_id}?[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id=${[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id}`}>
+          <em className="fa fa-trash" />
+        </Link>
+      );
+    } else {
+      return (
+        <Link className="btn btn-default" to={`/[name.toLowerCase()/]/delete/${item_id}`}>
+          <em className="fa fa-trash" />
+        </Link>
+      );
+   }
+}
+
+  renderList() {
+    return this.props.[name.toLower()/].all.map((item) => {
+      return (
+        <tr key={item.id}>
+        [for (p: Property | aClass.getAllAttributes())]
+		<td>{item.[p.name.toLower()/]}</td>	
+		[/for]
+          <td>
+            <ButtonToolbar>
+			[aModel.generateElementMasterDetailView(aClass, 'DetailButton')/]
+              { this.renderEditItem(item.id) }
+              { this.renderDeleteItem(item.id) }
+            </ButtonToolbar>
+          </td>
+        </tr>
+      );
+    });
+  }
+
+  render() {
+    if ((this.props.[name.toLower()/] || {}).loading) {
+      return (
+        <Loading />
+      );
+    }
+
+    if ((this.props.[name.toLower()/] || {}).error) {
+      return (
+        <SweetAlert
+          type="error"
+          title={this.props.[name.toLower()/].error.message}
+          content="Comunicate con el Administrador del Sistema o intentalo más tarde."
+          confirmBtnText="Intentar de nuevo"/>
+      );
+    }
+
+    return (
+      <Row>
+        <Col sm={12}>
+          <Table responsive striped>
+            <thead>
+              <tr>
+				[for (p: Property | aClass.getAllAttributes())]
+				<th>[p.name.toUpperFirst()/]</th>
+				[/for]
+				<th>Operaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderList()}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+    );
+  }
+}
+
+[name.toUpperFirst()/]List.propTypes = {
+  [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]Id: PropTypes.string,
+  [name.toLowerCase()/]: PropTypes.object.isRequired,
+  searchTerm: PropTypes.string
+};
+
+function mapStateToProps(state) {
+  return {
+    [name.toLower()/]: state.[name.toLower()/]
+  };
+}
+
+export default connect(mapStateToProps)([name.toUpperFirst()/]List);
+
+[/file]
+		[/if]        
+   		[/for]
+	[/if]	
+[/for]
+[/template]

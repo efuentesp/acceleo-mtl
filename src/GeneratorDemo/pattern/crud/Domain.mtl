@@ -1,0 +1,70 @@
+[comment encoding = UTF-8 /]
+[module Domain('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateElementDomain(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+                        [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+[file ('main/java/'.concat(aClass._package.name.replaceAll('\\.','/')).concat('/domain/').concat(aClass.name).concat('.java'), false), 'UTF-8')]
+
+package [_package.name/].domain;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Date;
+
+@Entity
+@Table(name = "[name.toUpperFirst()/]")
+public class [name.toUpperFirst()/] implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "[name.toLowerFirst()/]Id")
+	private Integer [name.toLowerFirst()/]Id;
+
+[for (anAttribute: Property | getAllAttributes())][for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
+[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+    @Column(name = "[anAttribute.name.toLowerFirst()/]") 
+	private [anElement.default/] [anAttribute.name.toLowerFirst()/];
+[/if][/for][/for]
+
+	public Integer get[name.toUpperFirst()/]Id() {
+		return [name.toLowerFirst()/]Id;
+	}
+
+	public void set[name.toUpperFirst()/]Id(Integer [name.toLowerFirst()/]Id) {
+		this.[name.toLowerFirst()/]Id = [name.toLowerFirst()/]Id;
+	}
+
+[for (anAttribute: Property | getAllAttributes())][for (anElement: Property | anAttribute.type.allOwnedElements()->filter(Property) )]
+[if (anElement.name.equalsIgnoreCase('typeJava'))] 
+	public [anElement.default/] get[anAttribute.name.toUpperFirst()/] () {
+	    return [anAttribute.name.toLowerFirst()/];  		
+    }
+
+	public void set[anAttribute.name.toUpperFirst()/]([anElement.default/] [anAttribute.name.toLowerFirst()/]) {
+		this.[anAttribute.name.toLowerFirst()/] = [anAttribute.name.toLowerFirst()/];
+	}
+[/if][/for][/for]
+
+}			
+[/file]
+
+			[/if]
+		[/for]
+	[/if]	
+[/for]
+
+[/template]

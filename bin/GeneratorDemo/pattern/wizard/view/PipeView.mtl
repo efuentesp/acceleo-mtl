@@ -1,0 +1,43 @@
+[comment encoding = UTF-8 /]
+[module PipeView('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[template public generateElementPipeView(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+	[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo.wizard')]	
+	 	[for (aClass : Class | p.packagedElement->filter(Class))]
+			[ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')
+			   or aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Wizard')) ]
+[file (('src/app/pipe/').concat(aClass.name.toLower()).concat('.filter.pipe.ts'), false, 'UTF-8')]
+
+import { Injectable, Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+    name: 'filter',
+    pure: false
+})
+
+@Injectable()
+export class Search[name.toUpperFirst()/]Pipe implements PipeTransform {
+      transform(items: any['['/][']'/], busqueda[name.toUpperFirst()/]): any {
+        return busqueda[name.toUpperFirst()/] && items ? items.filter(item =>
+          	[for (anAttribute: Property | getAllAttributes()) separator ('||')]
+				
+					(item.[anAttribute.name.toLowerCase()/].indexOf(busqueda[aClass.name.toUpperFirst()/]) !== -1) 
+				
+			[/for]
+
+        ): items;
+    }
+}
+
+[/file]
+[/if]
+[/for]
+[/if]
+[/for]
+
+
+
+[/template]

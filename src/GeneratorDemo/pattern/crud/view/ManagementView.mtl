@@ -1,0 +1,172 @@
+[comment encoding = UTF-8 /]
+[module ManagementView('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import GeneratorDemo::pattern::crud::view::MasterDertailView/]
+[import GeneratorDemo::pattern::crud::view::generateParentOrSon/]
+
+[template public generateElementManagementView(aModel : Model)]
+[comment @main /]
+
+[for (p : Package | aModel.packagedElement->filter(Package))]
+				[if p.name.equalsIgnoreCase('com.softtek.acceleo.demo')]	
+	 				[for (aClass : Class | p.packagedElement->filter(Class))]
+      					[comment if aClass.getEAnnotation('crud').toString().contains('crud')/]
+                        [ if (aClass.getAppliedStereotypes()->filter(Stereotype)-> exists(s: Stereotype | s.name='Crud')) ]
+[file (('features/Entities/').concat(aClass.name.toUpperFirst()).concat('/').concat(aClass.name.toUpperFirst()).concat('Management.js'), false), 'UTF-8') ]
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import { Col, Row, Panel, Pagination } from 'react-bootstrap';
+
+import ContentWrapper from "../../Common/Layout/ContentWrapper";
+import [name.toUpperFirst()/]Search from './[name.toUpperFirst()/]Search';
+import [name.toUpperFirst()/]List from './[name.toUpperFirst()/]List';
+[aModel.generateElementParentOrSon(aClass, 'ParentActionsManagement')/]
+
+class [name.toUpperFirst()/]Management extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      current_page: 1,
+      search_term: ""
+    };
+  }
+
+  componentWillMount() {
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+    if ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) {
+      this.props.fetch[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/]([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id);
+    }
+    this.get[name.toUpperFirst()/]List(this.state.current_page, [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id);
+  }
+
+  get[name.toUpperFirst()/]List(page, [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id, search_term) {
+    if ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) {
+      this.props.fetch[name.toUpperFirst()/]ListBy[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/](page, [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id, search_term);
+    } else {
+      this.props.fetch[name.toUpperFirst()/]List(page, search_term);
+    }
+  }
+
+  renderPagination() {
+    const pages = Math.ceil((this.props.[name.toLowerCase()/] || {}).items_count / this.props.items_per_page);
+    if (pages > 1) {
+      return(
+        <Row>
+          <Pagination
+            activePage={this.state.current_page}
+            items={pages}
+            maxButtons={this.props.maxButtons}
+            boundaryLinks
+            onSelect={this.onPaginationClick.bind(this)} />
+        </Row>
+      );
+    }
+  }
+
+  renderAddItem() {
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+    if ([aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id) {
+      return (
+        <Link className="btn btn-info" to={`/[name.toLowerCase()/]?[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id=${[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id}`}>
+          <em className="fa fa-plus" />
+        </Link>
+      );
+    } else {
+      return (
+        <Link className="btn btn-info" to={`/[name.toLowerCase()/]`}>
+          <em className="fa fa-plus" />
+        </Link>
+      );
+    }
+  }
+
+  onSearchSubmit(form) {
+    const page = 1;
+    this.setState({
+      search_term: form.term,
+      current_page: page
+    });
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+    this.get[name.toUpperFirst()/]List(page, [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id, form.term);
+  }
+
+  onPaginationClick(page) {
+    this.setState({
+      current_page: page
+    });
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+    this.get[name.toUpperFirst()/]List(page, [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id, this.state.search_term);
+  }
+
+  render() {
+    const [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id = this.props.location.query.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id;
+    return (
+      <ContentWrapper>
+        <ol className="breadcrumb pull-right">
+           <li>
+             <Link to="/">Inicio</Link>
+           </li>
+           <li className="active">[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/]</li>
+           <li>
+             <Link to="/[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_mgmnt">Administrar [aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/]</Link>
+           </li>
+           <li className="active">Administrar [name.toUpperFirst()/]</li>
+        </ol>
+        <h3>Administración de [name.toUpperFirst()/] <small>{(this.props.[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/] || {}).nombre}</small></h3>
+        <Panel header="[name.toUpperFirst()/] registrados">
+          <Col sm={12}>
+            <Row>
+              <[name.toUpperFirst()/]Search
+                [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]Id={[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id}
+                onSearchSubmit={this.onSearchSubmit.bind(this)} />
+              <br />
+            </Row>
+            <Row>
+              {this.renderAddItem()}
+            </Row>
+            <Row>
+              <[name.toUpperFirst()/]List
+                [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]Id={[aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]_id} />
+            </Row>
+            {this.renderPagination()}
+          </Col>
+        </Panel>
+      </ContentWrapper>
+    );
+  }
+}
+
+[name.toUpperFirst()/]Management.defaultProps = {
+  items_per_page: 10,
+  maxButtons: 10
+};
+
+[name.toUpperFirst()/]Management.propTypes = {
+  location: PropTypes.object,
+  [aModel.generateElementParentOrSon(aClass, 'ParentOrSonLowerCase')/]: PropTypes.object,
+  [name.toLowerCase()/]: PropTypes.object,
+  fetch[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/]: PropTypes.func.isRequired,
+  fetch[name.toUpperFirst()/]List: PropTypes.func,
+  fetch[name.toUpperFirst()/]ListBy[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/]: PropTypes.func.isRequired,
+  items_per_page: PropTypes.number.isRequired,
+  maxButtons: PropTypes.number.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+	[aModel.generateElementParentOrSon(aClass, 'ParentOrSonMapProps')/]
+    [name.toLowerCase()/]: state.[name.toLowerCase()/]
+  };
+}
+
+export default connect( mapStateToProps,
+                        { fetch[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/], fetch[name.toUpperFirst()/]List, fetch[name.toUpperFirst()/]ListBy[aModel.generateElementParentOrSon(aClass, 'ParentOrSonFirstUperCase')/] }
+                      )([name.toUpperFirst()/]Management);
+[/file]
+			[/if]        
+   		[/for]
+	[/if]	
+[/for]
+[/template]
